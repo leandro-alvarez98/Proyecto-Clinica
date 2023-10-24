@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Proyecto_Clinica.Dominio;
 
 namespace Proyecto_Clinica
 {
@@ -11,7 +13,7 @@ namespace Proyecto_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Medico medico = new Medico();
         }
     }
 }
