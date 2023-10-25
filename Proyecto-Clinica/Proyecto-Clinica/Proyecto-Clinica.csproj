@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\styles.css" />
     <Content Include="Login.aspx" />
     <Content Include="AltaPaciente.aspx" />
     <Content Include="Default.aspx" />
