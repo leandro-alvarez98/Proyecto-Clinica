@@ -13,23 +13,27 @@ namespace Conexion_Clinica
         public Clinica listar()
         {
             Clinica objetoClinica = new Clinica();
-            AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("");
-                datos.ejecutarLectura();
+                objetoClinica.usuarios = new List<Usuario>();
+                objetoClinica.pacientes = new List<Paciente>();
+                objetoClinica.turnos = new List<Turno>();
+                objetoClinica.medicos = new List<Medico>();
 
-                while (datos.Lector.Read())
-                {
-                    objetoClinica.usuarios = new List<Usuario>();
-                    objetoClinica.pacientes = new List<Paciente>();
-                    objetoClinica.turnos = new List<Turno>();
-                    objetoClinica.medicos = new List<Medico>();
+                // Primero hay que hacer los Listar() de todos los demás
+                //Despues llenar las listas de Clinica con esas funciones
+                UsuarioConexion usuarioConexion = new UsuarioConexion();
+                objetoClinica.usuarios = usuarioConexion.listar();
 
-                    // Primero hay que hacer los Listar() de todos los demás
-                    //Despues llenar las listas de Clinica con esas funciones
+                PacienteConexion pacienteConexion = new PacienteConexion();
+                objetoClinica.pacientes = pacienteConexion.listar();
 
-                }
+                TurnoConexion turnoConexion = new TurnoConexion();
+                objetoClinica.turnos = turnoConexion.listar();
+
+                MedicoConexion medicoConexion = new MedicoConexion();
+                objetoClinica.medicos = medicoConexion.listar();
+
                 return objetoClinica;
             }
             catch (Exception ex)
@@ -37,12 +41,6 @@ namespace Conexion_Clinica
                 MessageBox.Show(ex.ToString());
                 throw ex;
             }
-            finally
-            {
-                datos.cerrarConexion();
-            }
         }
-
-
     }
 }
