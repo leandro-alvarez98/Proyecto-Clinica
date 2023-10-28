@@ -17,7 +17,7 @@
                     <asp:TextBox ID="txtContraseña" type="password" runat="server" CssClass="form-control" placeholder="Ingrese su Contraseña"></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" Text="Ingresar" />
+                    <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" Text="Ingresar" onclick="btnIngresar_Click"/>
                 </div>
                 
                 <a href="CambiarContraseña.aspx">¿Olvidaste tu contraseña?</a>
