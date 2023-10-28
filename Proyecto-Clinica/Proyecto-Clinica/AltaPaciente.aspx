@@ -24,7 +24,7 @@
 </asp:Content>--%>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="form-container">
+    <div class="form-container w-50 p-3">
         <div class="form-group">
             <asp:Label ID="lblId" runat="server" Text="Id"></asp:Label>
             <asp:TextBox ID="txtId" runat="server" CssClass="form-control" placeholder="Ejemplo: E001"></asp:TextBox>

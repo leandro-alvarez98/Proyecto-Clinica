@@ -30,5 +30,10 @@
                 </div>
             </div>
         </div>
+       <!-- Grillas para corroborar informacion -->
+        <asp:GridView ID="dgv_Pacientes" runat="server"></asp:GridView>
+        <asp:GridView ID="dgv_Medicos" runat="server"></asp:GridView>
+        <asp:GridView ID="dgv_Turnos" runat="server"></asp:GridView>
+        <asp:GridView ID="dgv_Usuarios" runat="server"></asp:GridView>
     </div>
 </asp:Content>

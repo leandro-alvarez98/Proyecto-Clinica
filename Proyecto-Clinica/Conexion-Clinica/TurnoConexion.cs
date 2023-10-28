@@ -26,8 +26,8 @@ namespace Conexion_Clinica
                     turno.Paciente = (String)datos.Lector["PNOMBRE"];
                     turno.Medico = (String)datos.Lector["MNOMBRE"];
                     turno.Fecha = (DateTime)datos.Lector["FECHA"];
-                    turno.HoraInicio = (DateTime)datos.Lector["HORA_INICIO"];
-                    turno.HoraFin = (DateTime)datos.Lector["HORA_FIN"];
+                    turno.HoraInicio = (TimeSpan)datos.Lector["HORA_INICIO"];
+                    turno.HoraFin = (TimeSpan)datos.Lector["HORA_FIN"];
                     turno.Estado = (bool)datos.Lector["ESTADO"];
 
                     lista.Add(turno);

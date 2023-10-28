@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    internal class ClinicaConexion
+    public class ClinicaConexion
     {
         public Clinica listar()
         {
