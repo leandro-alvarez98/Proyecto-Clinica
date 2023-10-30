@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AccesoADatos.cs" />
     <Compile Include="ClinicaConexion.cs" />
+    <Compile Include="EspecialidadesConexion.cs" />
     <Compile Include="MedicoConexion.cs" />
     <Compile Include="PacienteConexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

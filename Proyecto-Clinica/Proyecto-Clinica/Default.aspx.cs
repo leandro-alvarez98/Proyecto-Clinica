@@ -15,7 +15,7 @@ namespace Proyecto_Clinica
     {
         Clinica clinica = new Clinica();
 
-        Usuario usuario_actual = new Usuario();
+        Usuario usuario_actual = null;
         public void cargar_componentes()
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
@@ -35,6 +35,7 @@ namespace Proyecto_Clinica
         protected void Page_Load(object sender, EventArgs e)
         {
             cargar_componentes();
+         
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -46,10 +47,11 @@ namespace Proyecto_Clinica
 
             if(usuario_actual != null)
             {
-                //Se debería ingresar y poder operar en la página
+                Response.Redirect("Home.aspx");
             }
             else
             {
+                Response.Redirect("Default.aspx");
                 //Debería salir un mensaje diciendo que el ingreso no fue exitoso y no deberia permitir 
                 //que se salga de la página de Login :)
             }
@@ -90,5 +92,7 @@ namespace Proyecto_Clinica
             }
 
         }
+
+       
     }
 }

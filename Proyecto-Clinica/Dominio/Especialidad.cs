@@ -7,7 +7,7 @@ namespace Proyecto_Clinica.Dominio
 {
     public class Especialidad
     {
-        public int Id { get; set; }
+        public byte Id { get; set; }
         public string Tipo { get; set; }
     }
 }

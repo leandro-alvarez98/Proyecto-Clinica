@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master-page.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Proyecto_Clinica.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--//labels y texbox--%>
@@ -17,7 +18,7 @@
                     <asp:TextBox ID="txtContraseña" type="password" runat="server" CssClass="form-control" placeholder="Ingrese su Contraseña"></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" Text="Ingresar" onclick="btnIngresar_Click"/>
+                    <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" OnClick="btnIngresar_Click" Text="Ingresar"  />
                 </div>
                 
                 <a href="CambiarContraseña.aspx">¿Olvidaste tu contraseña?</a>
@@ -26,7 +27,7 @@
                 </div>
                 <div>
                     <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" PostBackUrl="AltaPaciente.aspx"/>
-
+                    
                 </div>
             </div>
         </div>

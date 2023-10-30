@@ -17,6 +17,7 @@ namespace Proyecto_Clinica.Dominio
         public List<Paciente> pacientes = new List<Paciente>();
         public List<Medico> medicos = new List<Medico>();
         public List<Turno> turnos = new List<Turno>();
+        public List<Especialidad> especialidades = new List<Especialidad>();
 
         public void AgregarUsuario(Usuario usuario)
         {
@@ -36,6 +37,10 @@ namespace Proyecto_Clinica.Dominio
         public void AgregarTurno(Turno turno)
         {
             turnos.Add(turno);
+        }
+        public void AgregarEspecialidad (Especialidad especialidad)
+        {
+            especialidades.Add(especialidad);
         }
     }
 }

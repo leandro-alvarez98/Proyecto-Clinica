@@ -19,6 +19,7 @@ namespace Conexion_Clinica
                 objetoClinica.pacientes = new List<Paciente>();
                 objetoClinica.turnos = new List<Turno>();
                 objetoClinica.medicos = new List<Medico>();
+                objetoClinica.especialidades = new List<Especialidad>();
 
                 // Primero hay que hacer los Listar() de todos los demás
                 //Despues llenar las listas de Clinica con esas funciones
@@ -33,6 +34,9 @@ namespace Conexion_Clinica
 
                 MedicoConexion medicoConexion = new MedicoConexion();
                 objetoClinica.medicos = medicoConexion.listar();
+
+                EspecialidadesConexion especialidadConexion = new EspecialidadesConexion();
+                objetoClinica.especialidades = especialidadConexion.Listar(); 
 
                 return objetoClinica;
             }
