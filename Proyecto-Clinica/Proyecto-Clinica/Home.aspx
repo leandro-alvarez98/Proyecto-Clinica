@@ -6,7 +6,6 @@
 
     <div class="sidebar"> 
         <div class="logo_details">
-            <i class="bx bxl-audible icon"></i>
             <div class="logo_name">code effect</div>
             <i class="bx bx-menu"></i>
         </div>
@@ -27,13 +26,6 @@
             </li>
             <li>
                 <a href="#">
-                <i class="bx bx-drid-alt"></i>
-                <span class="link_name">dashboard</span>
-                </a>
-              <%--  <span class="tooltip">dashboard</span>--%>
-            </li>
-            <li>
-                <a href="#">
                     <i class='bx bxs-bar-chart-alt-2'></i>
                     <span class="link_name">Estadisticas</span>
                 </a>
@@ -50,6 +42,7 @@
             </li>
         </ul>
     </div>
+
     <div id="turnos">
         <asp:Label ID="Label1" runat="server" Text="especialidad"></asp:Label>
         <asp:DropDownList ID="DdlEspecialidad" runat="server"></asp:DropDownList>
