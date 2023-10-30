@@ -7,7 +7,7 @@
     <div class="sidebar"> 
         <div class="logo_details">
             <div class="logo_name">code effect</div>
-            <i class="bx bx-menu"></i>
+            <i class="bx bx-menu" id="btn"></i>
         </div>
         <ul class="nav-list">
             <li>

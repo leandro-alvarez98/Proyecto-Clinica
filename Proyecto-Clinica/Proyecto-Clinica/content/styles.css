@@ -1,15 +1,97 @@
-﻿/*@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins&display=swap');
+/*clases master page*/
+.hello {
+    background-color: #F2F2F2;
+}
 
+/*clases pagina home (sidebar)*/
+/*variables de colores que vamos a usar en la pagina */
+:root {
+    --color-azul-verde-oscuro: #1C6882;
+    --color-azul-detalles: #2A99D9;
+    --color-body: #F2F2F2;
+    --color-azul-efectos: #86B7DA;
+}
 
 .sidebar {
     min-height: 100vh;
     width: 250px;
     padding: 6px 14px;
     z-index: 99;
-    background-color: #2789C2;
+    background-color: var(--color-azul-verde-oscuro);
     transition:all .5s ease;
+}
 
-}*/
-.hello {
-    background-color: #BED2DE;
+.sidebar .logo_details{
+    height: 60px;
+    display: flex;
+    align-items:center;
+    position :relative;
+}
+
+.sidebar .logo_details .logo_name {
+    color:var(--color-body);
+    font-size: 22px;
+    font-weight: 600;
+    transition: all .5s ease;
+}
+
+.sidebar .logo_details #btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size:23px;
+    text-align: right;
+    cursor: pointer;
+    transition: all .5s ease; 
+}
+.sidebar i{
+    color: var(--color-body);
+    height:60px;
+    line-height: 60px;
+    min-width:50px;
+    font-size:25px;
+    text-align:center;
+}
+
+.sidebar .nav-list{
+    margin-top:20px;
+    height: 100%;
+}
+
+.sidebar li{
+    position: relative;
+    margin:8px;
+    list-style:none;
+}
+
+.sidebar li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items:center;
+    text-decoration:none;
+    background-color: var(--color-azul-efectos);
+    position:relative;
+    transition: all .5s ease;
+    z-index:12;
+}
+
+.sidebar li a::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    transform: scaleX(0);
+    background-color:var(--color-azul-efectos);
+    border-radius:5px;
+    transition: transform 0.3s ease-in-out;
+    transform-origin:left;
+    z-index:-2;
+}
+
+.sidebar li a:hover::after{
+    transform:scaleX(1);
+    color:var(--color-body);
 }
