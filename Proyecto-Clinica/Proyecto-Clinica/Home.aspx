@@ -35,8 +35,12 @@
                 <div class="profile-details">
                     <asp:Image ImageUrl="imageurl" runat="server" />
                     <div class="profile_content"> 
-                        <div class="name">Anna Jhon</div>
-                        <div class="designation">Admin</div>
+
+                        <div class="name">
+                            <%= ((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %>
+                        </div>
+
+                        <div class="designation"><%= ((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Tipo %></div>
                     </div>
                 </div>
             </li>

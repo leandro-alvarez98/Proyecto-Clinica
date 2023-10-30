@@ -31,6 +31,11 @@ namespace Proyecto_Clinica
             dgv_Medicos.DataBind();
             dgv_Turnos.DataBind();
             dgv_Usuarios.DataBind();
+
+            if (Session["Usuario"] == null)
+            {
+                Session["Usuario"] = new Usuario();
+            }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,8 +50,10 @@ namespace Proyecto_Clinica
 
             usuario_actual = buscar_usuario_en_BBDD(usuario, contrasena);
 
-            if(usuario_actual != null)
+            if(usuario_actual.Id != -1)
             {
+                Session["Usuario"] = usuario_actual;
+
                 Response.Redirect("Home.aspx");
             }
             else
