@@ -31,7 +31,7 @@ namespace Proyecto_Clinica
             //hace aparecer el menu lateral
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
-            master.Ocultar_footer();
+            
         }
         public void DdlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {

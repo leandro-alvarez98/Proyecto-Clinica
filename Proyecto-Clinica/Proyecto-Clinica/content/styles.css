@@ -3,7 +3,7 @@
 .body {
     background-color: var(--color-body);
     position: relative;
-    padding-bottom: 1em;
+    padding-bottom: 20em;
     min-height: 100vh;
 }
 .footer{
@@ -25,7 +25,7 @@
 /*clases pagina home (sidebar) tema oscuro*/
 
 .nav-pills li a:hover {
-    background-color: var(--color-azul-efectos);
+    background-color: var(--color-azul-verde-oscuro);
 }
 
 

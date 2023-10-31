@@ -19,9 +19,6 @@ namespace Proyecto_Clinica
         {
             menu_lateral.Visible = true;
         }
-        public void Ocultar_footer()
-        {
-            footer.Visible = false;
-        }
+        
     }
 }
