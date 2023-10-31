@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MailCambioContraseña.aspx" />
     <Content Include="HistorialTurnos.aspx" />
     <Content Include="ReservaTurno.aspx" />
     <Content Include="PerfilUsuario.aspx" />
@@ -77,6 +78,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MailCambioContraseña.aspx.cs">
+      <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MailCambioContraseña.aspx.designer.cs">
+      <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HistorialTurnos.aspx.cs">
       <DependentUpon>HistorialTurnos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -21,7 +21,7 @@
                     <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" OnClick="btnIngresar_Click" Text="Ingresar"  />
                 </div>
                 
-                <a href="CambiarContraseña.aspx">¿Olvidaste tu contraseña?</a>
+                <a href="MailCambioContraseña.aspx">¿Olvidaste tu contraseña?</a>
                 <div class="mb-2">
                     <asp:Label ID="lblRegistrar" runat="server" Class="form-label" Text="¿No poseé una cuenta? Registrese."></asp:Label>
                 </div>
