@@ -11,7 +11,13 @@ namespace Proyecto_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+          
+            
+        }
 
+        public void Mostrar_menu_lateral()
+        {
+            menu_lateral.Visible = true;
         }
     }
 }

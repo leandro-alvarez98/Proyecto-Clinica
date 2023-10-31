@@ -8,11 +8,21 @@ using Proyecto_Clinica.Dominio;
 
 namespace Proyecto_Clinica
 {
-    public partial class CambiarContraseña : System.Web.UI.Page
+    public partial class PerfilUsuario : System.Web.UI.Page
     {
         //crear evento btn_ingresar_Click
+        //crear evento btn_ingresar_Click
+        public void cargar_componentes()
+        {
+            //hace aparecer el menu lateral
+            Master_page master = (Master_page)this.Master;
+            master.Mostrar_menu_lateral();
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {           
+            cargar_componentes();          
+        }
 
-      
 
     }
 }

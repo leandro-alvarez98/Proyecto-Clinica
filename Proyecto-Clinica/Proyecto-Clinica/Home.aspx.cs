@@ -28,6 +28,9 @@ namespace Proyecto_Clinica
             DdlEspecialidad.DataSource = clinica.especialidades;
             //Se muestra la drop down list de especialidades
             DdlEspecialidad.DataBind();
+            //hace aparecer el menu lateral
+            Master_page master = (Master_page)this.Master;
+            master.Mostrar_menu_lateral();
         }
         public void DdlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
