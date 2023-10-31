@@ -14,5 +14,6 @@ namespace Proyecto_Clinica.Dominio
         public TimeSpan HoraInicio { get; set; }
         public TimeSpan HoraFin { get; set; }
         public bool Estado { get; set; }
+        public static bool Visible { get; set; }
     }
 }

@@ -20,6 +20,10 @@ namespace Proyecto_Clinica
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.listar();
+            dgv_Pacientes = new GridView();
+            dgv_Medicos = new GridView();
+            dgv_Turnos = new GridView();
+            dgv_Usuarios = new GridView();
 
             //Se cargan las grillas
             dgv_Pacientes.DataSource = clinica.pacientes;

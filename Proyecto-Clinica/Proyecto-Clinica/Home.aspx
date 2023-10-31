@@ -19,12 +19,14 @@
                                 <span class="ms-2 d-none d-sm-inline">Usuario</span>
                             </a>
                         </li>
+
                         <li class="nav-item my-1 disabled">
                             <a href="#sidemenu"  data-bs-toggle ="collapse" class="nav-link text-white" >
                                 <i class='bx bx-notepad'></i>
                                 <span class="ms-2 d-none d-sm-inline">Turnos</span>
                                <i class='bx bx-chevron-down'></i>
                             </a>
+
                             <ul class="nav collapse ms-1 flex-column" id="sidemenu" data-bs-parent="#menu">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link text-white" aria-current="page">Reservar Turno</a>
@@ -34,6 +36,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item my-1">
                             <a href="#" class="nav-link text-white " aria-current="page">
                                 <i class='bx bxs-bar-chart-alt-2'></i>

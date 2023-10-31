@@ -65,6 +65,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReservaTurno.aspx" />
+    <Content Include="PerfilUsuario.aspx" />
     <Content Include="content\styles.css" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="AltaPaciente.aspx" />
@@ -74,6 +76,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReservaTurno.aspx.cs">
+      <DependentUpon>ReservaTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReservaTurno.aspx.designer.cs">
+      <DependentUpon>ReservaTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerfilUsuario.aspx.cs">
+      <DependentUpon>PerfilUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerfilUsuario.aspx.designer.cs">
+      <DependentUpon>PerfilUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CambiarContraseña.aspx.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
