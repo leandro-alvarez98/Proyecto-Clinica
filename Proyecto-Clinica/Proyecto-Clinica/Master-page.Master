@@ -115,7 +115,7 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
             <%--footer--%>
-            <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer">
+            <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
                 <div class="container-fluid text-center text-md-start">
                     <div class="row text-center text-md-start">
 
