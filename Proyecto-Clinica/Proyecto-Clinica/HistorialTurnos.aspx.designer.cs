@@ -11,7 +11,7 @@ namespace Proyecto_Clinica
 {
 
 
-    public partial class ReservaTurno
+    public partial class Default
     {
     }
 }

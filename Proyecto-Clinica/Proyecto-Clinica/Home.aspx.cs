@@ -14,7 +14,7 @@ namespace Proyecto_Clinica
         Clinica clinica = new Clinica();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Turno.Visible = false;
+            //Turnos.Visible = false;
 
             cargar_componentes();
 
@@ -29,14 +29,13 @@ namespace Proyecto_Clinica
             //Se muestra la drop down list de especialidades
             DdlEspecialidad.DataBind();
         }
-        protected void DdlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        public void DdlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verifica la selección en el DropDownList.
             if (DdlEspecialidad.SelectedValue == "Turnos")
             {
                 // Muestra el div "turnos" si se selecciona "Turnos".
-                //turnos.Visible = true;
-                Turno.Visible = true; 
+                Turno.Visible = true;
             }
             else
             {
