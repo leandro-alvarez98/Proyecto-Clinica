@@ -1,7 +1,16 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins&display=swap');
 /*clases master page*/
-.hello {
+.body {
     background-color: var(--color-body);
+    position: relative;
+    padding-bottom: 1em;
+    min-height: 100vh;
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
 }
 
 
@@ -18,5 +27,6 @@
 .nav-pills li a:hover {
     background-color: var(--color-azul-efectos);
 }
+
 
 

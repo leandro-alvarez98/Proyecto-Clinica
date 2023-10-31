@@ -37,7 +37,7 @@
     <!-- iconos-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body class="hello">
+<body class="body">
     <form id="form1" runat="server">
         <div>
             <%--nav superior--%>
@@ -114,10 +114,61 @@
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-            <footer>
-                <hr />
-                Este es el footer :D
+            <%--footer--%>
+            <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer">
+                <div class="container-fluid text-center text-md-start">
+                    <div class="row text-center text-md-start">
+
+                        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Nosotros</h5>
+                            <hr class ="mb-4"/>
+                            <p>
+                                "En [Nombre de la Empresa], estamos comprometidos a brindar soluciones de desarrollo de vanguardia. Somos un equipo de profesionales apasionados por la innovación y la tecnología, especializados en diseñar y crear soluciones personalizadas para satisfacer las necesidades de nuestros clientes.
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Dejanos ayudarte</h5>
+                            <hr class="mb-4" />
+                            <p>
+                                nos interesa tu opinion, si queres ayudarnos a mejorar podes dejanos tu comentario
+                            </p>
+                            <a href="#" class="text-white ">ayuda</a>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Contacto</h5>
+                            <hr class="mb-4" />
+                            <p>
+                                <i class='bx bx-home'></i> Argentina, Buenos Aires
+                            </p>                         
+                            <p>
+                               <i class='bx bx-mail-send' ></i> Mail Maildeempresa@hotmail.com
+                            </p>
+                            <p>
+                                <i class='bx bx-phone-incoming' ></i> +15 772839645
+                            </p>                         
+                        </div>
+                        <hr cl="mb-4"/>
+                        <div class="text-center mb-2">
+                            <p >
+                                Copyright Todos los derechos reservados
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-white"><i class='bx bxl-github' ></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-white"><i class='bx bxl-linkedin-square' ></i></a>
+                                </li> 
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
             </footer>
+
+
         </div>
     </form>
 </body>

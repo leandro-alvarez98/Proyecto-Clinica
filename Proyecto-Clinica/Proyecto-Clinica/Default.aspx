@@ -7,7 +7,7 @@
     <%--//labels y texbox--%>
     <div class="container">
         <h1>Ingreso al Portal de Salud</h1>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-6">
                 <div class="mb-3">
                     <asp:Label ID="lblUsuario" runat="server" Class="form-label" Text="Usuario"></asp:Label>
