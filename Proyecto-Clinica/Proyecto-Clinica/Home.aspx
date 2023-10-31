@@ -4,48 +4,48 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="sidebar"> 
-        <div class="logo_details">
-            <div class="logo_name">code effect</div>
-            <i class="bx bx-menu" id="btn"></i>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="d-flex flex-column-justify-content-between col-auto bg-dark min-vh-100">
+                <div class="mt-4">
+                    <a class="text-white d-none d-sm-inline text-decoration-none d-flex aling-items-center ms-4" role="button">
+                        <span class="fs-5">Menu</span>
+                    </a>
+                    <hr class="text-white d-none d-sm-block"/>
+                    <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
+                        <li class="nav-item my-sm-1 my-2">
+                            <a href="" class="nav-link text-white " aria-current="page">
+                                <i class='bx bx-user'></i>
+                                <span class="ms-2 d-none d-sm-inline">Usuario</span>
+                            </a>
+                        </li>
+                        <li class="nav-item my-1 disabled">
+                            <a href="#sidemenu"  data-bs-toggle ="collapse" class="nav-link text-white" >
+                                <i class='bx bx-notepad'></i>
+                                <span class="ms-2 d-none d-sm-inline">Turnos</span>
+                               <i class='bx bx-chevron-down'></i>
+                            </a>
+                            <ul class="nav collapse ms-1 flex-column" id="sidemenu" data-bs-parent="#menu">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link text-white" aria-current="page">Reservar Turno</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link text-white">Historial de turnos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item my-1">
+                            <a href="#" class="nav-link text-white " aria-current="page">
+                                <i class='bx bxs-bar-chart-alt-2'></i>
+                                <span class="ms-2 d-none d-sm-inline">Estadisticas</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>              
+            </div>
         </div>
-        <ul class="nav-list">
-            <li>
-                <a href="#">
-                    <i class='bx bx-user'></i>
-                    <span class="link_name">usuario</span>
-                </a>
-                <%--  <span class="tooltip">usuario</span>--%>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-notepad'></i>
-                    <span class="link_name">Turnos</span>
-                </a>
-              <%--  <span class="tooltip">turnos</span>--%>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bxs-bar-chart-alt-2'></i>
-                    <span class="link_name">Estadisticas</span>
-                </a>
-                <%--  <span class="tooltip">Estadisticas</span>--%>
-            </li>
-            <li class="profile">
-                <div class="profile-details">
-                    <asp:Image ImageUrl="imageurl" runat="server" />
-                    <div class="profile_content"> 
-
-                        <div class="name">
-                            <%= ((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %>
-                        </div>
-
-                        <div class="designation"><%= ((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Tipo %></div>
-                    </div>
-                </div>
-            </li>
-        </ul>
     </div>
+
 
     <div id="turnos">
         <asp:Label ID="Label1" runat="server" Text="especialidad"></asp:Label>
