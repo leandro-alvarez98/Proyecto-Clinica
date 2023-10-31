@@ -70,7 +70,7 @@
     <Content Include="PerfilUsuario.aspx" />
     <Content Include="content\styles.css" />
     <Content Include="CambiarContraseña.aspx" />
-    <Content Include="AltaPaciente.aspx" />
+    <Content Include="AltaUsuario.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
@@ -105,12 +105,12 @@
     <Compile Include="CambiarContraseña.aspx.designer.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AltaPaciente.aspx.cs">
-      <DependentUpon>AltaPaciente.aspx</DependentUpon>
+    <Compile Include="AltaUsuario.aspx.cs">
+      <DependentUpon>AltaUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AltaPaciente.aspx.designer.cs">
-      <DependentUpon>AltaPaciente.aspx</DependentUpon>
+    <Compile Include="AltaUsuario.aspx.designer.cs">
+      <DependentUpon>AltaUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

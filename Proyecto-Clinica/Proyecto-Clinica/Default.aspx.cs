@@ -43,10 +43,7 @@ namespace Proyecto_Clinica
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-          
             cargar_componentes();
-         
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)

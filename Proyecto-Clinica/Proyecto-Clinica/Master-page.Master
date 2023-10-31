@@ -30,8 +30,6 @@
         });
     </script>
 
-
-
     <!-- Estilos propios -->
     <link href="content\styles.css" rel="stylesheet" />
     <!-- iconos-->
@@ -40,7 +38,7 @@
 <body class="body">
     <form id="form1" runat="server">
         <div>
-            <%--nav superior--%>
+            <%-- NAV --%>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Gestión de Clinica</a>
@@ -50,21 +48,14 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contacto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="Login.aspx">Ingresar</a>
+                                <a class="nav-link active" aria-current="page" href="#Default.aspx">Inicio</a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </nav>
 
-            <%--Menu Lateral--%>
+            <%-- Menu Lateral --%>
             <div id="menu_lateral" runat="server" visible="false">           
                 <div class="container-fluid" >
                     <div class="row">
@@ -114,7 +105,8 @@
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-            <%--footer--%>
+
+            <%-- FOOTER --%>
             <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
                 <div class="container-fluid text-center text-md-start">
                     <div class="row text-center text-md-start">
@@ -149,9 +141,7 @@
                         </div>
                         <hr cl="mb-4"/>
                         <div class="text-center mb-2">
-                            <p >
-                                Copyright Todos los derechos reservados
-                            </p>
+                            <p >Copyright Todos los derechos reservados</p>
                         </div>
                         <div class="text-center">
                             <ul class="list-unstyled list-inline">
@@ -167,8 +157,6 @@
                     </div>
                 </div>
             </footer>
-
-
         </div>
     </form>
 </body>

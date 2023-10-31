@@ -26,15 +26,16 @@
                     <asp:Label ID="lblRegistrar" runat="server" Class="form-label" Text="¿No poseé una cuenta? Registrese."></asp:Label>
                 </div>
                 <div>
-                    <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" PostBackUrl="AltaPaciente.aspx"/>
-                    
+                    <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" PostBackUrl="AltaUsuario.aspx"/>
                 </div>
             </div>
         </div>
+
        <!-- Grillas para corroborar informacion -->
-        <asp:GridView ID="dgv_Pacientes" runat="server"></asp:GridView>
+    <asp:GridView ID="dgv_Pacientes" runat="server"></asp:GridView>
         <asp:GridView ID="dgv_Medicos" runat="server"></asp:GridView>
         <asp:GridView ID="dgv_Turnos" runat="server"></asp:GridView>
         <asp:GridView ID="dgv_Usuarios" runat="server"></asp:GridView>
+
     </div>
 </asp:Content>
