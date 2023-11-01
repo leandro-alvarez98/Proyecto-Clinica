@@ -87,6 +87,13 @@
                                             <li class="nav-item">
                                                 <a href="HistorialTurnos.aspx" class="nav-link text-white">Historial de turnos</a>
                                             </li>
+
+                                            <%if (((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Tipo == "Médico")
+                                              {%>
+                                                  <li class="nav-item">
+                                                      <a href="MisTurnos.aspx" class="nav-link text-white">Mis turnos</a>
+                                                  </li>
+                                            <%}%>
                                         </ul>
                                     </li>
 

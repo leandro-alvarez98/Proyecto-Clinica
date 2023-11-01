@@ -20,21 +20,6 @@ namespace Proyecto_Clinica
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.listar();
-            dgv_Pacientes = new GridView();
-            dgv_Medicos = new GridView();
-            dgv_Turnos = new GridView();
-            dgv_Usuarios = new GridView();
-
-            //Se cargan las grillas
-            dgv_Pacientes.DataSource = clinica.pacientes;
-            dgv_Medicos.DataSource = clinica.medicos;
-            dgv_Turnos.DataSource = clinica.turnos;
-            dgv_Usuarios.DataSource = clinica.usuarios;
-            //Se muestran
-            dgv_Pacientes.DataBind();
-            dgv_Medicos.DataBind();
-            dgv_Turnos.DataBind();
-            dgv_Usuarios.DataBind();
 
             if (Session["Usuario"] == null)
             {
@@ -50,20 +35,23 @@ namespace Proyecto_Clinica
         {
             string usuario = txtUsuario.Text;
             string contrasena = txtContraseña.Text;
-
+            
             usuario_actual = buscar_usuario_en_BBDD(usuario, contrasena);
 
             if(usuario_actual.Id != -1)
             {
+                if (usuario_actual.Tipo == "Médico")
+                {
+                    CargarTurnos();
+                }
                 Session["Usuario"] = usuario_actual;
 
                 Response.Redirect("Home.aspx");
             }
             else
             {
+                MessageBox.Show("Usuario o Contraseña inválidos. Intente otra vez");
                 Response.Redirect("Default.aspx");
-                //Debería salir un mensaje diciendo que el ingreso no fue exitoso y no deberia permitir 
-                //que se salga de la página de Login :)
             }
         }
 
@@ -102,7 +90,9 @@ namespace Proyecto_Clinica
             }
 
         }
-
-       
+        private void CargarTurnos()
+        {
+            
+        }
     }
 }

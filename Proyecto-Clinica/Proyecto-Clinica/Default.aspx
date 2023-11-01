@@ -4,7 +4,8 @@
   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--//labels y texbox--%>
+
+    <%-- Labels y TextBoxs --%>
     <div class="container">
         <h1 style="text-align: center;">Ingreso al Portal de Salud</h1>
         <div class="row justify-content-center">
@@ -20,7 +21,6 @@
                 <div class="mb-2">
                     <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" OnClick="btnIngresar_Click" Text="Ingresar"  />
                 </div>
-                
                 <a href="MailCambioContraseña.aspx">¿Olvidaste tu contraseña?</a>
                 <div class="mb-2">
                     <asp:Label ID="lblRegistrar" runat="server" Class="form-label" Text="¿No poseé una cuenta? Registrese."></asp:Label>
@@ -30,12 +30,5 @@
                 </div>
             </div>
         </div>
-
-       <!-- Grillas para corroborar informacion -->
-    <asp:GridView ID="dgv_Pacientes" runat="server"></asp:GridView>
-        <asp:GridView ID="dgv_Medicos" runat="server"></asp:GridView>
-        <asp:GridView ID="dgv_Turnos" runat="server"></asp:GridView>
-        <asp:GridView ID="dgv_Usuarios" runat="server"></asp:GridView>
-
     </div>
 </asp:Content>
