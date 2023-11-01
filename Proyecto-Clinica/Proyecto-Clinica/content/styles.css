@@ -3,11 +3,15 @@
 .body {
     background-color: var(--color-body);
     position: relative;
-    padding-bottom: 20em;
     min-height: 100vh;
+/*    padding-bottom: 20em;
+    margin: 0;*/
+    
+    
+    
 }
 .footer{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     
@@ -28,5 +32,18 @@
     background-color: var(--color-azul-verde-oscuro);
 }
 
+
+
+
+
+/* pantallas mas chicas */
+
+
+@media (max-width: 767px) {
+    .footer {
+        position: relative;
+         
+    }
+}
 
 

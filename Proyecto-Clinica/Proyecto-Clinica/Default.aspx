@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--//labels y texbox--%>
     <div class="container">
-        <h1>Ingreso al Portal de Salud</h1>
+        <h1 style="text-align: center;">Ingreso al Portal de Salud</h1>
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="mb-3">
