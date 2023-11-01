@@ -18,32 +18,33 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_MEDICO, NOMBRE, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO, M.ID_ESPECIALIDAD as ESPECIALIDAD, E.TIPO as TIPO FROM MEDICOS M INNER JOIN ESPECIALIDADES E ON M.ID_ESPECIALIDAD = E.ID_ESPECIALIDAD");
+                datos.setConsulta("SELECT M.ID_MEDICO AS ID, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO,E.ID_ESPECIALIDAD AS IDESPECIALIDAD, E.TIPO AS ESPECIALIDAD FROM MEDICOS M INNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO INNER JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Medico medico = new Medico();
 
-                    medico.Id = (int)datos.Lector["ID_MEDICO"];
+                    medico.Id = (int)datos.Lector["ID"];
 
-                    medico.nombre = (string)datos.Lector["NOMBRE"];
+                    medico.Nombre = (String)datos.Lector["NOMBRE"];
 
-                    medico.telefono = (string)datos.Lector["TELEFONO"];
+                    medico.Apellido = (String)datos.Lector["APELLIDO"];
 
-                    medico.direccion = (string)datos.Lector["DIRECCION"];
+                    medico.Telefono = (String)datos.Lector["TELEFONO"];
 
-                    medico.fechaNacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+                    medico.Direccion = (String)datos.Lector["DIRECCION"];
 
-                    medico.mail = (string)datos.Lector["MAIL"];
+                    medico.FechaNacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
 
-                    medico.estado = (bool)datos.Lector["ESTADO"];
+                    medico.Mail = (String)datos.Lector["MAIL"];
+
+                    medico.Estado = (bool)datos.Lector["ESTADO"];
 
                     medico.Especialidades = new List<Especialidad>();
                     Especialidad nueva = new Especialidad();
-                    nueva.Id = (byte)datos.Lector["ESPECIALIDAD"];
-                    nueva.Tipo = (String)datos.Lector["TIPO"];
-                    
+                    nueva.Id = (byte)datos.Lector["IDESPECIALIDAD"];
+                    nueva.Tipo = (String)datos.Lector["ESPECIALIDAD"];
                     medico.Especialidades.Add(nueva);
 
                     lista.Add(medico);

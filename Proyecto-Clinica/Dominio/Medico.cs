@@ -8,13 +8,13 @@ namespace Proyecto_Clinica.Dominio
     public class Medico
     {
         public int Id { get; set; }
-        public string nombre { get; set; }
-        public string telefono { get; set; }
-        public string direccion { get; set; }
-        public DateTime fechaNacimiento { get; set; }
-        public string mail { get; set; }
-        public bool estado { get; set; } // 0 = Inactivo, 1 = Activo
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Telefono { get; set; }
+        public string Direccion { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public string Mail { get; set; }
+        public bool Estado { get; set; } // 0 = Inactivo, 1 = Activo
         public List<Especialidad> Especialidades { get; set; }
-        public List<Turno> Turnos { get; set; }
     }
 }

@@ -87,6 +87,7 @@ namespace Proyecto_Clinica
             finally
             {
                 datos.cerrarConexion();
+
             }
 
         }

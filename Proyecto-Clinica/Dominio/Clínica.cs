@@ -18,6 +18,7 @@ namespace Proyecto_Clinica.Dominio
         public List<Medico> medicos = new List<Medico>();
         public List<Turno> turnos = new List<Turno>();
         public List<Especialidad> especialidades = new List<Especialidad>();
+        public List<Observacion> observaciones = new List<Observacion>();
 
         public void AgregarUsuario(Usuario usuario)
         {

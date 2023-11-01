@@ -51,6 +51,7 @@
     <Compile Include="ClinicaConexion.cs" />
     <Compile Include="EspecialidadesConexion.cs" />
     <Compile Include="MedicoConexion.cs" />
+    <Compile Include="ObservacionConexion.cs" />
     <Compile Include="PacienteConexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TurnoConexion.cs" />

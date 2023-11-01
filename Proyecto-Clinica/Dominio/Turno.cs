@@ -13,7 +13,7 @@ namespace Proyecto_Clinica.Dominio
         public DateTime Fecha { get; set; }
         public TimeSpan HoraInicio { get; set; }
         public TimeSpan HoraFin { get; set; }
-        public bool Estado { get; set; }
+        public String Estado { get; set; }
         public static bool Visible { get; set; }
     }
 }

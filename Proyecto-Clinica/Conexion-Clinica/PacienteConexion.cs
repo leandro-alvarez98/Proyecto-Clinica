@@ -16,37 +16,28 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT P.ID_PACIENTE AS PCIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO, O.OBSERVACION AS OBS, o.ID_MEDICO as MEDICO, o.FECHA as FECHA FROM PACIENTES P LEFT JOIN OBSERVACIONES O ON P.ID_PACIENTE = O.ID_PACIENTE");
+                datos.setConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES P");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Paciente paciente = new Paciente();
 
-                    paciente.Id = (int)datos.Lector["PCIENTE"];
+                    paciente.Id = (int)datos.Lector["ID_PACIENTE"];
 
-                    paciente.nombre = (string)datos.Lector["NOMBRE"];
+                    paciente.Nombre = (string)datos.Lector["NOMBRE"];
 
-                    paciente.apellido = (string)datos.Lector["APELLIDO"];
+                    paciente.Apellido = (string)datos.Lector["APELLIDO"];
 
-                    paciente.telefono = (string)datos.Lector["TELEFONO"];
+                    paciente.Telefono = (string)datos.Lector["TELEFONO"];
 
-                    paciente.direccion = (string)datos.Lector["DIRECCION"];
+                    paciente.Direccion = (string)datos.Lector["DIRECCION"];
 
-                    paciente.fecha_nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+                    paciente.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
 
-                    paciente.mail = (string)datos.Lector["MAIL"];
+                    paciente.Mail = (string)datos.Lector["MAIL"];
 
-                    paciente.estado = (bool)datos.Lector["ESTADO"];
-
-                    paciente.Observaciones = new List<Observacion>();
-                    Observacion obs = new Observacion();
-                    obs.Descripcion = (string)datos.Lector["OBS"];
-                    obs.id_Medico = (int)datos.Lector["MEDICO"];
-                    obs.id_Paciente = (int)datos.Lector["PCIENTE"];
-                    obs.Fecha = (DateTime)datos.Lector["FECHA"];
-                    paciente.Observaciones.Add(obs);
-
+                    paciente.Estado = (bool)datos.Lector["ESTADO"];
 
                     lista.Add(paciente);
                 }

@@ -23,12 +23,12 @@ namespace Conexion_Clinica
                 {
                     Turno turno = new Turno();
                     turno.Id = (int)datos.Lector["ID_TURNO"];
-                    turno.Paciente = (String)datos.Lector["PNOMBRE"];
                     turno.Medico = (String)datos.Lector["MNOMBRE"];
+                    turno.Paciente = (String)datos.Lector["PNOMBRE"];
                     turno.Fecha = (DateTime)datos.Lector["FECHA"];
                     turno.HoraInicio = (TimeSpan)datos.Lector["HORA_INICIO"];
                     turno.HoraFin = (TimeSpan)datos.Lector["HORA_FIN"];
-                    turno.Estado = (bool)datos.Lector["ESTADO"];
+                    turno.Estado = (String)datos.Lector["ESTADO"];
 
                     lista.Add(turno);
                 }

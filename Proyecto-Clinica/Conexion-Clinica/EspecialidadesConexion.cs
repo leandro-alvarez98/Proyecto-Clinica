@@ -17,13 +17,13 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_ESPECIALIDAD as ESPECIALIDAD ,TIPO FROM ESPECIALIDADES");
+                datos.setConsulta("SELECT ID_ESPECIALIDAD,TIPO FROM ESPECIALIDADES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Especialidad especialidad = new Especialidad();
-                    especialidad.Id = (byte)datos.Lector["ESPECIALIDAD"];
+                    especialidad.Id = (byte)datos.Lector["ID_ESPECIALIDAD"];
                     especialidad.Tipo = (string)datos.Lector["TIPO"];
                     lista.Add(especialidad);
 
