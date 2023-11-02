@@ -16,14 +16,25 @@ namespace Proyecto_Clinica
         Clinica clinica = new Clinica();
 
         Usuario usuario_actual = null;
+        public Usuario Comprobar_Usuario()
+        {
+            return usuario_actual;
+        }
         public void cargar_componentes()
         {
+            Master_page master = (Master_page)this.Master;
+
+
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.listar();
 
             if (Session["Usuario"] == null)
             {
                 Session["Usuario"] = new Usuario();
+            }
+            else
+            {
+                master.Mostrar_Icono();
             }
         }
         protected void Page_Load(object sender, EventArgs e)

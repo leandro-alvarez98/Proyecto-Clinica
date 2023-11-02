@@ -35,7 +35,7 @@ namespace Conexion_Clinica
 
                     medico.Direccion = (String)datos.Lector["DIRECCION"];
 
-                    medico.FechaNacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+                    medico.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
 
                     medico.Mail = (String)datos.Lector["MAIL"];
 

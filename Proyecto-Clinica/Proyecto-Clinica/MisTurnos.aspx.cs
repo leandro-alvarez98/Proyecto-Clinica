@@ -140,7 +140,7 @@ namespace Proyecto_Clinica
 
                     medicoActual.Direccion = (String)datos.Lector["DIRECCION"];
 
-                    medicoActual.FechaNacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+                    medicoActual.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
 
                     medicoActual.Mail = (String)datos.Lector["MAIL"];
 
