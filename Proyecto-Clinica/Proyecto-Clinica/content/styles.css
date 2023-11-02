@@ -95,3 +95,16 @@
     align-items: center;
     margin-left:500px;/* Ajusta el margen izquierdo según tus preferencias */
 }
+
+/*-------------------------------------PAGINA ALTA USUARIO-------------------------------------------------------------------*/
+.form_usuario {
+    padding-top:60px;
+   
+}
+.lbl {
+    width: 200px;
+    font-size:20px;
+}
+.btnyo{
+    font-size:20px;  
+}
