@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MailCambioContraseña.aspx" />
-    <Content Include="HistorialTurnos.aspx" />
     <Content Include="ReservaTurno.aspx" />
     <Content Include="PerfilUsuario.aspx" />
     <Content Include="content\styles.css" />
@@ -85,13 +84,6 @@
     </Compile>
     <Compile Include="MailCambioContraseña.aspx.designer.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HistorialTurnos.aspx.cs">
-      <DependentUpon>HistorialTurnos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HistorialTurnos.aspx.designer.cs">
-      <DependentUpon>HistorialTurnos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReservaTurno.aspx.cs">
       <DependentUpon>ReservaTurno.aspx</DependentUpon>

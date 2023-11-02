@@ -14,7 +14,6 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    
 }
 
 
@@ -27,14 +26,9 @@
 }
 
 /*clases pagina home (sidebar) tema oscuro*/
-
 .nav-pills li a:hover {
     background-color: var(--color-azul-verde-oscuro);
 }
-
-
-
-
 
 /* pantallas mas chicas - falta un ajustecito*/
 @media (max-width: 1204px) {
@@ -69,7 +63,6 @@
     }
 }
 
-
 .form-group {
     display: flex;
     flex-direction: row;
@@ -96,13 +89,9 @@
     padding-top: 20px; /* Agregar espacio adicional por encima del contenido de la sección */
 }
 
-
 /* Estilo personalizado para el switch */
 .form-check.form-switch {
     display: flex;
     align-items: center;
-    margin-left:500;/* Ajusta el margen izquierdo según tus preferencias */
+    margin-left:500px;/* Ajusta el margen izquierdo según tus preferencias */
 }
-
-    
-

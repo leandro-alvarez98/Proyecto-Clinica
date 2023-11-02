@@ -22,6 +22,7 @@ namespace Proyecto_Clinica
                 ddlRegistrarTipo.Items.Add(new ListItem("Administrador/a", "Administrador"));
                 ddlRegistrarTipo.Items.Add(new ListItem("Recepcionista", "Recepcionista"));
                 ddlRegistrarTipo.Items.Add(new ListItem("Médico/a", "Médico"));
+                ddlRegistrarTipo.Items.Add(new ListItem("Paciente", "Paciente"));
             }
         }
         protected void Button1_Click(object sender, EventArgs e)

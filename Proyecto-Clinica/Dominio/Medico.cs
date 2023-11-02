@@ -12,9 +12,9 @@ namespace Proyecto_Clinica.Dominio
         public string Apellido { get; set; }
         public string Telefono { get; set; }
         public string Direccion { get; set; }
-        public DateTime FechaNacimiento { get; set; }
+        public DateTime Fecha_Nacimiento { get; set; }
         public string Mail { get; set; }
-        public bool Estado { get; set; } // 0 = Inactivo, 1 = Activo
+        public bool Estado { get; set; }
         public List<Especialidad> Especialidades { get; set; }
     }
 }

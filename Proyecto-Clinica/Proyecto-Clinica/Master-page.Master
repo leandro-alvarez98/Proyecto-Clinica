@@ -41,15 +41,15 @@
             <%-- NAV --%>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Gestión de Clinica</a>
+                    <a class="navbar-brand" href="#Default.aspx">Gestión de Clinica</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
+<%--                            <li class="nav-item"> ESTO NO LO USAMOS PARA NADA POR AHORA
                                 <a class="nav-link active" aria-current="page" href="#Default.aspx">Inicio</a>
-                            </li>
+                            </li>--%>
                         </ul>
                     </div>
                 </div>
@@ -120,16 +120,16 @@
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Nosotros</h5>
                             <hr class="mb-4" />
                             <p>
-                                "En [Nombre de la Empresa], estamos comprometidos a brindar soluciones de desarrollo de vanguardia. Somos un equipo de profesionales apasionados por la innovación y la tecnología, especializados en diseñar y crear soluciones personalizadas para satisfacer las necesidades de nuestros clientes.
+                                "En el <strong>GRUPO 18</strong>, estamos comprometidos a brindar soluciones de desarrollo de vanguardia. Somos un equipo de profesionales apasionados por la innovación y la tecnología, especializados en diseñar y crear soluciones personalizadas para satisfacer las necesidades de nuestros clientes.
                             </p>
                         </div>
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Dejanos ayudarte</h5>
                             <hr class="mb-4" />
                             <p>
-                                nos interesa tu opinion, si queres ayudarnos a mejorar podes dejanos tu comentario
+                                Nos interesa tu opinion, si queres ayudarnos a mejorar podes dejarnos tu comentario...
                             </p>
-                            <a href="#" class="text-white ">ayuda</a>
+                            <a href="#" class="text-white ">Ayuda</a>
                         </div>
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Contacto</h5>
@@ -146,15 +146,17 @@
                         </div>
                         <hr class="mb-4" />
                         <div class="text-center mb-2">
-                            <p>Copyright Todos los derechos reservados</p>
+                            <p>Copyright. Todos los derechos reservados.</p>
                         </div>
                         <div class="text-center">
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-white"><i class='bx bxl-github'></i></a>
+                                    <a href="https://github.com/leandro-alvarez98/Proyecto-Clinica" class="text-white"><i class='bx bxl-github'></i> Repositorio de la página</a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-white"><i class='bx bxl-linkedin-square'></i></a>
+                                    <a href="https://www.linkedin.com/in/fancusan/" class="text-white"><i class='bx bxl-linkedin-square'></i>Facu en Linkedin</a>
+<%--                                <a href="" class="text-white"><i class='bx bxl-linkedin-square'></i>Lean en linkedin</a>
+                                    <a href="" class="text-white"><i class='bx bxl-linkedin-square'></i>Esteban en linkedin</a>--%>
                                 </li>
                             </ul>
                         </div>
@@ -162,47 +164,6 @@
                     </div>
                 </div>
             </footer>
-            <%--<footer class="bg-dark text-white pt-4 pb-3 footer" id="footer" runat="server">
-    <div class="container text-center text-md-start">
-        <div class="row">
-
-            <div class="col-md-4 mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Nosotros</h5>
-                <p>
-                    "En [Nombre de la Empresa], estamos comprometidos a brindar soluciones de desarrollo de vanguardia. Somos un equipo de profesionales apasionados por la innovación y la tecnología, especializados en diseñar y crear soluciones personalizadas para satisfacer las necesidades de nuestros clientes."
-                </p>
-            </div>
-
-            <div class="col-md-4 mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Dejanos ayudarte</h5>
-                <p>Nos interesa tu opinión, si quieres ayudarnos a mejorar, puedes dejarnos tu comentario.</p>
-                <a href="#" class="text-white">Ayuda</a>
-            </div>
-
-            <div class="col-md-4 mt-3">
-                <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Contacto</h5>
-                <p><i class='bx bx-home'></i> Argentina, Buenos Aires</p>
-                <p><i class='bx bx-mail-send'></i> Mail Maildeempresa@hotmail.com</p>
-                <p><i class='bx bx-phone-incoming'></i> +15 772839645</p>
-            </div>
-
-            <div class="col-12 text-center mb-2">
-                <p>Copyright Todos los derechos reservados</p>
-            </div>
-
-            <div class="col-12 text-center">
-                <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item">
-                        <a href="#" class="text-white"><i class='bx bxl-github'></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#" class="text-white"><i class='bx bxl-linkedin-square'></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>--%>
         </div>
     </form>
 </body>

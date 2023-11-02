@@ -12,6 +12,8 @@ namespace Proyecto_Clinica.Dominio
         public string Contraseña { get; set; }
         public string Tipo { get; set; }
         public List<Turno> Turnos { get; set; }
+        public Medico Medico { get; set; }
+        public Paciente Paciente { get; set; }
 
         public Usuario()
         {
@@ -20,6 +22,8 @@ namespace Proyecto_Clinica.Dominio
             Contraseña = "Sin contraseña";
             Tipo = "Administrador";
             Turnos = new List<Turno>();
+            Medico = new Medico();
+            Paciente = new Paciente();
         }
 
         public Usuario(int id, string nombre, string contraseña, string tipo, List<Turno> turnos)
