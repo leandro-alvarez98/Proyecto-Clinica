@@ -4,7 +4,7 @@
   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+   
     <%-- Labels y TextBoxs --%>
     <div class="container">
         <h1 style="text-align: center;">Ingreso al Portal de Salud</h1>

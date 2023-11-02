@@ -4,8 +4,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <%-- Esta página maneja los turnos del usuario sólo si el mismo es un Médico --%>
-    <asp:GridView ID="dgv_Turnos" runat="server">
+    <div class="container">
+        <hr />
+        <asp:GridView ID="dgv_Turnos" CssClass="table table-dark table-hover" runat="server">
+        </asp:GridView>
+    </div>
 
-    </asp:GridView>
+   
 
 </asp:Content>

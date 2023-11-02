@@ -25,7 +25,7 @@ namespace Proyecto_Clinica
         protected void Page_Load(object sender, EventArgs e)
         {           
             cargar_componentes();
-            
+      
 
         }
 
