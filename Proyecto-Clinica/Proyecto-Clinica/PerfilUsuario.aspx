@@ -23,6 +23,12 @@
                 <asp:Label ID="fechaNacimientoLabel" runat="server"></asp:Label></p>
         </div>
     </div>
+    <div class="mb-2">
+    <asp:Button ID="btnEditarDatos" class="btn btn-primary" runat="server" Text="Editar Datos"  />
+    </div>
+    <div class="mb-2">
+    <asp:Button ID="btnCambioContraseña" class="btn btn-primary" runat="server" Text="Cambiar Contraseña"  />
+    </div>
 
 
 

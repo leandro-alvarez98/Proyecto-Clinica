@@ -4,8 +4,8 @@
     background-color: var(--color-body);
     position: relative;
     min-height: 100vh;
-/*    padding-bottom: 20em;
-    margin: 0;*/
+    padding-bottom: 20em;
+    margin: 0;
     
     
     
@@ -36,14 +36,35 @@
 
 
 
-/* pantallas mas chicas */
-
-
-@media (max-width: 767px) {
+/* pantallas mas chicas - falta un ajustecito*/
+@media (max-width: 1204px) {
     .footer {
         position: relative;
-         
+        border-top: 10px solid #fff; /* agrega un borde superior */
+        /*  padding-top: 20px;  /*agrega espacio adicional arriba del footer */
     }
 }
 
+@media (max-width: 768px) {
+    .footer {
+        position: relative;
+        border-top: 10px solid #fff; /* agrega un borde superior */
+        padding-top: 20px; /*  agrega espacio adicional arriba del footer */
+    }
+    
+}
 
+@media (max-height: 600px) {
+    .footer {
+        position: relative;
+        border-bottom: 2px solid #fff; /* agrega un borde inferior */
+        padding-bottom: 20px; /*agrega espacio adicional abajo del footer */
+    }
+}
+@media (max-height: 500px) {
+    .footer {
+        position: relative;
+        border-bottom: 2px solid #fff; /* agrega un borde inferior */
+        padding-bottom: 20px; /* agrega espacio adicional abajo del footer */
+    }
+}
