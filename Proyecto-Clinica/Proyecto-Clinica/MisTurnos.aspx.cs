@@ -50,13 +50,27 @@ namespace Proyecto_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_PACIENTE, ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES P");
+                datos.setConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES WHERE ID_USUARIO = @IDUSUARIO");
                 datos.setParametro("@IDUSUARIO", IdUsuario);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    //pacienteActual. 
+                    pacienteActual.Id = (int)datos.Lector["ID_PACIENTE"];
+
+                    pacienteActual.Nombre = (String)datos.Lector["NOMBRE"];
+
+                    pacienteActual.Apellido = (String)datos.Lector["APELLIDO"];
+
+                    pacienteActual.Telefono = (String)datos.Lector["TELEFONO"];
+
+                    pacienteActual.Direccion = (String)datos.Lector["DIRECCION"];
+
+                    pacienteActual.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+
+                    pacienteActual.Mail = (String)datos.Lector["MAIL"];
+
+                    pacienteActual.Estado = (bool)datos.Lector["ESTADO"]; 
                 }
             }
             catch (Exception ex)
