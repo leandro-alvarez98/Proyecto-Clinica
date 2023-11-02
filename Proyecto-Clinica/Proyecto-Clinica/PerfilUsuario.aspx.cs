@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Proyecto_Clinica.Dominio;
+using Conexion_Clinica;
+using System.Collections;
+using System.Windows.Forms;
+
 
 namespace Proyecto_Clinica
 {
@@ -20,7 +24,9 @@ namespace Proyecto_Clinica
         }
         protected void Page_Load(object sender, EventArgs e)
         {           
-            cargar_componentes();          
+            cargar_componentes();
+            
+
         }
 
 

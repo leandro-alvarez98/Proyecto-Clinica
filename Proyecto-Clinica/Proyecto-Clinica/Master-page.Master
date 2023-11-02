@@ -56,8 +56,8 @@
             </nav>
 
             <%-- Menu Lateral --%>
-            <div id="menu_lateral" runat="server" visible="false">           
-                <div class="container-fluid" >
+            <div id="menu_lateral" runat="server" visible="false">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="d-flex flex-column-justify-content-between col-auto bg-dark min-vh-100">
                             <div class="mt-4">
@@ -91,6 +91,7 @@
                                                       <a href="MisTurnos.aspx" class="nav-link text-white">Mis turnos</a>
                                                   </li>
                                             <%}%>
+                                           
                                         </ul>
                                     </li>
 
@@ -117,7 +118,7 @@
 
                         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Nosotros</h5>
-                            <hr class ="mb-4"/>
+                            <hr class="mb-4" />
                             <p>
                                 "En [Nombre de la Empresa], estamos comprometidos a brindar soluciones de desarrollo de vanguardia. Somos un equipo de profesionales apasionados por la innovación y la tecnología, especializados en diseñar y crear soluciones personalizadas para satisfacer las necesidades de nuestros clientes.
                             </p>
@@ -134,27 +135,27 @@
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Contacto</h5>
                             <hr class="mb-4" />
                             <p>
-                                <i class='bx bx-home'></i> Argentina, Buenos Aires
-                            </p>                         
-                            <p>
-                               <i class='bx bx-mail-send' ></i> Mail Maildeempresa@hotmail.com
+                                <i class='bx bx-home'></i>Argentina, Buenos Aires
                             </p>
                             <p>
-                                <i class='bx bx-phone-incoming' ></i> +15 772839645
-                            </p>                         
+                                <i class='bx bx-mail-send'></i>Mail Maildeempresa@hotmail.com
+                            </p>
+                            <p>
+                                <i class='bx bx-phone-incoming'></i>+15 772839645
+                            </p>
                         </div>
-                        <hr class="mb-4"/>
+                        <hr class="mb-4" />
                         <div class="text-center mb-2">
-                            <p >Copyright Todos los derechos reservados</p>
+                            <p>Copyright Todos los derechos reservados</p>
                         </div>
                         <div class="text-center">
                             <ul class="list-unstyled list-inline">
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-white"><i class='bx bxl-github' ></i></a>
+                                    <a href="#" class="text-white"><i class='bx bxl-github'></i></a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <a href="#" class="text-white"><i class='bx bxl-linkedin-square' ></i></a>
-                                </li> 
+                                    <a href="#" class="text-white"><i class='bx bxl-linkedin-square'></i></a>
+                                </li>
                             </ul>
                         </div>
 
