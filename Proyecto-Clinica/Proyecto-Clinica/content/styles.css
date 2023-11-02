@@ -68,3 +68,41 @@
         padding-bottom: 20px; /* agrega espacio adicional abajo del footer */
     }
 }
+
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    flex: 1;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.form-control {
+    flex: 2;
+}
+.radio-list label {
+    margin-right: 10px; /* Puedes ajustar el valor de margen según tu preferencia */
+}
+#filtrosAvanzados {
+    border-top: 1px solid #ccc; /* Color y estilo del borde pueden personalizarse */
+    margin-top: 20px; /* Agregar un espacio en la parte superior del borde */
+    padding-top: 20px; /* Agregar espacio adicional por encima del contenido de la sección */
+}
+
+
+/* Estilo personalizado para el switch */
+.form-check.form-switch {
+    display: flex;
+    align-items: center;
+    margin-left:500;/* Ajusta el margen izquierdo según tus preferencias */
+}
+
+    
+
