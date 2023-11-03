@@ -31,7 +31,7 @@
         </div>
 
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Button" CssClass="d-grid gap-2 col-6 mx-auto btnyo" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="d-grid gap-2 col-6 mx-auto btnyo" OnClick="Button1_Click" />
     </div>
 
 </asp:Content>
