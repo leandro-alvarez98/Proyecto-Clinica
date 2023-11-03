@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
     <%-- Labels y TextBoxs --%>
-    <div class="container">
+    <div class="container containerbott form_top">
         <h1 style="text-align: center;">Ingreso al Portal de Salud</h1>
         <div class="row justify-content-center">
             <div class="col-6">

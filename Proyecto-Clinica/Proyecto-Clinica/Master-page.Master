@@ -61,7 +61,7 @@
 
             <%-- Menu Lateral --%>
             <div id="menu_lateral" runat="server" visible="false">
-                <div class="container-fluid">
+                <div class="container-fluid menuLateral">
                     <div class="row">
                         <div class="d-flex flex-column-justify-content-between col-auto bg-dark min-vh-100">
                             <div class="mt-4">
@@ -115,8 +115,15 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
 
-            <%-- FOOTER --%>
-            <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
+            
+            
+        </div>
+
+
+    </form>
+</body>
+    <%-- FOOTER --%>
+        <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
                 <div class="container-fluid text-center text-md-start">
                     <div class="row text-center text-md-start">
 
@@ -168,7 +175,4 @@
                     </div>
                 </div>
             </footer>
-        </div>
-    </form>
-</body>
 </html>

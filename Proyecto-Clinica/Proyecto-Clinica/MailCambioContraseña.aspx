@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center containerbott">
         <div class="col-6">
             <div class="mb-2">
                 <asp:Label ID="lblIngreseMail" runat="server" Class="form-label" Text="Ingrese su mail:"></asp:Label>

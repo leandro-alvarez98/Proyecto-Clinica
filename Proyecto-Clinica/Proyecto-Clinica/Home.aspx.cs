@@ -25,9 +25,9 @@ namespace Proyecto_Clinica
             clinica = clinicaConexion.listar();
 
             //Se carga la drop down list de especialidades
-            DdlEspecialidad.DataSource = clinica.especialidades;
+           // DdlEspecialidad.DataSource = clinica.especialidades;
             //Se muestra la drop down list de especialidades
-            DdlEspecialidad.DataBind();
+           // DdlEspecialidad.DataBind();
             //hace aparecer el menu lateral
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
@@ -36,16 +36,16 @@ namespace Proyecto_Clinica
         public void DdlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verifica la selección en el DropDownList.
-            if (DdlEspecialidad.SelectedValue == "Turnos")
-            {
-                // Muestra el div "turnos" si se selecciona "Turnos".
-                Turno.Visible = true;
-            }
-            else
-            {
-                // Oculta el div "turnos" si se selecciona otra opción.
-                Turno.Visible = false;
-            }
+            //if (DdlEspecialidad.SelectedValue == "Turnos")
+            //{
+            //    // Muestra el div "turnos" si se selecciona "Turnos".
+            //    Turno.Visible = true;
+            //}
+            //else
+            //{
+            //    // Oculta el div "turnos" si se selecciona otra opción.
+            //    Turno.Visible = false;
+            //}
         }
     }
 }

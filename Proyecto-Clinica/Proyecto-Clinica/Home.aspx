@@ -6,14 +6,9 @@
 
         
 
-
-    <div id="turnos">
-        <asp:Label ID="Label1" runat="server" Text="especialidad"></asp:Label>
-        <asp:DropDownList ID="DdlEspecialidad" runat="server" ></asp:DropDownList>
+    <div class="container ">
+        <asp:Label Text="laskmdlksamdlksamdlkmaslkdmalskmd" runat="server" />
     </div>
-    
-
-
 
 
 </asp:Content>

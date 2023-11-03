@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container form_top " >
+    <div class="container form_top containerbott" >
         <div class="card">
             <div class="card-body ">
                 <h1 class="card-title">Perfil de Usuario</h1>

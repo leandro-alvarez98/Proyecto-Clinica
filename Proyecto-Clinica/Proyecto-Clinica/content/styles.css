@@ -4,22 +4,20 @@
     background-color: var(--color-body);
     position: relative;
     min-height: 100vh;
-    padding-bottom: 20em;
-    margin: 0;
-    
-    
-    
+/*    flex-direction: row;
+*/    /*    padding-bottom: 20em;
+*/
 }
-.footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin-top:300px;
+.footer {
+
 }
 
 
+.containerbott {
+    min-height: 100vh;
+}
 /*variables de colores que vamos a usar en la pagina */
-:root {
+    :root {
     --color-azul-verde-oscuro: #1C6882;
     --color-azul-detalles: #2A99D9;
     --color-body: #F2F2F2;
@@ -32,45 +30,20 @@
 }
 
 /* pantallas mas chicas - falta un ajustecito*/
-@media (max-width: 1204px) {
-    .footer {
-        position: relative;
-        border-top: 10px solid #fff; /* agrega un borde superior */
-        /*  padding-top: 20px;  /*agrega espacio adicional arriba del footer */
-    }
+
+.menuLateral {
 }
 
-@media (max-width: 768px) {
-    .footer {
-        position: relative;
-        border-top: 10px solid #fff; /* agrega un borde superior */
-        padding-top: 20px; /*  agrega espacio adicional arriba del footer */
-    }
-    
-}
 
-@media (max-height: 600px) {
-    .footer {
-        position: relative;
-        border-bottom: 2px solid #fff; /* agrega un borde inferior */
-        padding-bottom: 20px; /*agrega espacio adicional abajo del footer */
-    }
-}
-@media (max-height: 500px) {
-    .footer {
-        position: relative;
-        border-bottom: 2px solid #fff; /* agrega un borde inferior */
-        padding-bottom: 20px; /* agrega espacio adicional abajo del footer */
-    }
-}
 
+/*
 .form-group {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-}
+}*/
 
 .form-label {
     flex: 1;

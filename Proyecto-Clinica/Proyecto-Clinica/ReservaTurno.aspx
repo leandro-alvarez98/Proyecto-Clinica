@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>Reservar Turno</h3>
 
-    <div class="mb-3">
+    <div class="mb-3 container containerbott">
         <div class="form-group">
             <div class="form-label">
                 <asp:Label ID="lblApellidoProfesional" runat="server" Text="Conoce el apellido del profesional?" AssociatedControlID="rbConoceApellido"></asp:Label>
@@ -33,7 +33,7 @@
         <!-- linea divisoria-->
         <div id="filtrosAvanzados">
 
-            <div class="form-group" class="mb-3">
+            <div class="mb-3 form-group ">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="form-label">
                         <asp:Label ID="lblFiltrosAvanzados" runat="server" Text="Filtros Avanzados"></asp:Label>
@@ -76,7 +76,7 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" >
                 <label class="form-check-label" for="flexCheckChecked">
                     Noche
                 </label>

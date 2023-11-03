@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container form_top" id="form_usuario">
+    <div class="container form_top containerbott" id="form_usuario">
         <%-- REGISTRO DEL USUARIO --%>
         <h1 >CREA TU CUENTA</h1>
         <hr />
