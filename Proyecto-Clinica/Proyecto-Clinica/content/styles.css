@@ -97,14 +97,14 @@
 }
 
 /*-------------------------------------PAGINA ALTA USUARIO-------------------------------------------------------------------*/
-.form_usuario {
+.form_top {
     padding-top:60px; 
 }
 .lbl {
     width: 200px;
     font-size:20px;
 }
-.btnyo{
+.btn_tamaño{
     font-size:20px;  
 }
 

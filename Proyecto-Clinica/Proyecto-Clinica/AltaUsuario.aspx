@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container form_usuario" id="form_usuario">
+    <div class="container form_top" id="form_usuario">
         <%-- REGISTRO DEL USUARIO --%>
         <h1>CREE UNA CUENTA</h1>
         <hr />
@@ -31,7 +31,7 @@
         </div>
 
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="d-grid gap-2 col-6 mx-auto btnyo" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="d-grid gap-2 col-6 mx-auto btn_tamaño" OnClick="Button1_Click" />
     </div>
 
 </asp:Content>
