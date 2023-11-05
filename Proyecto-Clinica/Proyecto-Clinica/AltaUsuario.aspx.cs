@@ -35,17 +35,55 @@ namespace Proyecto_Clinica
                 usuarioValido = true;
             }
             //Si las pasa, se crea un usuario nuevo y se lo ingresa en la BBDD
-            if(usuarioValido)
+            if (usuarioValido)
             {
                 Usuario nuevo_usuario = new Usuario();
                 nuevo_usuario.Nombre = txtRegistrarUsuario.Text;
                 nuevo_usuario.Contraseña = txtRegistrarContrasena.Text;
                 nuevo_usuario.Tipo = ddlRegistrarTipo.SelectedValue;
-                InsertarEnBBDD(nuevo_usuario);
+                InsertarUsuarioEnBBDD(nuevo_usuario);
+                switch(nuevo_usuario.Tipo)
+                {
+                    case "Paciente":
+                        InsertarPacienteEnBBDD();
+                        break;
+                    case "Médico":
+                        InsertarMedicoEnBBDD();
+                        break;
+                    case "Administrador":
+                        InsertarAdministradorEnBBDD();
+                        break;
+                    case "Recepcionista":
+                        InsertarRecepcionistaEnBBDD();
+                        break;
+                }
+
+                Session["Usuario"] = nuevo_usuario;
+                Response.Redirect("PerfilUsuario.aspx");
             }
         }
 
-        protected void InsertarEnBBDD(Usuario usuario)
+        private void InsertarRecepcionistaEnBBDD()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InsertarAdministradorEnBBDD()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InsertarMedicoEnBBDD()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void InsertarPacienteEnBBDD()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void InsertarUsuarioEnBBDD(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
