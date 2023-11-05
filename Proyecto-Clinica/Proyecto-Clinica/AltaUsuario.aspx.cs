@@ -14,7 +14,7 @@ namespace Proyecto_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 // Limpia la ddl
                 ddlRegistrarTipo.Items.Clear();
@@ -30,7 +30,7 @@ namespace Proyecto_Clinica
             bool usuarioValido = false;
 
             //Comprueba que los campos pasen las condiciones
-            if(txtRegistrarUsuario != null && txtRegistrarUsuario.Text != "" && txtRegistrarContrasena.Text != "" && txtRegistrarContrasena.Text == txtRegistrarContrasena2.Text)
+            if (txtRegistrarUsuario != null && txtRegistrarUsuario.Text != "" && txtRegistrarContrasena.Text != "" && txtRegistrarContrasena.Text == txtRegistrarContrasena2.Text)
             {
                 usuarioValido = true;
             }
@@ -42,45 +42,52 @@ namespace Proyecto_Clinica
                 nuevo_usuario.Contraseña = txtRegistrarContrasena.Text;
                 nuevo_usuario.Tipo = ddlRegistrarTipo.SelectedValue;
                 InsertarUsuarioEnBBDD(nuevo_usuario);
-                switch(nuevo_usuario.Tipo)
-                {
-                    case "Paciente":
-                        InsertarPacienteEnBBDD();
-                        break;
-                    case "Médico":
-                        InsertarMedicoEnBBDD();
-                        break;
-                    case "Administrador":
-                        InsertarAdministradorEnBBDD();
-                        break;
-                    case "Recepcionista":
-                        InsertarRecepcionistaEnBBDD();
-                        break;
-                }
+                InsertarInformacionEnBBDD(nuevo_usuario);
 
                 Session["Usuario"] = nuevo_usuario;
                 Response.Redirect("PerfilUsuario.aspx");
             }
         }
 
-        private void InsertarRecepcionistaEnBBDD()
+        private void InsertarInformacionEnBBDD(Usuario usuario)
         {
-            throw new NotImplementedException();
-        }
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                switch (usuario.Tipo)
+                {
+                    case "Paciente":
+                        datos.setConsulta("INSERT INTO PACIENTES (ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                        break;
+                    case "Médico":
+                        datos.setConsulta("INSERT INTO MEDICOS (ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                        break;
+                    case "Administrador":
+                        datos.setConsulta("INSERT INTO ADMINISTRADOR (ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1");
+                        break;
+                    case "Recepcionista":
+                        datos.setConsulta("INSERT INTO RECEPCIONISTA (ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                        break;
+                }
+                datos.setParametro("@IDUSUARIO", usuario.Id);
+                datos.setParametro("@NOMBRE", usuario.Nombre);
+                datos.setParametro("@APELLIDO", usuario.Nombre);
+                datos.setParametro("@TELEFONO", usuario.Nombre);
+                datos.setParametro("@DIRECCION", usuario.Nombre);
+                datos.setParametro("@FECHANACIMIENTO", usuario.Nombre);
+                datos.setParametro("@MAIL", usuario.Nombre);
 
-        private void InsertarAdministradorEnBBDD()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void InsertarMedicoEnBBDD()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void InsertarPacienteEnBBDD()
-        {
-            throw new NotImplementedException();
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         protected void InsertarUsuarioEnBBDD(Usuario usuario)

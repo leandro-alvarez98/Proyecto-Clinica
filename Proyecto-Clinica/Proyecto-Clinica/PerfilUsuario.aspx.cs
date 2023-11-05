@@ -14,20 +14,19 @@ namespace Proyecto_Clinica
 {
     public partial class PerfilUsuario : System.Web.UI.Page
     {
-        Usuario usuario_Actual;
-        public void cargar_componentes()
+        Usuario Usuario_Actual;
+        private void cargar_componentes()
         {
-            //hace aparecer el menu lateral
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
 
-            usuario_Actual = (Usuario)Session["Usuario"];
+            Usuario_Actual = new Usuario();
+            Usuario_Actual = (Usuario)Session["Usuario"];
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {           
             cargar_componentes();
         }
-
-
     }
 }

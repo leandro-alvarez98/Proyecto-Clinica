@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master-page.Master" AutoEventWireup="true" CodeBehind="PerfilUsuario.aspx.cs" Inherits="Proyecto_Clinica.Default"
- %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master-page.Master" AutoEventWireup="true" CodeBehind="PerfilUsuario.aspx.cs" Inherits="Proyecto_Clinica.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,7 +13,7 @@
                 <div class="card " style="width: 40rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <asp:Label ID="nombreLabel" CssClass="lbl" runat="server">Nombre: </asp:Label>
+                            <asp:Label ID="nombreLabel" CssClass="lbl" runat="server">Nombre:</asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label ID="apellidoLabel" CssClass="lbl" runat="server">Apellido:</asp:Label>
@@ -40,7 +39,6 @@
                     <div class="mb-2">
                         <asp:Button ID="btnCambioContraseña" class="btn btn-primary" runat="server" Text="Cambiar Contraseña" />
                     </div>
-
                 </div>
             </div>
         </div>
