@@ -25,11 +25,6 @@
             <asp:Label ID="lblRegistrarTipo" CssClass="lbl fw-semibold" runat="server" Text="Tipo de usuario"></asp:Label>
             <asp:DropDownList ID="ddlRegistrarTipo" runat="server"></asp:DropDownList>
         </div>
-        <div class="form-group">
-            <asp:Label ID="lblRegistrarNombre" CssClass="lbl fw-semibold" runat="server" Text="Su nombre"></asp:Label>
-            <asp:TextBox ID="txtRegistrarNombre" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
-
         <br />
         <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="d-grid gap-2 col-6 mx-auto btn_tamaño fw-semibold" OnClick="Button1_Click" />
     </div>

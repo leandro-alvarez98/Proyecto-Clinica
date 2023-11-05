@@ -15,111 +15,75 @@ namespace Proyecto_Clinica
     {
 
         /// <summary>
-        /// Control lblApellidoProfesional.
+        /// Control nombreLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblApellidoProfesional;
+        protected global::System.Web.UI.WebControls.Label nombreLabel;
 
         /// <summary>
-        /// Control rbConoceApellido.
+        /// Control apellidoLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbConoceApellido;
+        protected global::System.Web.UI.WebControls.Label apellidoLabel;
 
         /// <summary>
-        /// Control lblApellido.
+        /// Control emailLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblApellido;
+        protected global::System.Web.UI.WebControls.Label emailLabel;
 
         /// <summary>
-        /// Control txtApellido.
+        /// Control telefonoLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApellido;
+        protected global::System.Web.UI.WebControls.Label telefonoLabel;
 
         /// <summary>
-        /// Control lblFiltrosAvanzados.
+        /// Control direccionLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFiltrosAvanzados;
+        protected global::System.Web.UI.WebControls.Label direccionLabel;
 
         /// <summary>
-        /// Control Fecha.
+        /// Control fechaNacimientoLabel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Fecha;
+        protected global::System.Web.UI.WebControls.Label fechaNacimientoLabel;
 
         /// <summary>
-        /// Control Desde.
+        /// Control btnEditarDatos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Desde;
+        protected global::System.Web.UI.WebControls.Button btnEditarDatos;
 
         /// <summary>
-        /// Control txtDesde.
+        /// Control btnCambioContraseña.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesde;
-
-        /// <summary>
-        /// Control Hasta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Hasta;
-
-        /// <summary>
-        /// Control txtHasta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHasta;
-
-        /// <summary>
-        /// Control lblBandaHoraria.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBandaHoraria;
-
-        /// <summary>
-        /// Control lblDiaSemana.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiaSemana;
+        protected global::System.Web.UI.WebControls.Button btnCambioContraseña;
     }
 }

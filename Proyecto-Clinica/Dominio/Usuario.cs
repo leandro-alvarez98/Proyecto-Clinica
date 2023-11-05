@@ -11,29 +11,13 @@ namespace Proyecto_Clinica.Dominio
         public string Nombre { get; set; }
         public string Contraseña { get; set; }
         public string Tipo { get; set; }
-        public List<Turno> Turnos { get; set; }
-        public Medico Medico { get; set; }
-        public Paciente Paciente { get; set; }
 
         public Usuario()
         {
             Id = -1;
-            Nombre = "Sin nombre";
-            Contraseña = "Sin contraseña";
-            Tipo = "Administrador";
-            Turnos = new List<Turno>();
-            Medico = new Medico();
-            Paciente = new Paciente();
-        }
-
-        public Usuario(int id, string nombre, string contraseña, string tipo, List<Turno> turnos)
-        {
-            Id = id;
-            Nombre = nombre;
-            Contraseña = contraseña;
-            Tipo = tipo;
-            Turnos = turnos;
+            Nombre = "No especificado";
+            Contraseña = "No especificado";
+            Tipo = "No especificado";
         }
     }
-
 }

@@ -5,26 +5,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Proyecto_Clinica.Dominio;
-using Conexion_Clinica;
-using System.Collections;
-using System.Windows.Forms;
-
 
 namespace Proyecto_Clinica
 {
-    public partial class PerfilUsuario : System.Web.UI.Page
+    public partial class HistorialTurnos : System.Web.UI.Page
     {
-        Usuario usuario_Actual;
+        //crear evento btn_ingresar_Click
+        //crear evento btn_ingresar_Click
         public void cargar_componentes()
         {
             //hace aparecer el menu lateral
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
-
-            usuario_Actual = (Usuario)Session["Usuario"];
         }
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
             cargar_componentes();
         }
 
