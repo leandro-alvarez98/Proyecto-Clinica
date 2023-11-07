@@ -94,14 +94,16 @@ namespace Proyecto_Clinica
 
                 while (datos.Lector.Read())
                 {
-                    Turno turno = new Turno();
-                    turno.Id = (int)datos.Lector["ID"];
-                    turno.Medico = (String)datos.Lector["MAPENOM"];
-                    turno.Paciente = (String)datos.Lector["PAPENOM"];
-                    turno.Fecha = (DateTime)datos.Lector["FECHA"];
-                    turno.HoraInicio = (TimeSpan)datos.Lector["HORAINICIO"];
-                    turno.HoraFin = (TimeSpan)datos.Lector["HORAFIN"];
-                    turno.Estado = (String)datos.Lector["ESTADO"];
+                    Turno turno = new Turno
+                    {
+                        Id = (int)datos.Lector["ID"],
+                        Medico = (String)datos.Lector["MAPENOM"],
+                        Paciente = (String)datos.Lector["PAPENOM"],
+                        Fecha = (DateTime)datos.Lector["FECHA"],
+                        HoraInicio = (TimeSpan)datos.Lector["HORAINICIO"],
+                        HoraFin = (TimeSpan)datos.Lector["HORAFIN"],
+                        Estado = (String)datos.Lector["ESTADO"]
+                    };
 
                     misTurnos.Add(turno);
                 }
@@ -168,14 +170,16 @@ namespace Proyecto_Clinica
 
                 while (datos.Lector.Read())
                 {
-                    Turno turno = new Turno();
-                    turno.Id = (int)datos.Lector["ID_TURNO"];
-                    turno.Medico = (String)datos.Lector["MNOMBRE"];
-                    turno.Paciente = (String)datos.Lector["PNOMBRE"];
-                    turno.Fecha = (DateTime)datos.Lector["FECHA"];
-                    turno.HoraInicio = (TimeSpan)datos.Lector["HORA_INICIO"];
-                    turno.HoraFin = (TimeSpan)datos.Lector["HORA_FIN"];
-                    turno.Estado = (String)datos.Lector["ESTADO"];
+                    Turno turno = new Turno
+                    {
+                        Id = (int)datos.Lector["ID_TURNO"],
+                        Medico = (String)datos.Lector["MNOMBRE"],
+                        Paciente = (String)datos.Lector["PNOMBRE"],
+                        Fecha = (DateTime)datos.Lector["FECHA"],
+                        HoraInicio = (TimeSpan)datos.Lector["HORA_INICIO"],
+                        HoraFin = (TimeSpan)datos.Lector["HORA_FIN"],
+                        Estado = (String)datos.Lector["ESTADO"]
+                    };
 
                     misTurnos.Add(turno);
                 }

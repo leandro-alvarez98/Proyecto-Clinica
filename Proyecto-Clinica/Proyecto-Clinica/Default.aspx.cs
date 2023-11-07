@@ -13,20 +13,15 @@ namespace Proyecto_Clinica
 {
     public partial class Default : System.Web.UI.Page
     {
-        Clinica clinica = new Clinica();
 
         Usuario usuario_actual = null;
         public Usuario Comprobar_Usuario()
         {
             return usuario_actual;
         }
-        public void cargar_componentes()
+        public void Cargar_Componentes()
         {
             Master_page master = (Master_page)this.Master;
-
-
-            ClinicaConexion clinicaConexion = new ClinicaConexion();
-            clinica = clinicaConexion.listar();
 
             if (Session["Usuario"] == null)
             {
@@ -39,7 +34,7 @@ namespace Proyecto_Clinica
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargar_componentes();
+            Cargar_Componentes();
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -47,16 +42,11 @@ namespace Proyecto_Clinica
             string usuario = txtUsuario.Text;
             string contrasena = txtContraseña.Text;
             
-            usuario_actual = buscar_usuario_en_BBDD(usuario, contrasena);
+            usuario_actual = Buscar_Usuario_En_BBDD(usuario, contrasena);
 
             if(usuario_actual.Id != -1)
             {
-                if (usuario_actual.Tipo == "Médico")
-                {
-                    CargarTurnos();
-                }
                 Session["Usuario"] = usuario_actual;
-
                 Response.Redirect("Home.aspx");
             }
             else
@@ -66,7 +56,7 @@ namespace Proyecto_Clinica
             }
         }
 
-        private Usuario buscar_usuario_en_BBDD(string nombre, string contrasena)
+        private Usuario Buscar_Usuario_En_BBDD(string nombre, string contrasena)
         {
             Usuario usuario1 = new Usuario();
             AccesoDatos datos = new AccesoDatos();
@@ -100,11 +90,6 @@ namespace Proyecto_Clinica
                 datos.cerrarConexion();
 
             }
-
-        }
-        private void CargarTurnos()
-        {
-            
         }
     }
 }

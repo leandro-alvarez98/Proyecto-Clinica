@@ -95,7 +95,6 @@
                                                       <a href="MisTurnos.aspx" class="nav-link text-white">Mis turnos</a>
                                                   </li>
                                             <%}%>
-                                           
                                         </ul>
                                     </li>
 

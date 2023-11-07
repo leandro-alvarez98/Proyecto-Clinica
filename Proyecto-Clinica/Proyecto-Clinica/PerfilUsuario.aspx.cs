@@ -15,18 +15,25 @@ namespace Proyecto_Clinica
     public partial class PerfilUsuario : System.Web.UI.Page
     {
         Usuario Usuario_Actual;
-        private void cargar_componentes()
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if(!IsPostBack)
+            {
+                Cargar_Componentes();
+            }
+        }
+        private void Cargar_Componentes()
         {
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
 
+            if (Usuario_Actual != null)
+            {
+                return;
+            }
             Usuario_Actual = new Usuario();
-            Usuario_Actual = (Usuario)Session["Usuario"];
 
-        }
-        protected void Page_Load(object sender, EventArgs e)
-        {           
-            cargar_componentes();
+            Usuario_Actual = (Usuario)Session["Usuario"];
         }
     }
 }

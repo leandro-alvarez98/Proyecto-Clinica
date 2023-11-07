@@ -11,41 +11,20 @@ namespace Proyecto_Clinica
 {
     public partial class Home : System.Web.UI.Page
     {
-        Clinica clinica = new Clinica();
+        Clinica clinica;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Turnos.Visible = false;
-
-            cargar_componentes();
-
+            Cargar_Componentes();
         }
-        public void cargar_componentes()
+        public void Cargar_Componentes()
         {
+            clinica = new Clinica();
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.listar();
+            Session["Clinica"] = clinica; //Esto contiene toda la información en caso de ser necesaria para checkear algo.
 
-            //Se carga la drop down list de especialidades
-           // DdlEspecialidad.DataSource = clinica.especialidades;
-            //Se muestra la drop down list de especialidades
-           // DdlEspecialidad.DataBind();
-            //hace aparecer el menu lateral
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
-            
-        }
-        public void DdlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Verifica la selección en el DropDownList.
-            //if (DdlEspecialidad.SelectedValue == "Turnos")
-            //{
-            //    // Muestra el div "turnos" si se selecciona "Turnos".
-            //    Turno.Visible = true;
-            //}
-            //else
-            //{
-            //    // Oculta el div "turnos" si se selecciona otra opción.
-            //    Turno.Visible = false;
-            //}
         }
     }
 }

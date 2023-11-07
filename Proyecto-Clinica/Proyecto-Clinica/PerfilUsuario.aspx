@@ -13,7 +13,7 @@
                 <div class="card " style="width: 40rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <asp:Label ID="nombreLabel" CssClass="lbl" runat="server">Nombre:</asp:Label>
+                            <asp:Label ID="nombreLabel" CssClass="lbl" runat="server">Nombre: </asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label ID="apellidoLabel" CssClass="lbl" runat="server">Apellido:</asp:Label>
