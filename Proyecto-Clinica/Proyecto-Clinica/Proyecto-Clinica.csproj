@@ -67,13 +67,13 @@
   <ItemGroup>
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
-    <Content Include="ReservaTurno.aspx" />
     <Content Include="content\styles.css" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="AltaUsuario.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
+    <Content Include="ReservaTurno.aspx" />
     <Content Include="Web.config" />
     <Content Include="MisTurnos.aspx" />
   </ItemGroup>
@@ -91,13 +91,6 @@
     </Compile>
     <Compile Include="Perfil_Usuario.aspx.designer.cs">
       <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReservaTurno.aspx.cs">
-      <DependentUpon>ReservaTurno.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ReservaTurno.aspx.designer.cs">
-      <DependentUpon>ReservaTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="CambiarContraseña.aspx.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
@@ -144,6 +137,13 @@
     </Compile>
     <Compile Include="MisTurnos.aspx.designer.cs">
       <DependentUpon>MisTurnos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReservaTurno.aspx.cs">
+      <DependentUpon>ReservaTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReservaTurno.aspx.designer.cs">
+      <DependentUpon>ReservaTurno.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

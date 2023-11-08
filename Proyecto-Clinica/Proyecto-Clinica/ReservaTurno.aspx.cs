@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Proyecto_Clinica.Dominio;
 
 namespace Proyecto_Clinica
 {
@@ -21,9 +20,5 @@ namespace Proyecto_Clinica
         {
             cargar_componentes();
         }
-
-
-
-
     }
 }
