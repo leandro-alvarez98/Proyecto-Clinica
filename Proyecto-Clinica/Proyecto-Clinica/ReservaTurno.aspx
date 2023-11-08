@@ -3,9 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Reservar Turno</h3>
 
-    <div class="mb-3 container containerbott">
+    <div class="mb-3 container containerbott form_top ">
+    <h3>Reservar Turno</h3>
+        <hr />  
         <div class="form-group">
             <div class="form-label">
                 <asp:Label ID="lblApellidoProfesional" runat="server" Text="Conoce el apellido del profesional?" AssociatedControlID="rbConoceApellido"></asp:Label>

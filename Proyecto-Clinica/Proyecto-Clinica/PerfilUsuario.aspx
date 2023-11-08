@@ -9,26 +9,25 @@
             <div class="card-body ">
                 <h1 class="card-title">Perfil de Usuario</h1>
                 <hr />
-
                 <div class="card " style="width: 40rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <asp:Label ID="nombreLabel" CssClass="lbl" runat="server">Nombre: </asp:Label>
+                            <asp:Label id="nombrelbl" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="apellidoLabel" CssClass="lbl" runat="server">Apellido:</asp:Label>
+                            <asp:Label id="apellidoLabel" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="emailLabel" CssClass="lbl" runat="server">Correo Electrónico:</asp:Label>
+                            <asp:Label ID="emailLabel" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="telefonoLabel" CssClass="lbl" runat="server">Teléfono:</asp:Label>
+                            <asp:Label ID="telefonoLabel" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="direccionLabel" CssClass="lbl" runat="server">Dirección:</asp:Label>
+                            <asp:Label ID="direccionLabel" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="fechaNacimientoLabel" CssClass="lbl" runat="server">Fecha de Nacimiento:</asp:Label>
+                            <asp:Label ID="fechaNacimientoLabel" CssClass="lbl" runat="server"></asp:Label>
                         </li>
                     </ul>
 

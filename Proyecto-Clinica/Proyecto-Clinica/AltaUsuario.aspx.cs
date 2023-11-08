@@ -71,11 +71,11 @@ namespace Proyecto_Clinica
                 }
                 datos.setParametro("@IDUSUARIO", usuario.Id);
                 datos.setParametro("@NOMBRE", usuario.Nombre);
-                datos.setParametro("@APELLIDO", usuario.Nombre);
-                datos.setParametro("@TELEFONO", usuario.Nombre);
-                datos.setParametro("@DIRECCION", usuario.Nombre);
-                datos.setParametro("@FECHANACIMIENTO", usuario.Nombre);
-                datos.setParametro("@MAIL", usuario.Nombre);
+                datos.setParametro("@APELLIDO", usuario.Apellido);
+                datos.setParametro("@TELEFONO", usuario.Telefono);
+                datos.setParametro("@DIRECCION", usuario.Direccion);
+                datos.setParametro("@FECHANACIMIENTO", usuario.Fecha_Nacimiento);
+                datos.setParametro("@MAIL", usuario.Mail);
 
                 datos.ejecutarAccion();
             }

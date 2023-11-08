@@ -15,13 +15,13 @@ namespace Proyecto_Clinica
     {
 
         /// <summary>
-        /// Control nombreLabel.
+        /// Control nombrelbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nombreLabel;
+        protected global::System.Web.UI.WebControls.Label nombrelbl;
 
         /// <summary>
         /// Control apellidoLabel.
