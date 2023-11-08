@@ -12,7 +12,7 @@ namespace Proyecto_Clinica
 {
     public partial class Perfil_Usuario : System.Web.UI.Page
     {
-        Usuario Usuario_Actual = null;
+        public Usuario Usuario_Actual = null;
         Paciente paciente_actual = null;
         Medico Medico_actual = null;   
 
@@ -42,7 +42,7 @@ namespace Proyecto_Clinica
         private void Cargar_usuario()
         {
             int id = Usuario_Actual.Id;
-            string tipo =  Conocer_tipo_usuario();
+            string tipo = Usuario_Actual.Tipo;
             if (tipo == "Paciente")
             {
                 paciente_actual = Datos_Paciente(id);
@@ -168,22 +168,6 @@ namespace Proyecto_Clinica
             direccionLbl.Text = "Dirrecion :" + direccion;
             fechaNacimientoLbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
         }
-        public string Conocer_tipo_usuario()
-        {
-            string tipo= "";
-            AccesoDatos datos = new AccesoDatos();
-            switch (Usuario_Actual.Tipo)
-            {
-                case "Paciente":                   
-                    return tipo = "Paciente";
-                case "Médico":
-                    return tipo = "Médico";
-                case "Administrador":
-                    return tipo = "Administrador";
-                case "Recepcionista":
-                    return tipo = "Recepcionista";
-            }         
-            return tipo;
-        }
+     
     }
 }
