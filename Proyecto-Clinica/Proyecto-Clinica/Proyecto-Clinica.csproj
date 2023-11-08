@@ -65,10 +65,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CambiarContraseña.aspx" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
     <Content Include="content\styles.css" />
-    <Content Include="CambiarContraseña.aspx" />
     <Content Include="AltaUsuario.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -78,6 +78,13 @@
     <Content Include="MisTurnos.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CambiarContraseña.aspx.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.designer.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MailCambioContraseña.aspx.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -91,13 +98,6 @@
     </Compile>
     <Compile Include="Perfil_Usuario.aspx.designer.cs">
       <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CambiarContraseña.aspx.cs">
-      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CambiarContraseña.aspx.designer.cs">
-      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="AltaUsuario.aspx.cs">
       <DependentUpon>AltaUsuario.aspx</DependentUpon>

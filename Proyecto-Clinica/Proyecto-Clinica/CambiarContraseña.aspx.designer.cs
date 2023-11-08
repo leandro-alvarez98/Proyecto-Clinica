@@ -11,7 +11,7 @@ namespace Proyecto_Clinica
 {
 
 
-    public partial class Default
+    public partial class CambiarContraseña1
     {
 
         /// <summary>
