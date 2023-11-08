@@ -1,24 +1,20 @@
-﻿using System;
+﻿using Proyecto_Clinica.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Proyecto_Clinica.Dominio;
-using Conexion_Clinica;
-using System.Collections;
-using System.Windows.Forms;
-
 
 namespace Proyecto_Clinica
 {
-    public partial class PerfilUsuario : System.Web.UI.Page
+    public partial class Perfil_Usuario : System.Web.UI.Page
     {
-        Usuario Usuario_Actual = null;     
-            
+        Usuario Usuario_Actual = null;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Cargar_Componentes();
             }
@@ -37,10 +33,10 @@ namespace Proyecto_Clinica
                 Cargar_label_usuario();
 
                 Cargar_Datos_Complementarios();
-             
+
                 return;
             }
-        
+
         }
         private void Cargar_label_usuario()
         {
@@ -52,12 +48,12 @@ namespace Proyecto_Clinica
             DateTime fecha_nacimiento = Usuario_Actual.Fecha_Nacimiento;
             int id = Usuario_Actual.Id;
 
-            //nombrelbl.Text = "Apellido : " + apellido;
-            //nombrelbl.Text = "Nombre : " + nombre;
-            //nombrelbl.Text = "Mail : " + mail;
-            //nombrelbl.Text = "Telefono : " + telefono;
-            //direccionLabel.Text = "Dirrecion :" + direccion;
-            //nombrelbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
+            nombrelbl.Text = "Apellido : " + apellido;
+            nombrelbl.Text = "Nombre : " + nombre;
+            nombrelbl.Text = "Mail : " + mail;
+            nombrelbl.Text = "Telefono : " + telefono;
+            direccionLabel.Text = "Dirrecion :" + direccion;
+            nombrelbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
 
         }
         public void Cargar_Datos_Complementarios()
@@ -65,5 +61,4 @@ namespace Proyecto_Clinica
 
         }
     }
-   
 }

@@ -71,7 +71,7 @@
                                 <hr class="text-white d-none d-sm-block" />
                                 <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                                     <li class="nav-item my-sm-1 my-2">
-                                        <a href="PerfilUsuario.aspx" class="nav-link text-white " aria-current="page">
+                                        <a href="Perfil_Usuario.aspx" class="nav-link text-white " aria-current="page">
                                             <i class='bx bx-user'></i>
                                             <span class="ms-2 d-none d-sm-inline">Usuario</span>
                                         </a>
