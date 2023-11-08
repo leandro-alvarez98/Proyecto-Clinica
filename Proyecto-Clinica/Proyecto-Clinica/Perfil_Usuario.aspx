@@ -15,19 +15,19 @@
                             <asp:Label id="nombrelbl" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label id="apellidoLabel" CssClass="lbl" runat="server" ></asp:Label>
+                            <asp:Label id="apellidoLbl" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="emailLabel" CssClass="lbl" runat="server" ></asp:Label>
+                            <asp:Label ID="emailLbl" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="telefonoLabel" CssClass="lbl" runat="server" ></asp:Label>
+                            <asp:Label ID="telefonoLbl" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="direccionLabel" CssClass="lbl" runat="server" ></asp:Label>
+                            <asp:Label ID="direccionLbl" CssClass="lbl" runat="server" ></asp:Label>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label ID="fechaNacimientoLabel" CssClass="lbl" runat="server"></asp:Label>
+                            <asp:Label ID="fechaNacimientoLbl" CssClass="lbl" runat="server"></asp:Label>
                         </li>
                     </ul>
 

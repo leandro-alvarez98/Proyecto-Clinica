@@ -1,16 +1,20 @@
-﻿using Proyecto_Clinica.Dominio;
+﻿using Conexion_Clinica;
+using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace Proyecto_Clinica
 {
     public partial class Perfil_Usuario : System.Web.UI.Page
     {
         Usuario Usuario_Actual = null;
+        Paciente paciente_actual = null;
+        Medico Medico_actual = null;   
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,35 +34,156 @@ namespace Proyecto_Clinica
 
                 Usuario_Actual = (Usuario)Session["Usuario"];
 
-                Cargar_label_usuario();
-
-                Cargar_Datos_Complementarios();
-
-                return;
+                Cargar_usuario();
+              
             }
 
         }
-        private void Cargar_label_usuario()
+        private void Cargar_usuario()
         {
-            string apellido = Usuario_Actual.Apellido;
-            string nombre = Usuario_Actual.Nombre;
-            string mail = Usuario_Actual.Mail;
-            string telefono = Usuario_Actual.Telefono;
-            string direccion = Usuario_Actual.Direccion;
-            DateTime fecha_nacimiento = Usuario_Actual.Fecha_Nacimiento;
             int id = Usuario_Actual.Id;
-
-            nombrelbl.Text = "Apellido : " + apellido;
-            nombrelbl.Text = "Nombre : " + nombre;
-            nombrelbl.Text = "Mail : " + mail;
-            nombrelbl.Text = "Telefono : " + telefono;
-            direccionLabel.Text = "Dirrecion :" + direccion;
-            nombrelbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
+            string tipo =  Conocer_tipo_usuario();
+            if (tipo == "Paciente")
+            {
+                paciente_actual = Datos_Paciente(id);
+                Cargar_label_Paciente();
+            }else if (tipo == "Médico")
+            {
+                Medico_actual = Datos_medico(id);
+                Cargar_label_Medico();
+            }
 
         }
-        public void Cargar_Datos_Complementarios()
+        public Medico Datos_medico(int id_usuario)
         {
+            Medico Medico = new Medico();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("Select ID_MEDICO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM MEDICOS WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", id_usuario);
+                datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    Medico.Id = (int)datos.Lector["ID_MEDICO"];
+
+                    Medico.Nombre = (String)datos.Lector["NOMBRE"];
+
+                    Medico.Apellido = (String)datos.Lector["APELLIDO"];
+
+                    Medico.Telefono = (String)datos.Lector["TELEFONO"];
+
+                    Medico.Direccion = (String)datos.Lector["DIRECCION"];
+
+                    Medico.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+
+                    Medico.Mail = (String)datos.Lector["MAIL"];
+
+                    Medico.Estado = (bool)datos.Lector["ESTADO"];
+                }
+                return Medico;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        private Paciente Datos_Paciente(int id_usuario)
+        {
+            Paciente paciente = new Paciente();
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", id_usuario);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    paciente.Id = (int)datos.Lector["ID_PACIENTE"];
+
+                    paciente.Nombre = (String)datos.Lector["NOMBRE"];
+
+                    paciente.Apellido = (String)datos.Lector["APELLIDO"];
+
+                    paciente.Telefono = (String)datos.Lector["TELEFONO"];
+
+                    paciente.Direccion = (String)datos.Lector["DIRECCION"];
+
+                    paciente.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+
+                    paciente.Mail = (String)datos.Lector["MAIL"];
+
+                    paciente.Estado = (bool)datos.Lector["ESTADO"];
+
+                }
+                    return paciente;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Cargar_label_Paciente()
+        {
+            string apellido = paciente_actual.Apellido;
+            string nombre = paciente_actual.Nombre;
+            string mail = paciente_actual.Mail;
+            string telefono = paciente_actual.Telefono;
+            string direccion = paciente_actual.Direccion;
+            DateTime fecha_nacimiento = paciente_actual.Fecha_Nacimiento;
+
+            apellidoLbl.Text = "Apellido : " + apellido;
+            nombrelbl.Text = "Nombre : " + nombre;
+            emailLbl.Text = "Mail : " + mail;
+            telefonoLbl.Text = "Telefono : " + telefono;
+            direccionLbl.Text = "Dirrecion :" + direccion;
+            fechaNacimientoLbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
+        }
+        public void Cargar_label_Medico()
+        {
+            string apellido = Medico_actual.Apellido;
+            string nombre = Medico_actual.Nombre;
+            string mail = Medico_actual.Mail;
+            string telefono = Medico_actual.Telefono;
+            string direccion = Medico_actual.Direccion;
+            DateTime fecha_nacimiento = Medico_actual.Fecha_Nacimiento;
+
+            apellidoLbl.Text = "Apellido : " + apellido;
+            nombrelbl.Text = "Nombre : " + nombre;
+            emailLbl.Text = "Mail : " + mail;
+            telefonoLbl.Text = "Telefono : " + telefono;
+            direccionLbl.Text = "Dirrecion :" + direccion;
+            fechaNacimientoLbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
+        }
+        public string Conocer_tipo_usuario()
+        {
+            string tipo= "";
+            AccesoDatos datos = new AccesoDatos();
+            switch (Usuario_Actual.Tipo)
+            {
+                case "Paciente":                   
+                    return tipo = "Paciente";
+                case "Médico":
+                    return tipo = "Médico";
+                case "Administrador":
+                    return tipo = "Administrador";
+                case "Recepcionista":
+                    return tipo = "Recepcionista";
+            }         
+            return tipo;
         }
     }
 }

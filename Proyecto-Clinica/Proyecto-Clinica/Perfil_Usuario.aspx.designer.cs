@@ -24,49 +24,49 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label nombrelbl;
 
         /// <summary>
-        /// Control apellidoLabel.
+        /// Control apellidoLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label apellidoLabel;
+        protected global::System.Web.UI.WebControls.Label apellidoLbl;
 
         /// <summary>
-        /// Control emailLabel.
+        /// Control emailLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailLabel;
+        protected global::System.Web.UI.WebControls.Label emailLbl;
 
         /// <summary>
-        /// Control telefonoLabel.
+        /// Control telefonoLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label telefonoLabel;
+        protected global::System.Web.UI.WebControls.Label telefonoLbl;
 
         /// <summary>
-        /// Control direccionLabel.
+        /// Control direccionLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label direccionLabel;
+        protected global::System.Web.UI.WebControls.Label direccionLbl;
 
         /// <summary>
-        /// Control fechaNacimientoLabel.
+        /// Control fechaNacimientoLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fechaNacimientoLabel;
+        protected global::System.Web.UI.WebControls.Label fechaNacimientoLbl;
 
         /// <summary>
         /// Control btnEditarDatos.
