@@ -1,0 +1,104 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Page_master_default.master.cs" Inherits="Proyecto_Clinica.Page_master_default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Bootstrap JS -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+     <!-- Estilos propios -->
+     <link href="content\styles.css" rel="stylesheet" />
+     <!-- iconos-->
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+             <%-- NAV --%>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+
+                    <a class="navbar-brand" href="Home.aspx" id="btn_nav_con_redireccion" visible="false" runat="server">Gestión de Clinica</a>
+
+                    <a class="navbar-brand" href="#" id="btn_nav_sin_redireccion" visible="true" runat="server">Gestión de Clinica</a>
+
+                    <%--este boton me parece que esta al dope--%>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 <%-- <li class="nav-item"> ESTO NO LO USAMOS PARA NADA POR AHORA
+                     <a class="nav-link active" aria-current="page" href="#Default.aspx">Inicio</a> </li>--%>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+           
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <%-- FOOTER --%>
+            <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
+                <div class="container-fluid text-center text-md-start">
+                    <div class="row text-center text-md-start">
+
+                        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Nosotros</h5>
+                            <hr class="mb-4" />
+                            <p>
+                                "En el <strong>GRUPO 18</strong>, estamos comprometidos a brindar soluciones de desarrollo de vanguardia. Somos un equipo de profesionales apasionados por la innovación y la tecnología, especializados en diseñar y crear soluciones personalizadas para satisfacer las necesidades de nuestros clientes.
+                            </p>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Dejanos ayudarte</h5>
+                            <hr class="mb-4" />
+                            <p>
+                                Nos interesa tu opinion, si queres ayudarnos a mejorar podes dejarnos tu comentario...
+                            </p>
+                            <a href="#" class="text-white ">Ayuda</a>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Contacto</h5>
+                            <hr class="mb-4" />
+                            <p>
+                                <i class='bx bx-home'></i>Argentina, Buenos Aires
+                            </p>
+                            <p>
+                                <i class='bx bx-mail-send'></i>Mail Maildeempresa@hotmail.com
+                            </p>
+                            <p>
+                                <i class='bx bx-phone-incoming'></i>+15 772839645
+                            </p>
+                        </div>
+                        <hr class="mb-4" />
+                        <div class="text-center mb-2">
+                            <p>Copyright. Todos los derechos reservados.</p>
+                        </div>
+                        <div class="text-center">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a href="https://github.com/leandro-alvarez98/Proyecto-Clinica" class="text-white"><i class='bx bxl-github'></i>Repositorio de la página</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://www.linkedin.com/in/fancusan/" class="text-white"><i class='bx bxl-linkedin-square'></i>Facu en Linkedin</a>
+                                    <%--<<a href="" class="text-white"><i class='bx bxl-linkedin-square'></i>Lean en linkedin</a>--%>
+                                    <a href="https://www.linkedin.com/in/curcioesteban/" class="text-white"><i class='bx bxl-linkedin-square'></i>Esteban en linkedin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+           
+        </div>
+    </form>
+</body>
+</html>

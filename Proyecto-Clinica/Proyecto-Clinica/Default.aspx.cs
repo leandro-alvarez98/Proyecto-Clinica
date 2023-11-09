@@ -21,7 +21,7 @@ namespace Proyecto_Clinica
         }
         public void Cargar_Componentes()
         {
-            Master_page master = (Master_page)this.Master;
+            
 
             if (Session["Usuario"] == null)
             {
@@ -29,7 +29,7 @@ namespace Proyecto_Clinica
             }
             else
             {
-                master.Mostrar_Icono();
+               
             }
         }
         protected void Page_Load(object sender, EventArgs e)

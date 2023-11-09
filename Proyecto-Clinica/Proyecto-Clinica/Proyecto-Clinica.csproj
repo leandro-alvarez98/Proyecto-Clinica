@@ -93,6 +93,13 @@
     <Compile Include="MailCambioContraseña.aspx.designer.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page_master_default.Master.cs">
+      <DependentUpon>Page_master_default.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page_master_default.Master.designer.cs">
+      <DependentUpon>Page_master_default.Master</DependentUpon>
+    </Compile>
     <Compile Include="Perfil_Usuario.aspx.cs">
       <DependentUpon>Perfil_Usuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -150,6 +157,7 @@
   <ItemGroup>
     <Content Include="Master-page.Master" />
     <None Include="packages.config" />
+    <Content Include="Page_master_default.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
