@@ -27,9 +27,11 @@
 
                     <a class="navbar-brand" href="#" id="btn_nav_sin_redireccion" visible="true" runat="server">Gestión de Clinica</a>
 
+                    <%--este boton me parece que esta al dope--%> 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <%-- <li class="nav-item"> ESTO NO LO USAMOS PARA NADA POR AHORA
@@ -40,7 +42,6 @@
             </nav>
 
             <%-- Menu Lateral --%>
-            
             <div class="container-fluid">
                 <div class="row flex-nowrap">
                     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -49,49 +50,62 @@
                                 <span class="fs-5 d-none d-sm-inline">Menu</span>
                             </a>
                             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link align-middle px-0">
-                                        <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-sm-inline">INICIO</span>
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link align-middle text-white px-0">
+                                        <i class='bx bx-home'></i>
+                                        <span class="ms-1 d-none d-sm-inline">INICIO</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Persona</span> </a>
+                                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle">
+                                        <i class='bx bx-user'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Persona</span>
+                                    </a>
                                     <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                         <li class="w-100">
-                                            <a href="#" class="nav-link px-0"><span class="d-none d-sm-inline">Mi Perfil</span></a>
+                                            <a href="#" class="nav-link text-white px-0">
+                                                <i class='bx bxs-user-circle'></i>
+                                                <span class="d-none d-sm-inline">Mi Perfil</span>
+                                            </a>
                                         </li>
                                         <li>
-                                            <a href="MisTurnos.aspx" class="nav-link px-0"><span class="d-none d-sm-inline">Mis Turnos</span></a>
+                                            <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
+                                                <i class='bx bx-calendar'></i>
+                                                <span class="d-none d-sm-inline">Mis Turnos</span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-table"></i><span class="ms-1 d-none d-sm-inline">Contacto</span></a>
+                                    <a href="#" class="nav-link px-0 text-white align-middle">
+                                        <i class='bx bx-phone'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Contacto</span></a>
                                 </li>
                                 <li>
-                                    <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                        <i class="fs-4 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Turnos</span></a>
+                                    <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Turnos</span>
+                                    </a>
                                     <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                                         <li class="w-100">
-                                            <a href="#" class="nav-link px-0"><span class="d-none d-sm-inline">Gestionar Turnos</span> </a>
+                                            <a href="#" class="nav-link text-white px-0">
+                                                <i class='bx bx-edit-alt'></i>
+                                                <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                            </a>
                                         </li>
-                                        
+
                                     </ul>
                                 </li>
-                                
                             </ul>
                             <hr>
                             <div class="pb-4">
                                 <a href="#" class="d-flex align-items-center text-white text-decoration-none ">
-                                    <img src="<% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Imagen %>"" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                                    <span class="d-none d-sm-inline mx-1">
-                                        <% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %>
-                                    </span>
-                                </a>
-                                
-                            </div>
+                              <img src="<% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Imagen %>"" alt="hugenerd" width="50" height="50" class="rounded-circle">
+                              <span class="d-none d-sm-inline mx-1">
+                                  <% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %>
+                                  </span>
+                                 </a>   
+                            </div>                        
                         </div>
                     </div>
                     <div class="col py-3">
