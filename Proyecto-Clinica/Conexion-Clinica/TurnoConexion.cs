@@ -10,7 +10,7 @@ namespace Conexion_Clinica
 {
     internal class TurnoConexion
     {
-        public List<Turno> listar()
+        public List<Turno> Listar()
         {
             List<Turno> lista = new List<Turno>();
             AccesoDatos datos = new AccesoDatos();
@@ -21,18 +21,20 @@ namespace Conexion_Clinica
 
                 while (datos.Lector.Read())
                 {
-                    Turno turno = new Turno();
-                    turno.Id = (int)datos.Lector["IDTURNO"];
-                    turno.Id_Medico = (int)datos.Lector["IDMEDICO"];
-                    turno.Id_Paciente = (int)datos.Lector["IDPACIENTE"];
-                    turno.Fecha = (DateTime)datos.Lector["FECHA"];
-                    turno.HoraInicio = (TimeSpan)datos.Lector["HORAINICIO"];
-                    turno.HoraFin = (TimeSpan)datos.Lector["HORAFIN"];
-                    turno.Estado = (String)datos.Lector["ESTADO"];
-                    turno.Nombre_Medico = (String)datos.Lector["MNOMBRE"];
-                    turno.Apellido_Medico = (String)datos.Lector["MAPELLIDO"];
-                    turno.Nombre_Paciente = (String)datos.Lector["PNOMBRE"];
-                    turno.Apellido_Paciente = (String)datos.Lector["PAPELLIDO"];
+                    Turno turno = new Turno
+                    {
+                        Id = (int)datos.Lector["IDTURNO"],
+                        Id_Medico = (int)datos.Lector["IDMEDICO"],
+                        Id_Paciente = (int)datos.Lector["IDPACIENTE"],
+                        Fecha = (DateTime)datos.Lector["FECHA"],
+                        HoraInicio = (TimeSpan)datos.Lector["HORAINICIO"],
+                        HoraFin = (TimeSpan)datos.Lector["HORAFIN"],
+                        Estado = (String)datos.Lector["ESTADO"],
+                        Nombre_Medico = (String)datos.Lector["MNOMBRE"],
+                        Apellido_Medico = (String)datos.Lector["MAPELLIDO"],
+                        Nombre_Paciente = (String)datos.Lector["PNOMBRE"],
+                        Apellido_Paciente = (String)datos.Lector["PAPELLIDO"]
+                    };
 
                     lista.Add(turno);
                 }

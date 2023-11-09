@@ -37,10 +37,12 @@ namespace Proyecto_Clinica
             //Si las pasa, se crea un usuario nuevo y se lo ingresa en la BBDD
             if (usuarioValido)
             {
-                Usuario nuevo_usuario = new Usuario();
-                nuevo_usuario.Nombre = txtRegistrarUsuario.Text;
-                nuevo_usuario.Contraseña = txtRegistrarContrasena.Text;
-                nuevo_usuario.Tipo = ddlRegistrarTipo.SelectedValue;
+                Usuario nuevo_usuario = new Usuario
+                {
+                    Nombre = txtRegistrarUsuario.Text,
+                    Contraseña = txtRegistrarContrasena.Text,
+                    Tipo = ddlRegistrarTipo.SelectedValue
+                };
                 InsertarUsuarioEnBBDD(nuevo_usuario);
                 InsertarInformacionEnBBDD(nuevo_usuario);
 

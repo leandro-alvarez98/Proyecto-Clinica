@@ -10,7 +10,7 @@ namespace Conexion_Clinica
 {
     internal class UsuarioConexion
     {
-        public List<Usuario> listar()
+        public List<Usuario> Listar()
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
@@ -21,11 +21,13 @@ namespace Conexion_Clinica
 
                 while (datos.Lector.Read())
                 {
-                    Usuario usuario = new Usuario();
-                    usuario.Id = (int)datos.Lector["ID_USUARIO"];
-                    usuario.Nombre = (String)datos.Lector["NOMBRE_USUARIO"];
-                    usuario.Contraseña = (String)datos.Lector["CONTRASENA"];
-                    usuario.Tipo = (String)datos.Lector["TIPO"];
+                    Usuario usuario = new Usuario
+                    {
+                        Id = (int)datos.Lector["ID_USUARIO"],
+                        Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
+                        Contraseña = (String)datos.Lector["CONTRASENA"],
+                        Tipo = (String)datos.Lector["TIPO"]
+                    };
 
                     lista.Add(usuario);
                 }

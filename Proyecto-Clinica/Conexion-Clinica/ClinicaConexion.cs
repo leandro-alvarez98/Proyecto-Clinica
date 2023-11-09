@@ -23,13 +23,13 @@ namespace Conexion_Clinica
                 objetoClinica.Observaciones = new List<Observacion>();
 
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
-                objetoClinica.Usuarios = usuarioConexion.listar();
+                objetoClinica.Usuarios = usuarioConexion.Listar();
 
                 PacienteConexion pacienteConexion = new PacienteConexion();
-                objetoClinica.Pacientes = pacienteConexion.listar();
+                objetoClinica.Pacientes = pacienteConexion.Listar();
 
                 TurnoConexion turnoConexion = new TurnoConexion();
-                objetoClinica.Turnos = turnoConexion.listar();
+                objetoClinica.Turnos = turnoConexion.Listar();
 
                 MedicoConexion medicoConexion = new MedicoConexion();
                 objetoClinica.Medicos = medicoConexion.Listar();
