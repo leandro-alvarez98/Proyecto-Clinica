@@ -14,184 +14,88 @@ namespace Proyecto_Clinica
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        Clinica clinica;
+        Usuario usuarioActual;
         Medico medicoActual;
         Paciente pacienteActual;
         List<Turno> misTurnos;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                misTurnos = new List<Turno>();
-
-                if(((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Tipo == "Médico")
-                {
-                    medicoActual = new Medico();
-
-                    Cargar_Médico();
-                    Cargar_TurnosMedicos();
-                }
-                else if(((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Tipo == "Paciente")
-                {
-                    pacienteActual = new Paciente();
-                    Cargar_Paciente();
-                    Cargar_TurnosPaciente();
-                }
-
-                dgv_Turnos.DataSource = misTurnos;
-                dgv_Turnos.DataBind();
+                Cargar_Componentes();
             }
         }
-
-
-        private void Cargar_Paciente()
+        private void Cargar_Componentes()
         {
-            int IdUsuario = ((Usuario)Session["Usuario"]).Id;
+            clinica = new Clinica();
+            ClinicaConexion clinicaConexion = new ClinicaConexion();
+            clinica = clinicaConexion.Listar();
 
-            AccesoDatos datos = new AccesoDatos();
-            try
+            usuarioActual = new Usuario();
+            usuarioActual = (Proyecto_Clinica.Dominio.Usuario)Session["Usuario"];
+
+            if (usuarioActual.Tipo == "Médico")
             {
-                datos.setConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES WHERE ID_USUARIO = @IDUSUARIO");
-                datos.setParametro("@IDUSUARIO", IdUsuario);
-                datos.ejecutarLectura();
+                medicoActual = new Medico();
+                medicoActual = Cargar_Médico_Clinica();
+            }
+            else if (usuarioActual.Tipo == "Paciente")
+            {
+                pacienteActual = new Paciente();
+                pacienteActual = Cargar_Paciente_Clinica();
+            }
 
-                while (datos.Lector.Read())
+            misTurnos = new List<Turno>();
+            Cargar_Turnos();
+
+            dgv_Turnos.DataSource = misTurnos;
+            dgv_Turnos.DataBind();
+        }
+        private Medico Cargar_Médico_Clinica()
+        {
+            foreach (Medico medico in clinica.Medicos)
+            {
+                if (medico.Id_Usuario == usuarioActual.Id)
                 {
-                    pacienteActual.Id = (int)datos.Lector["ID_PACIENTE"];
-
-                    pacienteActual.Nombre = (String)datos.Lector["NOMBRE"];
-
-                    pacienteActual.Apellido = (String)datos.Lector["APELLIDO"];
-
-                    pacienteActual.Telefono = (String)datos.Lector["TELEFONO"];
-
-                    pacienteActual.Direccion = (String)datos.Lector["DIRECCION"];
-
-                    pacienteActual.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
-
-                    pacienteActual.Mail = (String)datos.Lector["MAIL"];
-
-                    pacienteActual.Estado = (bool)datos.Lector["ESTADO"]; 
+                    return medico;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+            return new Medico();
         }
-        private void Cargar_TurnosPaciente()
+        private Paciente Cargar_Paciente_Clinica()
         {
-            AccesoDatos datos = new AccesoDatos();
-            try
+            foreach(Paciente paciente in clinica.Pacientes)
             {
-                datos.setConsulta("SELECT T.ID_TURNO AS ID, M.NOMBRE + ', ' + m.APELLIDO AS MAPENOM, p.NOMBRE + ', ' + p.APELLIDO AS PAPENOM, t.FECHA AS FECHA, t.HORA_INICIO AS HORAINICIO, t.HORA_FIN AS HORAFIN, t.ESTADO AS ESTADO FROM PACIENTES P INNER JOIN TURNOS T ON T.ID_PACIENTE = P.ID_PACIENTE INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO WHERE P.ID_PACIENTE = @IDPACIENTE");
-                datos.setParametro("@IDPACIENTE", pacienteActual.Id);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
+                if(paciente.Id_Usuario == usuarioActual.Id)
                 {
-                    Turno turno = new Turno
+                    return paciente;
+                }
+            }
+            return new Paciente();
+        }
+        private void Cargar_Turnos()
+        {
+            if (usuarioActual.Tipo == "Médico")
+            {
+                foreach (Turno turno in clinica.Turnos)
+                {
+                    if (medicoActual.Id == turno.Id_Medico)
                     {
-                        Id = (int)datos.Lector["ID"],
-                        Medico = (String)datos.Lector["MAPENOM"],
-                        Paciente = (String)datos.Lector["PAPENOM"],
-                        Fecha = (DateTime)datos.Lector["FECHA"],
-                        HoraInicio = (TimeSpan)datos.Lector["HORAINICIO"],
-                        HoraFin = (TimeSpan)datos.Lector["HORAFIN"],
-                        Estado = (String)datos.Lector["ESTADO"]
-                    };
-
-                    misTurnos.Add(turno);
+                        misTurnos.Add(turno);
+                    }
                 }
             }
-            catch (Exception ex)
+            else if (usuarioActual.Tipo == "Paciente")
             {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
-        private void Cargar_Médico()
-        {
-            int IdUsuario = ((Usuario)Session["Usuario"]).Id;
-
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("Select ID_MEDICO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM MEDICOS WHERE ID_USUARIO = @IDUSUARIO");
-                datos.setParametro("@IDUSUARIO", IdUsuario);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
+                foreach (Turno turno in clinica.Turnos)
                 {
-                    medicoActual.Id = (int)datos.Lector["ID_MEDICO"];
-
-                    medicoActual.Nombre = (String)datos.Lector["NOMBRE"];
-
-                    medicoActual.Apellido = (String)datos.Lector["APELLIDO"];
-
-                    medicoActual.Telefono = (String)datos.Lector["TELEFONO"];
-
-                    medicoActual.Direccion = (String)datos.Lector["DIRECCION"];
-
-                    medicoActual.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
-
-                    medicoActual.Mail = (String)datos.Lector["MAIL"];
-
-                    medicoActual.Estado = (bool)datos.Lector["ESTADO"];
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-        private void Cargar_TurnosMedicos()
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("SELECT ID_TURNO, M.NOMBRE AS MNOMBRE ,P.NOMBRE AS PNOMBRE, FECHA, HORA_INICIO, HORA_FIN, T.ESTADO AS ESTADO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE WHERE @IDMEDICO = T.ID_MEDICO");
-                datos.setParametro("@IDMEDICO", medicoActual.Id);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    Turno turno = new Turno
+                    if (pacienteActual.Id == turno.Id_Paciente)
                     {
-                        Id = (int)datos.Lector["ID_TURNO"],
-                        Medico = (String)datos.Lector["MNOMBRE"],
-                        Paciente = (String)datos.Lector["PNOMBRE"],
-                        Fecha = (DateTime)datos.Lector["FECHA"],
-                        HoraInicio = (TimeSpan)datos.Lector["HORA_INICIO"],
-                        HoraFin = (TimeSpan)datos.Lector["HORA_FIN"],
-                        Estado = (String)datos.Lector["ESTADO"]
-                    };
-
-                    misTurnos.Add(turno);
+                        misTurnos.Add(turno);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
             }
         }
     }

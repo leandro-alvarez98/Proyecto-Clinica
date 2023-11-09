@@ -16,7 +16,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES P");
+                datos.setConsulta("SELECT ID_PACIENTE, ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -24,6 +24,8 @@ namespace Conexion_Clinica
                     Paciente paciente = new Paciente();
 
                     paciente.Id = (int)datos.Lector["ID_PACIENTE"];
+
+                    paciente.Id_Usuario = (int)datos.Lector["ID_USUARIO"];
 
                     paciente.Nombre = (string)datos.Lector["NOMBRE"];
 

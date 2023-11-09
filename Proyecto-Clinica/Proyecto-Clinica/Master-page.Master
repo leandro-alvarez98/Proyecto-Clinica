@@ -62,7 +62,7 @@
                                             <a href="#" class="nav-link px-0"><span class="d-none d-sm-inline">Mi Perfil</span></a>
                                         </li>
                                         <li>
-                                            <a href="#" class="nav-link px-0"><span class="d-none d-sm-inline">Mis Turnos</span></a>
+                                            <a href="MisTurnos.aspx" class="nav-link px-0"><span class="d-none d-sm-inline">Mis Turnos</span></a>
                                         </li>
                                     </ul>
                                 </li>

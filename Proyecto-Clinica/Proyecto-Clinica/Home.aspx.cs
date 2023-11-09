@@ -27,8 +27,22 @@ namespace Proyecto_Clinica
             Master_page master = (Master_page)this.Master;
             master.Mostrar_menu_lateral();
 
-            Grilla_medicos.DataSource = clinica.Medicos;
-            Grilla_medicos.DataBind();
+            // GRILLAS PARA VER INFORMACION
+            Grilla_Usuarios.DataSource = clinica.Usuarios;
+            Grilla_Pacientes.DataSource = clinica.Pacientes;
+            Grilla_Medicos.DataSource = clinica.Medicos;
+            Grilla_Especialidades.DataSource = clinica.Especialidades;
+            Grilla_Turnos.DataSource = clinica.Turnos;
+            Grilla_Observaciones.DataSource = clinica.Observaciones;
+
+            Grilla_Usuarios.DataBind();
+            Grilla_Pacientes.DataBind();
+            Grilla_Medicos.DataBind();
+            Grilla_Especialidades.DataBind();
+            Grilla_Turnos.DataBind();
+            Grilla_Observaciones.DataBind();
+            // 
+            
         }
 
         // ESTA FUNCION MUESTRA QUE LA LISTA DE MEDICOS ESTÉ CARGADA CORRECTAMENTE. LO ESTÁ ;) 

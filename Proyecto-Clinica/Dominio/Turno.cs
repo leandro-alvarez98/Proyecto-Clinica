@@ -9,12 +9,16 @@ namespace Proyecto_Clinica.Dominio
     public class Turno
     {
         public int Id { get; set; }
-        public String Medico { get; set; }
-        public String Paciente { get; set; }
+        public int Id_Medico { get; set; }
+        public int Id_Paciente { get; set; }
         public DateTime Fecha { get; set; }
         public TimeSpan HoraInicio { get; set; }  
         public TimeSpan HoraFin { get; set; }
         public String Estado { get; set; }
-        public static bool Visible { get; set; }
+        public string Nombre_Medico { get; set; }
+        public string Apellido_Medico { get; set; }
+        public string Nombre_Paciente { get; set; }
+        public string Apellido_Paciente { get; set; }
+
     }
 }

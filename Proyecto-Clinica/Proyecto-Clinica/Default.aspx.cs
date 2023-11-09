@@ -41,7 +41,7 @@ namespace Proyecto_Clinica
         {
             string usuario = txtUsuario.Text;
             string contrasena = txtContraseña.Text;
-            
+
             usuario_actual = Buscar_Usuario_En_BBDD(usuario, contrasena);
             
             if(usuario_actual.Id != -1)

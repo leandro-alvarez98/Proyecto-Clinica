@@ -111,6 +111,5 @@ namespace Proyecto_Clinica
                 datos.cerrarConexion();
             }
         }
-
     }
 }
