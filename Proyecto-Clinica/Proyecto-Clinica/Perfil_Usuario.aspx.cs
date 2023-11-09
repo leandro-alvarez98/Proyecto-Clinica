@@ -3,6 +3,7 @@ using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,7 +15,8 @@ namespace Proyecto_Clinica
     {
         public Usuario Usuario_Actual = null;
         Paciente paciente_actual = null;
-        Medico Medico_actual = null;   
+        Medico Medico_actual = null;
+        Clinica clinica;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,117 +27,51 @@ namespace Proyecto_Clinica
         }
         private void Cargar_Componentes()
         {
-            Master_page master = (Master_page)this.Master;
-            master.Mostrar_menu_lateral();
+            clinica = new Clinica();
+            ClinicaConexion clinicaConexion = new ClinicaConexion();
+            clinica = clinicaConexion.Listar();
 
-            if (Usuario_Actual == null)
+            Usuario_Actual = new Usuario();
+            Usuario_Actual = (Usuario)Session["Usuario"];
+
+            if (Usuario_Actual.Tipo == "Médico")
             {
-                Usuario_Actual = new Usuario();
-
-                Usuario_Actual = (Usuario)Session["Usuario"];
-
-                Cargar_usuario();
-              
-            }
-
-        }
-        private void Cargar_usuario()
-        {
-            int id = Usuario_Actual.Id;
-            string tipo = Usuario_Actual.Tipo;
-            if (tipo == "Paciente")
-            {
-                paciente_actual = Datos_Paciente(id);
-                Cargar_label_Paciente();
-            }else if (tipo == "Médico")
-            {
-                Medico_actual = Datos_medico(id);
+                Medico_actual = new Medico();
+                Medico_actual = Cargar_Médico_Clinica();
                 Cargar_label_Medico();
             }
-
+            else if (Usuario_Actual.Tipo == "Paciente")
+            {
+                paciente_actual = new Paciente();
+                paciente_actual = Cargar_Paciente_Clinica();
+                Cargar_label_Paciente();
+            }                 
         }
-        public Medico Datos_medico(int id_usuario)
+
+        private Medico Cargar_Médico_Clinica()
         {
-            Medico Medico = new Medico();
-            AccesoDatos datos = new AccesoDatos();
-            try
+            foreach (Medico medico in clinica.Medicos)
             {
-                datos.setConsulta("Select ID_MEDICO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM MEDICOS WHERE ID_USUARIO = @IDUSUARIO");
-                datos.setParametro("@IDUSUARIO", id_usuario);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
+                if (medico.Id_Usuario == Usuario_Actual.Id)
                 {
-                    Medico.Id = (int)datos.Lector["ID_MEDICO"];
-
-                    Medico.Nombre = (String)datos.Lector["NOMBRE"];
-
-                    Medico.Apellido = (String)datos.Lector["APELLIDO"];
-
-                    Medico.Telefono = (String)datos.Lector["TELEFONO"];
-
-                    Medico.Direccion = (String)datos.Lector["DIRECCION"];
-
-                    Medico.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
-
-                    Medico.Mail = (String)datos.Lector["MAIL"];
-
-                    Medico.Estado = (bool)datos.Lector["ESTADO"];
+                    return medico;
                 }
-                return Medico;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+            return new Medico();
         }
-        private Paciente Datos_Paciente(int id_usuario)
+        private Paciente Cargar_Paciente_Clinica()
         {
-            Paciente paciente = new Paciente();
-
-            AccesoDatos datos = new AccesoDatos();
-            try
+            foreach (Paciente paciente in clinica.Pacientes)
             {
-                datos.setConsulta("SELECT ID_PACIENTE, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES WHERE ID_USUARIO = @IDUSUARIO");
-                datos.setParametro("@IDUSUARIO", id_usuario);
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
+                if (paciente.Id_Usuario == Usuario_Actual.Id)
                 {
-                    paciente.Id = (int)datos.Lector["ID_PACIENTE"];
-
-                    paciente.Nombre = (String)datos.Lector["NOMBRE"];
-
-                    paciente.Apellido = (String)datos.Lector["APELLIDO"];
-
-                    paciente.Telefono = (String)datos.Lector["TELEFONO"];
-
-                    paciente.Direccion = (String)datos.Lector["DIRECCION"];
-
-                    paciente.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
-
-                    paciente.Mail = (String)datos.Lector["MAIL"];
-
-                    paciente.Estado = (bool)datos.Lector["ESTADO"];
-
-                }
                     return paciente;
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+            return new Paciente();
         }
+        
+        //Labels del usuario
         public void Cargar_label_Paciente()
         {
             string apellido = paciente_actual.Apellido;

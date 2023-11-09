@@ -51,7 +51,7 @@
                             </a>
                             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                                 <li class="nav-item ">
-                                    <a href="#" class="nav-link align-middle text-white px-0">
+                                    <a href="Home.aspx" class="nav-link align-middle text-white px-0">
                                         <i class='bx bx-home'></i>
                                         <span class="ms-1 d-none d-sm-inline">INICIO</span>
                                     </a>
@@ -63,7 +63,7 @@
                                     </a>
                                     <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                         <li class="w-100">
-                                            <a href="#" class="nav-link text-white px-0">
+                                            <a href="Perfil_Usuario.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bxs-user-circle'></i>
                                                 <span class="d-none d-sm-inline">Mi Perfil</span>
                                             </a>
