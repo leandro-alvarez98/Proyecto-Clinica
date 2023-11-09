@@ -61,7 +61,7 @@
                                         <i class='bx bx-user'></i>
                                         <span class="ms-1 d-none d-sm-inline">Persona</span>
                                     </a>
-                                    <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                    <ul class="collapse  nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="Perfil_Usuario.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bxs-user-circle'></i>

@@ -20,8 +20,7 @@ namespace Proyecto_Clinica
             return usuario_actual;
         }
         public void Cargar_Componentes()
-        {
-            
+        {          
 
             if (Session["Usuario"] == null)
             {
