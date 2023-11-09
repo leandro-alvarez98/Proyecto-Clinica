@@ -17,7 +17,7 @@ namespace Proyecto_Clinica
 
         public void Mostrar_menu_lateral()
         {
-            menu_lateral.Visible = true;
+            //menu_lateral.Visible = true;
         }
         public void Mostrar_Icono()
         {

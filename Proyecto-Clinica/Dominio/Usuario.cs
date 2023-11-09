@@ -18,6 +18,9 @@ namespace Proyecto_Clinica.Dominio
         public DateTime Fecha_Nacimiento { get; set; }
         public string Mail { get; set; }
         public bool Estado { get; set; }
+        public string Imagen {
+            get; set;
+        }
         public Usuario()
         {
             Id = -1;
@@ -31,6 +34,8 @@ namespace Proyecto_Clinica.Dominio
             Fecha_Nacimiento = new DateTime();
             Mail = "No especificado";
             Estado = true;
+            Imagen = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
         }
+        
     }
 }

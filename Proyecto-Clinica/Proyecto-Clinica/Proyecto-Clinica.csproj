@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CambiarContraseña.aspx" />
+    <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
     <Content Include="content\styles.css" />
