@@ -1,7 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master-page.master.cs" Inherits="Proyecto_Clinica.Master_page" %>
-
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,23 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- script para el ddl -->
-    <script>
-        $(document).ready(function () {
-            $("#mostrarModal").click(function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                $("#DdlEspecialidad").toggle();
-            });
-
-            $(document).on("click", function (e) {
-                if (!$(e.target).is("#mostrarModal") && !$(e.target).is("#DdlEspecialidad") && !$(e.target).closest("#DdlEspecialidad").length) {
-                    $("#DdlEspecialidad").hide();
-                }
-            });
-        });
-    </script>
 
     <!-- Estilos propios -->
     <link href="content\styles.css" rel="stylesheet" />
@@ -51,9 +32,8 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <%--                            <li class="nav-item"> ESTO NO LO USAMOS PARA NADA POR AHORA
-                                <a class="nav-link active" aria-current="page" href="#Default.aspx">Inicio</a>
-                            </li>--%>
+                            <%-- <li class="nav-item"> ESTO NO LO USAMOS PARA NADA POR AHORA
+                                <a class="nav-link active" aria-current="page" href="#Default.aspx">Inicio</a> </li>--%>
                         </ul>
                     </div>
                 </div>
@@ -116,16 +96,15 @@
                     </div>
                     <div class="col py-3">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            <%-- CONTENIDO DE LAS PÁGINAS --%>
                         </asp:ContentPlaceHolder>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
     </form>
 </body>
+
 <%-- FOOTER --%>
 <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
     <div class="container-fluid text-center text-md-start">
@@ -175,7 +154,6 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 </footer>

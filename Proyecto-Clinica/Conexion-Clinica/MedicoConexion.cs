@@ -12,7 +12,7 @@ namespace Conexion_Clinica
 {
     internal class MedicoConexion
     {
-        public List<Medico> listar()
+        public List<Medico> Listar()
         {
             List<Medico> lista = new List<Medico>();
             AccesoDatos datos = new AccesoDatos();
@@ -23,28 +23,31 @@ namespace Conexion_Clinica
 
                 while (datos.Lector.Read())
                 {
-                    Medico medico = new Medico();
+                    Medico medico = new Medico
+                    {
+                        Id = (int)datos.Lector["ID"],
 
-                    medico.Id = (int)datos.Lector["ID"];
+                        Nombre = (String)datos.Lector["NOMBRE"],
 
-                    medico.Nombre = (String)datos.Lector["NOMBRE"];
+                        Apellido = (String)datos.Lector["APELLIDO"],
 
-                    medico.Apellido = (String)datos.Lector["APELLIDO"];
+                        Telefono = (String)datos.Lector["TELEFONO"],
 
-                    medico.Telefono = (String)datos.Lector["TELEFONO"];
+                        Direccion = (String)datos.Lector["DIRECCION"],
 
-                    medico.Direccion = (String)datos.Lector["DIRECCION"];
+                        Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"],
 
-                    medico.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+                        Mail = (String)datos.Lector["MAIL"],
 
-                    medico.Mail = (String)datos.Lector["MAIL"];
+                        Estado = (bool)datos.Lector["ESTADO"],
 
-                    medico.Estado = (bool)datos.Lector["ESTADO"];
-
-                    medico.Especialidades = new List<Especialidad>();
-                    Especialidad nueva = new Especialidad();
-                    nueva.Id = (byte)datos.Lector["IDESPECIALIDAD"];
-                    nueva.Tipo = (String)datos.Lector["ESPECIALIDAD"];
+                        Especialidades = new List<Especialidad>()
+                    };
+                    Especialidad nueva = new Especialidad
+                    {
+                        Id = (byte)datos.Lector["IDESPECIALIDAD"],
+                        Tipo = (String)datos.Lector["ESPECIALIDAD"]
+                    };
                     medico.Especialidades.Add(nueva);
 
                     lista.Add(medico);

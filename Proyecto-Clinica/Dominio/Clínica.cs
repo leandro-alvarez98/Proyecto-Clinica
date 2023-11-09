@@ -13,35 +13,11 @@ namespace Proyecto_Clinica.Dominio
             Además, proporciona métodos para agregar usuarios, pacientes, médicos y turnos al sistema.
          */
 
-        public List<Usuario> usuarios = new List<Usuario>();
-        public List<Paciente> pacientes = new List<Paciente>();
-        public List<Medico> medicos = new List<Medico>();
-        public List<Turno> turnos = new List<Turno>();
-        public List<Especialidad> especialidades = new List<Especialidad>();
-        public List<Observacion> observaciones = new List<Observacion>();
-
-        public void AgregarUsuario(Usuario usuario)
-        {
-            usuarios.Add(usuario);
-        }
-
-        public void AgregarPaciente(Paciente paciente)
-        {
-            pacientes.Add(paciente);
-        }
-
-        public void AgregarMedico(Medico medico)
-        {
-            medicos.Add(medico);
-        }
-
-        public void AgregarTurno(Turno turno)
-        {
-            turnos.Add(turno);
-        }
-        public void AgregarEspecialidad (Especialidad especialidad)
-        {
-            especialidades.Add(especialidad);
-        }
+        public List<Usuario> Usuarios { get; set; }
+        public List<Paciente> Pacientes { get; set; }
+        public List<Medico> Medicos { get; set; }
+        public List<Turno> Turnos { get; set; }
+        public List<Especialidad> Especialidades { get; set; }
+        public List<Observacion> Observaciones {  get; set; }
     }
 }
