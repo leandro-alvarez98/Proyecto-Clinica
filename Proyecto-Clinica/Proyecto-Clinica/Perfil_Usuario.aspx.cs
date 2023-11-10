@@ -83,12 +83,12 @@ namespace Proyecto_Clinica
             string direccion = paciente_actual.Direccion;
             DateTime fecha_nacimiento = paciente_actual.Fecha_Nacimiento;
 
-            apellidoLbl.Text = "Apellido : " + apellido;
-            nombrelbl.Text = "Nombre : " + nombre;
-            emailLbl.Text = "Mail : " + mail;
-            telefonoLbl.Text = "Telefono : " + telefono;
-            direccionLbl.Text = "Dirrecion :" + direccion;
-            fechaNacimientoLbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
+            apellidoLbl.Text =  apellido;
+            nombrelbl.Text =  nombre;
+            emailLbl.Text =  mail;
+            telefonoLbl.Text =  telefono;
+            direccionLbl.Text =  direccion;
+            fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
         }
         public void Cargar_label_Medico()
         {
@@ -99,23 +99,45 @@ namespace Proyecto_Clinica
             string direccion = Medico_actual.Direccion;
             DateTime fecha_nacimiento = Medico_actual.Fecha_Nacimiento;
 
-            apellidoLbl.Text = "Apellido : " + apellido;
-            nombrelbl.Text = "Nombre : " + nombre;
-            emailLbl.Text = "Mail : " + mail;
-            telefonoLbl.Text = "Telefono : " + telefono;
-            direccionLbl.Text = "Dirrecion :" + direccion;
-            fechaNacimientoLbl.Text = "Fecha de nacimiento : " + fecha_nacimiento;
+            apellidoLbl.Text = apellido;
+            nombrelbl.Text =   nombre;
+            emailLbl.Text =   mail;
+            telefonoLbl.Text =  telefono;
+            direccionLbl.Text =  direccion;
+            fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
         }
+        //-----------------------------------------------------------------
+        //------ ME QUEDE PENSANDO EN RE ESTRUCTURAR ESTA LOGICA PARA TRABAJAR CON EL ID DEL USUARIO LOGEADO Y EN BASE A ESO EVALUAR SI ES MEDICO, PACIENTE, ETC, 
+        //------ A LAS CATEGORIAS LAS RELACIONAMOS CON EL ID DE USUARIO CORRESPONDIENTE
+        //-----------------------------------------------------------------
 
+
+        public void btnCancelar_Click(object sender, EventArgs e)
+        { 
+                
+
+
+        }
         public void btnEditar_Click(object sender, EventArgs e) 
         {
-            // Habilitar TextBox para la edición
+            btnEditarDatos.Visible= false;
+            btnCambioContraseña.Visible= false;
+
+            //Habilitar TextBox para la edición
             txtNombreEdit.Visible = true;
             txtApellidoEdit.Visible = true;
             txtMailEdit.Visible = true;
             txtTelefonoEdit.Visible = true;
             txtDireccionEdit.Visible = true;
             txtFechaNacimientoEdit.Visible = true;
+
+            // Oculta los Label originales
+            nombrelbl.Visible = false;
+            apellidoLbl.Visible = false;
+            emailLbl.Visible = false;
+            telefonoLbl.Visible = false;
+            direccionLbl.Visible = false;
+            fechaNacimientoLbl.Visible = false;
 
             // Mostrar botón de guardar
             btnGuardar.Visible = true;
@@ -126,30 +148,25 @@ namespace Proyecto_Clinica
             {
                 Medico_actual = new Medico();
                 Medico_actual = Cargar_Médico_Clinica();
-                txtNombreEdit.Text = Medico_actual.Nombre;
+                txtNombreEdit.Text =  Medico_actual.Nombre;
+                txtApellidoEdit.Text =  Medico_actual.Apellido;
+                txtMailEdit.Text = Medico_actual.Mail;
+                txtTelefonoEdit.Text=   Medico_actual.Telefono;
+                txtDireccionEdit.Text=  Medico_actual.Direccion;
+                txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString();
                 
             }
             else if (Usuario_Actual.Tipo == "Paciente")
             {
                 paciente_actual = new Paciente();
                 paciente_actual = Cargar_Paciente_Clinica();
-                txtNombreEdit.Text = paciente_actual.Nombre;
-
-            }
-
-            //txtApellidoEdit.Text = Usuario_Actual.Tipo == "Paciente" ? paciente_actual.Apellido : Medico_actual.Apellido;
-            //txtMailEdit.Text = Usuario_Actual.Tipo == "Paciente" ? paciente_actual.Mail : Medico_actual.Mail;
-            //txtTelefonoEdit.Text = Usuario_Actual.Tipo == "Paciente" ? paciente_actual.Telefono : Medico_actual.Telefono;
-            //txtDireccionEdit.Text = Usuario_Actual.Tipo == "Paciente" ? paciente_actual.Direccion : Medico_actual.Direccion;
-            //txtFechaNacimientoEdit.Text = Usuario_Actual.Tipo == "Paciente" ? paciente_actual.Fecha_Nacimiento.ToString() : Medico_actual.Fecha_Nacimiento.ToString();
-
-            //Ocultar los Label originales
-            //nombrelbl.Visible = false;
-            //apellidoLbl.Visible = false;
-            //emailLbl.Visible = false;
-            //telefonoLbl.Visible = false;
-            //direccionLbl.Visible = false;
-            //fechaNacimientoLbl.Visible = false;
+                txtNombreEdit.Text =  paciente_actual.Nombre;
+                txtApellidoEdit.Text =  paciente_actual.Apellido;
+                txtMailEdit.Text =  paciente_actual.Mail;
+                txtTelefonoEdit.Text =  paciente_actual.Telefono;
+                txtDireccionEdit.Text =  paciente_actual.Direccion;
+                txtFechaNacimientoEdit.Text = paciente_actual.Fecha_Nacimiento.ToString();
+            }            
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -165,6 +182,8 @@ namespace Proyecto_Clinica
             // Actualizar los datos del usuario
             if (Usuario_Actual.Tipo == "Paciente")
             {
+                paciente_actual = new Paciente();
+                
                 paciente_actual.Nombre = nuevoNombre;
                 paciente_actual.Apellido = nuevoApellido;
                 paciente_actual.Mail = nuevoMail;
@@ -174,6 +193,8 @@ namespace Proyecto_Clinica
             }
             else if (Usuario_Actual.Tipo == "Médico")
             {
+                Medico_actual = new Medico();
+                
                 Medico_actual.Nombre = nuevoNombre;
                 Medico_actual.Apellido = nuevoApellido;
                 Medico_actual.Mail = nuevoMail;
@@ -182,15 +203,7 @@ namespace Proyecto_Clinica
                 Medico_actual.Fecha_Nacimiento = nuevaFechaNacimiento;
             }
 
-            // Guardar los cambios o realizar cualquier otra lógica que necesites
 
-            // Volver a mostrar los Label originales
-            nombrelbl.Visible = true;
-            apellidoLbl.Visible = true;
-            emailLbl.Visible = true;
-            telefonoLbl.Visible = true;
-            direccionLbl.Visible = true;
-            fechaNacimientoLbl.Visible = true;
 
             // Ocultar TextBox y botón de guardar
             txtNombreEdit.Visible = false;
