@@ -1,24 +1,14 @@
 -- QUERY DE LOS MEDICOS + ESPECIALIDADES
- SELECT M.ID_MEDICO AS ID, U.ID_USUARIO AS IDUSUARIO, M.NOMBRE AS NOMBRE, M.APELLIDO AS APELLIDO, M.TELEFONO AS TELEFONO, M.DIRECCION AS DIRECCION, M.FECHA_NACIMIENTO AS FECHANACIMIENTO, MAIL, M.ESTADO AS ESTADO,E.ID_ESPECIALIDAD AS IDESPECIALIDAD, E.TIPO AS ESPECIALIDAD FROM MEDICOS M INNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO INNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO INNER JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD
-
--- QUERY PARA TRAER UN SOLO MEDICO MEDIANTE ID
-	Select ID_MEDICO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM MEDICOS WHERE ID_USUARIO = @IDUSUARIO
+	SELECT M.ID_MEDICO AS ID, U.ID_USUARIO AS IDUSUARIO, M.NOMBRE AS NOMBRE, M.APELLIDO AS APELLIDO, M.TELEFONO AS TELEFONO, M.DIRECCION AS DIRECCION, M.FECHA_NACIMIENTO AS FECHANACIMIENTO, MAIL, M.ESTADO AS ESTADO,E.ID_ESPECIALIDAD AS IDESPECIALIDAD, E.TIPO AS ESPECIALIDAD FROM MEDICOS M INNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO INNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO INNER JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD
 
 -- QUERY DE LOS PACIENTES
 	SELECT ID_PACIENTE, ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES
 
 -- QUERY TURNOS
-SELECT T.ID_TURNO AS IDTURNO, T.ID_MEDICO AS IDMEDICO, T.ID_PACIENTE AS IDPACIENTE, T.FECHA AS FECHA, T.HORA_INICIO AS HORAINICIO, T.HORA_FIN AS HORAFIN, T.ESTADO AS ESTADO, M.NOMBRE AS MNOMBRE, M.APELLIDO AS MAPELLIDO, P.NOMBRE AS PNOMBRE, P.APELLIDO AS PAPELLIDO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE
-
+	SELECT T.ID_TURNO AS IDTURNO, T.ID_MEDICO AS IDMEDICO, T.ID_PACIENTE AS IDPACIENTE, T.FECHA AS FECHA, T.HORA_INICIO AS HORAINICIO, T.HORA_FIN AS HORAFIN, T.ESTADO AS ESTADO, M.NOMBRE AS MNOMBRE, M.APELLIDO AS MAPELLIDO, P.NOMBRE AS PNOMBRE, P.APELLIDO AS PAPELLIDO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE
 
 -- QUERY DE LAS OBSERVACIONES
 	SELECT ID_OBSERVACION, ID_TURNO, OBSERVACION FROM OBSERVACIONES
-
--- QUERY DE LOS TURNOS CON NOMBRES DE PACIENTES Y MEDICOS
-	SELECT ID_TURNO, M.ID_MEDICO , M.NOMBRE AS MNOMBRE, P.NOMBRE AS PNOMBRE, FECHA, HORA_INICIO, HORA_FIN, T.ESTADO AS ESTADO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE
-
---QUERY DE LOS TURNOS DE UN MEDICO
-	SELECT ID_TURNO, M.NOMBRE ,P.NOMBRE, FECHA, HORA_INICIO, HORA_FIN, T.ESTADO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE WHERE @IDMEDICO = T.ID_MEDICO
 
 -- QUERY DE LOS USUARIOS
 	SELECT ID_USUARIO, NOMBRE_USUARIO, CONTRASENA, TIPO FROM USUARIOS
@@ -28,6 +18,9 @@ SELECT T.ID_TURNO AS IDTURNO, T.ID_MEDICO AS IDMEDICO, T.ID_PACIENTE AS IDPACIEN
 	INSERT INTO MEDICOS(ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)
 	INSERT INTO ADMINISTRADOR(ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)
 	INSERT INTO RECEPCIONISTA(ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)
+
+-- PARA RESETEAR EL CONTADOR DE ALGUNA TABLA
+	DBCC CHECKIDENT('TURNOS', RESEED, 0);
 
 -- ELIMINAR BASE DE DATOS
 	DROP DATABASE CLINICA
@@ -124,8 +117,9 @@ GO
 CREATE TABLE HORARIOS (
     ID_HORARIO INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     DIA VARCHAR(20) NOT NULL,
-    HORA_INICIO TIME NOT NULL,
-    HORA_FIN TIME NOT NULL
+    HORA_INICIO TIME NOT NULL CHECK (HORA_INICIO >= '08:00:00' AND HORA_INICIO <= '14:00:00'),
+    HORA_FIN TIME NOT NULL CHECK (HORA_FIN >= '08:00:00' AND HORA_FIN <= '14:00:00'),
+    CONSTRAINT CHK_HORARIO CHECK (HORA_FIN > HORA_INICIO)
 )
 GO
 CREATE TABLE MEDICOSXESPECIALIDAD(
@@ -145,72 +139,116 @@ CREATE TABLE HORARIOSXMEDICO (
 GO
 
 -- INSERTS CON INFORMACIÓN PARA CADA TABLA
-INSERT INTO ESPECIALIDADES (TIPO) 
-VALUES ('Cardiología'),
-       ('Dermatología'),
-       ('Gastroenterología'),
-       ('Oftalmología');
+INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Cardiología');
+INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Dermatología');
+INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Gastroenterología');
+INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Neurología');
+INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Oftalmología');
+INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Ortopedia');
 
--- USUARIOS
 INSERT INTO USUARIOS (NOMBRE_USUARIO, CONTRASENA, TIPO) 
-VALUES ('paciente1', 'contrasena1', 'Paciente'),
-       ('paciente2', 'contrasena2', 'Paciente'),
-       ('paciente3', 'contrasena3', 'Paciente'),
-       ('paciente4', 'contrasena4', 'Paciente'),
-	   ('medico1', 'contrasena1', 'Médico'),
-       ('medico2', 'contrasena2', 'Médico'),
-       ('medico3', 'contrasena3', 'Médico'),
-       ('medico4', 'contrasena4', 'Médico'),
+VALUES ('paciente1', '123', 'Paciente'),
+       ('paciente2', '123', 'Paciente'),
+       ('paciente3', '123', 'Paciente'),
+       ('paciente4', '123', 'Paciente'),
+	   ('Alejandro', '123', 'Médico'),
+       ('Sofia', '123', 'Médico'),
+       ('Gabriel', '123', 'Médico'),
+       ('Laura', '123', 'Médico'),
+	   ('Martin', '123', 'Médico'),
+       ('Carla', '123', 'Médico'),
+       ('Javier', '123', 'Médico'),
+       ('Valeria', '123', 'Médico'),
+       ('Lucas', '123', 'Médico'),
+       ('Maria', '123', 'Médico'),
 	   ('Admin', '123', 'Administrador'),
-	   ('Recepcionista', '123', 'Recepcionista');
+	   ('Recepcionista', '123', 'Recepcionista')
 
 INSERT INTO PACIENTES (ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
 VALUES (1, 'Paciente1', 'Apellido1', '1234567891', 'Dirección1', '1990-01-01', 'paciente1@mail.com', 1),
        (2, 'Paciente2', 'Apellido2', '1234567892', 'Dirección2', '1990-02-02', 'paciente2@mail.com', 1),
        (3, 'Paciente3', 'Apellido3', '1234567893', 'Dirección3', '1990-03-03', 'paciente3@mail.com', 1),
-       (4, 'Paciente4', 'Apellido4', '1234567894', 'Dirección4', '1990-04-04', 'paciente4@mail.com', 1);
+       (4, 'Paciente4', 'Apellido4', '1234567894', 'Dirección4', '1990-04-04', 'paciente4@mail.com', 1)
 
 INSERT INTO MEDICOS (ID_USUARIO, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES (5, 'Médico1', 'Apellido1', '9876543211', 'Dirección1', '1980-01-01', 'medico1@mail.com', 1),
-       (6, 'Médico2', 'Apellido2', '9876543212', 'Dirección2', '1980-02-02', 'medico2@mail.com', 1),
-       (7, 'Médico3', 'Apellido3', '9876543213', 'Dirección3', '1980-03-03', 'medico3@mail.com', 1),
-       (8, 'Médico4', 'Apellido4', '9876543214', 'Dirección4', '1980-04-04', 'medico4@mail.com', 1);
+VALUES (5, 'Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A', '1980-01-01', 'alejandro.gomez@mail.com', 1),
+       (6, 'Sofía', 'Martínez', '9876543212', 'Avenida Principal, Ciudad B', '1980-02-02', 'sofia.martinez@mail.com', 1),
+       (7, 'Gabriel', 'López', '9876543213', 'Carrera 45, Ciudad C', '1980-03-03', 'gabriel.lopez@mail.com', 1),
+       (8, 'Laura', 'Hernández', '9876543214', 'Calle Principal, Ciudad D', '1980-04-04', 'laura.hernandez@mail.com', 1),
+	   (9, 'Martín', 'Díaz', '9876543215', 'Avenida 56, Ciudad E', '1980-05-05', 'martin.diaz@mail.com', 1),
+       (10, 'Carla', 'Ramírez', '9876543216', 'Calle 78, Ciudad F', '1980-06-06', 'carla.ramirez@mail.com', 1),
+       (11, 'Javier', 'Pérez', '9876543217', 'Carrera 89, Ciudad G', '1980-07-07', 'javier.perez@mail.com', 1),
+       (12, 'Valeria', 'Sánchez', '9876543218', 'Avenida 10, Ciudad H', '1980-08-08', 'valeria.sanchez@mail.com', 1),
+       (13, 'Lucas', 'Gutiérrez', '9876543219', 'Calle 34, Ciudad I', '1980-09-09', 'lucas.gutierrez@mail.com', 1),
+       (14, 'María', 'Ortega', '9876543220', 'Avenida 22, Ciudad J', '1980-10-10', 'maria.ortega@mail.com', 1);
+
 
 INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, FECHA, HORA_INICIO, HORA_FIN, ESTADO)
 VALUES (1, 1, '2023-11-01', '09:00:00', '10:00:00', 'Activo'),
-       (2, 1, '2023-11-02', '10:00:00', '11:00:00', 'Activo'),
-       (3, 3, '2023-11-03', '11:00:00', '12:00:00', 'Activo'),
-       (3, 4, '2023-11-04', '12:00:00', '13:00:00', 'Activo'),
-	   (4, 4, '2023-11-04', '12:00:00', '13:00:00', 'Activo');
+       (2, 1, '2023-11-02', '10:00:00', '11:00:00', 'Reprogramado'),
+       (3, 1, '2023-11-03', '11:00:00', '12:00:00', 'Cancelado'),
+       (3, 2, '2023-11-04', '12:00:00', '13:00:00', 'No asistió'),
+	   (4, 2, '2023-11-05', '12:00:00', '13:00:00', 'Cancelado'),
+	   (5, 3, '2023-11-06', '13:00:00', '14:00:00', 'Finalizado'),
+       (6, 1, '2023-11-07', '10:00:00', '11:00:00', 'Finalizado'),
+       (7, 2, '2023-11-08', '11:00:00', '12:00:00', 'Activo'),
+       (8, 4, '2023-11-09', '12:00:00', '13:00:00', 'Finalizado'),
+	   (9, 4, '2023-11-10', '12:00:00', '13:00:00', 'Activo'),
+	   (10, 4, '2023-11-11', '12:00:00', '13:00:00', 'Cancelado')
 
 INSERT INTO OBSERVACIONES (ID_TURNO, OBSERVACION)
 VALUES
-    (1,'El paciente presentó mejoras significativas.'),
-    (2,'Continuar con el tratamiento actual.'),
-    (3,'Se recomienda una cirugía para resolver el problema.'),
-    (4,'Se espera una recuperación completa en unas semanas.');
+    (1, 'El paciente presentó mejoras significativas.'),
+    (2, 'Se recomienda realizar pruebas adicionales para evaluar la condición del paciente.'),
+    (3, 'El tratamiento actual está mostrando resultados positivos.'),
+    (4, 'El paciente necesita seguir con el tratamiento según lo indicado.'),
+    (5, 'Se observaron síntomas preocupantes durante la consulta.'),
+    (6, 'El médico sugiere ajustar la medicación del paciente.'),
+    (7, 'Se discutieron posibles cambios en el plan de tratamiento.'),
+    (8, 'El paciente informó de efectos secundarios leves, se monitoreará.'),
+    (9, 'Es necesario programar un seguimiento para evaluar progresos.'),
+    (10, 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.')
 
 INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD)
 VALUES (1, 1),
-  	   (1, 2),
-       (2, 2),
+  	   (2, 2),
        (3, 3),
-       (4, 4);
+       (4, 4),
+       (5, 5),
+	   (6, 6),
+	   (7, 1),
+	   (8, 2),
+	   (9, 3),
+	   (10, 4),
+	   (1, 2),
+  	   (2, 3),
+       (3, 4),
+       (4, 5),
+       (5, 6),
+	   (1, 3)
 
 INSERT INTO Horarios (DIA, HORA_INICIO, HORA_FIN)
-VALUES ('Lunes', '08:00:00', '17:00:00'),
-       ('Martes', '08:00:00', '17:00:00'),
-       ('Miércoles', '08:00:00', '17:00:00'),
-       ('Jueves', '08:00:00', '17:00:00'),
-       ('Viernes', '08:00:00', '17:00:00'),
-       ('Sábado', '08:00:00', '12:00:00'),
-       ('Domingo', '09:00:00', '13:00:00');
--- Inserciones de médicos en horarios
+VALUES ('Lunes', '08:00:00', '14:00:00'),
+       ('Martes', '08:00:00', '14:00:00'),
+       ('Miércoles', '08:00:00', '14:00:00'),
+       ('Jueves', '08:00:00', '14:00:00'),
+       ('Viernes', '08:00:00', '14:00:00'),
+       ('Sábado', '10:00:00', '14:00:00'),
+       ('Domingo', '10:00:00', '14:00:00')
+
 INSERT INTO HORARIOSXMEDICO(ID_MEDICO, ID_HORARIO)
 VALUES (1, 1), 
        (2, 2),
        (3, 3), 
        (4, 4),
-	   (1, 5),
-	   (2, 6),
-	   (3,7);
+	   (5, 5),
+	   (6, 6),
+	   (7, 7),
+	   (8, 1),
+	   (9, 2),
+	   (10,3),
+	   (1, 2), 
+       (2, 3),
+       (3, 4), 
+       (4, 5),
+	   (5, 7)
