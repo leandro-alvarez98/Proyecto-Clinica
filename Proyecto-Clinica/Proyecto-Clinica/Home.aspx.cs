@@ -24,8 +24,6 @@ namespace Proyecto_Clinica
             clinica = clinicaConexion.Listar();
             Session["Clinica"] = clinica; //Esto contiene toda la información en caso de ser necesaria para checkear algo.
 
-            Master_page master = (Master_page)this.Master;
-            master.Mostrar_menu_lateral();
 
             // GRILLAS PARA VER INFORMACION
             Grilla_Usuarios.DataSource = clinica.Usuarios;

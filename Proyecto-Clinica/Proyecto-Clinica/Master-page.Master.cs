@@ -14,16 +14,5 @@ namespace Proyecto_Clinica
         {
 
         }
-
-        public void Mostrar_menu_lateral()
-        {
-            //menu_lateral.Visible = true;
-        }
-        public void Mostrar_Icono()
-        {
-            btn_nav_con_redireccion.Visible = true;
-            btn_nav_sin_redireccion.Visible = false;
-        }
-        
     }
 }

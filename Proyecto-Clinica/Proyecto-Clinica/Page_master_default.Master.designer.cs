@@ -33,24 +33,6 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control btn_nav_con_redireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_nav_con_redireccion;
-
-        /// <summary>
-        /// Control btn_nav_sin_redireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_nav_sin_redireccion;
-
-        /// <summary>
         /// Control ContentPlaceHolder1.
         /// </summary>
         /// <remarks>
