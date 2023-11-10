@@ -17,14 +17,19 @@ namespace Proyecto_Clinica
         Paciente paciente_actual;
         Medico Medico_actual;
         Clinica clinica;
+        UsuarioConexion conexion = new UsuarioConexion();
+
+
+
+
 
         protected void Page_Load(object sender, EventArgs e)
-        {               
+        {
             Cargar_Componentes();
+
 
             if (!IsPostBack)
             {
-
             }
         }
         private void Cargar_Componentes()
@@ -47,7 +52,7 @@ namespace Proyecto_Clinica
                 paciente_actual = new Paciente();
                 paciente_actual = Cargar_Paciente_Clinica();
                 Cargar_label_Paciente();
-            }                 
+            }
         }
 
         private Medico Cargar_Médico_Clinica()
@@ -72,7 +77,7 @@ namespace Proyecto_Clinica
             }
             return new Paciente();
         }
-        
+
         //Labels del usuario
         public void Cargar_label_Paciente()
         {
@@ -83,11 +88,11 @@ namespace Proyecto_Clinica
             string direccion = paciente_actual.Direccion;
             DateTime fecha_nacimiento = paciente_actual.Fecha_Nacimiento;
 
-            apellidoLbl.Text =  apellido;
-            nombrelbl.Text =  nombre;
-            emailLbl.Text =  mail;
-            telefonoLbl.Text =  telefono;
-            direccionLbl.Text =  direccion;
+            apellidoLbl.Text = apellido;
+            nombrelbl.Text = nombre;
+            emailLbl.Text = mail;
+            telefonoLbl.Text = telefono;
+            direccionLbl.Text = direccion;
             fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
         }
         public void Cargar_label_Medico()
@@ -100,28 +105,24 @@ namespace Proyecto_Clinica
             DateTime fecha_nacimiento = Medico_actual.Fecha_Nacimiento;
 
             apellidoLbl.Text = apellido;
-            nombrelbl.Text =   nombre;
-            emailLbl.Text =   mail;
-            telefonoLbl.Text =  telefono;
-            direccionLbl.Text =  direccion;
+            nombrelbl.Text = nombre;
+            emailLbl.Text = mail;
+            telefonoLbl.Text = telefono;
+            direccionLbl.Text = direccion;
             fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
         }
-        //-----------------------------------------------------------------
-        //------ ME QUEDE PENSANDO EN RE ESTRUCTURAR ESTA LOGICA PARA TRABAJAR CON EL ID DEL USUARIO LOGEADO Y EN BASE A ESO EVALUAR SI ES MEDICO, PACIENTE, ETC, 
-        //------ A LAS CATEGORIAS LAS RELACIONAMOS CON EL ID DE USUARIO CORRESPONDIENTE
-        //-----------------------------------------------------------------
 
 
         public void btnCancelar_Click(object sender, EventArgs e)
-        { 
-                
+        {
+
 
 
         }
-        public void btnEditar_Click(object sender, EventArgs e) 
+        public void btnEditar_Click(object sender, EventArgs e)
         {
-            btnEditarDatos.Visible= false;
-            btnCambioContraseña.Visible= false;
+            btnEditarDatos.Visible = false;
+            btnCambioContraseña.Visible = false;
 
             //Habilitar TextBox para la edición
             txtNombreEdit.Visible = true;
@@ -148,64 +149,33 @@ namespace Proyecto_Clinica
             {
                 Medico_actual = new Medico();
                 Medico_actual = Cargar_Médico_Clinica();
-                txtNombreEdit.Text =  Medico_actual.Nombre;
-                txtApellidoEdit.Text =  Medico_actual.Apellido;
+                txtNombreEdit.Text = Medico_actual.Nombre;
+                txtApellidoEdit.Text = Medico_actual.Apellido;
                 txtMailEdit.Text = Medico_actual.Mail;
-                txtTelefonoEdit.Text=   Medico_actual.Telefono;
-                txtDireccionEdit.Text=  Medico_actual.Direccion;
+                txtTelefonoEdit.Text = Medico_actual.Telefono;
+                txtDireccionEdit.Text = Medico_actual.Direccion;
                 txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString();
-                
+
             }
             else if (Usuario_Actual.Tipo == "Paciente")
             {
                 paciente_actual = new Paciente();
                 paciente_actual = Cargar_Paciente_Clinica();
-                txtNombreEdit.Text =  paciente_actual.Nombre;
-                txtApellidoEdit.Text =  paciente_actual.Apellido;
-                txtMailEdit.Text =  paciente_actual.Mail;
-                txtTelefonoEdit.Text =  paciente_actual.Telefono;
-                txtDireccionEdit.Text =  paciente_actual.Direccion;
+                txtNombreEdit.Text = paciente_actual.Nombre;
+                txtApellidoEdit.Text = paciente_actual.Apellido;
+                txtMailEdit.Text = paciente_actual.Mail;
+                txtTelefonoEdit.Text = paciente_actual.Telefono;
+                txtDireccionEdit.Text = paciente_actual.Direccion;
                 txtFechaNacimientoEdit.Text = paciente_actual.Fecha_Nacimiento.ToString();
-            }            
+            }
         }
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
+
+
+
+        public void ocultarTxtEditables()
         {
-            // Obtener los valores editados de los TextBox
-            string nuevoNombre = txtNombreEdit.Text;
-            string nuevoApellido = txtApellidoEdit.Text;
-            string nuevoMail = txtMailEdit.Text;
-            string nuevoTelefono = txtTelefonoEdit.Text;
-            string nuevaDireccion = txtDireccionEdit.Text;
-            DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
-
-            // Actualizar los datos del usuario
-            if (Usuario_Actual.Tipo == "Paciente")
-            {
-                paciente_actual = new Paciente();
-                
-                paciente_actual.Nombre = nuevoNombre;
-                paciente_actual.Apellido = nuevoApellido;
-                paciente_actual.Mail = nuevoMail;
-                paciente_actual.Telefono = nuevoTelefono;
-                paciente_actual.Direccion = nuevaDireccion;
-                paciente_actual.Fecha_Nacimiento = nuevaFechaNacimiento;
-            }
-            else if (Usuario_Actual.Tipo == "Médico")
-            {
-                Medico_actual = new Medico();
-                
-                Medico_actual.Nombre = nuevoNombre;
-                Medico_actual.Apellido = nuevoApellido;
-                Medico_actual.Mail = nuevoMail;
-                Medico_actual.Telefono = nuevoTelefono;
-                Medico_actual.Direccion = nuevaDireccion;
-                Medico_actual.Fecha_Nacimiento = nuevaFechaNacimiento;
-            }
-
-
-
-            // Ocultar TextBox y botón de guardar
+            //esto para ocultar directamente los txtEdit
             txtNombreEdit.Visible = false;
             txtApellidoEdit.Visible = false;
             txtMailEdit.Visible = false;
@@ -214,9 +184,107 @@ namespace Proyecto_Clinica
             txtFechaNacimientoEdit.Visible = false;
             btnGuardar.Visible = false;
 
-            // Volver a cargar los Label con los datos actualizados
-            Cargar_label_Paciente();
-            Cargar_label_Medico();
+        }
+
+        private void OcultarControlesEdicion()
+        {
+            //ocultar TextBox y boton de guardar
+            txtNombreEdit.Visible = false;
+            txtApellidoEdit.Visible = false;
+            txtMailEdit.Visible = false;
+            txtTelefonoEdit.Visible = false;
+            txtDireccionEdit.Visible = false;
+            txtFechaNacimientoEdit.Visible = false;
+
+            // mostrar los Label originales
+            //nombrelbl.Visible = true;
+            //apellidoLbl.Visible = true;
+            //emailLbl.Visible = true;
+            //telefonoLbl.Visible = true;
+            //direccionLbl.Visible = true;
+            //fechaNacimientoLbl.Visible = true;
+
+            //Ocultar botón de guardar
+            btnGuardar.Visible = false;
+            btnEditarDatos.Visible = true;
+            btnCambioContraseña.Visible = true;
+        }
+        public void btnGuardar_Click(object sender, EventArgs e)
+        {
+            
+
+            try
+            {
+                // guardamos los valores editados de los TextBox
+                string nuevoNombre = txtNombreEdit.Text;
+                string nuevoApellido = txtApellidoEdit.Text;
+                string nuevoMail = txtMailEdit.Text;
+                string nuevoTelefono = txtTelefonoEdit.Text;
+                string nuevaDireccion = txtDireccionEdit.Text;
+                DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+
+                // Actualizar los datos del paciente
+                if (Usuario_Actual != null && Usuario_Actual.Tipo == "Paciente")
+                {
+                    Paciente pacienteActualizado = new Paciente
+                    {
+                        Id = Usuario_Actual.Id,
+                        Nombre = nuevoNombre,
+                        Apellido = nuevoApellido,
+                        Mail = nuevoMail,
+                        Telefono = nuevoTelefono,
+                        Direccion = nuevaDireccion,
+                        Fecha_Nacimiento = nuevaFechaNacimiento
+                    };
+
+                    UsuarioConexion conexion = new UsuarioConexion();
+                    conexion.ActualizarPaciente(pacienteActualizado);
+
+                    //recarga los datos del paciente despues de la actualizacion
+                    paciente_actual = Cargar_Paciente_Clinica();
+                    Cargar_label_Paciente();
+                    // oculta el TextBox y boton de guardar
+                    OcultarControlesEdicion();
+                    // redirecciona a la misma pagina para refrescar los datoss
+                    Response.Redirect(Request.RawUrl);
+
+                }
+                //actualiza los datos del medico
+                else if (Usuario_Actual != null && Usuario_Actual.Tipo == "Médico")
+                {
+                    Medico medicoActualizado = new Medico
+                    {
+                        Id = Usuario_Actual.Id,
+                        Nombre = nuevoNombre,
+                        Apellido = nuevoApellido,
+                        Mail = nuevoMail,
+                        Telefono = nuevoTelefono,
+                        Direccion = nuevaDireccion,
+                        Fecha_Nacimiento = nuevaFechaNacimiento
+                    };
+
+                    UsuarioConexion conexion = new UsuarioConexion();
+                    conexion.ActualizarMedico(medicoActualizado);
+
+                    // Recargar los datos del médico despues de la actualización
+                    Medico_actual = Cargar_Médico_Clinica();
+                    Cargar_label_Medico();
+
+                    // oculta el TextBox y boton de guardar
+                    OcultarControlesEdicion();
+                    // redirecciona a la misma pagina para refrescar los datoss
+                    Response.Redirect(Request.RawUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                //MessageBox.Show("Error al actualizar los datos: " + ex.Message);
+
+            }
+
+
+
         }
 
     }
