@@ -279,7 +279,7 @@ namespace Proyecto_Clinica
             catch (Exception ex)
             {
 
-                //MessageBox.Show("Error al actualizar los datos: " + ex.Message);
+                MessageBox.Show("Error al actualizar los datos: " + ex.Message);
 
             }
 

@@ -15,7 +15,7 @@
                  <asp:TextBox ID="txtConfirmarContraseña" type="password" runat="server" CssClass="form-control" placeholder="Repita su contraseña"></asp:TextBox>
              </div>
              <div class="mb-2">
-                 <asp:Button ID="btnEnviar" runat="server" Text="Enviar Contraseña" CssClass="btn btn-primary" />
+                 <asp:Button ID="btnEnviar" runat="server" Text="Enviar Contraseña" CssClass="btn btn-primary" onclick="btnEnviar_Click"/>
              </div>
          </div>
      </div>
