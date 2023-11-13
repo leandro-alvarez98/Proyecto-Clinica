@@ -25,7 +25,7 @@ namespace Conexion_Clinica
                     Horario Horario = new Horario
                     {
                         Id_Horario = (int)datos.Lector["ID_HORARIO"],
-                        Hora = (DateTime)datos.Lector["HORA"],
+                        Hora = (TimeSpan)datos.Lector["HORA"],
                         Disponibilidad = (bool)datos.Lector["DISPONIBILIDAD"]
                     };
                     lista.Add(Horario);

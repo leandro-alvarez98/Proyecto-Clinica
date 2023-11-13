@@ -9,7 +9,7 @@ namespace Dominio
     public class Horario
     {
         public int Id_Horario {  get; set; }
-        public DateTime Hora { get; set; }
+        public TimeSpan Hora { get; set; }
         public bool Disponibilidad { get; set; }
     }
 }
