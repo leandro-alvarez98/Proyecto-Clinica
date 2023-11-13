@@ -21,13 +21,13 @@
          <asp:TextBox ID="txtHasta" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
      </div>
 
-     <asp:Button ID="Button1" runat="server" CssClass="btn btn-secondary " Text="Buscar Turnos" />
+     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" CssClass="btn btn-secondary " Text="Buscar Turnos" />
 
 
 
         <%-- grilla con todos los turnos disponibles para --%>
      <div>
-         <asp:GridView ID="Grilla_turnos_disponibles" runat="server"></asp:GridView>
+         <asp:GridView ID="Grilla_turnos_disponibles"  runat="server"></asp:GridView>
      </div>
 
   </div>
