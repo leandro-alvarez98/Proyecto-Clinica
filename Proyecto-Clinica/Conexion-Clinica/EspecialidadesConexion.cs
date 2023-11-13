@@ -22,9 +22,11 @@ namespace Conexion_Clinica
 
                 while (datos.Lector.Read())
                 {
-                    Especialidad especialidad = new Especialidad();
-                    especialidad.Id = (byte)datos.Lector["ID_ESPECIALIDAD"];
-                    especialidad.Tipo = (string)datos.Lector["TIPO"];
+                    Especialidad especialidad = new Especialidad
+                    {
+                        Id = (byte)datos.Lector["ID_ESPECIALIDAD"],
+                        Tipo = (string)datos.Lector["TIPO"]
+                    };
                     lista.Add(especialidad);
 
                 }

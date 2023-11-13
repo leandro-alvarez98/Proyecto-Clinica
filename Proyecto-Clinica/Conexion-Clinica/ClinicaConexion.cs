@@ -1,4 +1,5 @@
-﻿using Proyecto_Clinica.Dominio;
+﻿using Dominio;
+using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Conexion_Clinica
                 objetoClinica.Medicos = new List<Medico>();
                 objetoClinica.Especialidades = new List<Especialidad>();
                 objetoClinica.Observaciones = new List<Observacion>();
+                objetoClinica.Horarios = new List<Horario>();
 
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
                 objetoClinica.Usuarios = usuarioConexion.Listar();
@@ -41,6 +43,9 @@ namespace Conexion_Clinica
 
                 ObservacionConexion observacionConexion = new ObservacionConexion();
                 objetoClinica.Observaciones = observacionConexion.Listar();
+
+                HorarioConexion horarioConexion = new HorarioConexion();
+                objetoClinica.Horarios = horarioConexion.Listar();
 
                 return objetoClinica;
             }

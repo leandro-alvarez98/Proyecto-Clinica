@@ -1,4 +1,5 @@
-﻿using Proyecto_Clinica.Dominio;
+﻿using Dominio;
+using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,26 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    public class ObservacionConexion
+    public class HorarioConexion
     {
-        public List<Observacion> Listar()
+        public List<Horario> Listar()
         {
-            List<Observacion> lista = new List<Observacion>();
+            List<Horario> lista = new List<Horario>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_OBSERVACION, ID_TURNO, OBSERVACION FROM OBSERVACIONES");
+                datos.setConsulta("SELECT ID_HORARIO, HORA, DISPONIBILIDAD FROM HORARIOS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Observacion observacion = new Observacion
+                    Horario Horario = new Horario
                     {
-                        Id = (int)datos.Lector["ID_OBSERVACION"],
-                        Id_Turno = (int)datos.Lector["ID_TURNO"],
-                        Descripción = (String)datos.Lector["OBSERVACION"]
+                        Id_Horario = (int)datos.Lector["ID_HORARIO"],
+                        Hora = (DateTime)datos.Lector["HORA"],
+                        Disponibilidad = (bool)datos.Lector["DISPONIBILIDAD"]
                     };
-
-                    lista.Add(observacion);
+                    lista.Add(Horario);
                 }
                 return lista;
             }

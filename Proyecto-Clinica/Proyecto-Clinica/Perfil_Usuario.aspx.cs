@@ -19,14 +19,9 @@ namespace Proyecto_Clinica
         Clinica clinica;
         UsuarioConexion conexion = new UsuarioConexion();
 
-
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_Componentes();
-
 
             if (!IsPostBack)
             {

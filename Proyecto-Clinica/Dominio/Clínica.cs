@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,5 +20,6 @@ namespace Proyecto_Clinica.Dominio
         public List<Turno> Turnos { get; set; }
         public List<Especialidad> Especialidades { get; set; }
         public List<Observacion> Observaciones {  get; set; }
+        public List <Horario> Horarios { get; set; }
     }
 }

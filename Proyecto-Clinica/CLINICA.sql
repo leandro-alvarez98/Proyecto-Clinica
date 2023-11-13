@@ -26,16 +26,22 @@ CREATE TABLE JORNADA(
 GO
 CREATE TABLE HORARIOS (
     ID_HORARIO INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    DIA VARCHAR(20) NOT NULL,
 	HORA TIME NOT NULL,
 	DISPONIBILIDAD bit not null default(1)
+)
+GO
+CREATE TABLE IMAGENES(
+	ID_IMAGEN INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	URL_IMAGEN VARCHAR(200) NULL
 )
 GO
 CREATE TABLE USUARIOS (
     ID_USUARIO INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     NOMBRE_USUARIO VARCHAR(50) UNIQUE NOT NULL,
     CONTRASENA VARCHAR(30) NOT NULL,
-    TIPO VARCHAR(20) NOT NULL CHECK (TIPO IN ('Administrador', 'Recepcionista', 'Médico', 'Paciente'))
+    TIPO VARCHAR(20) NOT NULL CHECK (TIPO IN ('Administrador', 'Recepcionista', 'Médico', 'Paciente')),
+	ID_IMAGEN INT NULL,
+	FOREIGN KEY (ID_IMAGEN) REFERENCES IMAGENES(ID_IMAGEN)
 )
 GO
 CREATE TABLE PACIENTES (
@@ -95,6 +101,7 @@ CREATE TABLE TURNOS (
 	ID_MEDICO INT NOT NULL,
 	ID_PACIENTE INT NOT NULL,
 	ID_HORARIO int not null,
+	FECHA DATE not null,
     ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reservado', 'Reprogramado', 'Cancelado', 'No asistió', 'Finalizado')),
 	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
 	FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTES(ID_PACIENTE),
@@ -135,28 +142,20 @@ VALUES(1, '08:00', '12:00'),
 	(2, '12:00', '16:00'),
 	(3, '16:00', '20:00')
 
-INSERT INTO Horarios (DIA, HORA, DISPONIBILIDAD)
-VALUES ('Lunes', '08:00', 1), -- TODOS ESTOS HORARIOS SON A LA MAÑANA A LO LARGO DE LA SEMANA
-       ('Lunes', '09:00', 1),
-	   ('Lunes', '10:00', 1),
-       ('Martes', '08:00', 1),
-	   ('Martes', '09:00', 1),
-	   ('Martes', '10:00', 1),
-       ('Miércoles', '08:00', 1),
-	   ('Miércoles', '09:00', 1),
-	   ('Miércoles', '10:00', 1),
-       ('Jueves', '08:00', 1),
-	   ('Jueves', '09:00', 1),
-	   ('Jueves', '10:00', 1),
-       ('Viernes', '08:00', 1),
-	   ('Viernes', '09:00', 1),
-	   ('Viernes', '10:00', 1),
-       ('Sábado', '08:00', 1),
-	   ('Sábado', '09:00', 1),
-	   ('Sábado', '10:00', 1),
-       ('Domingo', '08:00', 1),
-	   ('Domingo', '09:00', 1),
-	   ('Domingo', '10:00', 1)
+INSERT INTO Horarios (HORA, DISPONIBILIDAD)
+VALUES ('08:00', 1),
+	('09:00', 1),
+	('10:00', 1),
+	('11:00', 1),
+	('12:00', 1),
+	('13:00', 1),
+	('14:00', 1),
+	('15:00', 1),
+	('16:00', 1),
+	('17:00', 1),
+	('18:00', 1),
+	('19:00', 1),
+	('20:00', 1)
 
 INSERT INTO USUARIOS (NOMBRE_USUARIO, CONTRASENA, TIPO) 
 VALUES ('paciente1', '123', 'Paciente'), -- Usuarios de los pacientes
@@ -194,18 +193,20 @@ VALUES (5, 'Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A', '1980-01-0
        (13, 'Lucas', 'Gutiérrez', '9876543219', 'Calle 34, Ciudad I', '1980-09-09', 'lucas.gutierrez@mail.com', 1),
        (14, 'María', 'Ortega', '9876543220', 'Avenida 22, Ciudad J', '1980-10-10', 'maria.ortega@mail.com', 1);
 
-INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO ,ESTADO) 
-VALUES (1, 1, 1,'Reservado'),
-       (2, 1, 1,'Reservado'),
-       (3, 1, 1,'Reservado'),
-       (3, 2, 1,'Reservado'),
-	   (4, 2, 1,'Reservado'),
-	   (5, 3, 1,'Reservado'),
-       (6, 1, 1,'Reservado'),
-       (7, 2, 1,'Reservado'),
-       (8, 4, 1,'Reservado'),
-	   (9, 4, 1,'Reservado'),
-	   (10, 4, 1,'Reservado')
+INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, ESTADO) 
+VALUES 
+    (1, 1, 1, '2023-11-11', 'Reservado'),
+    (2, 1, 2, '2023-11-12', 'Reservado'),
+    (3, 1, 3, '2023-11-13', 'Reservado'),
+    (3, 2, 4, '2023-11-14', 'Reservado'),
+    (4, 2, 5, '2023-11-15', 'Reservado'),
+    (5, 3, 6, '2023-11-16', 'Reservado'),
+    (6, 1, 7, '2023-11-17', 'Reservado'),
+    (7, 2, 8, '2023-11-18', 'Reservado'),
+    (8, 4, 9, '2023-11-19', 'Reservado'),
+    (9, 4, 10, '2023-11-20', 'Reservado'),
+    (10, 4, 11, '2023-11-21', 'Reservado');
+
 
 INSERT INTO OBSERVACIONES (ID_TURNO, OBSERVACION) -- 1 x cada turno 
 VALUES

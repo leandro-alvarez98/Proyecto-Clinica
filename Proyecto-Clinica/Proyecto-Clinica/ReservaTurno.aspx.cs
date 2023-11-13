@@ -32,10 +32,6 @@ namespace Proyecto_Clinica
 
             //Grilla turnos disponibles
             //Dia,hora,doctor,especialidad
-
-
-
-
         }
     }
 }
