@@ -13,6 +13,7 @@ namespace Proyecto_Clinica.Dominio
         public int Id_Paciente { get; set; }
         public int Id_Horario { get; set; }
         public DateTime Fecha { get; set; }
+        public TimeSpan Horario { get; set; }
         public String Estado { get; set; }
         public string Nombre_Medico { get; set; }
         public string Apellido_Medico { get; set; }

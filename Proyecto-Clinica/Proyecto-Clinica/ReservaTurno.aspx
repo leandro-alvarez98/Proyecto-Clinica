@@ -4,11 +4,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="mb-3 container containerbott form_top ">
+
         <h3>Reservar Turno</h3>
         <hr />
+
         <%-- Especialidades --%>
         <asp:DropDownList ID="DDL_especialidades" CssClass="form-select" runat="server"></asp:DropDownList>
         <hr />
+
         <%-- Fecha --%>
         <div class="mb-3">
             <asp:Calendar ID="Calendario" runat="server"></asp:Calendar>
