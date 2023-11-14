@@ -69,9 +69,7 @@ namespace Proyecto_Clinica
                     foreach(TimeSpan Horario in medico.Disponibilidad)
                     {
                         Turno turno = new Turno();
-                        turno.Id = 0;
                         turno.Id_Medico = medico.Id;
-                        turno.Id_Paciente = 0;
                         turno.Horario = Horario;
                         turno.Fecha = Fecha;
                         turno.Estado = "Disponible";
