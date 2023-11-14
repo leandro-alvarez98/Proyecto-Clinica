@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clínica.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Horario.cs" />
     <Compile Include="Medico.cs" />

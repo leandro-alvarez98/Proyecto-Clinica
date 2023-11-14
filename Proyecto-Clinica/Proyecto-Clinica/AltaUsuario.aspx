@@ -26,7 +26,7 @@
             <asp:DropDownList ID="ddlRegistrarTipo" runat="server"></asp:DropDownList>
         </div>
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Aceptar" CssClass="d-grid gap-2 col-6 mx-auto btn_tamaño fw-semibold" OnClick="Button1_Click" />
+        <asp:Button ID="btnAceptarAltaUsuario" runat="server" Text="Aceptar" CssClass="d-grid gap-2 col-6 mx-auto btn_tamaño fw-semibold" OnClick="btn_AceptarAltaUsuario_Click" />
     </div>
 
 </asp:Content>

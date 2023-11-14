@@ -25,7 +25,7 @@ namespace Proyecto_Clinica
                 ddlRegistrarTipo.Items.Add(new ListItem("Paciente", "Paciente"));
             }
         }
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btn_AceptarAltaUsuario_Click(object sender, EventArgs e)
         {
             bool usuarioValido = false;
 
@@ -47,7 +47,7 @@ namespace Proyecto_Clinica
                 InsertarInformacionEnBBDD(nuevo_usuario);
 
                 Session["Usuario"] = nuevo_usuario;
-                Response.Redirect("PerfilUsuario.aspx");
+                Response.Redirect("AltaUsuario.aspx");
             }
         }
 

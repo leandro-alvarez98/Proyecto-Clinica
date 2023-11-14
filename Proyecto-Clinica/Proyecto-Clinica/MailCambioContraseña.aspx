@@ -12,7 +12,7 @@
                     <asp:TextBox ID="txtIngresarMail" type="mail" runat="server" CssClass="form-control" placeholder="Ingrese su mail"></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="btn btn-primary" OnClick="btnEnviarMail_Click" />
                 </div>
                 <div class="mb-2">
                     <asp:Label ID="lblBuscarMail" runat="server" Class="form-label" Text="No recuerda su mail o usuario?"></asp:Label>
