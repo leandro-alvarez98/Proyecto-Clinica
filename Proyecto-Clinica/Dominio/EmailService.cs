@@ -21,7 +21,7 @@ namespace Dominio
             ServerEmail.Port = 587;
             ServerEmail.Host = "smtp.gmail.com";
         }
-        public void enviarEmail(string correo, string password)
+        public void enviarEmail(string correo)
         {
             Correo.From = new MailAddress("aca va el mail");
             Correo.To.Add(correo);

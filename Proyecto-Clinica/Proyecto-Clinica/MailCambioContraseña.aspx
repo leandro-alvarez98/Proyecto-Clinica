@@ -16,10 +16,10 @@
                 </div>
                 <div class="mb-2">
                     <asp:Label ID="lblBuscarMail" runat="server" Class="form-label" Text="No recuerda su mail o usuario?"></asp:Label>
-                    <asp:TextBox ID="txtBuscarMail" runat="server" CssClass="form-control" placeholder="Escriba su DNI"></asp:TextBox>
+                    <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Escriba su DNI" ></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnBuscarMail" runat="server" Text="Enviar DNI" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnBuscarMailUsuario" runat="server" Text="Enviar DNI" CssClass="btn btn-primary" OnClick="btnBuscarMailUsuario_Click" />
                 </div>
                 <div class="mb-2">
                     <asp:Label ID="lblMostrarMailUsuario" runat="server" Class="form-label" Text="Su mail o usuario es: "></asp:Label>
