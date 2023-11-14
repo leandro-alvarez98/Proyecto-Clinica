@@ -18,6 +18,7 @@ namespace Proyecto_Clinica
         Usuario usuario;
         List<Medico> medicos_disponibles;
         public List<Turno> Turnos_Disponibles;
+        Paciente paciente_actual;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -31,6 +32,7 @@ namespace Proyecto_Clinica
             usuario = (Usuario)Session["Usuario"];
             medicos_disponibles = new List<Medico>();
             Turnos_Disponibles = new List<Turno>();
+            paciente_actual = (Paciente)Session["Paciente"];
 
             //DROP_DOWN_LIST ESPECIALIDADES
             Cargar_DDL();
@@ -154,13 +156,30 @@ namespace Proyecto_Clinica
             turno_seleccionado.Horario = TimeSpan.Parse(hora);
             turno_seleccionado.Apellido_Medico = apellidoMedico;
             turno_seleccionado.Nombre_Medico = nombreMedico;
-            turno_seleccionado.Id_Medico = int.Parse(idMedico);           
+            turno_seleccionado.Id_Medico = int.Parse(idMedico);
+
             //falta como obtener los datos del paciente al cual se le va asignar este turno 
 
+            if (usuario.Tipo == "Médico")
+            {
+                // datos del medico
+            }
+            else if (usuario.Tipo == "Paciente")
+            {
+                // datos del paciente
+                // Response.Redirect("Confirmar_turno.aspx");
+            }
+            //else if (recepcionista)
+            //{
+            //  Session["Turno"] = turno_seleccionado;
+            //  Response.Redirect("Seleccionar_paciente.aspx");
+            //}
 
-            Session["Turno"] = turno_seleccionado;
-            Response.Redirect("Seleccionar_paciente.aspx");
+                Session["Turno"] = turno_seleccionado;
+                Response.Redirect("Seleccionar_paciente.aspx");
+
 
         }
+
     }
 }
