@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CambiarContraseña.aspx" />
+    <Content Include="Confirmar_turno.aspx" />
     <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
@@ -75,6 +76,7 @@
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="ReservaTurno.aspx" />
+    <Content Include="Seleccionar_paciente.aspx" />
     <Content Include="Web.config" />
     <Content Include="MisTurnos.aspx" />
   </ItemGroup>
@@ -85,6 +87,13 @@
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.cs">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Confirmar_turno.aspx.cs">
+      <DependentUpon>Confirmar_turno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Confirmar_turno.aspx.designer.cs">
+      <DependentUpon>Confirmar_turno.aspx</DependentUpon>
     </Compile>
     <Compile Include="MailCambioContraseña.aspx.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
@@ -152,6 +161,13 @@
     </Compile>
     <Compile Include="ReservaTurno.aspx.designer.cs">
       <DependentUpon>ReservaTurno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Seleccionar_paciente.aspx.cs">
+      <DependentUpon>Seleccionar_paciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Seleccionar_paciente.aspx.designer.cs">
+      <DependentUpon>Seleccionar_paciente.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

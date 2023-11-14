@@ -28,6 +28,7 @@
                             <asp:BoundField HeaderText="Hora" DataField="Horario" />
                             <asp:BoundField HeaderText="Apellido Medico" DataField="Apellido_Medico" />
                             <asp:BoundField HeaderText="Nombre Medico" DataField="Nombre_Medico" />
+                            <asp:BoundField HeaderText="id medico" DataField="Id_Medico" />
                             <asp:BoundField HeaderText="Estado" DataField="Estado" />
                             <asp:CommandField ShowSelectButton="true" SelectText="seleccionar turno" HeaderText="Accion" />
                         </Columns>

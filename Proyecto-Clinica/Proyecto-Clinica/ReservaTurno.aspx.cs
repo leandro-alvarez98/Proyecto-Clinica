@@ -142,7 +142,25 @@ namespace Proyecto_Clinica
         }
         protected void Grilla_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+          Turno turno_seleccionado = new Turno();
+            string fecha = Grilla_turnos_disponibles.SelectedRow.Cells[0].Text;
+            string hora = Grilla_turnos_disponibles.SelectedRow.Cells[1].Text;
+            string apellidoMedico = Grilla_turnos_disponibles.SelectedRow.Cells[2].Text;
+            string nombreMedico = Grilla_turnos_disponibles.SelectedRow.Cells[3].Text;
+            string idMedico = Grilla_turnos_disponibles.SelectedRow.Cells[4].Text;
+            string estado = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
+
+            turno_seleccionado.Fecha = DateTime.Parse(fecha);
+            turno_seleccionado.Horario = TimeSpan.Parse(hora);
+            turno_seleccionado.Apellido_Medico = apellidoMedico;
+            turno_seleccionado.Nombre_Medico = nombreMedico;
+            turno_seleccionado.Id_Medico = int.Parse(idMedico);           
+            //falta como obtener los datos del paciente al cual se le va asignar este turno 
+
+
+            Session["Turno"] = turno_seleccionado;
+            Response.Redirect("Seleccionar_paciente.aspx");
+
         }
     }
 }
