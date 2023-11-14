@@ -36,17 +36,30 @@ namespace Proyecto_Clinica
 
         protected void btnBuscarMailUsuario_Click (object sender, EventArgs e)
         {
-            // por ahora esta la busqueda con el TELEFONO
+            // por ahora buscamos por telefono
             string telefono = txtDNI.Text.Trim();
 
-            
             AccesoDatos datos = new AccesoDatos();
 
-            //la query esta incompleta
             string query = "SELECT U.NOMBRE_USUARIO, P.MAIL " +
                            "FROM PACIENTES P " +
                            "INNER JOIN USUARIOS U ON P.ID_USUARIO = U.ID_USUARIO " +
-                           "WHERE P.TELEFONO = @telefono";
+                           "WHERE P.TELEFONO = @telefono " +
+                           "UNION ALL " +
+                           "SELECT U.NOMBRE_USUARIO, M.MAIL " +
+                           "FROM MEDICOS M " +
+                           "INNER JOIN USUARIOS U ON M.ID_USUARIO = U.ID_USUARIO " +
+                           "WHERE M.TELEFONO = @telefono " +
+                           "UNION ALL " +
+                           "SELECT U.NOMBRE_USUARIO, R.MAIL " +
+                           "FROM RECEPCIONISTA R " +
+                           "INNER JOIN USUARIOS U ON R.ID_USUARIO = U.ID_USUARIO " +
+                           "WHERE R.TELEFONO = @telefono " +
+                           "UNION ALL " +
+                           "SELECT U.NOMBRE_USUARIO, A.MAIL " +
+                           "FROM ADMINISTRADOR A " +
+                           "INNER JOIN USUARIOS U ON A.ID_USUARIO = U.ID_USUARIO " +
+                           "WHERE A.TELEFONO = @telefono";
 
             datos.setConsulta(query);
 
@@ -63,11 +76,13 @@ namespace Proyecto_Clinica
                     string nombreUsuario = datos.Lector["NOMBRE_USUARIO"].ToString();
                     string email = datos.Lector["MAIL"].ToString();
 
-                    lblMostrarMailUsuario.Text = "Su mail o usuario es: " + email;
+                    lblMostrarMailUsuario.Text = "Su mail es: " + email;
+                    lblMostrarNombreUsuario.Text = "Su nombre de usuario es: " + nombreUsuario;
                 }
                 else
                 {
-                    lblMostrarMailUsuario.Text = "No se encontraron resultados para el telefono ingresado.";
+                    lblMostrarMailUsuario.Text = "No se encontraron resultados para el teléfono ingresado.";
+                    
                 }
             }
             catch (Exception ex)
@@ -76,7 +91,6 @@ namespace Proyecto_Clinica
             }
             finally
             {
-                // Cerrar la conexión después de usarla
                 datos.cerrarConexion();
             }
         }
