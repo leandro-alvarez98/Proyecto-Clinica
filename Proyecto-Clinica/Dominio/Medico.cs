@@ -19,7 +19,6 @@ namespace Proyecto_Clinica.Dominio
         public bool Estado { get; set; }
         public List<Especialidad> Especialidades { get; set; }
         public Usuario Usuario { get; set; }
-
-        public List<TimeSpan> Disponibilidad {  get; set; } 
+        public List<Turno> Turnos {  get; set; } 
     }
 }

@@ -34,7 +34,7 @@ namespace Proyecto_Clinica
             Turnos_Disponibles = new List<Turno>();
 
             //DROP_DOWN_LIST ESPECIALIDADES
-            List<Especialidad> especialidades = new List<Especialidad>();
+            List<Especialidad> especialidades;
             especialidades = clinica.Especialidades;
             DDL_especialidades.DataTextField = "TIPO";
             DDL_especialidades.DataValueField = "Id";
@@ -56,32 +56,26 @@ namespace Proyecto_Clinica
             Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
             // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
             Obtener_Disponibilidad(Fecha_Seleccionada);
+
             // CARGAR TURNOS DISPONIBLES
             Cargar_Lista_Turnos(ID_Especialidad_Seleccionada, Fecha_Seleccionada);
+
             // LISTAR TURNOS EN LA GRILLA
             Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
             Grilla_turnos_disponibles.DataBind();
         }
+
         private void Cargar_Lista_Turnos(string ID_Especialidad, DateTime Fecha)
         {
-                foreach(Medico medico in medicos_disponibles)
+            foreach (Medico medico in medicos_disponibles)
+            {
+                foreach(Turno turno in medico.Turnos)
                 {
-                    foreach(TimeSpan Horario in medico.Disponibilidad)
-                    {
-                        Turno turno = new Turno();
-                        turno.Id_Medico = medico.Id;
-                        turno.Horario = Horario;
-                        turno.Fecha = Fecha;
-                        turno.Estado = "Disponible";
-                        turno.Nombre_Medico = medico.Nombre;
-                        turno.Apellido_Medico = medico.Apellido;
-                        turno.Nombre_Paciente = "nada";
-                        turno.Apellido_Paciente = "nada";
-                        Turnos_Disponibles.Add(turno);
-                    }
+                    Turnos_Disponibles.Add(turno);
                 }
-            
+            }
         }
+
         public void Medicos_segun_Especialidad(String ID_Especialidad)
         {
             foreach (Medico medico in clinica.Medicos)
@@ -100,18 +94,29 @@ namespace Proyecto_Clinica
             foreach(Medico medico in medicos_disponibles)
             {
                 AccesoDatos datos = new AccesoDatos();
-                medico.Disponibilidad = new List<TimeSpan>();
+                medico.Turnos = new List<Turno>();
+
                 try
                 {
-                    datos.setConsulta("SELECT H.HORA AS HORA, ID_TURNO, ESTADO FROM HORARIOS H CROSS JOIN (SELECT DISTINCT FECHA FROM TURNOS WHERE ID_MEDICO = @IDMedico AND FECHA = @FechaConsulta) D LEFT JOIN TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = D.FECHA AND T.ID_MEDICO = @IDMedico WHERE ID_TURNO IS NULL ORDER BY H.HORA");
+                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO,\r\n\tH.HORA AS HORA, \r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO, \r\n\tISNULL(T.ID_MEDICO, @IDMedico) AS IDMEDICO, \r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO \r\nFROM HORARIOS H \r\nJOIN \r\n\tMEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA \r\nCROSS JOIN \r\n\t(SELECT DISTINCT FECHA FROM TURNOS WHERE ID_MEDICO = @IDMedico AND FECHA = @FechaConsulta) D \r\nLEFT JOIN  \r\n\tTURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = D.FECHA AND T.ID_MEDICO = @IDMedico \r\nWHERE \r\n\tMJ.ID_MEDICO = @IDMedico \r\nORDER BY \r\n\tH.HORA");
                     datos.setParametro("@IDMedico", medico.Id);
                     datos.setParametro("@FechaConsulta", Fecha);
                     datos.ejecutarLectura();
 
                     while (datos.Lector.Read())
                     {
-                        TimeSpan Horario = (TimeSpan)datos.Lector["HORA"];
-                        medico.Disponibilidad.Add(Horario);
+                            Turno turno = new Turno
+                            {
+                                Id = (int)datos.Lector["IDTURNO"],
+                                Id_Medico = (int)datos.Lector["IDMEDICO"],
+                                Id_Horario = (int)datos.Lector["IDHORARIO"],
+                                Fecha = Fecha,
+                                Horario = (TimeSpan)datos.Lector["HORA"],
+                                Estado = (String)datos.Lector["ESTADO"],
+                                Nombre_Medico = medico.Nombre,
+                                Apellido_Medico = medico.Apellido
+                            };
+                        medico.Turnos.Add(turno);
                     }
                 }
                 catch (Exception ex)

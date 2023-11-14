@@ -73,8 +73,7 @@ namespace Conexion_Clinica
         
         public void cerrarConexion()
         {
-            if (lector != null)
-                lector.Close();
+            lector?.Close();
             conexion.Close();
         }
     }
