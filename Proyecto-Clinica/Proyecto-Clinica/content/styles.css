@@ -4,14 +4,10 @@
     background-color: var(--color-body);
     position: relative;
     min-height: 100vh;
-/*    flex-direction: row;
-*/    /*    padding-bottom: 20em;
-*/
 }
-.footer {
-
+.ocultar{
+    display:none;
 }
-
 
 .containerbott {
     min-height: 100vh;
@@ -29,21 +25,6 @@
     background-color: var(--color-azul-verde-oscuro);
 }
 
-/* pantallas mas chicas - falta un ajustecito*/
-
-.menuLateral {
-}
-
-
-
-/*
-.form-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}*/
 
 .form-label {
     flex: 1;

@@ -33,13 +33,22 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Calendar Calendario;
 
         /// <summary>
-        /// Control Button1.
+        /// Control Buscar_Turno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Buscar_Turno;
+
+        /// <summary>
+        /// Control lblturnos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblturnos;
 
         /// <summary>
         /// Control Grilla_turnos_disponibles.

@@ -17,7 +17,7 @@ namespace Proyecto_Clinica
         Clinica clinica;
         Usuario usuario;
         List<Medico> medicos_disponibles;
-        List<Turno> Turnos_Disponibles;
+        public List<Turno> Turnos_Disponibles;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -30,21 +30,24 @@ namespace Proyecto_Clinica
             usuario = new Usuario();
             usuario = (Usuario)Session["Usuario"];
             medicos_disponibles = new List<Medico>();
-
             Turnos_Disponibles = new List<Turno>();
 
             //DROP_DOWN_LIST ESPECIALIDADES
-            List<Especialidad> especialidades;
-            especialidades = clinica.Especialidades;
-            DDL_especialidades.DataTextField = "TIPO";
-            DDL_especialidades.DataValueField = "Id";
-            DDL_especialidades.DataSource = especialidades;
-            DDL_especialidades.DataBind();
+            Cargar_DDL();
+            
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Buscar_Turno_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
+            if (Turnos_Disponibles.Count() == 0)
+            {
+                lblturnos.Text = "No hay Turnos Disponibles ";
+            }
+            else
+            {
+                lblturnos.Text = "";
+            }
             // Mostrar para cada médico, su disponibilidad.
         }
 
@@ -64,7 +67,6 @@ namespace Proyecto_Clinica
             Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
             Grilla_turnos_disponibles.DataBind();
         }
-
         private void Cargar_Lista_Turnos(string ID_Especialidad, DateTime Fecha)
         {
             foreach (Medico medico in medicos_disponibles)
@@ -75,7 +77,6 @@ namespace Proyecto_Clinica
                 }
             }
         }
-
         public void Medicos_segun_Especialidad(String ID_Especialidad)
         {
             foreach (Medico medico in clinica.Medicos)
@@ -129,6 +130,19 @@ namespace Proyecto_Clinica
                     datos.cerrarConexion();
                 }
             }
+        }
+        public void Cargar_DDL()
+        {
+            List<Especialidad> especialidades;
+            especialidades = clinica.Especialidades;
+            DDL_especialidades.DataTextField = "TIPO";
+            DDL_especialidades.DataValueField = "Id";
+            DDL_especialidades.DataSource = especialidades;
+            DDL_especialidades.DataBind();
+        }
+        protected void Grilla_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
         }
     }
 }

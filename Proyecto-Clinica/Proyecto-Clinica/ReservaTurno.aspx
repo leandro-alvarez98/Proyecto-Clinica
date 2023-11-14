@@ -17,19 +17,24 @@
             <asp:Calendar ID="Calendario" runat="server"></asp:Calendar>
         </div>
 
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" CssClass="btn btn-secondary " Text="Buscar Turnos" />
+        <asp:Button ID="Buscar_Turno" runat="server" OnClick="Buscar_Turno_Click" CssClass="btn btn-secondary " Text="Buscar Turnos" />
+        <asp:Label ID="lblturnos" runat="server" CssClass="fs-4 font-monospace" Text=""></asp:Label>
 
-        <%-- Grilla con todos los turnos disponibles --%>
-        <div>
-            <asp:GridView ID="Grilla_turnos_disponibles" runat="server" AutoGenerateColumns="false" CssClass="table table-dark table-hover">
-                <Columns>
-                    <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
-                    <asp:BoundField HeaderText="Hora" DataField="Horario" />
-                    <asp:BoundField HeaderText="Médico" DataField="Nombre_Medico" />
-                    <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                </Columns>
-            </asp:GridView>
-        </div>
+        <%-- Grilla con todos los turnos disponibles --%>       
+                <div>
+                    <asp:GridView ID="Grilla_turnos_disponibles" runat="server" OnSelectedIndexChanged="Grilla_turnos_disponibles_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-dark table-hover ">
+                        <Columns>
+                            <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
+                            <asp:BoundField HeaderText="Hora" DataField="Horario" />
+                            <asp:BoundField HeaderText="Apellido Medico" DataField="Apellido_Medico" />
+                            <asp:BoundField HeaderText="Nombre Medico" DataField="Nombre_Medico" />
+                            <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                            <asp:CommandField ShowSelectButton="true" SelectText="seleccionar turno" HeaderText="Accion" />
+                        </Columns>
+                    </asp:GridView>                   
+                </div>
+         
+  
     </div>
 
 </asp:Content>
