@@ -51,6 +51,24 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.TextBox txtApellidoEdit;
 
         /// <summary>
+        /// Control dniLbl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dniLbl;
+
+        /// <summary>
+        /// Control txtDniEdit.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDniEdit;
+
+        /// <summary>
         /// Control emailLbl.
         /// </summary>
         /// <remarks>

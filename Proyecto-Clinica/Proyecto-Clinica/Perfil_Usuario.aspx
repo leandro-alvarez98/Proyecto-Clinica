@@ -24,6 +24,11 @@
                             <asp:TextBox ID="txtApellidoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
+                            <asp:Label CssClass="lbl" runat="server" Text="DNI: "></asp:Label>
+                            <asp:Label ID="dniLbl" CssClass="lbl" runat="server"></asp:Label>
+                            <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                        </li>
+                        <li class="list-group-item">
                             <asp:Label CssClass="lbl" runat="server" Text="Email: "></asp:Label>
                             <asp:Label ID="emailLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtMailEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
@@ -47,7 +52,7 @@
 
                     <div class="mb-2">
                         <asp:Button ID="btnEditarDatos" class="btn btn-primary" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
-                        <asp:Button ID="btnGuardar" class="btn btn-primary" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false"/>
+                        <asp:Button ID="btnGuardar" class="btn btn-primary" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
                         <asp:Button ID="btnCancelar" class="btn btn-primary" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
 
 

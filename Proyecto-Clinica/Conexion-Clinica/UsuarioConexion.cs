@@ -52,8 +52,9 @@ namespace Conexion_Clinica
             {
                 
                 // Actualiza los datos en la tabla de los PACIENTES
-                string queryPaciente = "UPDATE PACIENTES SET NOMBRE = @Nombre, APELLIDO = @Apellido, TELEFONO = @Telefono, DIRECCION = @Direccion, FECHA_NACIMIENTO = @FechaNacimiento, MAIL = @Mail WHERE ID_USUARIO = @Id";
+                string queryPaciente = "UPDATE PACIENTES SET DNI = @Dni, NOMBRE = @Nombre, APELLIDO = @Apellido, TELEFONO = @Telefono, DIRECCION = @Direccion, FECHA_NACIMIENTO = @FechaNacimiento, MAIL = @Mail WHERE ID_USUARIO = @Id";
                 datos.setConsulta(queryPaciente);
+                datos.setParametro("@Dni", paciente.Dni);
                 datos.setParametro("@Nombre", paciente.Nombre);
                 datos.setParametro("@Apellido", paciente.Apellido);
                 datos.setParametro("@Telefono", paciente.Telefono);
@@ -84,8 +85,9 @@ namespace Conexion_Clinica
             try
             {
                 // Actualiza los datos en la tabla de los MEDICOS
-                string queryMedico = "UPDATE MEDICOS SET NOMBRE = @Nombre, APELLIDO = @Apellido, TELEFONO = @Telefono, DIRECCION = @Direccion, FECHA_NACIMIENTO = @FechaNacimiento, MAIL = @Mail WHERE ID_USUARIO = @Id";
+                string queryMedico = "UPDATE MEDICOS SET DNI = @Dni, NOMBRE = @Nombre, APELLIDO = @Apellido, TELEFONO = @Telefono, DIRECCION = @Direccion, FECHA_NACIMIENTO = @FechaNacimiento, MAIL = @Mail WHERE ID_USUARIO = @Id";
                 datos.setConsulta(queryMedico);
+                datos.setParametro("@Dni", medico.Dni);
                 datos.setParametro("@Nombre", medico.Nombre);
                 datos.setParametro("@Apellido", medico.Apellido);
                 datos.setParametro("@Telefono", medico.Telefono);
@@ -106,10 +108,65 @@ namespace Conexion_Clinica
             }
         }
 
+        public void ActualizarRecepcionista(Recepcionista recepcionista)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                // Actualiza los datos en la tabla de los RECEPCIONISTA
+                string queryMedico = "UPDATE RECEPCIONISTA SET DNI = @Dni, NOMBRE = @Nombre, APELLIDO = @Apellido, TELEFONO = @Telefono, DIRECCION = @Direccion, FECHA_NACIMIENTO = @FechaNacimiento, MAIL = @Mail WHERE ID_USUARIO = @Id";
+                datos.setConsulta(queryMedico);
+                datos.setParametro("@Dni", recepcionista.Dni);
+                datos.setParametro("@Nombre", recepcionista.Nombre);
+                datos.setParametro("@Apellido", recepcionista.Apellido);
+                datos.setParametro("@Telefono", recepcionista.Telefono);
+                datos.setParametro("@Direccion", recepcionista.Direccion);
+                datos.setParametro("@FechaNacimiento", recepcionista.Fecha_Nacimiento);
+                datos.setParametro("@Mail", recepcionista.Mail);
+                datos.setParametro("@Id", recepcionista.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
+        public void ActualizarAdministracion(Administrador administrador)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
-
+            try
+            {
+                // Actualiza los datos en la tabla de los ADMINISTRACION
+                string queryMedico = "UPDATE ADMINISTRADOR SET DNI = @Dni, NOMBRE = @Nombre, APELLIDO = @Apellido, TELEFONO = @Telefono, DIRECCION = @Direccion, FECHA_NACIMIENTO = @FechaNacimiento, MAIL = @Mail WHERE ID_USUARIO = @Id";
+                datos.setConsulta(queryMedico);
+                datos.setParametro("@Dni", administrador.Dni);
+                datos.setParametro("@Nombre", administrador.Nombre);
+                datos.setParametro("@Apellido", administrador.Apellido);
+                datos.setParametro("@Telefono", administrador.Telefono);
+                datos.setParametro("@Direccion", administrador.Direccion);
+                datos.setParametro("@FechaNacimiento", administrador.Fecha_Nacimiento);
+                datos.setParametro("@Mail", administrador.Mail);
+                datos.setParametro("@Id", administrador.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
 

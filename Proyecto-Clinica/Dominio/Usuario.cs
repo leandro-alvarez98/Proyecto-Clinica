@@ -8,6 +8,7 @@ namespace Proyecto_Clinica.Dominio
     public class Usuario
     {
         public int Id { get; set; }
+        public int Dni {  get; set; }
         public string Username { get; set; }
         public string Contraseña { get; set; }
         public string Tipo { get; set; }
@@ -22,6 +23,7 @@ namespace Proyecto_Clinica.Dominio
         public Usuario()
         {
             Id = -1;
+            Dni=00000000;
             Nombre = "No especificado";
             Contraseña = "No especificado";
             Tipo = "No especificado";

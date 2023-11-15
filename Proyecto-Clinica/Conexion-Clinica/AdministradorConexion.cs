@@ -8,22 +8,22 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    internal class PacienteConexion
+    internal class AdministradorConexion
     {
-        public List<Paciente> Listar()
+        public List<Administrador> Listar()
         {
-            List<Paciente> lista = new List<Paciente>();
+            List<Administrador> lista = new List<Administrador>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_PACIENTE, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES");
+                datos.setConsulta("SELECT ID_ADMINISTRADOR, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM ADMINISTRADOR");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Paciente paciente = new Paciente
+                    Administrador administrador = new Administrador
                     {
-                        Id = (int)datos.Lector["ID_PACIENTE"],
+                        Id = (int)datos.Lector["ID_ADMINISTRADOR"],
 
                         Id_Usuario = (int)datos.Lector["ID_USUARIO"],
 
@@ -44,7 +44,7 @@ namespace Conexion_Clinica
                         Estado = (bool)datos.Lector["ESTADO"]
                     };
 
-                    lista.Add(paciente);
+                    lista.Add(administrador);
                 }
                 return lista;
             }

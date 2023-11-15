@@ -76,6 +76,7 @@ namespace Proyecto_Clinica
         //Labels del usuario
         public void Cargar_label_Paciente()
         {
+            string dni = paciente_actual.Dni;
             string apellido = paciente_actual.Apellido;
             string nombre = paciente_actual.Nombre;
             string mail = paciente_actual.Mail;
@@ -83,6 +84,7 @@ namespace Proyecto_Clinica
             string direccion = paciente_actual.Direccion;
             DateTime fecha_nacimiento = paciente_actual.Fecha_Nacimiento;
 
+            dniLbl.Text = dni;
             apellidoLbl.Text = apellido;
             nombrelbl.Text = nombre;
             emailLbl.Text = mail;
@@ -92,6 +94,7 @@ namespace Proyecto_Clinica
         }
         public void Cargar_label_Medico()
         {
+            string dni = Medico_actual.Dni;
             string apellido = Medico_actual.Apellido;
             string nombre = Medico_actual.Nombre;
             string mail = Medico_actual.Mail;

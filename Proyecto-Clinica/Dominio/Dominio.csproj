@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrador.cs" />
     <Compile Include="Clínica.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Especialidad.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Observacion.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recepcionista.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
