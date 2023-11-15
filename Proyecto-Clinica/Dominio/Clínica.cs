@@ -17,6 +17,8 @@ namespace Proyecto_Clinica.Dominio
         public List<Usuario> Usuarios { get; set; }
         public List<Paciente> Pacientes { get; set; }
         public List<Medico> Medicos { get; set; }
+        public List<Recepcionista> Recepcionistas { get; set; }
+        public List<Administrador> Administracion { get; set; }             
         public List<Turno> Turnos { get; set; }
         public List<Especialidad> Especialidades { get; set; }
         public List<Observacion> Observaciones {  get; set; }
