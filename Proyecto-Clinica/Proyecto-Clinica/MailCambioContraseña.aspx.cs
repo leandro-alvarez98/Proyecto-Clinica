@@ -18,8 +18,9 @@ namespace Proyecto_Clinica
 
         }
 
-        
-        protected void btnEnviarMail_Click(object sender, EventArgs e) {
+
+        protected void btnEnviarMail_Click(object sender, EventArgs e)
+        {
             EmailService emailService = new EmailService();
             emailService.enviarEmail(txtIngresarMail.Text);
             try
@@ -34,36 +35,36 @@ namespace Proyecto_Clinica
 
         }
 
-        protected void btnBuscarMailUsuario_Click (object sender, EventArgs e)
+        protected void btnBuscarMailUsuario_Click(object sender, EventArgs e)
         {
             // por ahora buscamos por telefono
-            string telefono = txtDNI.Text.Trim();
+            string dni = txtDNI.Text.Trim();
 
             AccesoDatos datos = new AccesoDatos();
 
             string query = "SELECT U.NOMBRE_USUARIO, P.MAIL " +
-                           "FROM PACIENTES P " +
-                           "INNER JOIN USUARIOS U ON P.ID_USUARIO = U.ID_USUARIO " +
-                           "WHERE P.TELEFONO = @telefono " +
-                           "UNION ALL " +
-                           "SELECT U.NOMBRE_USUARIO, M.MAIL " +
-                           "FROM MEDICOS M " +
-                           "INNER JOIN USUARIOS U ON M.ID_USUARIO = U.ID_USUARIO " +
-                           "WHERE M.TELEFONO = @telefono " +
-                           "UNION ALL " +
-                           "SELECT U.NOMBRE_USUARIO, R.MAIL " +
-                           "FROM RECEPCIONISTA R " +
-                           "INNER JOIN USUARIOS U ON R.ID_USUARIO = U.ID_USUARIO " +
-                           "WHERE R.TELEFONO = @telefono " +
-                           "UNION ALL " +
-                           "SELECT U.NOMBRE_USUARIO, A.MAIL " +
-                           "FROM ADMINISTRADOR A " +
-                           "INNER JOIN USUARIOS U ON A.ID_USUARIO = U.ID_USUARIO " +
-                           "WHERE A.TELEFONO = @telefono";
+               "FROM PACIENTES P " +
+               "INNER JOIN USUARIOS U ON P.ID_USUARIO = U.ID_USUARIO " +
+               "WHERE P.DNI = @dni " +
+               "UNION ALL " +
+               "SELECT U.NOMBRE_USUARIO, M.MAIL " +
+               "FROM MEDICOS M " +
+               "INNER JOIN USUARIOS U ON M.ID_USUARIO = U.ID_USUARIO " +
+               "WHERE M.DNI = @dni " +
+               "UNION ALL " +
+               "SELECT U.NOMBRE_USUARIO, R.MAIL " +
+               "FROM RECEPCIONISTA R " +
+               "INNER JOIN USUARIOS U ON R.ID_USUARIO = U.ID_USUARIO " +
+               "WHERE R.DNI = @dni " +
+               "UNION ALL " +
+               "SELECT U.NOMBRE_USUARIO, A.MAIL " +
+               "FROM ADMINISTRADOR A " +
+               "INNER JOIN USUARIOS U ON A.ID_USUARIO = U.ID_USUARIO " +
+               "WHERE A.DNI = @dni";
 
             datos.setConsulta(query);
 
-            datos.setParametro("@telefono", telefono);
+            datos.setParametro("@dni", dni);
 
             try
             {
@@ -81,8 +82,8 @@ namespace Proyecto_Clinica
                 }
                 else
                 {
-                    lblMostrarMailUsuario.Text = "No se encontraron resultados para el teléfono ingresado.";
-                    
+                    lblMostrarMailUsuario.Text = "No se encontraron resultados para el DNI ingresado.";
+
                 }
             }
             catch (Exception ex)
