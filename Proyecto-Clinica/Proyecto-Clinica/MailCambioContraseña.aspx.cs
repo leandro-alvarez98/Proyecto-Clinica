@@ -41,7 +41,7 @@ namespace Proyecto_Clinica
             string dni = txtDNI.Text.Trim();
 
             AccesoDatos datos = new AccesoDatos();
-
+            //esto se puede optimizar
             string query = "SELECT U.NOMBRE_USUARIO, P.MAIL " +
                "FROM PACIENTES P " +
                "INNER JOIN USUARIOS U ON P.ID_USUARIO = U.ID_USUARIO " +

@@ -85,5 +85,9 @@ namespace Proyecto_Clinica
 
             }
         }
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AltaUsuario.aspx");
+        }
     }
 }

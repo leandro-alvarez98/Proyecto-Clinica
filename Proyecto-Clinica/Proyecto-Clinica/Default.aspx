@@ -26,7 +26,7 @@
                     <asp:Label ID="lblRegistrar" runat="server" Class="form-label" Text="¿No poseé una cuenta?"></asp:Label>
                 </div>
                 <div>
-                    <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" PostBackUrl="AltaUsuario.aspx" />
+                    <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click"/>
                 </div>
             </div>
         </div>
