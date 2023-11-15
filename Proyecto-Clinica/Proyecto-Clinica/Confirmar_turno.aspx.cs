@@ -18,13 +18,13 @@ namespace Proyecto_Clinica
         }
         public void Cargar_componentes()
         {
-          
 
-            //List<Turno> turno = new List<Turno>();
-            //turno_a_reservar = (Turno)Session["Turno"];
-            //turno.Add(turno_a_reservar);
-            //reservar.DataSource = turno;
-            //reservar.DataBind();
+            List<Turno> turno = new List<Turno>();
+            turno_a_reservar = (Turno)Session["Turno"];
+            turno.Add(turno_a_reservar);
+           
+            Turno_a_confirmar.DataSource = turno;
+            Turno_a_confirmar.DataBind();
         }
 
         protected void Confirmar_turno_Click(object sender, EventArgs e)

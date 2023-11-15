@@ -10,22 +10,23 @@
          <div class="mb-3">
              <asp:Label ID="lblbuscar" runat="server" Class="form-label" Text="Ingrese el DNI del paciente :"></asp:Label>
              <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="DNI del Usuario"></asp:TextBox>
-             <asp:Button id="buscar_paciente" runat="server" CssClass="btn btn-secondary" Text="Buscar Paciente" />
+             <asp:Button id="buscar_paciente" runat="server" OnClick="buscar_paciente_Click" CssClass="btn btn-secondary" Text="Buscar Paciente" />
          </div>
-         <asp:Label ID="lblnoseencuentra" runat="server" CssClass="fs-4 font-monospace" Text=""></asp:Label>
 
+         <hr />
 
-         <asp:GridView id="DGV_Paciente" runat="server"  AutoGenerateColumns="false" OnSelectedIndex="DGV_Paciente_SelectedIndexChanged" CssClass="table table-dark table-hover ">
-             <columns>
+         <asp:GridView ID="DGV_Paciente" AutoGenerateColumns="false" OnSelectedIndexChanged="DGV_Paciente_SelectedIndexChanged" runat="server" CssClass="table table-dark table-hover ">
+             <Columns>
                  <asp:BoundField HeaderText="id" DataField="id" />
                  <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                  <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                 <asp:BoundField HeaderText="Dni" DataField="Dni" />
                  <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
                  <asp:BoundField HeaderText="Mail" DataField="Mail" />
                  <asp:BoundField HeaderText="Estado" DataField="Estado" />
                  <asp:BoundField HeaderText="id usuario" DataField="Id_Usuario" />
-                 <asp:CommandField ShowSelectButton="true" SelectText="seleccionar paciente"  HeaderText="Accion" />
-             </columns>
+                 <asp:CommandField ShowSelectButton="true" SelectText="seleccionar paciente" HeaderText="Accion" />
+             </Columns>
          </asp:GridView>
 
      </div>

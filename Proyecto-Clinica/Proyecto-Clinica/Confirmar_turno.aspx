@@ -6,12 +6,16 @@
     <div class="mb-3 container containerbott form_top ">
 
                         <%--        informacion del turno que se esta por guardar--%>
-         
+        <asp:GridView ID="Turno_a_confirmar" runat="server" CssClass="table table-dark table-hover ">
+            <Columns>
+
+            </Columns>
+        </asp:GridView>
 
         <asp:Button ID="confir_turno" runat="server" OnClick="Confirmar_turno_Click" Text="Confirmar_turno" />
+        <asp:Label ID="lblpaciente" runat="server" Text="Label"></asp:Label>
 
-
-
+        <asp:Label ID="lblturno" runat="server" Text="Label"></asp:Label>
 
 
 
