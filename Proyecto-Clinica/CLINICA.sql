@@ -1,8 +1,8 @@
 -- ELIMINAR BASE DE DATOS
 	DROP DATABASE CLINICA
-
-
-
+	GO
+	USE MASTER
+	GO
 -- CREACION DE LA BASE DE DATOS
 	CREATE DATABASE CLINICA
 	GO
@@ -43,7 +43,7 @@ GO
 CREATE TABLE PACIENTES (
     ID_PACIENTE INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_USUARIO INT NOT NULL,
-	DNI INT NOT NULL,
+	DNI VARCHAR(10) NOT NULL,
     NOMBRE VARCHAR(50) NOT NULL,
     APELLIDO VARCHAR(50) NOT NULL,
     TELEFONO VARCHAR(15) NOT NULL,
@@ -57,7 +57,7 @@ GO
 CREATE TABLE MEDICOS (
     ID_MEDICO INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_USUARIO INT NOT NULL,
-	DNI INT NOT NULL,
+	DNI VARCHAR(10) NOT NULL,
     NOMBRE VARCHAR(50) NOT NULL,
 	APELLIDO VARCHAR(50) NOT NULL,
     TELEFONO VARCHAR(15) NOT NULL,
@@ -71,7 +71,7 @@ GO
 CREATE TABLE ADMINISTRADOR (
     ID_ADMINISTRADOR INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_USUARIO INT NOT NULL,
-	DNI INT NOT NULL,
+	DNI VARCHAR(10) NOT NULL,
     NOMBRE VARCHAR(50) NOT NULL,
     APELLIDO VARCHAR(50) NOT NULL,
     TELEFONO VARCHAR(15) NOT NULL,
@@ -85,7 +85,7 @@ GO
 CREATE TABLE RECEPCIONISTA (
     ID_RECEPCIONISTA INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_USUARIO INT NOT NULL,
-	DNI INT NOT NULL,
+	DNI VARCHAR(10) NOT NULL,
     NOMBRE VARCHAR(50) NOT NULL,
     APELLIDO VARCHAR(50) NOT NULL,
     TELEFONO VARCHAR(15) NOT NULL,
@@ -182,38 +182,38 @@ VALUES ('paciente1', '123', 'Paciente'), -- Usuarios de los pacientes
 
 
 INSERT INTO PACIENTES (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES (1, 11111111, 'Paciente1', 'Apellido1', '1234567891', 'Dirección1', '1990-01-01', 'paciente1@mail.com', 1),
-       (2, 11222222,'Paciente2', 'Apellido2', '1234567892', 'Dirección2', '1990-02-02', 'paciente2@mail.com', 1),
-       (3, 11333333,'Paciente3', 'Apellido3', '1234567893', 'Dirección3', '1990-03-03', 'paciente3@mail.com', 1),
-       (4, 11444444,'Paciente4', 'Apellido4', '1234567894', 'Dirección4', '1990-04-04', 'paciente4@mail.com', 1)
+VALUES (1, '11111111', 'Paciente1', 'Apellido1', '1234567891', 'Dirección1', '1990-01-01', 'paciente1@mail.com', 1),
+       (2, '11222222','Paciente2', 'Apellido2', '1234567892', 'Dirección2', '1990-02-02', 'paciente2@mail.com', 1),
+       (3, '11333333','Paciente3', 'Apellido3', '1234567893', 'Dirección3', '1990-03-03', 'paciente3@mail.com', 1),
+       (4, '11444444','Paciente4', 'Apellido4', '1234567894', 'Dirección4', '1990-04-04', 'paciente4@mail.com', 1)
 
 INSERT INTO MEDICOS (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES (5, 22111111,'Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A', '1980-01-01', 'alejandro.gomez@mail.com', 1),
-       (6, 22111133,'Sofía', 'Martínez', '9876543212', 'Avenida Principal, Ciudad B', '1980-02-02', 'sofia.martinez@mail.com', 1),
-       (7, 22155144,'Gabriel', 'López', '9876543213', 'Carrera 45, Ciudad C', '1980-03-03', 'gabriel.lopez@mail.com', 1),
-       (8, 22331155,'Laura', 'Hernández', '9876543214', 'Calle Principal, Ciudad D', '1980-04-04', 'laura.hernandez@mail.com', 1),
-	   (9, 2115566,'Martín', 'Díaz', '9876543215', 'Avenida 56, Ciudad E', '1980-05-05', 'martin.diaz@mail.com', 1),
-       (10, 22188177,'Carla', 'Ramírez', '9876543216', 'Calle 78, Ciudad F', '1980-06-06', 'carla.ramirez@mail.com', 1),
-       (11, 22166188,'Javier', 'Pérez', '9876543217', 'Carrera 89, Ciudad G', '1980-07-07', 'javier.perez@mail.com', 1),
-       (12, 22156199,'Valeria', 'Sánchez', '9876543218', 'Avenida 10, Ciudad H', '1980-08-08', 'valeria.sanchez@mail.com', 1),
-       (13, 22123456,'Lucas', 'Gutiérrez', '9876543219', 'Calle 34, Ciudad I', '1980-09-09', 'lucas.gutierrez@mail.com', 1),
-       (14, 22789654,'María', 'Ortega', '9876543220', 'Avenida 22, Ciudad J', '1980-10-10', 'maria.ortega@mail.com', 1)
+VALUES (5, '22111111','Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A', '1980-01-01', 'alejandro.gomez@mail.com', 1),
+       (6, '22111133','Sofía', 'Martínez', '9876543212', 'Avenida Principal, Ciudad B', '1980-02-02', 'sofia.martinez@mail.com', 1),
+       (7, '22155144','Gabriel', 'López', '9876543213', 'Carrera 45, Ciudad C', '1980-03-03', 'gabriel.lopez@mail.com', 1),
+       (8, '22331155','Laura', 'Hernández', '9876543214', 'Calle Principal, Ciudad D', '1980-04-04', 'laura.hernandez@mail.com', 1),
+	   (9, '2115566','Martín', 'Díaz', '9876543215', 'Avenida 56, Ciudad E', '1980-05-05', 'martin.diaz@mail.com', 1),
+       (10, '22188177','Carla', 'Ramírez', '9876543216', 'Calle 78, Ciudad F', '1980-06-06', 'carla.ramirez@mail.com', 1),
+       (11, '22166188','Javier', 'Pérez', '9876543217', 'Carrera 89, Ciudad G', '1980-07-07', 'javier.perez@mail.com', 1),
+       (12, '22156199','Valeria', 'Sánchez', '9876543218', 'Avenida 10, Ciudad H', '1980-08-08', 'valeria.sanchez@mail.com', 1),
+       (13, '22123456','Lucas', 'Gutiérrez', '9876543219', 'Calle 34, Ciudad I', '1980-09-09', 'lucas.gutierrez@mail.com', 1),
+       (14, '22789654','María', 'Ortega', '9876543220', 'Avenida 22, Ciudad J', '1980-10-10', 'maria.ortega@mail.com', 1)
 
 
 	   ----------------------------
 INSERT INTO RECEPCIONISTA (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES  (15, 123456789, 'Laura', 'Gómez', '7755599994', 'Calle Principal 123', '1988-05-20', 'laura.gomez@email.com', 1),
-		(16, 987654321, 'Carlos', 'Rodríguez', '6549876210', 'Calle Secundaria 456', '1992-08-15', 'carlos.rodriguez@email.com', 1),
-		(17, 555555555, 'María', 'Hernández', '3571594674', 'Calle Nueva 789', '1985-12-10', 'maria.hernandez@email.com', 1),
-		(18, 444444444, 'Javier', 'López', '9632587415', 'Calle Antigua 567', '1990-03-25', 'javier.lopez@email.com', 1),
-		(19, 666666666, 'Ana', 'Martínez', '7412568437', 'Calle Vieja 234', '1982-06-05', 'ana.martinez@email.com', 1),
-		(20, 777777777, 'Pablo', 'Sánchez', '9453215684', 'Calle Moderna 789', '1995-01-15', 'pablo.sanchez@email.com', 1)
+VALUES  (15, '123456789', 'Laura', 'Gómez', '7755599994', 'Calle Principal 123', '1988-05-20', 'laura.gomez@email.com', 1),
+		(16, '987654321', 'Carlos', 'Rodríguez', '6549876210', 'Calle Secundaria 456', '1992-08-15', 'carlos.rodriguez@email.com', 1),
+		(17, '555555555', 'María', 'Hernández', '3571594674', 'Calle Nueva 789', '1985-12-10', 'maria.hernandez@email.com', 1),
+		(18, '444444444', 'Javier', 'López', '9632587415', 'Calle Antigua 567', '1990-03-25', 'javier.lopez@email.com', 1),
+		(19, '666666666', 'Ana', 'Martínez', '7412568437', 'Calle Vieja 234', '1982-06-05', 'ana.martinez@email.com', 1),
+		(20, '777777777', 'Pablo', 'Sánchez', '9453215684', 'Calle Moderna 789', '1995-01-15', 'pablo.sanchez@email.com', 1)
 
 
 INSERT INTO ADMINISTRADOR (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES  (21, 122222789, 'Carlos', 'González', '1541234567', 'Av. Principal 123', '1980-04-12', 'carlos.gonzalez@email.com', 1),
-		(22, 987654321, 'Ana', 'López', '1567890123', 'Calle Secundaria 456', '1975-09-22', 'ana.lopez@email.com', 1),
-		(23, 555544555, 'Martín', 'Martínez', '1554567890', 'Av. Nueva 789', '1991-12-05', 'martin.martinez@email.com', 1)
+VALUES  (21, '122222789', 'Carlos', 'González', '1541234567', 'Av. Principal 123', '1980-04-12', 'carlos.gonzalez@email.com', 1),
+		(22, '987654321', 'Ana', 'López', '1567890123', 'Calle Secundaria 456', '1975-09-22', 'ana.lopez@email.com', 1),
+		(23, '555544555', 'Martín', 'Martínez', '1554567890', 'Av. Nueva 789', '1991-12-05', 'martin.martinez@email.com', 1)
 
 	   ------------------------------
 
