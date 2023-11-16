@@ -13,38 +13,38 @@
                 <div class="card " style="width: 40rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="Nombres: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
                             <asp:Label ID="nombrelbl" CssClass="lbl" runat="server"></asp:Label>
                             <%-- <asp:TextBox ID="txtNombreEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>--%>
                             <asp:TextBox ID="txtNombreEdit" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="Apellidos: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Apellidos: "></asp:Label>
                             <asp:Label ID="apellidoLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtApellidoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="DNI: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
                             <asp:Label ID="dniLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="Email: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>
                             <asp:Label ID="emailLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtMailEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="Telefono: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Telefono: "></asp:Label>
                             <asp:Label ID="telefonoLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtTelefonoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="Dirección: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Dirección: "></asp:Label>
                             <asp:Label ID="direccionLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtDireccionEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
-                            <asp:Label CssClass="lbl" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
+                            <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
                             <asp:Label ID="fechaNacimientoLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtFechaNacimientoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
                         </li>
