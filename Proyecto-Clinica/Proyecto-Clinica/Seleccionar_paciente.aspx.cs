@@ -14,10 +14,8 @@ namespace Proyecto_Clinica
 {
     public partial class Seleccionar_paciente : System.Web.UI.Page
     {
-        Paciente paciente_seleccionado;
         Paciente paciente_buscado;
         List<Paciente> ps;
-        ClinicaConexion clinicaConexion;
         Clinica clinica;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +23,7 @@ namespace Proyecto_Clinica
         }
         public void Cargar_componentes()
         {
-            clinicaConexion = new ClinicaConexion();
+            ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = new Clinica();
             clinica = clinicaConexion.Listar();           
 
@@ -60,10 +58,9 @@ namespace Proyecto_Clinica
             string nombre = DGV_Paciente.SelectedRow.Cells[1].Text;
             string apellido = DGV_Paciente.SelectedRow.Cells[2].Text;
             string dni = DGV_Paciente.SelectedRow.Cells[3].Text;
-            string id_usuario = DGV_Paciente.SelectedRow.Cells[7].Text;
-            
-            Turno turno = new Turno();
-            turno = (Turno)Session["Turno"];
+            _ = DGV_Paciente.SelectedRow.Cells[7].Text;
+            _ = new Turno();
+            Turno turno = (Turno)Session["Turno"];
 
             turno.Id_Paciente = int.Parse(id);
             turno.Nombre_Paciente = nombre;

@@ -19,7 +19,6 @@ namespace Proyecto_Clinica
         Recepcionista Recepcionista_actual;
         Administrador Administrador_actual;
         Clinica clinica;
-        UsuarioConexion conexion = new UsuarioConexion();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -89,7 +88,8 @@ namespace Proyecto_Clinica
             }
             return new Paciente();
         }
-        private Administrador Cargar_Administracion_Clinica() {
+        private Administrador Cargar_Administracion_Clinica() 
+        {
             foreach (Administrador administrador in clinica.Administracion)
             {
                 if (administrador.Id_Usuario == Usuario_Actual.Id) {
@@ -272,10 +272,6 @@ namespace Proyecto_Clinica
             }
             
         }
-
-
-
-
         public void ocultarTxtEditables()
         {
             //esto para ocultar directamente los txtEdit
@@ -314,7 +310,6 @@ namespace Proyecto_Clinica
         }
         public void btnGuardar_Click(object sender, EventArgs e)
         {
-            
 
             try
             {
@@ -453,12 +448,9 @@ namespace Proyecto_Clinica
             catch (Exception ex)
             {
 
-               // MessageBox.Show("Error al actualizar los datos: " + ex.Message);
-
+               MessageBox.Show("Error al actualizar los datos: " + ex.Message);
+                throw ex;
             }
-
-
-
         }
 
     }

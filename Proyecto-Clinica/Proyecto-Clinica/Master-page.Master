@@ -53,14 +53,52 @@
                                         <i class='bx bx-user'></i>
                                         <span class="ms-1 d-none d-sm-inline">Persona</span>
                                     </a>
-                                    <ul class="collapse  nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                    <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="Perfil_Usuario.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bxs-user-circle'></i>
                                                 <span class="d-none d-sm-inline">Mi Perfil</span>
                                             </a>
                                         </li>
-                                        <li>
+                                    </ul>
+                                </li>
+                              <%switch(Usuario_Actual.Tipo)
+                                {
+                                //Opciones disponibles para los ADMIN
+                                case "Administrador":%>
+                                <li>
+                                    <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
+                                        <i class='bx bx-edit-alt'></i>
+                                        <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                    </a>
+                                </li>
+                              <%break; %>
+                                        
+                              <%//Opciones disponibles para los RECEPCIONISTAS
+                                case "Recepcionista":%>
+                                <li>
+                                    <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
+                                        <i class='bx bx-edit-alt'></i>
+                                        <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                    </a>
+                                </li>
+                              <%break;%>
+
+                              <%//Opciones disponibles para los PACIENTES
+                                case "Paciente":%>
+                                <li>
+                                    <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Turnos</span>
+                                    </a>
+                                    <ul class="collapse nav flex-column ms-1" id = "submenu2" data-bs-parent="#menu">
+                                        <li class="w-100">
+                                            <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
+                                                <i class='bx bx-edit-alt'></i>
+                                                <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                            </a>
+                                        </li>
+                                        <li class="w-100">
                                             <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
                                                 <i class='bx bx-calendar'></i>
                                                 <span class="d-none d-sm-inline">Mis Turnos</span>
@@ -68,26 +106,32 @@
                                         </li>
                                     </ul>
                                 </li>
+                              <%break;%>
+
+                              <%//Opciones disponibles para los MEDICOS
+                                case "Médico":%>
+                                <li>
+                                    <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Turnos</span>
+                                    </a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                        <li class="w-100">
+                                            <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
+                                                <i class='bx bx-calendar'></i>
+                                                <span class="d-none d-sm-inline">Mis Turnos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                              <%break;
+                                }%>
                                 <li>
                                     <a href="#" class="nav-link px-0 text-white align-middle">
                                         <i class='bx bx-phone'></i>
                                         <span class="ms-1 d-none d-sm-inline">Contacto</span></a>
                                 </li>
-                                <li>
-                                    <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
-                                        <i class='bx bx-notepad'></i>
-                                        <span class="ms-1 d-none d-sm-inline">Turnos</span>
-                                    </a>
-                                    <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                                        <li class="w-100">
-                                            <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
-                                                <i class='bx bx-edit-alt'></i>
-                                                <span class="d-none d-sm-inline">Gestionar Turnos</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>        
+                            </ul>
                         </div>
                     </div>
                     <div class="col py-3">

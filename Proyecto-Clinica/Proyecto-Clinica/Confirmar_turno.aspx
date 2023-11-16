@@ -4,8 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="mb-3 container containerbott form_top ">
-
-                        <%--        informacion del turno que se esta por guardar--%>
         <asp:GridView ID="Turno_a_confirmar" runat="server" CssClass="table table-dark table-hover ">
             <Columns>
 

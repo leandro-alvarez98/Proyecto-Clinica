@@ -199,23 +199,21 @@ VALUES (5, '22111111','Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A',
        (13, '22123456','Lucas', 'Gutiérrez', '9876543219', 'Calle 34, Ciudad I', '1980-09-09', 'lucas.gutierrez@mail.com', 1),
        (14, '22789654','María', 'Ortega', '9876543220', 'Avenida 22, Ciudad J', '1980-10-10', 'maria.ortega@mail.com', 1)
 
-
 	   ----------------------------
-INSERT INTO RECEPCIONISTA (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES  (15, '123456789', 'Laura', 'Gómez', '7755599994', 'Calle Principal 123', '1988-05-20', 'laura.gomez@email.com', 1),
-		(16, '987654321', 'Carlos', 'Rodríguez', '6549876210', 'Calle Secundaria 456', '1992-08-15', 'carlos.rodriguez@email.com', 1),
-		(17, '555555555', 'María', 'Hernández', '3571594674', 'Calle Nueva 789', '1985-12-10', 'maria.hernandez@email.com', 1),
-		(18, '444444444', 'Javier', 'López', '9632587415', 'Calle Antigua 567', '1990-03-25', 'javier.lopez@email.com', 1),
-		(19, '666666666', 'Ana', 'Martínez', '7412568437', 'Calle Vieja 234', '1982-06-05', 'ana.martinez@email.com', 1),
-		(20, '777777777', 'Pablo', 'Sánchez', '9453215684', 'Calle Moderna 789', '1995-01-15', 'pablo.sanchez@email.com', 1)
-
-
 INSERT INTO ADMINISTRADOR (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES  (21, '122222789', 'Carlos', 'González', '1541234567', 'Av. Principal 123', '1980-04-12', 'carlos.gonzalez@email.com', 1),
-		(22, '987654321', 'Ana', 'López', '1567890123', 'Calle Secundaria 456', '1975-09-22', 'ana.lopez@email.com', 1),
-		(23, '555544555', 'Martín', 'Martínez', '1554567890', 'Av. Nueva 789', '1991-12-05', 'martin.martinez@email.com', 1)
+VALUES  (15, '122222789', 'Carlos', 'González', '1541234567', 'Av. Principal 123', '1980-04-12', 'carlos.gonzalez@email.com', 1),
+		(16, '987654321', 'Ana', 'López', '1567890123', 'Calle Secundaria 456', '1975-09-22', 'ana.lopez@email.com', 1),
+		(17, '555544555', 'Martín', 'Martínez', '1554567890', 'Av. Nueva 789', '1991-12-05', 'martin.martinez@email.com', 1)
 
 	   ------------------------------
+INSERT INTO RECEPCIONISTA (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
+VALUES  (18, '123456789', 'Laura', 'Gómez', '7755599994', 'Calle Principal 123', '1988-05-20', 'laura.gomez@email.com', 1),
+		(19, '987654321', 'Carlos', 'Rodríguez', '6549876210', 'Calle Secundaria 456', '1992-08-15', 'carlos.rodriguez@email.com', 1),
+		(20, '555555555', 'María', 'Hernández', '3571594674', 'Calle Nueva 789', '1985-12-10', 'maria.hernandez@email.com', 1),
+		(21, '444444444', 'Javier', 'López', '9632587415', 'Calle Antigua 567', '1990-03-25', 'javier.lopez@email.com', 1),
+		(22, '666666666', 'Ana', 'Martínez', '7412568437', 'Calle Vieja 234', '1982-06-05', 'ana.martinez@email.com', 1),
+		(23, '777777777', 'Pablo', 'Sánchez', '9453215684', 'Calle Moderna 789', '1995-01-15', 'pablo.sanchez@email.com', 1)
+		------------------------------
 
 INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, ESTADO) 
 VALUES 

@@ -5,10 +5,15 @@
 
     <%-- Esta página maneja los turnos del usuario sólo si el mismo es un Médico --%>
     <div class="container form_top containerbott">        
-        <asp:GridView ID="dgv_Turnos" CssClass="table table-dark table-hover" runat="server">
+        <asp:GridView ID="dgv_Turnos" CssClass="table table-dark table-hover" runat="server" AutoGenerateColumns="false">
+            <Columns>
+                <asp:BoundField HeaderText="Turno #" DataField="Id" />
+                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:yyyy-MM-dd}" />
+                <asp:BoundField HeaderText="Hora" DataField="Horario" />
+                <asp:BoundField HeaderText="Paciente" DataField="Apellido_Paciente" />
+                <asp:BoundField HeaderText="DNI Paciente" DataField="Dni_Paciente" />
+                <asp:BoundField HeaderText="Estado" DataField="Estado" />
+            </Columns>
         </asp:GridView>
     </div>
-
-   
-
 </asp:Content>

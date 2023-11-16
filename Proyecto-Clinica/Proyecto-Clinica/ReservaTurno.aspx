@@ -24,18 +24,13 @@
                 <div>
                     <asp:GridView ID="Grilla_turnos_disponibles" runat="server" OnSelectedIndexChanged="Grilla_turnos_disponibles_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-dark table-hover ">
                         <Columns>
-                            <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
                             <asp:BoundField HeaderText="Hora" DataField="Horario" />
-                            <asp:BoundField HeaderText="Apellido Medico" DataField="Apellido_Medico" />
-                            <asp:BoundField HeaderText="Nombre Medico" DataField="Nombre_Medico" />
-                            <asp:BoundField HeaderText="id medico" DataField="Id_Medico" />
+                            <asp:BoundField HeaderText="Apellido Médico" DataField="Apellido_Medico" />
+                            <asp:BoundField HeaderText="Nombre Médico" DataField="Nombre_Medico" />
                             <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                            <asp:CommandField ShowSelectButton="true" SelectText="seleccionar turno" HeaderText="Accion" />
+                            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
                         </Columns>
                     </asp:GridView>                   
                 </div>
-         
-  
     </div>
-
 </asp:Content>

@@ -18,7 +18,6 @@ namespace Proyecto_Clinica
         Usuario usuario;
         List<Medico> medicos_disponibles;
         public List<Turno> Turnos_Disponibles;
-        Paciente paciente_actual;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -32,13 +31,11 @@ namespace Proyecto_Clinica
             usuario = (Usuario)Session["Usuario"];
             medicos_disponibles = new List<Medico>();
             Turnos_Disponibles = new List<Turno>();
-            paciente_actual = (Paciente)Session["Paciente"];
 
             //DROP_DOWN_LIST ESPECIALIDADES
             Cargar_DDL();
             
         }
-
         protected void Buscar_Turno_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
@@ -52,7 +49,6 @@ namespace Proyecto_Clinica
             }
             // Mostrar para cada médico, su disponibilidad.
         }
-
         private void Cargar_Turnos_Disponibles()
         {
             String ID_Especialidad_Seleccionada = DDL_especialidades.SelectedValue;
@@ -63,13 +59,13 @@ namespace Proyecto_Clinica
             Obtener_Disponibilidad(Fecha_Seleccionada);
 
             // CARGAR TURNOS DISPONIBLES
-            Cargar_Lista_Turnos(ID_Especialidad_Seleccionada, Fecha_Seleccionada);
+            Cargar_Lista_Turnos();
 
             // LISTAR TURNOS EN LA GRILLA
             Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
             Grilla_turnos_disponibles.DataBind();
         }
-        private void Cargar_Lista_Turnos(string ID_Especialidad, DateTime Fecha)
+        private void Cargar_Lista_Turnos()
         {
             foreach (Medico medico in medicos_disponibles)
             {
@@ -101,7 +97,7 @@ namespace Proyecto_Clinica
 
                 try
                 {
-                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO,\r\n\tH.HORA AS HORA, \r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO, \r\n\tISNULL(T.ID_MEDICO, @IDMedico) AS IDMEDICO, \r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO \r\nFROM HORARIOS H \r\nJOIN \r\n\tMEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA \r\nCROSS JOIN \r\n\t(SELECT DISTINCT FECHA FROM TURNOS WHERE ID_MEDICO = @IDMedico AND FECHA = @FechaConsulta) D \r\nLEFT JOIN  \r\n\tTURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = D.FECHA AND T.ID_MEDICO = @IDMedico \r\nWHERE \r\n\tMJ.ID_MEDICO = @IDMedico \r\nORDER BY \r\n\tH.HORA");
+                    datos.setConsulta("SELECT \r\n    H.ID_HORARIO AS IDHORARIO,\r\n    H.HORA AS HORA, \r\n    ISNULL(T.ID_TURNO, 0) AS IDTURNO, \r\n    @IDMedico AS IDMEDICO,\r\n    ISNULL(T.ESTADO, 'Disponible') AS ESTADO \r\nFROM \r\n    HORARIOS H \r\nJOIN \r\n    MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico\r\nLEFT JOIN  \r\n    TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico \r\nORDER BY \r\n    H.HORA;");
                     datos.setParametro("@IDMedico", medico.Id);
                     datos.setParametro("@FechaConsulta", Fecha);
                     datos.ejecutarLectura();
@@ -150,7 +146,7 @@ namespace Proyecto_Clinica
             string apellidoMedico = Grilla_turnos_disponibles.SelectedRow.Cells[2].Text;
             string nombreMedico = Grilla_turnos_disponibles.SelectedRow.Cells[3].Text;
             string idMedico = Grilla_turnos_disponibles.SelectedRow.Cells[4].Text;
-            string estado = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
+            _ = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
 
             turno_seleccionado.Fecha = DateTime.Parse(fecha);
             turno_seleccionado.Horario = TimeSpan.Parse(hora);
@@ -158,28 +154,33 @@ namespace Proyecto_Clinica
             turno_seleccionado.Nombre_Medico = nombreMedico;
             turno_seleccionado.Id_Medico = int.Parse(idMedico);
 
-            //falta como obtener los datos del paciente al cual se le va asignar este turno 
-
-            if (usuario.Tipo == "Médico")
+            if (usuario.Tipo == "Paciente")
             {
-                // datos del medico
+                _ = new Paciente();
+                Paciente paciente = Buscar_Paciente();
+                turno_seleccionado.Id_Paciente = paciente.Id;
+                turno_seleccionado.Dni_paciente = paciente.Dni;
+                turno_seleccionado.Nombre_Paciente = paciente.Nombre;
+                turno_seleccionado.Apellido_Paciente = paciente.Apellido;
+                Session["Turno"] = turno_seleccionado;
+                Response.Redirect("Confirmar_turno.aspx");
             }
-            else if (usuario.Tipo == "Paciente")
+            else
             {
-                // datos del paciente
-                // Response.Redirect("Confirmar_turno.aspx");
-            }
-            //else if (recepcionista)
-            //{
-            //  Session["Turno"] = turno_seleccionado;
-            //  Response.Redirect("Seleccionar_paciente.aspx");
-            //}
-
                 Session["Turno"] = turno_seleccionado;
                 Response.Redirect("Seleccionar_paciente.aspx");
-
-
+            }
         }
-
+        private Paciente Buscar_Paciente()
+        {
+            foreach (Paciente paciente1 in clinica.Pacientes)
+            {
+                if (paciente1.Id_Usuario == usuario.Id)
+                {
+                    return paciente1;
+                }
+            }
+            return new Paciente();
+        }
     }
 }
