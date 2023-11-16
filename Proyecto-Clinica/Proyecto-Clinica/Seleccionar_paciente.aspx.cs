@@ -27,9 +27,6 @@ namespace Proyecto_Clinica
             clinica = new Clinica();
             clinica = clinicaConexion.Listar();           
 
-            //DGV_Paciente.DataSource = clinica.Pacientes;
-            //DGV_Paciente.DataBind();
-
         }
         public Paciente Buscar_Paciente(string Dni)
         {
@@ -58,8 +55,8 @@ namespace Proyecto_Clinica
             string nombre = DGV_Paciente.SelectedRow.Cells[1].Text;
             string apellido = DGV_Paciente.SelectedRow.Cells[2].Text;
             string dni = DGV_Paciente.SelectedRow.Cells[3].Text;
-            _ = DGV_Paciente.SelectedRow.Cells[7].Text;
-            _ = new Turno();
+            
+            
             Turno turno = (Turno)Session["Turno"];
 
             turno.Id_Paciente = int.Parse(id);

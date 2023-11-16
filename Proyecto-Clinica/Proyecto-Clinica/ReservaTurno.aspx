@@ -24,10 +24,12 @@
                 <div>
                     <asp:GridView ID="Grilla_turnos_disponibles" runat="server" OnSelectedIndexChanged="Grilla_turnos_disponibles_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-dark table-hover ">
                         <Columns>
+                             <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:yyyy-MM-dd}" />
                             <asp:BoundField HeaderText="Hora" DataField="Horario" />
                             <asp:BoundField HeaderText="Apellido Médico" DataField="Apellido_Medico" />
                             <asp:BoundField HeaderText="Nombre Médico" DataField="Nombre_Medico" />
                             <asp:BoundField HeaderText="Estado" DataField="Estado" />
+                            <asp:BoundField HeaderText="Id medico" DataField="Id_Medico" />
                             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
                         </Columns>
                     </asp:GridView>                   

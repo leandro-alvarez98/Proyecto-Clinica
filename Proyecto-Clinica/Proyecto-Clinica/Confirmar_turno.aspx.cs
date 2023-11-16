@@ -23,8 +23,8 @@ namespace Proyecto_Clinica
             turno_a_reservar = (Turno)Session["Turno"];
             turno.Add(turno_a_reservar);
            
-            Turno_a_confirmar.DataSource = turno;
-            Turno_a_confirmar.DataBind();
+            DGVTurno_a_confirmar.DataSource = turno;
+            DGVTurno_a_confirmar.DataBind();
         }
 
         protected void Confirmar_turno_Click(object sender, EventArgs e)

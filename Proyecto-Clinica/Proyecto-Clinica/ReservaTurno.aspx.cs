@@ -145,8 +145,8 @@ namespace Proyecto_Clinica
             string hora = Grilla_turnos_disponibles.SelectedRow.Cells[1].Text;
             string apellidoMedico = Grilla_turnos_disponibles.SelectedRow.Cells[2].Text;
             string nombreMedico = Grilla_turnos_disponibles.SelectedRow.Cells[3].Text;
-            string idMedico = Grilla_turnos_disponibles.SelectedRow.Cells[4].Text;
-            _ = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
+            string idMedico = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
+            
 
             turno_seleccionado.Fecha = DateTime.Parse(fecha);
             turno_seleccionado.Horario = TimeSpan.Parse(hora);
@@ -156,7 +156,7 @@ namespace Proyecto_Clinica
 
             if (usuario.Tipo == "Paciente")
             {
-                _ = new Paciente();
+                
                 Paciente paciente = Buscar_Paciente();
                 turno_seleccionado.Id_Paciente = paciente.Id;
                 turno_seleccionado.Dni_paciente = paciente.Dni;
