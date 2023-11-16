@@ -67,6 +67,7 @@
   <ItemGroup>
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="Confirmar_turno.aspx" />
+    <Content Include="Detalle_turno.aspx" />
     <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
@@ -94,6 +95,13 @@
     </Compile>
     <Compile Include="Confirmar_turno.aspx.designer.cs">
       <DependentUpon>Confirmar_turno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle_turno.aspx.cs">
+      <DependentUpon>Detalle_turno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detalle_turno.aspx.designer.cs">
+      <DependentUpon>Detalle_turno.aspx</DependentUpon>
     </Compile>
     <Compile Include="MailCambioContraseña.aspx.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>

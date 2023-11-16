@@ -67,20 +67,48 @@
                                 //Opciones disponibles para los ADMIN
                                 case "Administrador":%>
                                 <li>
-                                    <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
-                                        <i class='bx bx-edit-alt'></i>
-                                        <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                    <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
+                                        <li class="w-100">
+                                            <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
+                                                <i class='bx bx-edit-alt'></i>
+                                                <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                            </a>
+                                        </li>
+                                        <li class="w-100">
+                                            <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
+                                                <i class='bx bx-calendar'></i>
+                                                <span class="d-none d-sm-inline">Turnos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                               <%break; %>
                                         
                               <%//Opciones disponibles para los RECEPCIONISTAS
                                 case "Recepcionista":%>
                                 <li>
-                                    <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
-                                        <i class='bx bx-edit-alt'></i>
-                                        <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                    <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
+                                    <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                                        <li class="w-100">
+                                            <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
+                                                <i class='bx bx-edit-alt'></i>
+                                                <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                            </a>
+                                        </li>
+                                        <li class="w-100">
+                                            <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
+                                                <i class='bx bx-calendar'></i>
+                                                <span class="d-none d-sm-inline">Turnos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                               <%break;%>
 

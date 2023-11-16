@@ -15,17 +15,16 @@ namespace Proyecto_Clinica
     public partial class WebForm1 : System.Web.UI.Page
     {
         Clinica clinica;
-        Usuario usuarioActual;
+        public  Usuario usuarioActual;
         Medico medicoActual;
         Paciente pacienteActual;
         List<Turno> misTurnos;
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Cargar_Componentes();
-            }
+            Cargar_Componentes();
+           
         }
         private void Cargar_Componentes()
         {
@@ -46,12 +45,15 @@ namespace Proyecto_Clinica
                 pacienteActual = new Paciente();
                 pacienteActual = Cargar_Paciente_Clinica();
             }
+            
 
             misTurnos = new List<Turno>();
             Cargar_Turnos();
 
             dgv_Turnos.DataSource = misTurnos;
             dgv_Turnos.DataBind();
+            DGV_Turnos_totales.DataSource = misTurnos;
+            DGV_Turnos_totales.DataBind();
         }
         private Medico Cargar_Médico_Clinica()
         {
@@ -96,7 +98,34 @@ namespace Proyecto_Clinica
                         misTurnos.Add(turno);
                     }
                 }
+            }else if (usuarioActual.Tipo == "Recepcionista" || usuarioActual.Tipo == "Administrador")
+            {
+                foreach (Turno turno in clinica.Turnos)
+                {     
+                    misTurnos.Add(turno);   
+                }
             }
         }
+
+        protected void dgv_Turnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Turno turno_seleccionado = new Turno();
+            string id_turno = dgv_Turnos.SelectedRow.Cells[0].Text;
+            int idturno = int.Parse(id_turno);
+
+            foreach (Turno turno in clinica.Turnos)         
+            {
+                if (idturno == turno.Id)
+                {
+                    turno_seleccionado=turno;
+                }
+            }
+            
+
+            Session["Turno"] = turno_seleccionado;
+            Response.Redirect("Detalle_turno.aspx");
+
+        }
+       
     }
 }
