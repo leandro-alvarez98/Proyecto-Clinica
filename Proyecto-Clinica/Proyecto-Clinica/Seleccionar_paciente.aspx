@@ -9,9 +9,7 @@
              <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="DNI del Usuario"></asp:TextBox>
              <asp:Button id="buscar_paciente" runat="server" OnClick="buscar_paciente_Click" CssClass="btn btn-secondary" Text="Buscar Paciente" />
          </div>
-
          <hr />
-
          <asp:GridView ID="DGV_Paciente" AutoGenerateColumns="false" OnSelectedIndexChanged="DGV_Paciente_SelectedIndexChanged" runat="server" CssClass="table table-dark table-hover ">
              <Columns>
                  <asp:BoundField HeaderText="Id" DataField="id" />
@@ -24,4 +22,5 @@
              </Columns>
          </asp:GridView>
      </div>
+
 </asp:Content>

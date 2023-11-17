@@ -16,7 +16,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("\tSELECT T.ID_TURNO AS IDTURNO, T.ID_MEDICO AS IDMEDICO, T.ID_PACIENTE AS IDPACIENTE, T.ID_HORARIO, T.FECHA AS FECHA, ID_HORARIO AS IDHORARIO, P.DNI AS DNIPACIENTE, T.ESTADO AS ESTADO, M.NOMBRE AS MNOMBRE, M.APELLIDO AS MAPELLIDO, P.NOMBRE AS PNOMBRE, P.APELLIDO AS PAPELLIDO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE\r\n");
+                datos.setConsulta("SELECT \r\n\t\tT.ID_TURNO AS IDTURNO, \r\n\t\tT.ID_MEDICO AS IDMEDICO, \r\n\t\tT.ID_PACIENTE AS IDPACIENTE, \r\n\t\tT.ID_HORARIO, \r\n\t\tT.FECHA AS FECHA, \r\n\t\tT.ID_HORARIO AS IDHORARIO,\r\n\t\tH.HORA AS HORA,\r\n\t\tP.DNI AS DNIPACIENTE, \r\n\t\tT.ESTADO AS ESTADO, \r\n\t\tM.NOMBRE AS MNOMBRE, \r\n\t\tM.APELLIDO AS MAPELLIDO, \r\n\t\tP.NOMBRE AS PNOMBRE, \r\n\t\tP.APELLIDO AS PAPELLIDO \r\n\tFROM TURNOS T \r\n\tINNER JOIN \r\n\tMEDICOS M ON M.ID_MEDICO = T.ID_MEDICO \r\n\tINNER JOIN \r\n\tPACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE\r\n\tINNER JOIN\r\n\tHORARIOS H ON H.ID_HORARIO = T.ID_HORARIO");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -27,6 +27,7 @@ namespace Conexion_Clinica
                         Id_Medico = (int)datos.Lector["IDMEDICO"],
                         Id_Paciente = (int)datos.Lector["IDPACIENTE"],
                         Id_Horario = (int)datos.Lector["IDHORARIO"],
+                        Horario = (TimeSpan)datos.Lector["HORA"],
                         Dni_paciente = (String)datos.Lector["DNIPACIENTE"],
                         Fecha = (DateTime)datos.Lector["FECHA"],
                         Estado = (String)datos.Lector["ESTADO"],

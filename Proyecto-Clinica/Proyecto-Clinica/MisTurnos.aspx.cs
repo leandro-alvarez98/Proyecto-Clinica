@@ -19,12 +19,12 @@ namespace Proyecto_Clinica
         Medico medicoActual;
         Paciente pacienteActual;
         List<Turno> misTurnos;
+        Turno Turno_Seleccionado;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_Componentes();
-           
         }
         private void Cargar_Componentes()
         {
@@ -34,6 +34,8 @@ namespace Proyecto_Clinica
 
             usuarioActual = new Usuario();
             usuarioActual = (Proyecto_Clinica.Dominio.Usuario)Session["Usuario"];
+
+            Turno_Seleccionado = new Turno();
 
             if (usuarioActual.Tipo == "Médico")
             {
@@ -45,8 +47,6 @@ namespace Proyecto_Clinica
                 pacienteActual = new Paciente();
                 pacienteActual = Cargar_Paciente_Clinica();
             }
-            
-
             misTurnos = new List<Turno>();
             Cargar_Turnos();
 
@@ -106,26 +106,62 @@ namespace Proyecto_Clinica
                 }
             }
         }
-
-        protected void dgv_Turnos_SelectedIndexChanged(object sender, EventArgs e)
+        private Turno Get_Turno(int ID)
         {
-            Turno turno_seleccionado = new Turno();
-            string id_turno = dgv_Turnos.SelectedRow.Cells[0].Text;
-            int idturno = int.Parse(id_turno);
-
-            foreach (Turno turno in clinica.Turnos)         
+            foreach (Turno turno in clinica.Turnos)
             {
-                if (idturno == turno.Id)
+                if (ID == turno.Id)
                 {
-                    turno_seleccionado=turno;
+                    return turno;
                 }
             }
-            
+            return new Turno();
+        }
+        protected void dgv_Turnos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string str_ID_Turno = dgv_Turnos.SelectedRow.Cells[0].Text;
+            int ID_Turno = int.Parse(str_ID_Turno);
+            Turno Turno_Seleccionado = Get_Turno(ID_Turno);
+            Baja_Logica_Turno(Turno_Seleccionado);
+        }
+        protected void DGV_Turnos_totales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DGV_Turnos_totales.SelectedIndex >= 0)
+            {
+                string str_ID_Turno = DGV_Turnos_totales.SelectedRow.Cells[0].Text;
+                int ID_Turno = int.Parse(str_ID_Turno);
+                Turno_Seleccionado = Get_Turno(ID_Turno);
+            }
+        }
+        // Esta funcion no se esta usando, no se como usarla.
+        protected void DGV_Turnos_totales_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Select")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow selectedRow = DGV_Turnos_totales.Rows[index];
 
-            Session["Turno"] = turno_seleccionado;
-            Response.Redirect("Detalle_turno.aspx");
+                string idTurno = selectedRow.Cells[0].Text; // Obtener el valor de "Turno #"
+                int ID_Turno = int.Parse(idTurno);
+                Turno_Seleccionado = Get_Turno(ID_Turno);
+
+                if (e.CommandName == "Cancelar")
+                {
+                    MessageBox.Show("Funciona Cancelar");
+                    // Aquí puedes utilizar los valores obtenidos según sea necesario
+                    // Baja_Logica_Turno(Turno_Seleccionado);
+                }
+                else if (e.CommandName == "Modificar")
+                {
+                    MessageBox.Show("Funciona Modificar");
+                    // Aquí también puedes utilizar los valores obtenidos según sea necesario
+                }
+            }
+        }
+
+        private void Baja_Logica_Turno(Turno turno_Seleccionado)
+        {
 
         }
-       
     }
 }

@@ -69,8 +69,8 @@ namespace Conexion_Clinica
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.ToString());
-                //throw ex;
+                MessageBox.Show(ex.ToString());
+                throw ex;
             }
             finally
             {
@@ -99,8 +99,8 @@ namespace Conexion_Clinica
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.ToString());
-               // throw ex;
+                MessageBox.Show(ex.ToString());
+                throw ex;
             }
             finally
             {
@@ -129,8 +129,8 @@ namespace Conexion_Clinica
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.ToString());
-               // throw ex;
+                MessageBox.Show(ex.ToString());
+                throw ex;
             }
             finally
             {
@@ -159,8 +159,8 @@ namespace Conexion_Clinica
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
-               // throw ex;
+                MessageBox.Show(ex.ToString());
+                throw ex;
             }
             finally
             {
