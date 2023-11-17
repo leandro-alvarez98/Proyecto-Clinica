@@ -39,27 +39,37 @@ namespace Proyecto_Clinica
         protected void Buscar_Turno_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
-            if (Turnos_Disponibles.Count() == 0)
-            {
-                lblturnos.Text = "No hay Turnos Disponibles ";
-            }
-            else
-            {
-                lblturnos.Text = "";
-            }
+         
             // Mostrar para cada médico, su disponibilidad.
         }
         private void Cargar_Turnos_Disponibles()
         {
+            
             String ID_Especialidad_Seleccionada = DDL_especialidades.SelectedValue;
             DateTime Fecha_Seleccionada = Calendario.SelectedDate;
-            // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
-            Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
-            // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
-            Obtener_Disponibilidad(Fecha_Seleccionada);
+            if (Fecha_Seleccionada> DateTime.Now)
+            {
+                // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
+                Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
+                // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
+                Obtener_Disponibilidad(Fecha_Seleccionada);
 
-            // CARGAR TURNOS DISPONIBLES
-            Cargar_Lista_Turnos();
+                // CARGAR TURNOS DISPONIBLES
+                Cargar_Lista_Turnos();
+                if (Turnos_Disponibles.Count() == 0)
+                {
+                    lblturnos.Text = "No hay Turnos Disponibles ";
+                }
+                else
+                {
+                    lblturnos.Text = "";
+                }
+                Lbl_fecha_valida.Visible = false;
+            }
+            else
+            {
+                Lbl_fecha_valida.Visible = true;
+            }
 
             // LISTAR TURNOS EN LA GRILLA
             Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;

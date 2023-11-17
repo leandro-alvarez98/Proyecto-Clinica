@@ -19,6 +19,7 @@
 
         <asp:Button ID="Buscar_Turno" runat="server" OnClick="Buscar_Turno_Click" CssClass="btn btn-secondary " Text="Buscar Turnos" />
         <asp:Label ID="lblturnos" runat="server" CssClass="fs-4 font-monospace" Text=""></asp:Label>
+        <asp:Label ID="Lbl_fecha_valida" runat="server" CssClass="fs-4 font-monospace" Text="Por Favor Ingrese una fecha valida" Visible="false"></asp:Label>
 
         <%-- Grilla con todos los turnos disponibles --%>       
                 <div>

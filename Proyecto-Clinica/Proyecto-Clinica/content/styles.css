@@ -1,5 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins&display=swap');
-/*clases master page*/
+﻿/*clases master page*/
 .body {
     background-color: var(--color-body);
     position: relative;
@@ -7,6 +6,11 @@
 }
 .ocultar{
     display:none;
+}
+.margin_TOP_bot {
+    margin-bottom: 15px;
+    border-bottom-width: 0px;
+    margin-top: 10px;
 }
 
 .containerbott {
@@ -65,6 +69,15 @@
 
 
 /*-------------------------------------PAGINA USUARIO-------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
 
 
 

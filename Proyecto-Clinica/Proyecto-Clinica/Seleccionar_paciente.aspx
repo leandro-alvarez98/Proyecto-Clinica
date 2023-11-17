@@ -10,7 +10,7 @@
              <asp:Button id="buscar_paciente" runat="server" OnClick="buscar_paciente_Click" CssClass="btn btn-secondary" Text="Buscar Paciente" />
          </div>
          <hr />
-         <asp:GridView ID="DGV_Paciente" AutoGenerateColumns="false" OnSelectedIndexChanged="DGV_Paciente_SelectedIndexChanged" runat="server" CssClass="table table-dark table-hover ">
+         <asp:GridView ID="DGV_Paciente" AutoGenerateColumns="false" OnSelectedIndexChanged="DGV_Paciente_SelectedIndexChanged" runat="server" CssClass="table table-dark table-hover PAD_TOP ">
              <Columns>
                  <asp:BoundField HeaderText="Id" DataField="id" />
                  <asp:BoundField HeaderText="Nombre" DataField="Nombre" />

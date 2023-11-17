@@ -15,6 +15,33 @@ namespace Proyecto_Clinica
     {
 
         /// <summary>
+        /// Control Lbl_Busqueda1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_Busqueda1;
+
+        /// <summary>
+        /// Control Txt_Busqueda1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_Busqueda1;
+
+        /// <summary>
+        /// Control Btn_busqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_busqueda;
+
+        /// <summary>
         /// Control DGV_Turnos_totales.
         /// </summary>
         /// <remarks>

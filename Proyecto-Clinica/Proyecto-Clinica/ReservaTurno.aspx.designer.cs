@@ -51,6 +51,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label lblturnos;
 
         /// <summary>
+        /// Control Lbl_fecha_valida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_fecha_valida;
+
+        /// <summary>
         /// Control Grilla_turnos_disponibles.
         /// </summary>
         /// <remarks>
