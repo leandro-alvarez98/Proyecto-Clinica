@@ -20,8 +20,6 @@ namespace Proyecto_Clinica
         Paciente pacienteActual;
         List<Turno> misTurnos;
         Turno Turno_Seleccionado;
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_Componentes();
@@ -49,11 +47,16 @@ namespace Proyecto_Clinica
             }
             misTurnos = new List<Turno>();
             Cargar_Turnos();
-
-            dgv_Turnos.DataSource = misTurnos;
-            dgv_Turnos.DataBind();
-            DGV_Turnos_totales.DataSource = misTurnos;
-            DGV_Turnos_totales.DataBind();
+            if(usuarioActual.Tipo == "Recepcionista" || usuarioActual.Tipo == "Administrador")
+            {
+                DGV_Turnos_totales.DataSource = misTurnos;
+                DGV_Turnos_totales.DataBind();
+            }
+            else
+            {
+                dgv_Turnos.DataSource = misTurnos;
+                dgv_Turnos.DataBind();
+            }
         }
         private Medico Cargar_Médico_Clinica()
         {
@@ -121,7 +124,7 @@ namespace Proyecto_Clinica
         {
             string str_ID_Turno = dgv_Turnos.SelectedRow.Cells[0].Text;
             int ID_Turno = int.Parse(str_ID_Turno);
-            Turno Turno_Seleccionado = Get_Turno(ID_Turno);
+            Turno_Seleccionado = Get_Turno(ID_Turno);
             Baja_Logica_Turno(Turno_Seleccionado);
         }
         protected void DGV_Turnos_totales_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,28 +136,26 @@ namespace Proyecto_Clinica
                 Turno_Seleccionado = Get_Turno(ID_Turno);
             }
         }
-        // Esta funcion no se esta usando, no se como usarla.
         protected void DGV_Turnos_totales_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            // Esta funcion no se esta usando, no se como usarla.
             if (e.CommandName == "Select")
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow selectedRow = DGV_Turnos_totales.Rows[index];
 
-                string idTurno = selectedRow.Cells[0].Text; // Obtener el valor de "Turno #"
+                string idTurno = selectedRow.Cells[0].Text;
                 int ID_Turno = int.Parse(idTurno);
                 Turno_Seleccionado = Get_Turno(ID_Turno);
 
-                if (e.CommandName == "Cancelar")
+                if (e.CommandName == "Modificar")
                 {
                     MessageBox.Show("Funciona Cancelar");
-                    // Aquí puedes utilizar los valores obtenidos según sea necesario
                     // Baja_Logica_Turno(Turno_Seleccionado);
                 }
-                else if (e.CommandName == "Modificar")
+                else if (e.CommandName == "Cancelar")
                 {
                     MessageBox.Show("Funciona Modificar");
-                    // Aquí también puedes utilizar los valores obtenidos según sea necesario
                 }
             }
         }

@@ -150,6 +150,7 @@ namespace Proyecto_Clinica
 
             turno_seleccionado.Fecha = DateTime.Parse(fecha);
             turno_seleccionado.Horario = TimeSpan.Parse(hora);
+            turno_seleccionado.Id_Horario = Get_IDHorario(TimeSpan.Parse(hora));
             turno_seleccionado.Apellido_Medico = apellidoMedico;
             turno_seleccionado.Nombre_Medico = nombreMedico;
             turno_seleccionado.Id_Medico = int.Parse(idMedico);
@@ -171,6 +172,19 @@ namespace Proyecto_Clinica
                 Response.Redirect("Seleccionar_paciente.aspx");
             }
         }
+
+        private int Get_IDHorario(TimeSpan Hora)
+        {
+            foreach(Horario horario in clinica.Horarios)
+            {
+                if(horario.Hora == Hora)
+                {
+                    return horario.Id_Horario;
+                }
+            }
+            return 0;
+        }
+
         private Paciente Buscar_Paciente()
         {
             foreach (Paciente paciente1 in clinica.Pacientes)

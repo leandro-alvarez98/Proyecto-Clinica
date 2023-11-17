@@ -14,9 +14,9 @@ namespace Proyecto_Clinica
 {
     public partial class Seleccionar_paciente : System.Web.UI.Page
     {
+        Clinica clinica;
         Paciente paciente_buscado;
         List<Paciente> ps;
-        Clinica clinica;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -25,8 +25,7 @@ namespace Proyecto_Clinica
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = new Clinica();
-            clinica = clinicaConexion.Listar();           
-
+            clinica = clinicaConexion.Listar();
         }
         public Paciente Buscar_Paciente(string Dni)
         {
@@ -37,6 +36,17 @@ namespace Proyecto_Clinica
                   }
               }
               return new Paciente();       
+        }
+        public Paciente Buscar_Paciente(int ID)
+        {
+            foreach (Paciente paciente in clinica.Pacientes)
+            {
+                if (paciente.Id == ID)
+                {
+                    return paciente;
+                }
+            }
+            return new Paciente();
         }
         protected void buscar_paciente_Click(object sender, EventArgs e)
         {
@@ -52,19 +62,15 @@ namespace Proyecto_Clinica
         protected void DGV_Paciente_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = DGV_Paciente.SelectedRow.Cells[0].Text;
-            string nombre = DGV_Paciente.SelectedRow.Cells[1].Text;
-            string apellido = DGV_Paciente.SelectedRow.Cells[2].Text;
-            string dni = DGV_Paciente.SelectedRow.Cells[3].Text;
-            
-            
-            Turno turno = (Turno)Session["Turno"];
+            Paciente paciente = Buscar_Paciente(int.Parse(id));
 
-            turno.Id_Paciente = int.Parse(id);
-            turno.Nombre_Paciente = nombre;
-            turno.Apellido_Paciente = apellido;
-            turno.Dni_paciente = dni;
+            Turno Turno_Seleccionado = (Turno)Session["Turno"];
+            Turno_Seleccionado.Id_Paciente = int.Parse(id);
+            Turno_Seleccionado.Nombre_Paciente = paciente.Nombre;
+            Turno_Seleccionado.Apellido_Paciente = paciente.Apellido;
+            Turno_Seleccionado.Dni_paciente = paciente.Dni;
 
-            Session["Turno"] = turno;
+            Session["Turno"] = Turno_Seleccionado;
             Response.Redirect("Confirmar_turno.aspx");
         }
     }

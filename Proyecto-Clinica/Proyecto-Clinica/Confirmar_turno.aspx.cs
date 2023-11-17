@@ -1,11 +1,13 @@
 ﻿using Conexion_Clinica;
 using Proyecto_Clinica.Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace Proyecto_Clinica
 {
@@ -29,7 +31,31 @@ namespace Proyecto_Clinica
 
         protected void Confirmar_turno_Click(object sender, EventArgs e)
         {
-            //insert en la base de datos
+            Insertar_Turno();
+            lbl_TurnoIngresado.Visible = true;
+        }
+        private void Insertar_Turno()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA, @ESTADO)");
+                datos.setParametro("@IDMEDICO", turno_a_reservar.Id_Medico);
+                datos.setParametro("@IDPACIENTE", turno_a_reservar.Id_Paciente);
+                datos.setParametro("@IDHORA", turno_a_reservar.Id_Horario);
+                datos.setParametro("@FECHA", turno_a_reservar.Fecha);
+                datos.setParametro("@ESTADO", "Reservado");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }

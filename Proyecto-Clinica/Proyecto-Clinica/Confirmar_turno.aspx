@@ -15,8 +15,9 @@
                  <asp:BoundField HeaderText="Apellido medico" DataField="Apellido_Medico" />
             </Columns>
         </asp:GridView>
-
-        <asp:Button ID="confir_turno" runat="server" OnClick="Confirmar_turno_Click" CssClass="btn btn-secondary" Text="Confirmar_turno" />
+        <asp:Button ID="btn_Confirmar_Turno" runat="server" OnClick="Confirmar_turno_Click" CssClass="btn btn-secondary" Text="Confirmar turno" />
+        <br />
+        <asp:Label ID="lbl_TurnoIngresado" runat="server" Text="Turno reservado correctamente!" Visible="false"></asp:Label>
     </div>
 
 </asp:Content>
