@@ -40,7 +40,7 @@ namespace Proyecto_Clinica
             Grilla_Turnos.DataBind();
             Grilla_Observaciones.DataBind();
             // 
-            
+
         }
 
         // ESTA FUNCION MUESTRA QUE LA LISTA DE MEDICOS ESTÉ CARGADA CORRECTAMENTE. LO ESTÁ ;) 

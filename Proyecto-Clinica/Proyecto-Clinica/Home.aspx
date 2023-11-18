@@ -4,7 +4,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container">
+    <style>
+        .fondo{
+            background-image:url('img/fondo de pantalla.jpg');
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+    </style>
+
+    <div class="container fondo">
         <asp:GridView ID="Grilla_Usuarios" runat="server"></asp:GridView>
         <hr />
         <asp:GridView ID="Grilla_Pacientes" runat="server"></asp:GridView>

@@ -68,6 +68,7 @@
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="Confirmar_turno.aspx" />
     <Content Include="Detalle_turno.aspx" />
+    <Content Include="img\fondo de pantalla.jpg" />
     <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />

@@ -3,6 +3,7 @@
     background-color: var(--color-body);
     position: relative;
     min-height: 100vh;
+    
 }
 .ocultar{
     display:none;

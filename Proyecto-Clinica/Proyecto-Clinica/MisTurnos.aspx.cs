@@ -127,6 +127,10 @@ namespace Proyecto_Clinica
             }
             return new Turno();
         }
+        private void Baja_Logica_Turno(Turno turno_Seleccionado)
+        {
+
+        }
         protected void dgv_Turnos_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
@@ -142,41 +146,16 @@ namespace Proyecto_Clinica
                 int ID_Turno = int.Parse(str_ID_Turno);
                 Turno_Seleccionado = Get_Turno(ID_Turno);
             }
-        }
-        protected void DGV_Turnos_totales_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            // Esta funcion no se esta usando, no se como usarla.
-            if (e.CommandName == "Select")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow selectedRow = DGV_Turnos_totales.Rows[index];
-
-                string idTurno = selectedRow.Cells[0].Text;
-                int ID_Turno = int.Parse(idTurno);
-                Turno_Seleccionado = Get_Turno(ID_Turno);
-
-                if (e.CommandName == "Modificar")
-                {
-                    MessageBox.Show("Funciona Cancelar");
-                    // Baja_Logica_Turno(Turno_Seleccionado);
-                }
-                else if (e.CommandName == "Cancelar")
-                {
-                    MessageBox.Show("Funciona Modificar");
-                }
-            }
-        }
-
-        private void Baja_Logica_Turno(Turno turno_Seleccionado)
-        {
-
-        }
-
+        }    
         protected void dgv_Turnos_Medicos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
+            string str_ID_Turno = dgv_Turnos_Medicos.SelectedRow.Cells[0].Text;
             int ID_Turno = int.Parse(str_ID_Turno);
             Turno_Seleccionado = Get_Turno(ID_Turno);
+
+            Session["Turno"] = Turno_Seleccionado;
+            Response.Redirect("Detalle_turno.aspx");
+
             //mostrar en otra pagina los detalles del turno y el hecho de poder agregarle la observacion
         }
     }
