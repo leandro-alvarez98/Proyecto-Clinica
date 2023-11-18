@@ -45,17 +45,24 @@ namespace Proyecto_Clinica
                 pacienteActual = new Paciente();
                 pacienteActual = Cargar_Paciente_Clinica();
             }
+
             misTurnos = new List<Turno>();
             Cargar_Turnos();
+
             if(usuarioActual.Tipo == "Recepcionista" || usuarioActual.Tipo == "Administrador")
             {
                 DGV_Turnos_totales.DataSource = misTurnos;
                 DGV_Turnos_totales.DataBind();
             }
+            else if (usuarioActual.Tipo == "Médico")
+            {
+                dgv_Turnos_Medicos.DataSource = misTurnos;
+                dgv_Turnos_Medicos.DataBind();
+            }
             else
             {
-                dgv_Turnos.DataSource = misTurnos;
-                dgv_Turnos.DataBind();
+                Dgv_Turnos_Paciente.DataSource = misTurnos; 
+                Dgv_Turnos_Paciente.DataBind();
             }
         }
         private Medico Cargar_Médico_Clinica()
@@ -120,9 +127,9 @@ namespace Proyecto_Clinica
             }
             return new Turno();
         }
-        protected void dgv_Turnos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgv_Turnos_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string str_ID_Turno = dgv_Turnos.SelectedRow.Cells[0].Text;
+            string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
             int ID_Turno = int.Parse(str_ID_Turno);
             Turno_Seleccionado = Get_Turno(ID_Turno);
             Baja_Logica_Turno(Turno_Seleccionado);
@@ -163,6 +170,14 @@ namespace Proyecto_Clinica
         private void Baja_Logica_Turno(Turno turno_Seleccionado)
         {
 
+        }
+
+        protected void dgv_Turnos_Medicos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
+            int ID_Turno = int.Parse(str_ID_Turno);
+            Turno_Seleccionado = Get_Turno(ID_Turno);
+            //mostrar en otra pagina los detalles del turno y el hecho de poder agregarle la observacion
         }
     }
 }

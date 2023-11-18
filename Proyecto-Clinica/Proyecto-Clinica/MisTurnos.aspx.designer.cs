@@ -51,12 +51,21 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.GridView DGV_Turnos_totales;
 
         /// <summary>
-        /// Control dgv_Turnos.
+        /// Control dgv_Turnos_Medicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgv_Turnos;
+        protected global::System.Web.UI.WebControls.GridView dgv_Turnos_Medicos;
+
+        /// <summary>
+        /// Control Dgv_Turnos_Paciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Dgv_Turnos_Paciente;
     }
 }
