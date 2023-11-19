@@ -6,26 +6,52 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using Conexion_Clinica;
 using Dominio;
+using Proyecto_Clinica.Dominio;
 
 namespace Proyecto_Clinica
 {
     public partial class MailCambioContraseña : System.Web.UI.Page
     {
+        public Clinica clinica;
         protected void Page_Load(object sender, EventArgs e)
         {
+            clinica = new Clinica();
+            ClinicaConexion clinicaConexion = new ClinicaConexion();
+            clinica = clinicaConexion.Listar();
 
         }
 
 
         protected void btnEnviarMail_Click(object sender, EventArgs e)
         {
+            bool correoVerificado = false;
             EmailService emailService = new EmailService();
-            emailService.enviarEmail(txtIngresarMail.Text);
+            emailService.cuerpoCorreo(txtIngresarMail.Text);
             try
             {
-                emailService.enviarEmail();
+                foreach (Usuario usuario in clinica.Usuarios)
+                {
+
+
+                    if (usuario.Mail == txtIngresarMail.Text)
+                    {
+                        correoVerificado = true;
+
+                    }
+
+
+                }
+                if (correoVerificado)
+                {
+                    emailService.enviarCorreo();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontro el correo");
+                }
             }
             catch (Exception ex)
             {
@@ -37,7 +63,7 @@ namespace Proyecto_Clinica
 
         protected void btnBuscarMailUsuario_Click(object sender, EventArgs e)
         {
-            // por ahora buscamos por telefono
+
             string dni = txtDNI.Text.Trim();
 
             AccesoDatos datos = new AccesoDatos();

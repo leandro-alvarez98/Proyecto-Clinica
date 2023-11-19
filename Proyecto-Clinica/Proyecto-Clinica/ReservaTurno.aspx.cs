@@ -47,7 +47,7 @@ namespace Proyecto_Clinica
             
             String ID_Especialidad_Seleccionada = DDL_especialidades.SelectedValue;
             DateTime Fecha_Seleccionada = Calendario.SelectedDate;
-            if (Fecha_Seleccionada> DateTime.Now)
+            if (Fecha_Seleccionada > DateTime.Now)
             {
                 // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
                 Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
