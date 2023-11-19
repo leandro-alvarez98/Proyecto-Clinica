@@ -13,6 +13,7 @@
                 </div>
                 <div class="mb-2">
                     <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="btn btn-primary" OnClick="btnEnviarMail_Click" />
+                    <asp:label ID="lblMensaje" runat="server" Class="form-label" Text="" ></asp:label>
                 </div>
                 <div class="mb-2">
                     <asp:Label ID="lblBuscarMail" runat="server" Class="form-label" Text="No recuerda su mail o usuario?"></asp:Label>

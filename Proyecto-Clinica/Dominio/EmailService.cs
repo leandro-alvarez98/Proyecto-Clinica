@@ -16,8 +16,8 @@ namespace Dominio
         SmtpClient ServerEmail = new SmtpClient();
         MailMessage Correo = new MailMessage();
         //NECESITAMOS CREAR UN MAIL PARA DARLE USO
-        private string miEmail = "necesitamos crear un mail";
-        private string miContraseña = "y aca la contraseña para apps";
+        private string miEmail = "curcioesteban93@gmail.com";
+        private string miContraseña = "krexsfoqmmpqjzrr";
         private string miAlias = "EQUIPO 18";
         private string[] miAdjuntos;
         private MailMessage miCorreo;
@@ -35,7 +35,8 @@ namespace Dominio
             miCorreo.To.Add(correo);
             miCorreo.Subject = ("Recuperar contaseña");
             miCorreo.IsBodyHtml = true;
-            miCorreo.Body = "Hola! Usted solicito recuperar su contraseña: ";
+            string enlaceRecuperarContraseña = "https://localhost:44348/MailContrase%C3%B1a.aspx";
+            miCorreo.Body = "Hola! Usted solicitó recuperar su contraseña. Haga clic <a href='" + enlaceRecuperarContraseña + "'>aquí</a> para restablecerla.";
             miCorreo.Priority = MailPriority.High;
         }
         //envio de turno confirmado
@@ -49,6 +50,7 @@ namespace Dominio
             miCorreo.Body = "Fecha: " + turno_a_reservar.Fecha + " Hora: " + turno_a_reservar.Horario + " Medico: " + turno_a_reservar.Nombre_Medico + " " + turno_a_reservar.Apellido_Medico;
             miCorreo.Priority = MailPriority.High;
         }
+         
 
         public void enviarCorreo()
         {

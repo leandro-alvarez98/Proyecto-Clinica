@@ -1,7 +1,6 @@
 ﻿using Conexion_Clinica;
 using Proyecto_Clinica.Dominio;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,12 +10,13 @@ using System.Windows.Forms;
 
 namespace Proyecto_Clinica
 {
-    public partial class CambiarContraseña1 : System.Web.UI.Page
+    public partial class MailContraseña : System.Web.UI.Page
     {
+        
         public Usuario usuario;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Cargar_Componentes();        
+            Cargar_Componentes();
         }
         private void Cargar_Componentes()
         {
@@ -25,10 +25,10 @@ namespace Proyecto_Clinica
         }
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
-            String ContraseñaActual = txtContraseñaActual.Text;
             String Contraseña = txtNuevaContraseña.Text;
             String Confirmacion = txtConfirmarContraseña.Text;
-            if (usuario != null && usuario.Contraseña == ContraseñaActual && Contraseña.Length != 0 && Contraseña != null && Contraseña.Equals(Confirmacion)) { 
+            if ( Contraseña.Length != 0 && Contraseña != null && Contraseña.Equals(Confirmacion))
+            {
 
                 Cambiar_Contraseña(Contraseña);
                 usuario.Contraseña = Contraseña;

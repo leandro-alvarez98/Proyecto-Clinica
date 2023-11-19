@@ -27,39 +27,108 @@ namespace Proyecto_Clinica
 
         protected void btnEnviarMail_Click(object sender, EventArgs e)
         {
-            bool correoVerificado = false;
+            //bool correoVerificado = false;
             EmailService emailService = new EmailService();
             emailService.cuerpoCorreo(txtIngresarMail.Text);
+
             try
             {
-                foreach (Usuario usuario in clinica.Usuarios)
+                // Verificar si el correo electrónico existe en la base de datos
+                bool correoEncontrado = VerificarCorreoEnBaseDeDatos(txtIngresarMail.Text);
+
+                if (correoEncontrado)
                 {
-
-
-                    if (usuario.Mail == txtIngresarMail.Text)
-                    {
-                        correoVerificado = true;
-
-                    }
-
-
-                }
-                if (correoVerificado)
-                {
+                    //correoVerificado = true;
                     emailService.enviarCorreo();
+                    lblMensaje.Text = "Correo enviado correctamente.";
                 }
                 else
                 {
-                    MessageBox.Show("No se encontro el correo");
+                    lblMensaje.Text = "No se encontró el correo en la base de datos.";
                 }
             }
             catch (Exception ex)
             {
+                lblMensaje.Text = "Error al verificar el correo: " + ex.Message;
+            }
+        }
 
+        // Método para verificar si el correo existe en la base de datos
+        private bool VerificarCorreoEnBaseDeDatos(string correo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            // Query para verificar si el correo existe en alguna tabla de usuarios
+            string query = "SELECT 1 FROM ( " +
+                           "SELECT ID_USUARIO FROM PACIENTES WHERE MAIL = @correo " +
+                           "UNION ALL " +
+                           "SELECT ID_USUARIO FROM MEDICOS WHERE MAIL = @correo " +
+                           "UNION ALL " +
+                           "SELECT ID_USUARIO FROM RECEPCIONISTA WHERE MAIL = @correo " +
+                           "UNION ALL " +
+                           "SELECT ID_USUARIO FROM ADMINISTRADOR WHERE MAIL = @correo " +
+                           ") AS Usuarios";
+
+            datos.setConsulta(query);
+            datos.setParametro("@correo", correo);
+
+            try
+            {
+                datos.ejecutarLectura();
+
+                // Utilizamos un bucle while para leer las filas resultantes
+                while (datos.Lector.Read())
+                {
+                    // Si hay al menos una fila, el correo existe en alguna tabla de usuarios
+                    return true;
+                }
+
+                // No se encontraron filas, el correo no existe en ninguna tabla de usuarios
+                return false;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
-
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
+
+        //protected void btnEnviarMail_Click(object sender, EventArgs e)
+        //{
+        //    bool correoVerificado = false;
+        //    EmailService emailService = new EmailService();
+        //    emailService.cuerpoCorreo(txtIngresarMail.Text);
+
+        //    try
+        //    {
+        //        foreach (Usuario usuario in clinica.Usuarios)
+        //        {
+        //            if (string.Equals(usuario.Mail, txtIngresarMail.Text, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                correoVerificado = true;
+        //                break;
+        //            }
+        //        }
+
+        //        if (correoVerificado)
+        //        {
+        //            emailService.enviarCorreo();
+        //            lblMensaje.Text = "Correo enviado correctamente.";
+        //        }
+        //        else
+        //        {
+        //            lblMensaje.Text = "No se encontró el correo.";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMensaje.Text = "Error al verificar el correo: " + ex.Message;
+        //    }
+
+        //}
 
         protected void btnBuscarMailUsuario_Click(object sender, EventArgs e)
         {

@@ -71,6 +71,7 @@
     <Content Include="img\fondo de pantalla.jpg" />
     <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
+    <Content Include="MailContraseña.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
     <Content Include="content\styles.css" />
     <Content Include="AltaUsuario.aspx" />
@@ -110,6 +111,13 @@
     </Compile>
     <Compile Include="MailCambioContraseña.aspx.designer.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MailContraseña.aspx.cs">
+      <DependentUpon>MailContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MailContraseña.aspx.designer.cs">
+      <DependentUpon>MailContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page_master_default.Master.cs">
       <DependentUpon>Page_master_default.Master</DependentUpon>
