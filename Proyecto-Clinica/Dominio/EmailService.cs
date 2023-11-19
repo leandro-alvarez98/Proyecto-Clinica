@@ -16,8 +16,8 @@ namespace Dominio
         SmtpClient ServerEmail = new SmtpClient();
         MailMessage Correo = new MailMessage();
         //NECESITAMOS CREAR UN MAIL PARA DARLE USO
-        private string miEmail = "curcioesteban93@gmail.com";
-        private string miContraseña = "krexsfoqmmpqjzrr";
+        private string miEmail = "necesitamos crear un mail";
+        private string miContraseña = "y aca la contraseña para apps";
         private string miAlias = "EQUIPO 18";
         private string[] miAdjuntos;
         private MailMessage miCorreo;
@@ -75,7 +75,6 @@ namespace Dominio
 
         }
 
-        //enviar el mail al confirmar un turno
 
 
         

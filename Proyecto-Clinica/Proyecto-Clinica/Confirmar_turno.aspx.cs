@@ -1,4 +1,5 @@
 ﻿using Conexion_Clinica;
+using Dominio;
 using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections;
@@ -14,8 +15,12 @@ namespace Proyecto_Clinica
     public partial class Confirmar_turno : System.Web.UI.Page
     {
         Turno turno_a_reservar;
+        Usuario usuario_actual;
+        EmailService email_service; 
         protected void Page_Load(object sender, EventArgs e)
         {
+            usuario_actual = new Usuario();
+            usuario_actual = (Usuario)Session["Usuario"];
             Cargar_componentes();
         }
         public void Cargar_componentes()
@@ -33,6 +38,8 @@ namespace Proyecto_Clinica
         {
             Insertar_Turno();
             lbl_TurnoIngresado.Visible = true;
+            email_service.cuerpoCorreo( turno_a_reservar,  usuario_actual.Mail);
+            
         }
         private void Insertar_Turno()
         {

@@ -25,13 +25,21 @@ namespace Proyecto_Clinica
         }
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            String ContraseñaActual = txtContraseñaActual.Text;
             String Contraseña = txtNuevaContraseña.Text;
             String Confirmacion = txtConfirmarContraseña.Text;
-            if(Contraseña.Length != 0 && Contraseña != null && Contraseña.Equals(Confirmacion))
-            {
+            if (usuario != null && usuario.Contraseña == ContraseñaActual && Contraseña.Length != 0 && Contraseña != null && Contraseña.Equals(Confirmacion)) { 
                 Cambiar_Contraseña(Contraseña);
                 usuario.Contraseña = Contraseña;
+
+                // cerramos la sesion del usuario
+                Session.Clear();
+                Session.Abandon();
+
+                // redirigimos a la pagina de inicio de sesion para que se logeé nuevamente
+                Response.Redirect("Default.aspx");
             }
+
         }
         private void Cambiar_Contraseña(String Nueva_Contraseña)
         {
