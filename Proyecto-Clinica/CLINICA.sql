@@ -42,7 +42,7 @@ CREATE TABLE USUARIOS (
 GO
 CREATE TABLE PACIENTES (
     ID_PACIENTE INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	ID_USUARIO INT NOT NULL,
+	ID_USUARIO INT NULL,
 	DNI VARCHAR(10) NOT NULL,
     NOMBRE VARCHAR(50) NOT NULL,
     APELLIDO VARCHAR(50) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE PACIENTES (
 GO
 CREATE TABLE MEDICOS (
     ID_MEDICO INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	ID_USUARIO INT NOT NULL,
+	ID_USUARIO INT NULL,
 	DNI VARCHAR(10) NOT NULL,
     NOMBRE VARCHAR(50) NOT NULL,
 	APELLIDO VARCHAR(50) NOT NULL,
@@ -108,7 +108,13 @@ CREATE TABLE TURNOS (
 	FOREIGN KEY (ID_HORARIO) REFERENCES HORARIOS(ID_HORARIO)
 )
 GO
-CREATE TABLE OBSERVACIONES (
+CREATE TABLE OBSERVACIONES_MEDICOS (
+    ID_OBSERVACION INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	ID_TURNO INT NOT NULL,
+    OBSERVACION VARCHAR(1500) NOT NULL,
+	FOREIGN KEY (ID_TURNO) REFERENCES TURNOS(ID_TURNO)
+)
+CREATE TABLE OBSERVACIONES_PACIENTES (
     ID_OBSERVACION INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_TURNO INT NOT NULL,
     OBSERVACION VARCHAR(1500) NOT NULL,
@@ -129,6 +135,7 @@ CREATE TABLE MEDICOSXESPECIALIDAD(
 	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD)
 )
 GO
+
 -- INSERTS CON INFORMACIÓN PARA CADA TABLA
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Cardiología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Dermatología');
@@ -136,9 +143,11 @@ INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Gastroenterología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Neurología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Oftalmología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Ortopedia');
+		------------------------------
 
 INSERT INTO JORNADA (TIPO_JORNADA)
 VALUES(1), (2), (3)
+		------------------------------
 
 INSERT INTO Horarios (ID_JORNADA, HORA, DISPONIBILIDAD)
 VALUES (1,'08:00', 1),
@@ -153,6 +162,7 @@ VALUES (1,'08:00', 1),
 	(3,'17:00', 1),
 	(3,'18:00', 1),
 	(3,'19:00', 1)
+		------------------------------
 
 INSERT INTO USUARIOS (NOMBRE_USUARIO, CONTRASENA, TIPO) 
 VALUES ('paciente1', '123', 'Paciente'), -- Usuarios de los pacientes
@@ -178,14 +188,15 @@ VALUES ('paciente1', '123', 'Paciente'), -- Usuarios de los pacientes
 	   ('Recepcionista4', '123', 'Recepcionista'), -- Recepcionista
 	   ('Recepcionista5', '123', 'Recepcionista'), -- Recepcionista
 	   ('Recepcionista6', '123', 'Recepcionista') -- Recepcionista
-
-
+		------------------------------
 
 INSERT INTO PACIENTES (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
 VALUES (1, '11111111', 'Paciente1', 'Apellido1', '1234567891', 'Dirección1', '1990-01-01', 'paciente1@mail.com', 1),
        (2, '11222222','Paciente2', 'Apellido2', '1234567892', 'Dirección2', '1990-02-02', 'paciente2@mail.com', 1),
        (3, '11333333','Paciente3', 'Apellido3', '1234567893', 'Dirección3', '1990-03-03', 'paciente3@mail.com', 1),
        (4, '11444444','Paciente4', 'Apellido4', '1234567894', 'Dirección4', '1990-04-04', 'paciente4@mail.com', 1)
+		------------------------------
+
 
 INSERT INTO MEDICOS (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
 VALUES (5, '22111111','Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A', '1980-01-01', 'alejandro.gomez@mail.com', 1),
@@ -198,14 +209,14 @@ VALUES (5, '22111111','Alejandro', 'Gómez', '9876543211', 'Calle 123, Ciudad A',
        (12, '22156199','Valeria', 'Sánchez', '9876543218', 'Avenida 10, Ciudad H', '1980-08-08', 'valeria.sanchez@mail.com', 1),
        (13, '22123456','Lucas', 'Gutiérrez', '9876543219', 'Calle 34, Ciudad I', '1980-09-09', 'lucas.gutierrez@mail.com', 1),
        (14, '22789654','María', 'Ortega', '9876543220', 'Avenida 22, Ciudad J', '1980-10-10', 'maria.ortega@mail.com', 1)
-
 	   ----------------------------
+
 INSERT INTO ADMINISTRADOR (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
 VALUES  (15, '122222789', 'Carlos', 'González', '1541234567', 'Av. Principal 123', '1980-04-12', 'carlos.gonzalez@email.com', 1),
 		(16, '987654321', 'Ana', 'López', '1567890123', 'Calle Secundaria 456', '1975-09-22', 'ana.lopez@email.com', 1),
 		(17, '555544555', 'Martín', 'Martínez', '1554567890', 'Av. Nueva 789', '1991-12-05', 'martin.martinez@email.com', 1)
-
 	   ------------------------------
+
 INSERT INTO RECEPCIONISTA (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
 VALUES  (18, '123456789', 'Laura', 'Gómez', '7755599994', 'Calle Principal 123', '1988-05-20', 'laura.gomez@email.com', 1),
 		(19, '987654321', 'Carlos', 'Rodríguez', '6549876210', 'Calle Secundaria 456', '1992-08-15', 'carlos.rodriguez@email.com', 1),
@@ -228,9 +239,9 @@ VALUES
     (8, 4, 9, '2023-11-19', 'Reservado'),
     (9, 4, 10, '2023-11-20', 'Reservado'),
     (10, 4, 11, '2023-11-21', 'Reservado')
+			------------------------------
 
-
-INSERT INTO OBSERVACIONES (ID_TURNO, OBSERVACION) -- 1 x cada turno 
+INSERT INTO OBSERVACIONES_MEDICOS (ID_TURNO, OBSERVACION) -- 1 x cada turno 
 VALUES
     (1, 'El paciente presentó mejoras significativas.'),
     (2, 'Se recomienda realizar pruebas adicionales para evaluar la condición del paciente.'),
@@ -242,6 +253,21 @@ VALUES
     (8, 'El paciente informó de efectos secundarios leves, se monitoreará.'),
     (9, 'Es necesario programar un seguimiento para evaluar progresos.'),
     (10, 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.')
+			------------------------------
+
+INSERT INTO OBSERVACIONES_PACIENTES (ID_TURNO, OBSERVACION) -- 1 x cada turno 
+VALUES
+    (1, 'Duele panza'),
+	(2, 'Duele cabeza'),
+	(3, 'Duele oreja'),
+	(4, 'Duele riñon'),
+	(5, 'Duele masticar'),
+	(6, 'Duele pensar'),
+	(7, 'Duele pestañear'),
+	(8, 'Duele trabajar'),
+	(9, 'Duele jugar lol'),
+	(10, 'Duele comer ensalada en navidad')
+			------------------------------
 
 INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD)
 VALUES (1, 1), -- Especialidad 1
@@ -260,6 +286,7 @@ VALUES (1, 1), -- Especialidad 1
        (4, 5),
        (5, 5),
 	   (1, 6) -- Especialidad 6
+	   		------------------------------
 
 INSERT INTO MEDICOXJORNADA(ID_MEDICO, ID_JORNADA)
 VALUES (1, 1), -- Trabajan de mañana
@@ -277,3 +304,4 @@ VALUES (1, 1), -- Trabajan de mañana
        (3, 3), 
        (4, 3),
 	   (5, 3)
+	   		------------------------------

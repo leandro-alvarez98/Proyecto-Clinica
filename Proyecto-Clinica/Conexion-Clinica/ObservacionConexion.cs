@@ -10,27 +10,50 @@ namespace Conexion_Clinica
 {
     public class ObservacionConexion
     {
-        public List<Observacion> Listar()
+        public List<Observacion> Listar(int tipo)
         {
             List<Observacion> lista = new List<Observacion>();
             AccesoDatos datos = new AccesoDatos();
+
             try
             {
-                datos.setConsulta("SELECT ID_OBSERVACION, ID_TURNO, OBSERVACION FROM OBSERVACIONES");
-                datos.ejecutarLectura();
-
-                while (datos.Lector.Read())
+                if (tipo == 1)
                 {
-                    Observacion observacion = new Observacion
-                    {
-                        Id = (int)datos.Lector["ID_OBSERVACION"],
-                        Id_Turno = (int)datos.Lector["ID_TURNO"],
-                        Descripción = (String)datos.Lector["OBSERVACION"]
-                    };
+                        datos.setConsulta("SELECT ID_OBSERVACION, ID_TURNO, OBSERVACION FROM OBSERVACIONES_MEDICOS");
+                        datos.ejecutarLectura();
 
-                    lista.Add(observacion);
+                        while (datos.Lector.Read())
+                        {
+                            Observacion observacion = new Observacion
+                            {
+                                Id = (int)datos.Lector["ID_OBSERVACION"],
+                                Id_Turno = (int)datos.Lector["ID_TURNO"],
+                                Descripción = (String)datos.Lector["OBSERVACION"]
+                            };
+
+                            lista.Add(observacion);
+                        }
+                        return lista;
                 }
-                return lista;
+                else if (tipo == 2)
+                {
+                    datos.setConsulta("SELECT ID_OBSERVACION, ID_TURNO, OBSERVACION FROM OBSERVACIONES_PACIENTES");
+                    datos.ejecutarLectura();
+
+                    while (datos.Lector.Read())
+                    {
+                        Observacion observacion = new Observacion
+                        {
+                            Id = (int)datos.Lector["ID_OBSERVACION"],
+                            Id_Turno = (int)datos.Lector["ID_TURNO"],
+                            Descripción = (String)datos.Lector["OBSERVACION"]
+                        };
+
+                        lista.Add(observacion);
+                    }
+                    return lista;
+                }
+                else { return lista; }
             }
             catch (Exception ex)
             {
