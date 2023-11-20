@@ -21,6 +21,7 @@
                  <asp:BoundField HeaderText="Dni" DataField="Dni" />
                  <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
                  <asp:BoundField HeaderText="Mail" DataField="Mail" />
+                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                  <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Accion" />
              </Columns>
          </asp:GridView>

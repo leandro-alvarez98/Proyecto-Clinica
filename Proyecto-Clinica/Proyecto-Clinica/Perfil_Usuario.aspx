@@ -4,8 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+
     <div class="container form_top containerbott">
-        <div class="card">
+        <div class="card ">
             <div class="card-body ">
                 <h1 class="card-title">Perfil de Usuario</h1>
                 <hr />
@@ -50,12 +51,12 @@
                     </ul>
 
                     <div class="mb-2">
-                        <asp:Button ID="btnEditarDatos" class="btn btn-primary" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
-                        <asp:Button ID="btnGuardar" class="btn btn-primary" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
-                        <asp:Button ID="btnCancelar" class="btn btn-primary" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
-                    </div>
-                    <div class="mb-2">
-                        <asp:Button ID="btnCambioContraseña" class="btn btn-primary" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />
+                        <br />
+                        <asp:Button ID="btnEditarDatos" CssClass="btn backcolor" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
+                        <asp:Button ID="btnGuardar" CssClass="btn btn-secondary" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
+                        <asp:Button ID="btnCancelar" CssClass="btn btn-secondary" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
+                        <asp:Button ID="btnCambioContraseña" CssClass="btn btn-secondary" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />
+                        <br />
                     </div>
                 </div>
             </div>

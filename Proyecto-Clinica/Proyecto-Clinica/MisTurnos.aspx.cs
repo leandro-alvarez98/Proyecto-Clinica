@@ -132,6 +132,19 @@ namespace Proyecto_Clinica
         {
 
         }
+        public void Cargar_turnos_x_Dni(string dni)
+        {
+            foreach (Turno turno in clinica.Turnos)
+            {
+                foreach (Paciente paciente in clinica.Pacientes)
+                {
+                    if(paciente.Dni == dni && paciente.Id == turno.Id_Paciente)
+                    {
+                        turnos_x_dni.Add(turno);
+                    }
+                }
+            }
+        }
         protected void dgv_Turnos_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
@@ -159,7 +172,6 @@ namespace Proyecto_Clinica
 
             //mostrar en otra pagina los detalles del turno y el hecho de poder agregarle la observacion
         }
-
         protected void Btn_busqueda_Click(object sender, EventArgs e)
         {
             turnos_x_dni = new List<Turno>();
@@ -173,20 +185,6 @@ namespace Proyecto_Clinica
             DGV_Turnos_totales.DataSource = turnos_x_dni;
             DGV_Turnos_totales.DataBind();
         }
-        public void Cargar_turnos_x_Dni(string dni)
-        {
-            foreach (Turno turno in clinica.Turnos)
-            {
-                foreach (Paciente paciente in clinica.Pacientes)
-                {
-                    if(paciente.Dni == dni && paciente.Id == turno.Id_Paciente)
-                    {
-                        turnos_x_dni.Add(turno);
-                    }
-                }
-            }
-        }
-
         protected void Btn_limpiar_busqueda_Click(object sender, EventArgs e)
         {
             //limpia la grilla actual

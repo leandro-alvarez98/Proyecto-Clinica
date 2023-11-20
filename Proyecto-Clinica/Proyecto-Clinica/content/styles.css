@@ -5,6 +5,9 @@
     min-height: 100vh;
     
 }
+.backcolor{
+    background-color:var(--color-azul-efectos);
+}
 .ocultar{
     display:none;
 }
