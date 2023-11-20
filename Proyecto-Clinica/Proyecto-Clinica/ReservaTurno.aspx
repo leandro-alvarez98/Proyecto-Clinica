@@ -4,13 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="mb-3 container containerbott form_top ">
-
-        <h3>Reservar Turno</h3>
+        <asp:Label  CssClass="fs-3 font-monospace fw-semibold" runat="server" Text="Seleccionar Fecha"></asp:Label>
+        <%--<h3 CssClass="fs-4 font-monospace">Reservar Turno</h3>--%>
         <hr />
 
         <%-- Especialidades --%>
         <asp:DropDownList ID="DDL_especialidades" CssClass="form-select" runat="server"></asp:DropDownList>
-        <hr />
+        <br />
 
         <%-- Fecha --%>
         <div class="mb-3">
@@ -18,9 +18,10 @@
         </div>
 
         <asp:Button ID="Buscar_Turno" runat="server" OnClick="Buscar_Turno_Click" CssClass="btn btn-secondary " Text="Buscar Turnos" />
+        <br />
         <asp:Label ID="lblturnos" runat="server" CssClass="fs-4 font-monospace" Text=""></asp:Label>
         <asp:Label ID="Lbl_fecha_valida" runat="server" CssClass="fs-4 font-monospace" Text="Por Favor Ingrese una fecha valida" Visible="false"></asp:Label>
-
+        <br />
         <%-- Grilla con todos los turnos disponibles --%>       
                 <div>
                     <asp:GridView ID="Grilla_turnos_disponibles" runat="server" OnSelectedIndexChanged="Grilla_turnos_disponibles_SelectedIndexChanged" AutoGenerateColumns="false" CssClass="table table-dark table-hover ">

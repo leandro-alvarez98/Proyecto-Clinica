@@ -24,6 +24,24 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.GridView DGVTurno_a_confirmar;
 
         /// <summary>
+        /// Control Lbl_anadir_obs_paciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_anadir_obs_paciente;
+
+        /// <summary>
+        /// Control Txt_observacion_paciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_observacion_paciente;
+
+        /// <summary>
         /// Control btn_Confirmar_Turno.
         /// </summary>
         /// <remarks>

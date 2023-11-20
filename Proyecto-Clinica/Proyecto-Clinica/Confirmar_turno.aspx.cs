@@ -18,14 +18,13 @@ namespace Proyecto_Clinica
         Usuario usuario_actual;
         EmailService email_service; 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            usuario_actual = new Usuario();
-            usuario_actual = (Usuario)Session["Usuario"];
+        {           
             Cargar_componentes();
         }
         public void Cargar_componentes()
         {
-
+            usuario_actual = new Usuario();
+            usuario_actual = (Usuario)Session["Usuario"];
             List<Turno> turno = new List<Turno>();
             turno_a_reservar = (Turno)Session["Turno"];
             turno.Add(turno_a_reservar);
@@ -46,6 +45,7 @@ namespace Proyecto_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                //INSERT INTO TURNOS(ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, OBSERVACION_PACIENTE, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA, @OBSERVACION_PACIENTE, @ESTADO)
                 datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA, @ESTADO)");
                 datos.setParametro("@IDMEDICO", turno_a_reservar.Id_Medico);
                 datos.setParametro("@IDPACIENTE", turno_a_reservar.Id_Paciente);

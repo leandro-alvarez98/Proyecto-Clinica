@@ -4,9 +4,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div class="mb-3 container containerbott form_top ">
+         <asp:Label  CssClass="fs-3 font-monospace fw-semibold" runat="server" Text="Seleccionar Paciente"></asp:Label>
+         <hr />
          <div class="mb-3">
              <asp:Label ID="lblbuscar" runat="server" Class="form-label" Text="Ingrese el DNI del paciente :"></asp:Label>
              <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="DNI del Usuario"></asp:TextBox>
+             <br />
              <asp:Button id="buscar_paciente" runat="server" OnClick="buscar_paciente_Click" CssClass="btn btn-secondary" Text="Buscar Paciente" />
          </div>
          <hr />
