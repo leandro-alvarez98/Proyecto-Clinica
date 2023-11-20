@@ -21,7 +21,7 @@
         <asp:Label ID="Lbl_anadir_obs_paciente" runat="server" Text="AÑADIR TEMA DE CONSULTA"></asp:Label>
         <asp:TextBox ID="Txt_observacion_paciente" runat="server"  CssClass="form-control"></asp:TextBox>
         <br />
-        <asp:Button ID="btn_Confirmar_Turno" runat="server" OnClick="Confirmar_turno_Click" CssClass="btn btn-secondary" Text="Confirmar turno" />
+        <asp:Button ID="btn_Confirmar_Turno" runat="server" OnClick="Confirmar_turno_Click" CssClass="Boton" Text="Confirmar turno" />
         <br />
         <asp:Label ID="lbl_TurnoIngresado" runat="server" Text="Turno reservado correctamente!" Visible="false"></asp:Label>
     </div>

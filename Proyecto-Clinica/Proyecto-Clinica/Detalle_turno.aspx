@@ -38,8 +38,8 @@
 
         <br />  
 
-        <asp:Button ID="Btn_agregar_obs" CssClass="margin_TOP_bot btn btn-secondary" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
-        <asp:Button ID="Btn_aceptar" CssClass="margin_TOP_bot btn btn-secondary" Onclick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
+        <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
+        <asp:Button ID="Btn_aceptar" CssClass="Boton" Onclick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
         
 
     </div>

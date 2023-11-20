@@ -15,7 +15,6 @@
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
                             <asp:Label ID="nombrelbl" CssClass="lbl" runat="server"></asp:Label>
-                            <%-- <asp:TextBox ID="txtNombreEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>--%>
                             <asp:TextBox ID="txtNombreEdit" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
@@ -52,10 +51,10 @@
 
                     <div class="mb-2">
                         <br />
-                        <asp:Button ID="btnEditarDatos" CssClass="btn backcolor" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
-                        <asp:Button ID="btnGuardar" CssClass="btn btn-secondary" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
-                        <asp:Button ID="btnCancelar" CssClass="btn btn-secondary" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
-                        <asp:Button ID="btnCambioContraseña" CssClass="btn btn-secondary" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />
+                        <asp:Button ID="btnEditarDatos" CssClass="Boton" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
+                        <asp:Button ID="btnGuardar" CssClass="Boton" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
+                        <asp:Button ID="btnCancelar" CssClass="Boton" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
+                        <asp:Button ID="btnCambioContraseña" CssClass="Boton" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />
                         <br />
                     </div>
                 </div>

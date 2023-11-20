@@ -10,7 +10,7 @@
              <asp:Label ID="lblbuscar" runat="server" Class="form-label" Text="Ingrese el DNI del paciente :"></asp:Label>
              <asp:TextBox ID="txtDni" runat="server" CssClass="form-control" placeholder="DNI del Usuario"></asp:TextBox>
              <br />
-             <asp:Button id="buscar_paciente" runat="server" OnClick="buscar_paciente_Click" CssClass="btn btn-secondary" Text="Buscar Paciente" />
+             <asp:Button id="buscar_paciente" runat="server" OnClick="buscar_paciente_Click" CssClass="Boton" Text="Buscar Paciente" />
          </div>
          <hr />
          <asp:GridView ID="DGV_Paciente" AutoGenerateColumns="false" OnSelectedIndexChanged="DGV_Paciente_SelectedIndexChanged" runat="server" CssClass="table table-dark table-hover PAD_TOP ">

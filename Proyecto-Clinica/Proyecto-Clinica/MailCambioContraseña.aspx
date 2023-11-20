@@ -12,7 +12,7 @@
                     <asp:TextBox ID="txtIngresarMail" type="mail" runat="server" CssClass="form-control" placeholder="Ingrese su mail"></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="btn btn-primary" OnClick="btnEnviarMail_Click" />
+                    <asp:Button ID="btnEnviarMail" runat="server" Text="Enviar Mail" CssClass="Boton" OnClick="btnEnviarMail_Click" />
                     <asp:label ID="lblMensaje" runat="server" Class="form-label" Text="" ></asp:label>
                 </div>
                 <div class="mb-2">
@@ -20,7 +20,7 @@
                     <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" placeholder="Escriba su DNI"></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnBuscarMailUsuario" runat="server" Text="Enviar DNI" CssClass="btn btn-primary" OnClick="btnBuscarMailUsuario_Click" />
+                    <asp:Button ID="btnBuscarMailUsuario" runat="server" Text="Enviar DNI" CssClass="Boton" OnClick="btnBuscarMailUsuario_Click" />
                 </div>
                 <div class="mb-2">
                     <asp:Label ID="lblMostrarMailUsuario" runat="server" Class="form-label" ></asp:Label>

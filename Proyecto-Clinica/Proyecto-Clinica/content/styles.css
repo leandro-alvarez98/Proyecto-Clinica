@@ -5,9 +5,6 @@
     min-height: 100vh;
     
 }
-.backcolor{
-    background-color:var(--color-azul-efectos);
-}
 .ocultar{
     display:none;
 }
@@ -23,6 +20,7 @@
 /*variables de colores que vamos a usar en la pagina */
     :root {
     --color-azul-verde-oscuro: #1C6882;
+    --color-azul-verde-oscuro_claro: #387a90 ;
     --color-azul-detalles: #2A99D9;
     --color-body: #F2F2F2;
     --color-azul-efectos: #86B7DA;
@@ -74,7 +72,23 @@
 
 /*-------------------------------------PAGINA USUARIO-------------------------------------------------------------------*/
 
-
+.Boton {
+    display: inline-block;
+    padding: 10px 20px; /* Ajusta el espaciado interno según sea necesario */
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--color-azul-verde-oscuro); /* Color del borde */
+    border-radius: 5px; /* Bordes redondeados */
+    color: #fff; /* Color del texto */
+    background-color: var(--color-azul-verde-oscuro); /* Color de fondo */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+.Boton:hover {
+     background-color: var(--color-azul-verde-oscuro_claro); /* Nuevo color de fondo al pasar el mouse */
+     border: 1px solid #2980b9; /* Nuevo color del borde al pasar el mouse */
+}
 
 
 

@@ -19,14 +19,14 @@
                     <asp:TextBox ID="txtContraseña" type="password" runat="server" CssClass="form-control" placeholder="Ingrese su Contraseña"></asp:TextBox>
                 </div>
                 <div class="mb-2">
-                    <asp:Button ID="btnIngresar" class="btn btn-primary" runat="server" OnClick="btnIngresar_Click" Text="Ingresar"/>
+                    <asp:Button ID="btnIngresar" class="Boton" runat="server" OnClick="btnIngresar_Click" Text="Ingresar"/>
                 </div>
                 <a href="MailCambioContraseña.aspx">¿Olvidaste tu contraseña?</a>
                 <div class="mb-2">
                     <asp:Label ID="lblRegistrar" runat="server" Class="form-label" Text="¿No poseé una cuenta?"></asp:Label>
                 </div>
                 <div>
-                    <asp:Button ID="btnRegistrar" class="btn btn-primary" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click"/>
+                    <asp:Button ID="btnRegistrar" class="Boton" runat="server" Text="Registrarme" OnClick="btnRegistrar_Click"/>
                 </div>
             </div>
         </div>
