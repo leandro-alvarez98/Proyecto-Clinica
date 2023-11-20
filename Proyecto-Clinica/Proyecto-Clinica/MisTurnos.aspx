@@ -8,11 +8,12 @@
                 <%{ %>
                     <div class="container form_top containerbott">
 
-                        <asp:Label ID="Lbl_Busqueda1" runat="server" CssClass="form-label" Text="Buscar Turno por Dni del paciente/Doctor"></asp:Label>
-                        <asp:TextBox ID="Txt_Busqueda1"  CssClass="form-control"  runat="server"></asp:TextBox>
-
-                        <asp:Button ID="Btn_busqueda" runat="server" CssClass="margin_TOP_bot btn btn-secondary" Text="Buscar" />
-
+                        <asp:Label ID="Lbl_Busqueda" runat="server" CssClass="form-label" Text="Buscar Turno por Dni del paciente"></asp:Label>
+                        <asp:TextBox ID="Txt_Busqueda"  CssClass="form-control"  runat="server"></asp:TextBox>
+                        <br />
+                        <asp:Button ID="Btn_busqueda" runat="server" OnClick="Btn_busqueda_Click" CssClass="btn btn-secondary" Text="Buscar" />
+                        <asp:Button ID="Btn_limpiar_busqueda" OnClick="Btn_limpiar_busqueda_Click" runat="server" CssClass="btn btn-secondary" Text="Limpiar" />
+                        <hr />
                     <asp:GridView ID="DGV_Turnos_totales" CssClass="table table-dark table-hover PAD_TOP"  OnSelectedIndexChanged="DGV_Turnos_totales_SelectedIndexChanged"  runat="server" AutoGenerateColumns="false" AutoPostBack="true" EnableViewState="true">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />

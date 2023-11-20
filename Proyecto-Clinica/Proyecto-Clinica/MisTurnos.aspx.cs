@@ -19,6 +19,7 @@ namespace Proyecto_Clinica
         Medico medicoActual;
         Paciente pacienteActual;
         List<Turno> misTurnos;
+        List<Turno> turnos_x_dni;
         Turno Turno_Seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -157,6 +158,43 @@ namespace Proyecto_Clinica
             Response.Redirect("Detalle_turno.aspx");
 
             //mostrar en otra pagina los detalles del turno y el hecho de poder agregarle la observacion
+        }
+
+        protected void Btn_busqueda_Click(object sender, EventArgs e)
+        {
+            turnos_x_dni = new List<Turno>();
+            string dni_paciente = Txt_Busqueda.Text;
+            Cargar_turnos_x_Dni(dni_paciente);
+
+            //limpia la grilla actual
+            DGV_Turnos_totales.DataSource = null;
+            DGV_Turnos_totales.DataBind();
+            //cargar la nueva grilla de datos 
+            DGV_Turnos_totales.DataSource = turnos_x_dni;
+            DGV_Turnos_totales.DataBind();
+        }
+        public void Cargar_turnos_x_Dni(string dni)
+        {
+            foreach (Turno turno in clinica.Turnos)
+            {
+                foreach (Paciente paciente in clinica.Pacientes)
+                {
+                    if(paciente.Dni == dni && paciente.Id == turno.Id_Paciente)
+                    {
+                        turnos_x_dni.Add(turno);
+                    }
+                }
+            }
+        }
+
+        protected void Btn_limpiar_busqueda_Click(object sender, EventArgs e)
+        {
+            //limpia la grilla actual
+            DGV_Turnos_totales.DataSource = null;
+            DGV_Turnos_totales.DataBind();
+            //cargar la nueva grilla de datos 
+            DGV_Turnos_totales.DataSource = misTurnos;
+            DGV_Turnos_totales.DataBind();
         }
     }
 }

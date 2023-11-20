@@ -53,18 +53,18 @@ namespace Proyecto_Clinica
 
             //Recarga  el Turno actual al cual se le agrego la observacion 
             turno_actual = Recargar_turno(turno_actual.Id);
-            observacion.InnerText = turno_actual.Obs_medico;
-            //// Redirecciona a la misma página para refrescar los datos
-            //Response.Redirect(Request.RawUrl);
 
+            //actualiza el texto de la observacion
+            observacion.InnerText = turno_actual.Obs_medico;
+           
             //muestra los campos por defecto
             Btn_agregar_obs.Visible = true;
             observacion.Visible = true;
+
             //oculta lo que ya no se usa
             Btn_aceptar.Visible = false;
             Txt_Observacion.Visible = false;
-        }
-      
+        }     
         public void insertar_Observacion_BBDD(string Observacion)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -86,7 +86,6 @@ namespace Proyecto_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public Turno Recargar_turno(int ID)
         {
             ClinicaConexion conexion = new ClinicaConexion();
