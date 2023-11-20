@@ -284,7 +284,6 @@ namespace Proyecto_Clinica
             btnGuardar.Visible = false;
 
         }
-
         private void OcultarControlesEdicion()
         {
             //ocultar TextBox y boton de guardar

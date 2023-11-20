@@ -39,7 +39,7 @@ namespace Proyecto_Clinica
             turno_a_reservar.Obs_medico = "";
             Insertar_Turno();
             lbl_TurnoIngresado.Visible = true;
-           // email_service.cuerpoCorreo( turno_a_reservar,  usuario_actual.Mail);
+           //email_service.cuerpoCorreo( turno_a_reservar,  usuario_actual.Mail);
             
         }
         private void Insertar_Turno()

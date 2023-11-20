@@ -60,6 +60,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label Lbl_Id_Turno;
 
         /// <summary>
+        /// Control Lbl_motivo_consulta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_motivo_consulta;
+
+        /// <summary>
         /// Control observacion.
         /// </summary>
         /// <remarks>

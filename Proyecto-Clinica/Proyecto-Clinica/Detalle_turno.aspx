@@ -24,16 +24,19 @@
                 <li class="list-group-item">Id turno: 
                     <asp:Label ID="Lbl_Id_Turno" runat="server" Text=""></asp:Label>
                 </li>
+                <li class="list-group-item">Motivo de consulta:
+                    <asp:Label ID="Lbl_motivo_consulta" runat="server" Text=""></asp:Label>
+                </li>
             </ul>
 
             <div class="card-body">
                 <h5 class="card-title">Observacion</h5>
-                <p id="observacion" runat="server" class="card-text">bla bla bla.</p>
+                <p id="observacion" runat="server" class="card-text"></p>
                 <textarea class="form-control" runat="server" id="Txt_Observacion" rows="3" Visible="false"></textarea>
             </div>             
         </div>
 
-        <hr />  
+        <br />  
 
         <asp:Button ID="Btn_agregar_obs" CssClass="margin_TOP_bot btn btn-secondary" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
         <asp:Button ID="Btn_aceptar" CssClass="margin_TOP_bot btn btn-secondary" Onclick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />

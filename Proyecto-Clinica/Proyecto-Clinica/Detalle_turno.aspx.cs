@@ -31,6 +31,8 @@ namespace Proyecto_Clinica
             Lbl_Fecha.Text = turno_actual.Fecha.ToString();
             Lbl_Horario.Text = turno_actual.Horario.ToString();
             Lbl_Id_Turno.Text = turno_actual.Id.ToString();
+            Lbl_motivo_consulta.Text = turno_actual.Obs_paciente;
+            observacion.InnerText = turno_actual.Obs_medico;
             
         }
         protected void Btn_agregar_obs_Click(object sender, EventArgs e)
@@ -45,19 +47,22 @@ namespace Proyecto_Clinica
         }
         protected void Btn_aceptar_Click(object sender, EventArgs e)
         {
-            //oculta lo que ya no se usa
-            Btn_aceptar.Visible=false;
-            Txt_Observacion.Visible=false;
-
+            
             string Observacion = Txt_Observacion.Value.ToString();
             insertar_Observacion_BBDD(Observacion);
 
-            // Redirecciona a la misma página para refrescar los datos
-            Response.Redirect(Request.RawUrl);
+            //Recarga  el Turno actual al cual se le agrego la observacion 
+            turno_actual = Recargar_turno(turno_actual.Id);
+            observacion.InnerText = turno_actual.Obs_medico;
+            //// Redirecciona a la misma página para refrescar los datos
+            //Response.Redirect(Request.RawUrl);
 
             //muestra los campos por defecto
             Btn_agregar_obs.Visible = true;
             observacion.Visible = true;
+            //oculta lo que ya no se usa
+            Btn_aceptar.Visible = false;
+            Txt_Observacion.Visible = false;
         }
       
         public void insertar_Observacion_BBDD(string Observacion)
@@ -65,22 +70,11 @@ namespace Proyecto_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-               
-                //como vamos a cambiar la base de datos no se bien como puede ser esto pero algo dejo hecho               
-                //if (turno_actual.!!OBSERVACION!!.LENTH == 0){
-                //    datos.setConsulta("INSER INTO TURNOS (OBSERVACION) VALUES  = (@OBSERVACION) WHERE ID_TURNO = @ID_TURNO");
-                //    datos.setParametro("@OBSERVACION", Observacion);
-                //    datos.setParametro("@ID_TURNO", turno_actual.Id);
-                //    datos.ejecutarAccion();
-                //}
-                //else{
-
-                //}
-                //datos.setConsulta("UPDATE  TURNOS SET OBSERVACION = @OBSERVACION WHERE ID_TURNO = @ID_TURNO");
-                //datos.setParametro("@OBSERVACION",Observacion);
-                //datos.setParametro("@ID_TURNO", turno_actual.Id);
-                //datos.ejecutarAccion();
-
+                  datos.setConsulta("UPDATE  TURNOS SET OBS_MEDICO = @OBSERVACION WHERE ID_TURNO = @ID_TURNO");
+                  datos.setParametro("@OBSERVACION", Observacion);
+                  datos.setParametro("@ID_TURNO", turno_actual.Id);
+                  datos.ejecutarAccion();
+                
             }
             catch (Exception ex)
             {
@@ -91,6 +85,20 @@ namespace Proyecto_Clinica
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public Turno Recargar_turno(int ID)
+        {
+            ClinicaConexion conexion = new ClinicaConexion();
+            clinica = conexion.Listar();
+            foreach (Turno turno in clinica.Turnos)
+            {
+                if (ID == turno.Id)
+                {
+                    return turno;
+                }
+            }
+            return new Turno();
         }
     }
 }
