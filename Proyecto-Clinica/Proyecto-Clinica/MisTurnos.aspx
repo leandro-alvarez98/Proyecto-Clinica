@@ -23,6 +23,7 @@
                                 <asp:BoundField HeaderText="Nombre medico" DataField="Nombre_Medico" />
                                 <asp:BoundField HeaderText="Apellido medico" DataField="Apellido_Medico" />
                                 <asp:BoundField HeaderText="DNI Paciente" DataField="Dni_Paciente" />
+                                <asp:BoundField HeaderText="Motivo Consulta" DataField="Obs_paciente" />
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Modificar" />
                                 <asp:CommandField ShowSelectButton="true" SelectText="Cancelar" HeaderText="Cancelar" />
@@ -42,6 +43,7 @@
                                 <asp:BoundField HeaderText="Nombre medico" DataField="Nombre_Medico" />
                                 <asp:BoundField HeaderText="Apellido medico" DataField="Apellido_Medico" />
                                 <asp:BoundField HeaderText="DNI Paciente" DataField="Dni_Paciente" />
+                                <asp:BoundField HeaderText="Motivo Consulta" DataField="Obs_paciente" />
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:CommandField ShowSelectButton="true" SelectText="Agregar Observacion" HeaderText="Observaciones" />
                             </Columns>
@@ -60,6 +62,7 @@
                                 <asp:BoundField HeaderText="Nombre medico" DataField="Nombre_Medico" />
                                 <asp:BoundField HeaderText="Apellido medico" DataField="Apellido_Medico" />
                                 <asp:BoundField HeaderText="DNI Paciente" DataField="Dni_Paciente" />
+                                <asp:BoundField HeaderText="Motivo Consulta" DataField="Obs_paciente" />
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:CommandField ShowSelectButton="true" SelectText="Cancelar" HeaderText="Accion" />
                             </Columns>

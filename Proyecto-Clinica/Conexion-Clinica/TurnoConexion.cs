@@ -16,7 +16,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT \r\n\t\tT.ID_TURNO AS IDTURNO, \r\n\t\tT.ID_MEDICO AS IDMEDICO, \r\n\t\tT.ID_PACIENTE AS IDPACIENTE, \r\n\t\tT.ID_HORARIO, \r\n\t\tT.FECHA AS FECHA, \r\n\t\tT.ID_HORARIO AS IDHORARIO,\r\n\t\tH.HORA AS HORA,\r\n\t\tP.DNI AS DNIPACIENTE, \r\n\t\tT.ESTADO AS ESTADO, \r\n\t\tM.NOMBRE AS MNOMBRE, \r\n\t\tM.APELLIDO AS MAPELLIDO, \r\n\t\tP.NOMBRE AS PNOMBRE, \r\n\t\tP.APELLIDO AS PAPELLIDO \r\n\tFROM TURNOS T \r\n\tINNER JOIN \r\n\tMEDICOS M ON M.ID_MEDICO = T.ID_MEDICO \r\n\tINNER JOIN \r\n\tPACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE\r\n\tINNER JOIN\r\n\tHORARIOS H ON H.ID_HORARIO = T.ID_HORARIO");
+                datos.setConsulta("\tSELECT T.ID_TURNO AS IDTURNO,T.ID_MEDICO AS IDMEDICO,T.ID_PACIENTE AS IDPACIENTE,T.ID_HORARIO,T.FECHA AS FECHA,T.ID_HORARIO AS IDHORARIO,H.HORA AS HORA,P.DNI AS DNIPACIENTE,T.ESTADO AS ESTADO,M.NOMBRE AS MNOMBRE,M.APELLIDO AS MAPELLIDO,P.NOMBRE AS PNOMBRE,P.APELLIDO AS PAPELLIDO ,T.OBS_PACIENTE AS OBSERVACION_PACIENTE,T.OBS_MEDICO AS OBSERVACION_MEDICO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE INNER JOIN HORARIOS H ON H.ID_HORARIO = T.ID_HORARIO");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -34,8 +34,10 @@ namespace Conexion_Clinica
                         Nombre_Medico = (String)datos.Lector["MNOMBRE"],
                         Apellido_Medico = (String)datos.Lector["MAPELLIDO"],
                         Nombre_Paciente = (String)datos.Lector["PNOMBRE"],
-                        Apellido_Paciente = (String)datos.Lector["PAPELLIDO"]
-                    };
+                        Apellido_Paciente = (String)datos.Lector["PAPELLIDO"],
+                        Obs_paciente = (string)datos.Lector["OBSERVACION_PACIENTE"],
+                        Obs_medico = (string)datos.Lector["OBSERVACION_MEDICO"],
+                };
 
                     lista.Add(turno);
                 }

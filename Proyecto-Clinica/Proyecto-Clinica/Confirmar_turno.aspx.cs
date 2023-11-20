@@ -35,9 +35,11 @@ namespace Proyecto_Clinica
 
         protected void Confirmar_turno_Click(object sender, EventArgs e)
         {
+            turno_a_reservar.Obs_paciente = Txt_observacion_paciente.Text;
+            turno_a_reservar.Obs_medico = "";
             Insertar_Turno();
             lbl_TurnoIngresado.Visible = true;
-            email_service.cuerpoCorreo( turno_a_reservar,  usuario_actual.Mail);
+           // email_service.cuerpoCorreo( turno_a_reservar,  usuario_actual.Mail);
             
         }
         private void Insertar_Turno()
@@ -45,12 +47,13 @@ namespace Proyecto_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //INSERT INTO TURNOS(ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, OBSERVACION_PACIENTE, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA, @OBSERVACION_PACIENTE, @ESTADO)
-                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA, @ESTADO)");
+                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA,OBS_PACIENTE,OBS_MEDICO, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA,@OBS_PACIENTE,@OBS_MEDICO, @ESTADO)");
                 datos.setParametro("@IDMEDICO", turno_a_reservar.Id_Medico);
                 datos.setParametro("@IDPACIENTE", turno_a_reservar.Id_Paciente);
                 datos.setParametro("@IDHORA", turno_a_reservar.Id_Horario);
                 datos.setParametro("@FECHA", turno_a_reservar.Fecha);
+                datos.setParametro("@OBS_PACIENTE",turno_a_reservar.Obs_paciente);
+                datos.setParametro("@OBS_MEDICO", turno_a_reservar.Obs_medico);
                 datos.setParametro("@ESTADO", "Reservado");
                 datos.ejecutarAccion();
             }

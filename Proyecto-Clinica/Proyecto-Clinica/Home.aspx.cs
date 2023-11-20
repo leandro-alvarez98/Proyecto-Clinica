@@ -31,14 +31,14 @@ namespace Proyecto_Clinica
             Grilla_Medicos.DataSource = clinica.Medicos;
             Grilla_Especialidades.DataSource = clinica.Especialidades;
             Grilla_Turnos.DataSource = clinica.Turnos;
-            Grilla_Observaciones.DataSource = clinica.Observaciones_Paciente;
+           
 
             Grilla_Usuarios.DataBind();
             Grilla_Pacientes.DataBind();
             Grilla_Medicos.DataBind();
             Grilla_Especialidades.DataBind();
             Grilla_Turnos.DataBind();
-            Grilla_Observaciones.DataBind();
+            
              
 
         }

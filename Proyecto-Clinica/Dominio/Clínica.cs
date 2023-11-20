@@ -21,8 +21,6 @@ namespace Proyecto_Clinica.Dominio
         public List<Administrador> Administracion { get; set; }             
         public List<Turno> Turnos { get; set; }
         public List<Especialidad> Especialidades { get; set; }
-        public List<Observacion> Observaciones_Medicos { get; set; }
-        public List<Observacion> Observaciones_Paciente {  get; set; }
         public List <Horario> Horarios { get; set; }
     }
 }

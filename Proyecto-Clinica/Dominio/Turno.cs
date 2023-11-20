@@ -19,6 +19,8 @@ namespace Proyecto_Clinica.Dominio
         public string Apellido_Medico { get; set; }
         public string Nombre_Paciente { get; set; }
         public string Apellido_Paciente { get; set; }
-        public string Dni_paciente {  get; set; }    
+        public string Dni_paciente {  get; set; }   
+        public string Obs_paciente { get; set; }
+        public string Obs_medico { get; set; }
     }
 }
