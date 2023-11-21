@@ -33,7 +33,6 @@ namespace Proyecto_Clinica
 
             try
             {
-                // Verificar si el correo electrónico existe en la base de datos
                 bool correoEncontrado = VerificarCorreoEnBaseDeDatos(txtIngresarMail.Text);
 
                 if (correoEncontrado)
@@ -53,7 +52,6 @@ namespace Proyecto_Clinica
             }
         }
 
-        // Método para verificar si el correo existe en la base de datos
         private bool VerificarCorreoEnBaseDeDatos(string correo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -76,14 +74,11 @@ namespace Proyecto_Clinica
             {
                 datos.ejecutarLectura();
 
-                // Utilizamos un bucle while para leer las filas resultantes
                 while (datos.Lector.Read())
                 {
-                    // Si hay al menos una fila, el correo existe en alguna tabla de usuarios
                     return true;
                 }
 
-                // No se encontraron filas, el correo no existe en ninguna tabla de usuarios
                 return false;
             }
             catch (Exception ex)
@@ -96,40 +91,7 @@ namespace Proyecto_Clinica
             }
         }
 
-        //protected void btnEnviarMail_Click(object sender, EventArgs e)
-        //{
-        //    bool correoVerificado = false;
-        //    EmailService emailService = new EmailService();
-        //    emailService.cuerpoCorreo(txtIngresarMail.Text);
-
-        //    try
-        //    {
-        //        foreach (Usuario usuario in clinica.Usuarios)
-        //        {
-        //            if (string.Equals(usuario.Mail, txtIngresarMail.Text, StringComparison.OrdinalIgnoreCase))
-        //            {
-        //                correoVerificado = true;
-        //                break;
-        //            }
-        //        }
-
-        //        if (correoVerificado)
-        //        {
-        //            emailService.enviarCorreo();
-        //            lblMensaje.Text = "Correo enviado correctamente.";
-        //        }
-        //        else
-        //        {
-        //            lblMensaje.Text = "No se encontró el correo.";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblMensaje.Text = "Error al verificar el correo: " + ex.Message;
-        //    }
-
-        //}
-
+       
         protected void btnBuscarMailUsuario_Click(object sender, EventArgs e)
         {
 

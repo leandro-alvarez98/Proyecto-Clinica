@@ -16,8 +16,8 @@ namespace Dominio
         SmtpClient ServerEmail = new SmtpClient();
         MailMessage Correo = new MailMessage();
         //NECESITAMOS CREAR UN MAIL PARA DARLE USO
-        private string miEmail = "curcioesteban93@gmail.com";
-        private string miContraseña = "krexsfoqmmpqjzrr";
+        private string miEmail = "crear el mail";
+        private string miContraseña = "la contraseña";
         private string miAlias = "EQUIPO 18";
         private string[] miAdjuntos;
         private MailMessage miCorreo;
@@ -40,14 +40,15 @@ namespace Dominio
             miCorreo.Priority = MailPriority.High;
         }
         //envio de turno confirmado
+        //hay que generar o pasarle los numeros de turnos que se generen
         public void cuerpoCorreo(Turno turno_a_reservar, string correo)
         {
             miCorreo = new MailMessage();
-            miCorreo.From = new MailAddress(miEmail, miAlias, System.Text.Encoding.UTF8);
+            miCorreo.From = new MailAddress(miEmail, miAlias);
             miCorreo.To.Add(correo);
-            miCorreo.Subject = ("");
+            miCorreo.Subject = "Confirmacion de turno";
             miCorreo.IsBodyHtml = true;
-            miCorreo.Body = "Fecha: " + turno_a_reservar.Fecha + " Hora: " + turno_a_reservar.Horario + " Medico: " + turno_a_reservar.Nombre_Medico + " " + turno_a_reservar.Apellido_Medico;
+            miCorreo.Body = $"{turno_a_reservar.Nombre_Paciente} {turno_a_reservar.Apellido_Paciente} le brindamos la informacion sobre su turno: <br/>Numero de turno: {turno_a_reservar.Id}<br/>Hora: {turno_a_reservar.Fecha}<br/>Hora: {turno_a_reservar.Horario}<br/>Medico: {turno_a_reservar.Nombre_Medico} {turno_a_reservar.Apellido_Medico}";
             miCorreo.Priority = MailPriority.High;
         }
          
