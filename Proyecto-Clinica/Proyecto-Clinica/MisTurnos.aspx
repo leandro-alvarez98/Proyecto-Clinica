@@ -30,6 +30,7 @@
                                 <asp:CommandField ShowSelectButton="true" SelectText="Cancelar" HeaderText="Cancelar" />
                             </Columns>
                         </asp:GridView>
+                        <asp:Label ID="Lbl_sin_turnos" runat="server" Text="No hay Turnos asociados a este Dni" Visible="false"></asp:Label>
                     </div>
                 <%}else if (usuarioActual.Tipo == "Médico")%>
                 <%{%>

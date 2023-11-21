@@ -213,7 +213,7 @@
                                 </li>
                                 <li class="list-inline-item">
                                     <a href="https://www.linkedin.com/in/fancusan/" class="text-white"><i class='bx bxl-linkedin-square'></i>Facu en Linkedin</a>
-                                    <%--<<a href="" class="text-white"><i class='bx bxl-linkedin-square'></i>Lean en linkedin</a>--%>
+                                    <a href="https://www.linkedin.com/in/leandro-alvarez-364686239/" class="text-white"><i class='bx bxl-linkedin-square'></i>Lean en linkedin</a>
                                     <a href="https://www.linkedin.com/in/curcioesteban/" class="text-white"><i class='bx bxl-linkedin-square'></i>Esteban en linkedin</a>
                                 </li>
                             </ul>

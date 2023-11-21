@@ -174,16 +174,33 @@ namespace Proyecto_Clinica
         }
         protected void Btn_busqueda_Click(object sender, EventArgs e)
         {
-            turnos_x_dni = new List<Turno>();
-            string dni_paciente = Txt_Busqueda.Text;
-            Cargar_turnos_x_Dni(dni_paciente);
+            try
+            {
+                turnos_x_dni = new List<Turno>();
+                string dni_paciente = Txt_Busqueda.Text;
+                Cargar_turnos_x_Dni(dni_paciente);
 
-            //limpia la grilla actual
-            DGV_Turnos_totales.DataSource = null;
-            DGV_Turnos_totales.DataBind();
-            //cargar la nueva grilla de datos 
-            DGV_Turnos_totales.DataSource = turnos_x_dni;
-            DGV_Turnos_totales.DataBind();
+                //limpia la grilla actual
+                DGV_Turnos_totales.DataSource = null;
+                DGV_Turnos_totales.DataBind();
+                //cargar la nueva grilla de datos 
+                DGV_Turnos_totales.DataSource = turnos_x_dni;
+                DGV_Turnos_totales.DataBind();
+                if (turnos_x_dni.Count() == 0)
+                {
+                    Lbl_sin_turnos.Visible = true;
+                }
+                else
+                {
+                    Lbl_sin_turnos.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+           
         }
         protected void Btn_limpiar_busqueda_Click(object sender, EventArgs e)
         {
@@ -193,6 +210,10 @@ namespace Proyecto_Clinica
             //cargar la nueva grilla de datos 
             DGV_Turnos_totales.DataSource = misTurnos;
             DGV_Turnos_totales.DataBind();
+            if(misTurnos.Count() != 0)
+            {
+                Lbl_sin_turnos.Visible=false;
+            }
         }
     }
 }
