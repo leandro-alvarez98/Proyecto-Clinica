@@ -44,55 +44,11 @@ namespace Proyecto_Clinica
                     Tipo = ddlRegistrarTipo.SelectedValue
                 };
                 InsertarUsuarioEnBBDD(nuevo_usuario);
-                //InsertarInformacionEnBBDD(nuevo_usuario);
 
                 Session["Usuario"] = nuevo_usuario;
                 Response.Redirect("Perfil_Usuario.aspx");
             }
         }
-
-        private void InsertarInformacionEnBBDD(Usuario usuario)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                switch (usuario.Tipo)
-                {
-                    case "Paciente":
-                        datos.setConsulta("INSERT INTO PACIENTES (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
-                        break;
-                    case "Médico":
-                        datos.setConsulta("INSERT INTO MEDICOS (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
-                        break;
-                    case "Administrador":
-                        datos.setConsulta("INSERT INTO ADMINISTRADOR (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1");
-                        break;
-                    case "Recepcionista":
-                        datos.setConsulta("INSERT INTO RECEPCIONISTA (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
-                        break;
-                }
-                datos.setParametro("@IDUSUARIO", usuario.Id);
-                datos.setParametro("@DNI", usuario.Dni);
-                datos.setParametro("@NOMBRE", usuario.Nombre);
-                datos.setParametro("@APELLIDO", usuario.Apellido);
-                datos.setParametro("@TELEFONO", usuario.Telefono);
-                datos.setParametro("@DIRECCION", usuario.Direccion);
-                datos.setParametro("@FECHANACIMIENTO", usuario.Fecha_Nacimiento);
-                datos.setParametro("@MAIL", usuario.Mail);
-
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
         protected void InsertarUsuarioEnBBDD(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -39,8 +39,6 @@ namespace Proyecto_Clinica
         protected void Buscar_Turno_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
-         
-            // Mostrar para cada médico, su disponibilidad.
         }
         private void Cargar_Turnos_Disponibles()
         {
@@ -167,14 +165,21 @@ namespace Proyecto_Clinica
 
             if (usuario.Tipo == "Paciente")
             {
-                
+
                 Paciente paciente = Buscar_Paciente();
-                turno_seleccionado.Id_Paciente = paciente.Id;
-                turno_seleccionado.Dni_paciente = paciente.Dni;
-                turno_seleccionado.Nombre_Paciente = paciente.Nombre;
-                turno_seleccionado.Apellido_Paciente = paciente.Apellido;
-                Session["Turno"] = turno_seleccionado;
-                Response.Redirect("Confirmar_turno.aspx");
+                if (Paciente_Disponible(paciente.Id, turno_seleccionado))
+                {
+                    turno_seleccionado.Id_Paciente = paciente.Id;
+                    turno_seleccionado.Dni_paciente = paciente.Dni;
+                    turno_seleccionado.Nombre_Paciente = paciente.Nombre;
+                    turno_seleccionado.Apellido_Paciente = paciente.Apellido;
+                    Session["Turno"] = turno_seleccionado;
+                    Response.Redirect("Confirmar_turno.aspx");
+                }
+                else
+                {
+                    // El paciente no está disponible
+                }
             }
             else
             {
@@ -203,6 +208,21 @@ namespace Proyecto_Clinica
                 }
             }
             return new Paciente();
+        }
+
+        private bool Paciente_Disponible(int ID, Turno turno_seleccionado)
+        {
+            foreach (Turno turno in clinica.Turnos)
+            {
+                if (turno.Id_Paciente == ID)
+                {
+                    if (turno.Fecha == turno_seleccionado.Fecha && turno.Horario == turno_seleccionado.Horario)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
