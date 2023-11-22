@@ -19,6 +19,7 @@ namespace Proyecto_Clinica.Dominio
         public DateTime Fecha_Nacimiento { get; set; }
         public string Mail { get; set; }
         public bool Estado { get; set; }
+        public int Id_Imagen { get; set; }
         public string Imagen { get; set; }
         public Usuario()
         {

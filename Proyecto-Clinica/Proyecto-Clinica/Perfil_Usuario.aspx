@@ -60,76 +60,10 @@
             </div>
             <div class="col-md-6">
                 <input type="file" id="txtImagen" class="form-control" runat="server" />
-
                 <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" />
+                <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Cambiar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />
             </div>
         </div>
     </div>
 
-
-    <%--<div class="container form_top containerbott">
-        <div class="row">
-            <div class="card ">
-                <div class="card-body ">
-                    <div class="col-md-6">
-                        <h1 class="card-title">Perfil de Usuario</h1>
-                        <hr />
-                        <div class="card " style="width: 40rem;">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
-                                    <asp:Label ID="nombrelbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtNombreEdit" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
-                                </li>
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Apellidos: "></asp:Label>
-                                    <asp:Label ID="apellidoLbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtApellidoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
-                                </li>
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
-                                    <asp:Label ID="dniLbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
-                                </li>
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>
-                                    <asp:Label ID="emailLbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtMailEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
-                                </li>
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Telefono: "></asp:Label>
-                                    <asp:Label ID="telefonoLbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtTelefonoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
-                                </li>
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Dirección: "></asp:Label>
-                                    <asp:Label ID="direccionLbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtDireccionEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
-                                </li>
-                                <li class="list-group-item">
-                                    <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
-                                    <asp:Label ID="fechaNacimientoLbl" CssClass="lbl" runat="server"></asp:Label>
-                                    <asp:TextBox ID="txtFechaNacimientoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
-                                </li>
-                            </ul>
-
-                            <div class="mb-2">
-                                <br />
-                                <asp:Button ID="btnEditarDatos" CssClass="Boton" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
-                                <asp:Button ID="btnGuardar" CssClass="Boton" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
-                                <asp:Button ID="btnCancelar" CssClass="Boton" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
-                                <asp:Button ID="btnCambioContraseña" CssClass="Boton" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="file" id="txtImagen" class="form-control" runat="server" />
-
-                        <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 200px; height: 200px;" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>--%>
 </asp:Content>

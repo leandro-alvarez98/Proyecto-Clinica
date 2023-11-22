@@ -153,7 +153,6 @@ namespace Proyecto_Clinica
             direccionLbl.Text = Usuario_Actual.Direccion;
             fechaNacimientoLbl.Text = Usuario_Actual.Fecha_Nacimiento.ToString();
         }
-
         public void btnCancelar_Click(object sender, EventArgs e)
         {
 
@@ -449,6 +448,25 @@ namespace Proyecto_Clinica
             catch (Exception ex)
             {
                 MessageBox.Show("Error al actualizar los datos: " + ex.Message);
+                throw ex;
+            }
+        }
+
+        protected void btn_CambiarImagen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Escribe la imagen
+                string ruta = Server.MapPath("./img/");
+                txtImagen.PostedFile.SaveAs(ruta + "perfil-" + Usuario_Actual.Id + ".jpg");
+                Usuario_Actual.Imagen = "perfil-" + Usuario_Actual.Id + ".jpg";
+                UsuarioConexion usuarioConexion = new UsuarioConexion();
+                usuarioConexion.actualizarImagen(Usuario_Actual);
+
+
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

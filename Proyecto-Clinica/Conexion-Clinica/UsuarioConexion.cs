@@ -16,20 +16,35 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_USUARIO, NOMBRE_USUARIO, CONTRASENA, TIPO FROM USUARIOS");
+                datos.setConsulta("SELECT ID_USUARIO, NOMBRE_USUARIO, CONTRASENA, TIPO, ID_IMAGEN FROM USUARIOS");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Usuario usuario = new Usuario
+                    if (!(datos.Lector["ID_IMAGEN"] is DBNull))
                     {
-                        Id = (int)datos.Lector["ID_USUARIO"],
-                        Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
-                        Contraseña = (String)datos.Lector["CONTRASENA"],
-                        Tipo = (String)datos.Lector["TIPO"]
-                    };
+                        Usuario usuario = new Usuario
+                        {
+                            Id = (int)datos.Lector["ID_USUARIO"],
+                            Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Contraseña = (String)datos.Lector["CONTRASENA"],
+                            Tipo = (String)datos.Lector["TIPO"],
+                            Id_Imagen = (int)datos.Lector["ID_IMAGEN"]
+                        };
+                        lista.Add(usuario);
+                    }
+                    else
+                    {
+                        Usuario usuario = new Usuario
+                        {
+                            Id = (int)datos.Lector["ID_USUARIO"],
+                            Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Contraseña = (String)datos.Lector["CONTRASENA"],
+                            Tipo = (String)datos.Lector["TIPO"]
+                        };
+                        lista.Add(usuario);
+                    }
 
-                    lista.Add(usuario);
                 }
                 return lista;
             }
@@ -167,6 +182,51 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
+        public void actualizarImagen(Usuario usuario_Actual)
+        {
+            Insertar_Imagen(usuario_Actual.Imagen);
+            ActualizarImagenUsuario(usuario_Actual.Id);
+        }
+
+        private void ActualizarImagenUsuario(int ID)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE USUARIOS SET ID_IMAGEN = (SELECT MAX(ID_IMAGEN) FROM IMAGENES) WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", ID);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        private void Insertar_Imagen(String URL)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO IMAGENES(URL_IMAGEN) VALUES (@URL)");
+                datos.setParametro("@URL", URL);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
-
