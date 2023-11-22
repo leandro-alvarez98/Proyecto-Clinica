@@ -19,7 +19,8 @@ namespace Proyecto_Clinica.Dominio
         public int Id_Usuario { get; set; }
         public Paciente()
         {
-            Id = 0;
+            Id = -1;
+            Id_Usuario = -1;
             Nombre = "No especificado";
             Dni = "No especificado";
             Apellido = "No especificado";
@@ -28,7 +29,6 @@ namespace Proyecto_Clinica.Dominio
             Fecha_Nacimiento = new DateTime();
             Mail = "No especificado";
             Estado = false;
-            Id_Usuario = 0;
         }
     }
     

@@ -7,23 +7,38 @@
 
         <%-- REGISTRO DEL USUARIO --%>
     <div class="container form_top containerbott" id="form_usuario">
-        <h1 >CREA TU CUENTA</h1>
+        <h1>CREA TU CUENTA</h1>
         <hr />
-        <div class="form-group">
-            <asp:Label ID="lblRegistrarUsuario" CssClass="lbl fw-semibold" runat="server" Text="Usuario"></asp:Label>
-            <asp:TextBox ID="txtRegistrarUsuario"  runat="server" CssClass="form-control "></asp:TextBox>
-        </div>
-        <div class="form-group">
-            <asp:Label ID="lblRegistrarContrasena" CssClass="lbl fw-semibold" runat="server" Text="Contraseña"></asp:Label>
-            <asp:TextBox ID="txtRegistrarContrasena" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
-        <div class="form-group">
-            <asp:Label ID="lblRegistrarContrasena2" CssClass="lbl fw-semibold" runat="server" Text="Repita su contraseña"></asp:Label>
-            <asp:TextBox ID="txtRegistrarContrasena2" runat="server" CssClass="form-control"></asp:TextBox>
-        </div>
-        <div class="col-auto">
-            <asp:Label ID="lblRegistrarTipo" CssClass="lbl fw-semibold" runat="server" Text="Tipo de usuario"></asp:Label>
-            <asp:DropDownList ID="ddlRegistrarTipo" runat="server"></asp:DropDownList>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <asp:Label ID="lblRegistrarUsuario" CssClass="lbl fw-semibold" runat="server" Text="Usuario"></asp:Label>
+                    <asp:TextBox ID="txtRegistrarUsuario" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="lblRegistrarContrasena" CssClass="lbl fw-semibold" runat="server" Text="Contraseña"></asp:Label>
+                    <asp:TextBox ID="txtRegistrarContrasena" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="lblRegistrarContrasena2" CssClass="lbl fw-semibold" runat="server" Text="Repita su contraseña"></asp:Label>
+                    <asp:TextBox ID="txtRegistrarContrasena2" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+
+                <div class="col-auto">
+                    <asp:Label ID="lblRegistrarTipo" CssClass="lbl fw-semibold" runat="server" Text="Tipo de usuario"></asp:Label>
+                    <asp:DropDownList ID="ddlRegistrarTipo" runat="server"></asp:DropDownList>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <input type="file" id="txtImagen" class="form-control" runat="server" />
+
+                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 200px; height: 200px;" />
+            </div>
         </div>
         <br />
         <asp:Button ID="btnAceptarAltaUsuario" runat="server" Text="Aceptar" CssClass="Boton" OnClick="btn_AceptarAltaUsuario_Click" />

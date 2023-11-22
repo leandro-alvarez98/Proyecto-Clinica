@@ -15,7 +15,6 @@ namespace Proyecto_Clinica
     public partial class Seleccionar_paciente : System.Web.UI.Page
     {
         Clinica clinica;
-        Paciente paciente_buscado;
         List<Paciente> ps;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +50,7 @@ namespace Proyecto_Clinica
         protected void buscar_paciente_Click(object sender, EventArgs e)
         {
             ps = new List<Paciente>();
-            paciente_buscado = new Paciente();
+            Paciente paciente_buscado = new Paciente();
 
             string Dni = txtDni.Text;
             paciente_buscado = Buscar_Paciente(Dni);
@@ -63,15 +62,37 @@ namespace Proyecto_Clinica
         {
             string id = DGV_Paciente.SelectedRow.Cells[0].Text;
             Paciente paciente = Buscar_Paciente(int.Parse(id));
-
             Turno Turno_Seleccionado = (Turno)Session["Turno"];
-            Turno_Seleccionado.Id_Paciente = int.Parse(id);
-            Turno_Seleccionado.Nombre_Paciente = paciente.Nombre;
-            Turno_Seleccionado.Apellido_Paciente = paciente.Apellido;
-            Turno_Seleccionado.Dni_paciente = paciente.Dni;
 
-            Session["Turno"] = Turno_Seleccionado;
-            Response.Redirect("Confirmar_turno.aspx");
+            if(Paciente_Disponible(paciente.Id, Turno_Seleccionado))
+            {
+                Turno_Seleccionado.Id_Paciente = int.Parse(id);
+                Turno_Seleccionado.Nombre_Paciente = paciente.Nombre;
+                Turno_Seleccionado.Apellido_Paciente = paciente.Apellido;
+                Turno_Seleccionado.Dni_paciente = paciente.Dni;
+
+                Session["Turno"] = Turno_Seleccionado;
+                Response.Redirect("Confirmar_turno.aspx");
+            }
+            else
+            {
+                // El paciente no tiene disponibilidad en ese horario
+            }
+        }
+
+        private bool Paciente_Disponible(int ID, Turno turno_seleccionado)
+        {
+            foreach(Turno turno in clinica.Turnos)
+            {
+                if(turno.Id_Paciente == ID)
+                {
+                    if (turno.Fecha == turno_seleccionado.Fecha && turno.Horario == turno_seleccionado.Horario)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

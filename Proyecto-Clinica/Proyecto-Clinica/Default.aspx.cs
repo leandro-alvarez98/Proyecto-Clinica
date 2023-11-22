@@ -14,17 +14,10 @@ namespace Proyecto_Clinica
     public partial class Default : System.Web.UI.Page
     {
         Usuario usuario_actual = null;
-        public Usuario Comprobar_Usuario()
-        {
-            return usuario_actual;
-        }
+      
         public void Cargar_Componentes()
-        {          
-
-            if (Session["Usuario"] == null)
-            {
-                Session["Usuario"] = new Usuario();
-            }
+        {
+            Session["Usuario"] = new Usuario();
         }
         protected void Page_Load(object sender, EventArgs e)
         {

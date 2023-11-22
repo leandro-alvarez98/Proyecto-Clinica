@@ -23,10 +23,6 @@ namespace Proyecto_Clinica
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_Componentes();
-
-            if (!IsPostBack)
-            {
-            }
         }
         private void Cargar_Componentes()
         {
@@ -36,36 +32,74 @@ namespace Proyecto_Clinica
 
             Usuario_Actual = new Usuario();
             Usuario_Actual = (Usuario)Session["Usuario"];
-
+            Cargar_Datos_Usuario();
+            Cargar_labels();
+        }
+        private void Cargar_Datos_Usuario()
+        {
             switch (Usuario_Actual.Tipo)
             {
                 case "Médico":
                     Medico_actual = new Medico();
                     Medico_actual = Cargar_Médico_Clinica();
-                    Cargar_label_Medico();
+                    if(Medico_actual.Id != -1)
+                    {
+                        Usuario_Actual.Nombre = Medico_actual.Nombre;
+                        Usuario_Actual.Apellido = Medico_actual.Apellido;
+                        Usuario_Actual.Dni = int.Parse(Medico_actual.Dni);
+                        Usuario_Actual.Telefono = Medico_actual.Telefono;
+                        Usuario_Actual.Direccion= Medico_actual.Direccion;
+                        Usuario_Actual.Fecha_Nacimiento = Medico_actual.Fecha_Nacimiento;
+                        Usuario_Actual.Mail = Medico_actual.Mail;
+                    }
                     break;
 
                 case "Paciente":
                     paciente_actual = new Paciente();
                     paciente_actual = Cargar_Paciente_Clinica();
-                    Cargar_label_Paciente();
+                    if(paciente_actual.Id != -1)
+                    {
+                        Usuario_Actual.Nombre = paciente_actual.Nombre;
+                        Usuario_Actual.Apellido = paciente_actual.Apellido;
+                        Usuario_Actual.Dni = int.Parse(paciente_actual.Dni);
+                        Usuario_Actual.Telefono = paciente_actual.Telefono;
+                        Usuario_Actual.Direccion = paciente_actual.Direccion;
+                        Usuario_Actual.Fecha_Nacimiento = paciente_actual.Fecha_Nacimiento;
+                        Usuario_Actual.Mail = paciente_actual.Mail;
+                    }
                     break;
 
                 case "Administrador":
                     Administrador_actual = new Administrador();
                     Administrador_actual = Cargar_Administracion_Clinica();
-                    Cargar_label_Administracion();
+                    if(Administrador_actual.Id != -1)
+                    {
+                        Usuario_Actual.Nombre = Administrador_actual.Nombre;
+                        Usuario_Actual.Apellido = Administrador_actual.Apellido;
+                        Usuario_Actual.Dni = int.Parse(Administrador_actual.Dni);
+                        Usuario_Actual.Telefono = Administrador_actual.Telefono;
+                        Usuario_Actual.Direccion = Administrador_actual.Direccion;
+                        Usuario_Actual.Fecha_Nacimiento = Administrador_actual.Fecha_Nacimiento;
+                        Usuario_Actual.Mail = Administrador_actual.Mail;
+                    }    
                     break;
 
                 case "Recepcionista":
-                    Recepcionista_actual   = new Recepcionista();
+                    Recepcionista_actual = new Recepcionista();
                     Recepcionista_actual = Cargar_Recepcionista_Clinica();
-                    Cargar_label_Recepcionista();
+                    if(Recepcionista_actual.Id != -1)
+                    {
+                        Usuario_Actual.Nombre = Recepcionista_actual.Nombre;
+                        Usuario_Actual.Apellido = Recepcionista_actual.Apellido;
+                        Usuario_Actual.Dni = int.Parse(Recepcionista_actual.Dni);
+                        Usuario_Actual.Telefono = paciente_actual.Telefono;
+                        Usuario_Actual.Direccion = Recepcionista_actual.Direccion;
+                        Usuario_Actual.Fecha_Nacimiento = Recepcionista_actual.Fecha_Nacimiento;
+                        Usuario_Actual.Mail = Recepcionista_actual.Mail;
+                    }
                     break;
             }
-
         }
-
         private Medico Cargar_Médico_Clinica()
         {
             foreach (Medico medico in clinica.Medicos)
@@ -99,7 +133,6 @@ namespace Proyecto_Clinica
             }
             return new Administrador();
         }
-
         private Recepcionista Cargar_Recepcionista_Clinica() {
             foreach (Recepcionista recepcionista in clinica.Recepcionistas)
             {
@@ -110,85 +143,19 @@ namespace Proyecto_Clinica
             }
             return new Recepcionista(); 
         }
-
-        //Labels del usuario
-        public void Cargar_label_Paciente()
+        public void Cargar_labels()
         {
-            string dni = paciente_actual.Dni;
-            string apellido = paciente_actual.Apellido;
-            string nombre = paciente_actual.Nombre;
-            string mail = paciente_actual.Mail;
-            string telefono = paciente_actual.Telefono;
-            string direccion = paciente_actual.Direccion;
-            DateTime fecha_nacimiento = paciente_actual.Fecha_Nacimiento;
-
-            dniLbl.Text = dni;
-            apellidoLbl.Text = apellido;
-            nombrelbl.Text = nombre;
-            emailLbl.Text = mail;
-            telefonoLbl.Text = telefono;
-            direccionLbl.Text = direccion;
-            fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
-        }
-        public void Cargar_label_Medico()
-        {
-            string dni = Medico_actual.Dni;
-            string apellido = Medico_actual.Apellido;
-            string nombre = Medico_actual.Nombre;
-            string mail = Medico_actual.Mail;
-            string telefono = Medico_actual.Telefono;
-            string direccion = Medico_actual.Direccion;
-            DateTime fecha_nacimiento = Medico_actual.Fecha_Nacimiento;
-
-            dniLbl.Text = dni;
-            apellidoLbl.Text = apellido;
-            nombrelbl.Text = nombre;
-            emailLbl.Text = mail;
-            telefonoLbl.Text = telefono;
-            direccionLbl.Text = direccion;
-            fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
-        }
-        public void Cargar_label_Recepcionista()
-        {
-            string dni = Recepcionista_actual.Dni;
-            string apellido = Recepcionista_actual.Apellido;
-            string nombre = Recepcionista_actual.Nombre;
-            string mail = Recepcionista_actual.Mail;
-            string telefono = Recepcionista_actual.Telefono;
-            string direccion = Recepcionista_actual.Direccion;
-            DateTime fecha_nacimiento = Recepcionista_actual.Fecha_Nacimiento;
-
-            dniLbl.Text = dni;
-            apellidoLbl.Text = apellido;
-            nombrelbl.Text = nombre;
-            emailLbl.Text = mail;
-            telefonoLbl.Text = telefono;
-            direccionLbl.Text = direccion;
-            fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
-        }
-        public void Cargar_label_Administracion()
-        {
-            string dni = Administrador_actual.Dni;
-            string apellido = Administrador_actual.Apellido;
-            string nombre = Administrador_actual.Nombre;
-            string mail = Administrador_actual.Mail;
-            string telefono = Administrador_actual.Telefono;
-            string direccion = Administrador_actual.Direccion;
-            DateTime fecha_nacimiento = Administrador_actual.Fecha_Nacimiento;
-
-            dniLbl.Text = dni;
-            apellidoLbl.Text = apellido;
-            nombrelbl.Text = nombre;
-            emailLbl.Text = mail;
-            telefonoLbl.Text = telefono;
-            direccionLbl.Text = direccion;
-            fechaNacimientoLbl.Text = fecha_nacimiento.ToString();
+            dniLbl.Text = Usuario_Actual.Dni.ToString();
+            apellidoLbl.Text = Usuario_Actual.Apellido;
+            nombrelbl.Text = Usuario_Actual.Nombre;
+            emailLbl.Text = Usuario_Actual.Mail;
+            telefonoLbl.Text = Usuario_Actual.Telefono;
+            direccionLbl.Text = Usuario_Actual.Direccion;
+            fechaNacimientoLbl.Text = Usuario_Actual.Fecha_Nacimiento.ToString();
         }
 
         public void btnCancelar_Click(object sender, EventArgs e)
         {
-
-
 
         }
         public void btnEditar_Click(object sender, EventArgs e)
@@ -294,14 +261,6 @@ namespace Proyecto_Clinica
             txtDireccionEdit.Visible = false;
             txtFechaNacimientoEdit.Visible = false;
 
-            // mostrar los Label originales
-            //nombrelbl.Visible = true;
-            //apellidoLbl.Visible = true;
-            //emailLbl.Visible = true;
-            //telefonoLbl.Visible = true;
-            //direccionLbl.Visible = true;
-            //fechaNacimientoLbl.Visible = true;
-
             //Ocultar botón de guardar
             btnGuardar.Visible = false;
             btnEditarDatos.Visible = true;
@@ -309,7 +268,66 @@ namespace Proyecto_Clinica
         }
         public void btnGuardar_Click(object sender, EventArgs e)
         {
+            if(Usuario_Actual.Nombre == null)
+            {
+                InsertarDatosEnBBDD();
+            }
+            else
+            {
+                ActualizarDatosEnBBDD();
+            }
+        }
+        private void InsertarDatosEnBBDD()
+        {
+            string nuevoDni = txtDniEdit.Text;
+            string nuevoNombre = txtNombreEdit.Text;
+            string nuevoApellido = txtApellidoEdit.Text;
+            string nuevoMail = txtMailEdit.Text;
+            string nuevoTelefono = txtTelefonoEdit.Text;
+            string nuevaDireccion = txtDireccionEdit.Text;
+            DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
 
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                switch (Usuario_Actual.Tipo)
+                {
+                    case "Paciente":
+                        datos.setConsulta("INSERT INTO PACIENTES (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                        break;
+                    case "Médico":
+                        datos.setConsulta("INSERT INTO MEDICOS (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                        break;
+                    case "Administrador":
+                        datos.setConsulta("INSERT INTO ADMINISTRADOR (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1");
+                        break;
+                    case "Recepcionista":
+                        datos.setConsulta("INSERT INTO RECEPCIONISTA (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES (@IDUSUARIO, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                        break;
+                }
+                datos.setParametro("@DNI", nuevoDni);
+                datos.setParametro("@NOMBRE", nuevoNombre);
+                datos.setParametro("@APELLIDO", nuevoApellido);
+                datos.setParametro("@MAIL", nuevoMail);
+                datos.setParametro("@TELEFONO", nuevoTelefono);
+                datos.setParametro("@DIRECCION", nuevaDireccion);
+                datos.setParametro("@FECHANACIMIENTO", nuevaFechaNacimiento);
+                datos.setParametro("@IDUSUARIO", Usuario_Actual.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        private void ActualizarDatosEnBBDD()
+        {
             try
             {
                 // guardamos los valores editados de los TextBox
@@ -329,9 +347,8 @@ namespace Proyecto_Clinica
                         {
                             Paciente pacienteActualizado = new Paciente
                             {
-                                Id = Usuario_Actual.Id,
+                                Id_Usuario = Usuario_Actual.Id,
                                 Dni = nuevoDni,
-
                                 Nombre = nuevoNombre,
                                 Apellido = nuevoApellido,
                                 Mail = nuevoMail,
@@ -343,9 +360,6 @@ namespace Proyecto_Clinica
                             UsuarioConexion conexionPaciente = new UsuarioConexion();
                             conexionPaciente.ActualizarPaciente(pacienteActualizado);
 
-                            // Recarga los datos del paciente después de la actualización
-                            paciente_actual = Cargar_Paciente_Clinica();
-                            Cargar_label_Paciente();
                             // Oculta el TextBox y botón de guardar
                             OcultarControlesEdicion();
                             // Redirecciona a la misma página para refrescar los datos
@@ -358,7 +372,7 @@ namespace Proyecto_Clinica
                         {
                             Medico medicoActualizado = new Medico
                             {
-                                Id = Usuario_Actual.Id,
+                                Id_Usuario = Usuario_Actual.Id,
                                 Dni = nuevoDni,
 
                                 Nombre = nuevoNombre,
@@ -372,9 +386,6 @@ namespace Proyecto_Clinica
                             UsuarioConexion conexionMedico = new UsuarioConexion();
                             conexionMedico.ActualizarMedico(medicoActualizado);
 
-                            // Recarga los datos del médico después de la actualización
-                            Medico_actual = Cargar_Médico_Clinica();
-                            Cargar_label_Medico();
                             // Oculta el TextBox y botón de guardar
                             OcultarControlesEdicion();
                             // Redirecciona a la misma página para refrescar los datos
@@ -388,7 +399,7 @@ namespace Proyecto_Clinica
                         {
                             Recepcionista recepcionistaActualizado = new Recepcionista
                             {
-                                Id = Usuario_Actual.Id,
+                                Id_Usuario = Usuario_Actual.Id,
                                 Dni = nuevoDni,
                                 Nombre = nuevoNombre,
                                 Apellido = nuevoApellido,
@@ -399,12 +410,9 @@ namespace Proyecto_Clinica
                             };
 
                             UsuarioConexion conexionRecepcionista = new UsuarioConexion();
-                            
+
                             conexionRecepcionista.ActualizarRecepcionista(recepcionistaActualizado);
 
-                            // Recarga los datos del médico después de la actualización
-                            Recepcionista_actual = Cargar_Recepcionista_Clinica();
-                            Cargar_label_Recepcionista();
                             // Oculta el TextBox y botón de guardar
                             OcultarControlesEdicion();
                             // Redirecciona a la misma página para refrescar los datos
@@ -417,7 +425,7 @@ namespace Proyecto_Clinica
                         {
                             Administrador administradorActualizado = new Administrador
                             {
-                                Id = Usuario_Actual.Id,
+                                Id_Usuario = Usuario_Actual.Id,
                                 Dni = nuevoDni,
                                 Nombre = nuevoNombre,
                                 Apellido = nuevoApellido,
@@ -428,29 +436,21 @@ namespace Proyecto_Clinica
                             };
 
                             UsuarioConexion conexionAdministrador = new UsuarioConexion();
-
                             conexionAdministrador.ActualizarAdministracion(administradorActualizado);
 
-                            // Recarga los datos del médico después de la actualización
-                            Administrador_actual = Cargar_Administracion_Clinica();
-                            Cargar_label_Administracion();
                             // Oculta el TextBox y botón de guardar
                             OcultarControlesEdicion();
                             // Redirecciona a la misma página para refrescar los datos
                             Response.Redirect(Request.RawUrl);
                         }
-                        
                         break;
                 }
-
             }
             catch (Exception ex)
             {
-
-               MessageBox.Show("Error al actualizar los datos: " + ex.Message);
+                MessageBox.Show("Error al actualizar los datos: " + ex.Message);
                 throw ex;
             }
         }
-
     }
 }

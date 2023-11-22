@@ -19,6 +19,19 @@ namespace Proyecto_Clinica.Dominio
         public DateTime Fecha_Nacimiento { get; set; }
         public string Mail { get; set; }
         public bool Estado { get; set; }
-       // public Usuario Usuario { get; set; }
+
+        public Recepcionista()
+        {
+            Id = -1;
+            Id_Usuario = -1;
+            Nombre = "No especificado";
+            Dni = "No especificado";
+            Apellido = "No especificado";
+            Telefono = "No especificado";
+            Direccion = "No especificado";
+            Fecha_Nacimiento = new DateTime();
+            Mail = "No especificado";
+            Estado = false;
+        }
     }
 }

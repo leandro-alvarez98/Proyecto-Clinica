@@ -44,10 +44,10 @@ namespace Proyecto_Clinica
                     Tipo = ddlRegistrarTipo.SelectedValue
                 };
                 InsertarUsuarioEnBBDD(nuevo_usuario);
-                InsertarInformacionEnBBDD(nuevo_usuario);
+                //InsertarInformacionEnBBDD(nuevo_usuario);
 
                 Session["Usuario"] = nuevo_usuario;
-                Response.Redirect("AltaUsuario.aspx");
+                Response.Redirect("Perfil_Usuario.aspx");
             }
         }
 
