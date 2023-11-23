@@ -22,16 +22,16 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="Home.aspx" visible="True" runat="server">Gestión de Clinica</a>
-                    <div class="pb-3">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <asp:Image ID="imgPerfil" Width="50" Height="50" class="rounded-circle" runat="server" />
+                            <% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %>
+                        </button>
 
-                            <asp:Image ID="imgPerfil" width="50" height="50" class="rounded-circle" runat="server" />
-
-                            <span class="d-none d-sm-inline mx-1">Bienvenido,<% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %></span>
-                        </a>
-                    </div>
-                    <div class="pb-3">
-                        <a href="Default.aspx" class="d-flex align-items-center text-white text-decoration-none">Salir</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="Perfil_Usuario.aspx">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="Default.aspx">Salir</a></li>
+                        </ul>
                     </div>
                 </div>
             </nav>
