@@ -153,7 +153,7 @@ namespace Proyecto_Clinica
             emailLbl.Text = Usuario_Actual.Mail;
             telefonoLbl.Text = Usuario_Actual.Telefono;
             direccionLbl.Text = Usuario_Actual.Direccion;
-            fechaNacimientoLbl.Text = Usuario_Actual.Fecha_Nacimiento.ToString();
+            fechaNacimientoLbl.Text = Usuario_Actual.Fecha_Nacimiento.ToString("d/M/yyyy");
         }
         public void btnCancelar_Click(object sender, EventArgs e)
         {

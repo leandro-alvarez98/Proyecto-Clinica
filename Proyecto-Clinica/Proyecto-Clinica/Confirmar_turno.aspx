@@ -9,7 +9,7 @@
         <hr />
         <asp:GridView ID="DGVTurno_a_confirmar" runat="server" CssClass="table table-dark table-hover " AutoGenerateColumns="false">
             <Columns>
-                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:yyyy-MM-dd}" />
+                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
                 <asp:BoundField HeaderText="Hora" DataField="Horario" />
                 <asp:BoundField HeaderText="Nombre paciente" DataField="Nombre_Paciente" />
                 <asp:BoundField HeaderText="Apellido paciente" DataField="Apellido_Paciente" />

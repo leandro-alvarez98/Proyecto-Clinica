@@ -17,7 +17,7 @@
                     <asp:GridView ID="DGV_Turnos_totales" CssClass="table table-dark table-hover PAD_TOP"  OnSelectedIndexChanged="DGV_Turnos_totales_SelectedIndexChanged"  runat="server" AutoGenerateColumns="false" AutoPostBack="true" EnableViewState="true">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />
-                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:yyyy-MM-dd}" />
+                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
                                 <asp:BoundField HeaderText="Hora" DataField="Horario" />
                                 <asp:BoundField HeaderText="Nombre paciente" DataField="Nombre_Paciente" />
                                 <asp:BoundField HeaderText="Apellido paciente" DataField="Apellido_Paciente" />
@@ -38,7 +38,7 @@
                         <asp:GridView ID="dgv_Turnos_Medicos" CssClass="table table-dark table-hover PAD_TOP" runat="server" OnSelectedIndexChanged="dgv_Turnos_Medicos_SelectedIndexChanged" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />
-                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:yyyy-MM-dd}" />
+                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
                                 <asp:BoundField HeaderText="Hora" DataField="Horario" />
                                 <asp:BoundField HeaderText="Nombre paciente" DataField="Nombre_Paciente" />
                                 <asp:BoundField HeaderText="Apellido paciente" DataField="Apellido_Paciente" />
@@ -57,7 +57,7 @@
                         <asp:GridView ID="Dgv_Turnos_Paciente" CssClass="table table-dark table-hover PAD_TOP" OnSelectedIndexChanged="dgv_Turnos_Pacientes_SelectedIndexChanged" runat="server" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />
-                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:yyyy-MM-dd}" />
+                                <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
                                 <asp:BoundField HeaderText="Hora" DataField="Horario" />
                                 <asp:BoundField HeaderText="Nombre paciente" DataField="Nombre_Paciente" />
                                 <asp:BoundField HeaderText="Apellido paciente" DataField="Apellido_Paciente" />
