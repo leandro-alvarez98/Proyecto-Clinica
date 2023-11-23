@@ -16,6 +16,7 @@ namespace Proyecto_Clinica
 
         Turno turno_actual;
         Clinica clinica;
+        TurnoConexion turnoConexion;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -26,78 +27,68 @@ namespace Proyecto_Clinica
             turno_actual = new Turno();
             turno_actual = (Turno)Session["Turno"];
 
-            Lbl_nombre_paciente.Text = turno_actual.Nombre_Paciente;
-            Lbl_nombre_medico.Text = turno_actual.Nombre_Medico;
-            Lbl_Fecha.Text = turno_actual.Fecha.ToString();
-            Lbl_Horario.Text = turno_actual.Horario.ToString();
-            Lbl_Id_Turno.Text = turno_actual.Id.ToString();
-            Lbl_motivo_consulta.Text = turno_actual.Obs_paciente;
-            observacion.InnerText = turno_actual.Obs_medico;
-            
+            Cargar_labels();
+
         }
         protected void Btn_agregar_obs_Click(object sender, EventArgs e)
         {
-            //oculta los botones
+            //oculta y muestra nuevos los botones
             Btn_agregar_obs.Visible = false;
             Btn_aceptar.Visible = true;
+            Btn_cancelar.Visible = true;
 
             //oculta las la observacion actual 
-            observacion.Visible = false;
+            P_observacion.Visible = false;
             Txt_Observacion.Visible = true;
+            Txt_Observacion.Value = P_observacion.InnerText;
         }
         protected void Btn_aceptar_Click(object sender, EventArgs e)
         {
-            
-            string Observacion = Txt_Observacion.Value.ToString();
-            insertar_Observacion_BBDD(Observacion);
+            turnoConexion = new TurnoConexion();
 
-            //Recarga  el Turno actual al cual se le agrego la observacion 
-            turno_actual = Recargar_turno(turno_actual.Id);
+            string Observacion = Txt_Observacion.Value.ToString();
+
+            //actualiza observacion
+            turnoConexion.Actualizar_Observacion_x_ID(Observacion, turno_actual.Id);
+
+            //Recarga  la observacion  desde la BBDD           
+            turno_actual.Obs_medico = turnoConexion.Listar_Observacion_x_ID(turno_actual.Id);
 
             //actualiza el texto de la observacion
-            observacion.InnerText = turno_actual.Obs_medico;
+            P_observacion.InnerText = turno_actual.Obs_medico;
            
             //muestra los campos por defecto
             Btn_agregar_obs.Visible = true;
-            observacion.Visible = true;
+            P_observacion.Visible = true;
 
             //oculta lo que ya no se usa
             Btn_aceptar.Visible = false;
+            Btn_cancelar.Visible=false;
             Txt_Observacion.Visible = false;
-        }     
-        public void insertar_Observacion_BBDD(string Observacion)
+        }      
+        protected void Btn_cancelar_Click(object sender, EventArgs e)
         {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                  datos.setConsulta("UPDATE  TURNOS SET OBS_MEDICO = @OBSERVACION WHERE ID_TURNO = @ID_TURNO");
-                  datos.setParametro("@OBSERVACION", Observacion);
-                  datos.setParametro("@ID_TURNO", turno_actual.Id);
-                  datos.ejecutarAccion();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
+            //oculta y muestra botones correspondientes
+            Btn_cancelar.Visible = false;
+            Btn_aceptar.Visible = false;
+            Txt_Observacion.Visible=false;
+
+            //muestra los campos por defecto
+            Btn_agregar_obs.Visible = true;
+            P_observacion.Visible = true;
+            
+            Cargar_labels();
+
         }
-        public Turno Recargar_turno(int ID)
+        public void Cargar_labels()
         {
-            ClinicaConexion conexion = new ClinicaConexion();
-            clinica = conexion.Listar();
-            foreach (Turno turno in clinica.Turnos)
-            {
-                if (ID == turno.Id)
-                {
-                    return turno;
-                }
-            }
-            return new Turno();
+            Lbl_nombre_paciente.Text = turno_actual.Nombre_Paciente;
+            Lbl_nombre_medico.Text = turno_actual.Nombre_Medico;
+            Lbl_Fecha.Text = turno_actual.Fecha.ToString("d/M/yyyy");
+            Lbl_Horario.Text = turno_actual.Horario.ToString();
+            Lbl_Id_Turno.Text = turno_actual.Id.ToString();
+            Lbl_motivo_consulta.Text = turno_actual.Obs_paciente;
+            P_observacion.InnerText = turno_actual.Obs_medico;
         }
     }
 }

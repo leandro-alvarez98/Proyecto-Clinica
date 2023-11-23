@@ -1,5 +1,6 @@
 ﻿using Proyecto_Clinica.Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    internal class TurnoConexion
+    public class TurnoConexion
     {
         public List<Turno> Listar()
         {
@@ -42,6 +43,53 @@ namespace Conexion_Clinica
                     lista.Add(turno);
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public string Listar_Observacion_x_ID(int ID)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string observacion_medico="";
+            try
+            {
+                datos.setConsulta("SELECT T.OBS_MEDICO AS OBSERVACION_MEDICO FROM TURNOS T WHERE T.ID_TURNO = @ID_TURNO ");
+                datos.setParametro("@ID_TURNO", ID);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    observacion_medico = (string)datos.Lector["OBSERVACION_MEDICO"];
+                }
+                return observacion_medico;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Actualizar_Observacion_x_ID(string Observacion, int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE  TURNOS SET OBS_MEDICO = @OBSERVACION WHERE ID_TURNO = @ID_TURNO");
+                datos.setParametro("@OBSERVACION", Observacion);
+                datos.setParametro("@ID_TURNO", id);
+                datos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {

@@ -31,7 +31,7 @@
 
             <div class="card-body">
                 <h5 class="card-title">Observacion</h5>
-                <p id="observacion" runat="server" class="card-text"></p>
+                <p id="P_observacion" runat="server" class="card-text"></p>
                 <textarea class="form-control" runat="server" id="Txt_Observacion" rows="3" Visible="false"></textarea>
             </div>             
         </div>
@@ -40,7 +40,7 @@
 
         <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
         <asp:Button ID="Btn_aceptar" CssClass="Boton" Onclick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
-        
+        <asp:Button ID="Btn_cancelar" CssClass="Boton" runat="server" OnClick="Btn_cancelar_Click" Text="Cancelar" Visible="false" />
 
     </div>
 </asp:Content>

@@ -69,13 +69,13 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label Lbl_motivo_consulta;
 
         /// <summary>
-        /// Control observacion.
+        /// Control P_observacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl observacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl P_observacion;
 
         /// <summary>
         /// Control Txt_Observacion.
@@ -103,5 +103,14 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_aceptar;
+
+        /// <summary>
+        /// Control Btn_cancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_cancelar;
     }
 }
