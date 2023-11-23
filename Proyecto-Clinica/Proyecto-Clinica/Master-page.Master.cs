@@ -15,7 +15,10 @@ namespace Proyecto_Clinica
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Seguridad.SesionActiva(Session["Usuario"]))
+            {
+                Session.Abandon();
                 Response.Redirect("Default.aspx", false);
+            }
             else
             {
                 Usuario_Actual = (Usuario)Session["Usuario"];

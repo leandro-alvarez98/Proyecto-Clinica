@@ -157,7 +157,11 @@ namespace Proyecto_Clinica
         }
         public void btnCancelar_Click(object sender, EventArgs e)
         {
+            btnCancelar.Visible = false;
+            Cargar_Datos_Usuario();
 
+            OcultarControlesEdicion();
+            Cargar_labels();
         }
         public void btnEditar_Click(object sender, EventArgs e)
         {
@@ -184,6 +188,7 @@ namespace Proyecto_Clinica
 
             // Mostrar botón de guardar
             btnGuardar.Visible = true;
+            btnCancelar.Visible = true; 
 
             // Llenar TextBox con datos actuales
             switch (Usuario_Actual.Tipo)
@@ -257,6 +262,7 @@ namespace Proyecto_Clinica
             //ocultar TextBox y boton de guardar
             txtNombreEdit.Visible = false;
             txtApellidoEdit.Visible = false;
+            txtDniEdit.Visible = false;
             txtMailEdit.Visible = false;
             txtTelefonoEdit.Visible = false;
             txtDireccionEdit.Visible = false;
