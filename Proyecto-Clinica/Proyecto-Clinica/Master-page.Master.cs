@@ -1,4 +1,5 @@
-﻿using Proyecto_Clinica.Dominio;
+﻿using Conexion_Clinica;
+using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,12 @@ namespace Proyecto_Clinica
         public Usuario Usuario_Actual;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario_Actual = new Usuario();
-            Usuario_Actual = (Usuario)Session["Usuario"];
+            if (!Seguridad.SesionActiva(Session["Usuario"]))
+                Response.Redirect("Default.aspx", false);
+            else
+            {
+                Usuario_Actual = (Usuario)Session["Usuario"];
+            }
         }
     }
 }

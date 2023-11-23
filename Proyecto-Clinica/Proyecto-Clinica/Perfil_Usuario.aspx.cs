@@ -456,14 +456,11 @@ namespace Proyecto_Clinica
         {
             try
             {
-                // Escribe la imagen
                 string ruta = Server.MapPath("./img/");
                 txtImagen.PostedFile.SaveAs(ruta + "perfil-" + Usuario_Actual.Id + ".jpg");
                 Usuario_Actual.Imagen = "perfil-" + Usuario_Actual.Id + ".jpg";
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
                 usuarioConexion.actualizarImagen(Usuario_Actual);
-
-
             }
             catch (Exception ex)
             {

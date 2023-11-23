@@ -20,14 +20,12 @@ namespace Proyecto_Clinica
         EmailService email_service;
         Paciente paciente_actual;
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
+            
             Cargar_componentes();
-            //paciente_actual = (Paciente)Session["Paciente"];
-            paciente_actual = new Paciente();
         }
         public void Cargar_componentes()
         {
-            //usuario_actual = new Usuario();
             usuario_actual = (Usuario)Session["Usuario"];
             List<Turno> turno = new List<Turno>();
             turno_a_reservar = (Turno)Session["Turno"];
