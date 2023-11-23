@@ -158,33 +158,21 @@ namespace Proyecto_Clinica
         public void btnCancelar_Click(object sender, EventArgs e)
         {
             btnCancelar.Visible = false;
-            Cargar_Datos_Usuario();
-
             OcultarControlesEdicion();
+            Visibilidad_labels(true);
             Cargar_labels();
         }
         public void btnEditar_Click(object sender, EventArgs e)
         {
+            //oculta botones de defecto
             btnEditarDatos.Visible = false;
             btnCambioContraseña.Visible = false;
 
             //Habilitar TextBox para la edición
-            txtDniEdit.Visible = true;
-            txtNombreEdit.Visible = true;
-            txtApellidoEdit.Visible = true;
-            txtMailEdit.Visible = true;
-            txtTelefonoEdit.Visible = true;
-            txtDireccionEdit.Visible = true;
-            txtFechaNacimientoEdit.Visible = true;
+            Visibilidad_Texbox(true);
 
             // Oculta los Label originales
-            dniLbl.Visible = false; 
-            nombrelbl.Visible = false;
-            apellidoLbl.Visible = false;
-            emailLbl.Visible = false;
-            telefonoLbl.Visible = false;
-            direccionLbl.Visible = false;
-            fechaNacimientoLbl.Visible = false;
+            Visibilidad_labels(false);
 
             // Mostrar botón de guardar
             btnGuardar.Visible = true;
@@ -202,7 +190,7 @@ namespace Proyecto_Clinica
                     txtMailEdit.Text = Medico_actual.Mail;
                     txtTelefonoEdit.Text = Medico_actual.Telefono;
                     txtDireccionEdit.Text = Medico_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString();
+                    txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
                     break;
 
                 case "Paciente":
@@ -214,7 +202,7 @@ namespace Proyecto_Clinica
                     txtMailEdit.Text = paciente_actual.Mail;
                     txtTelefonoEdit.Text = paciente_actual.Telefono;
                     txtDireccionEdit.Text = paciente_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = paciente_actual.Fecha_Nacimiento.ToString();
+                    txtFechaNacimientoEdit.Text = paciente_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
                     break;
 
                 // Puedes agregar más casos según sea necesario
@@ -227,7 +215,7 @@ namespace Proyecto_Clinica
                     txtMailEdit.Text = Administrador_actual.Mail;
                     txtTelefonoEdit.Text = Administrador_actual.Telefono;
                     txtDireccionEdit.Text = Administrador_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = Administrador_actual.Fecha_Nacimiento.ToString();
+                    txtFechaNacimientoEdit.Text = Administrador_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
                     break;
 
 
@@ -240,7 +228,7 @@ namespace Proyecto_Clinica
                     txtMailEdit.Text = Recepcionista_actual.Mail;
                     txtTelefonoEdit.Text = Recepcionista_actual.Telefono;
                     txtDireccionEdit.Text = Recepcionista_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = Recepcionista_actual.Fecha_Nacimiento.ToString();
+                    txtFechaNacimientoEdit.Text = Recepcionista_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
                     break;
             }
             
@@ -260,13 +248,7 @@ namespace Proyecto_Clinica
         private void OcultarControlesEdicion()
         {
             //ocultar TextBox y boton de guardar
-            txtNombreEdit.Visible = false;
-            txtApellidoEdit.Visible = false;
-            txtDniEdit.Visible = false;
-            txtMailEdit.Visible = false;
-            txtTelefonoEdit.Visible = false;
-            txtDireccionEdit.Visible = false;
-            txtFechaNacimientoEdit.Visible = false;
+            Visibilidad_Texbox(false);
 
             //Ocultar botón de guardar
             btnGuardar.Visible = false;
@@ -481,6 +463,26 @@ namespace Proyecto_Clinica
             {
                 throw ex;
             }
+        }
+        public void Visibilidad_labels(bool valor)
+        {
+            dniLbl.Visible = valor;
+            nombrelbl.Visible = valor;
+            apellidoLbl.Visible = valor;
+            emailLbl.Visible = valor;
+            telefonoLbl.Visible = valor;
+            direccionLbl.Visible = valor;
+            fechaNacimientoLbl.Visible = valor;
+        }
+        public void Visibilidad_Texbox(bool valor)
+        {
+            txtDniEdit.Visible = valor;
+            txtNombreEdit.Visible = valor;
+            txtApellidoEdit.Visible = valor;
+            txtMailEdit.Visible = valor;
+            txtTelefonoEdit.Visible = valor;
+            txtDireccionEdit.Visible = valor;
+            txtFechaNacimientoEdit.Visible = valor;
         }
     }
 }
