@@ -13,12 +13,12 @@ namespace Proyecto_Clinica
 {
     public partial class Perfil_Usuario : System.Web.UI.Page
     {
+        Clinica clinica;
         public Usuario Usuario_Actual;
         Paciente paciente_actual;
         Medico Medico_actual;
         Recepcionista Recepcionista_actual;
         Administrador Administrador_actual;
-        Clinica clinica;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,14 +26,16 @@ namespace Proyecto_Clinica
         }
         private void Cargar_Componentes()
         {
-            clinica = new Clinica();
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.Listar();
-
-            Usuario_Actual = new Usuario();
             Usuario_Actual = (Usuario)Session["Usuario"];
             Cargar_Datos_Usuario();
             Cargar_labels();
+
+            if (Usuario_Actual.Imagen != "NoImagen")
+                imgPerfil.ImageUrl = "~/img/" + Usuario_Actual.Imagen;
+            else
+                imgPerfil.ImageUrl = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
         }
         private void Cargar_Datos_Usuario()
         {
@@ -451,16 +453,23 @@ namespace Proyecto_Clinica
                 throw ex;
             }
         }
-
         protected void btn_CambiarImagen_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
+                //Escritura de imagen
                 string ruta = Server.MapPath("./img/");
+
                 txtImagen.PostedFile.SaveAs(ruta + "perfil-" + Usuario_Actual.Id + ".jpg");
+
                 Usuario_Actual.Imagen = "perfil-" + Usuario_Actual.Id + ".jpg";
+
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
                 usuarioConexion.actualizarImagen(Usuario_Actual);
+
+                //Lectura de imagen
+                Image img = (Image)Master.FindControl("imgPerfil");
+                img.ImageUrl = "~/img/" + Usuario_Actual.Imagen;
             }
             catch (Exception ex)
             {

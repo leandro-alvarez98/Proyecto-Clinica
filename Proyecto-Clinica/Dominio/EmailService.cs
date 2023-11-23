@@ -19,7 +19,7 @@ namespace Dominio
         private string miEmail = "crear el mail";
         private string miContraseña = "la contraseña";
         private string miAlias = "EQUIPO 18";
-        private string[] miAdjuntos;
+        //private string[] miAdjuntos;
         private MailMessage miCorreo;
 
         //aca vamos a cargar el array de archivos a enviar (pdf, jpg, etc)
@@ -30,8 +30,10 @@ namespace Dominio
         //cambio de contraseña
         public void cuerpoCorreo(string correo)
         {
-            miCorreo = new MailMessage();
-            miCorreo.From = new MailAddress(miEmail, miAlias, System.Text.Encoding.UTF8);
+            miCorreo = new MailMessage
+            {
+                From = new MailAddress(miEmail, miAlias, System.Text.Encoding.UTF8)
+            };
             miCorreo.To.Add(correo);
             miCorreo.Subject = ("Recuperar contaseña");
             miCorreo.IsBodyHtml = true;
@@ -43,8 +45,10 @@ namespace Dominio
         //hay que generar o pasarle los numeros de turnos que se generen
         public void cuerpoCorreo(Turno turno_a_reservar, string correo)
         {
-            miCorreo = new MailMessage();
-            miCorreo.From = new MailAddress(miEmail, miAlias);
+            miCorreo = new MailMessage
+            {
+                From = new MailAddress(miEmail, miAlias)
+            };
             miCorreo.To.Add(correo);
             miCorreo.Subject = "Confirmacion de turno";
             miCorreo.IsBodyHtml = true;
@@ -58,11 +62,13 @@ namespace Dominio
 
             try
             {
-                SmtpClient smtp = new SmtpClient();
-                smtp.UseDefaultCredentials = false;
-                smtp.Port = 25;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Credentials = new System.Net.NetworkCredential(miEmail, miContraseña);
+                SmtpClient smtp = new SmtpClient
+                {
+                    UseDefaultCredentials = false,
+                    Port = 25,
+                    Host = "smtp.gmail.com",
+                    Credentials = new System.Net.NetworkCredential(miEmail, miContraseña)
+                };
                 ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
                 { return true; };
                 smtp.EnableSsl = true;

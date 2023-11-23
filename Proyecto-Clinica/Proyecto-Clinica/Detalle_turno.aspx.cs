@@ -13,7 +13,7 @@ namespace Proyecto_Clinica
 {
     public partial class Detalle_turno : System.Web.UI.Page
     {
-        Usuario usuario_actual;
+
         Turno turno_actual;
         Clinica clinica;
         protected void Page_Load(object sender, EventArgs e)

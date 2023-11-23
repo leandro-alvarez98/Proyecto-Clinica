@@ -24,10 +24,10 @@
                     <a class="navbar-brand" href="Home.aspx" visible="True" runat="server">Gestión de Clinica</a>
                     <div class="pb-3">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none">
-                            <img src="<%= ((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Imagen %>" alt="hugenerd" width="50" height="50" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">Bienvenido,
-                          <% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %>
-                            </span>
+
+                            <asp:Image ID="imgPerfil" width="50" height="50" class="rounded-circle" runat="server" />
+
+                            <span class="d-none d-sm-inline mx-1">Bienvenido,<% =((Proyecto_Clinica.Dominio.Usuario)Session["Usuario"]).Nombre %></span>
                         </a>
                     </div>
                     <div class="pb-3">

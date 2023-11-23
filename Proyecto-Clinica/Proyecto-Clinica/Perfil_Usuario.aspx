@@ -59,8 +59,9 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" IsPostBack="true" />
                 <input type="file" id="txtImagen" class="form-control" runat="server" />
-                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" />
+                <br />
                 <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Cambiar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />
             </div>
         </div>

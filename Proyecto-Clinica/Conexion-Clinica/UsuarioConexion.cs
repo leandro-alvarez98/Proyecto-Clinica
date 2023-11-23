@@ -16,12 +16,12 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_USUARIO, NOMBRE_USUARIO, CONTRASENA, TIPO, ID_IMAGEN FROM USUARIOS");
+                datos.setConsulta("SELECT ID_USUARIO, NOMBRE_USUARIO, CONTRASENA, TIPO, URL_IMAGEN FROM USUARIOS U LEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    if (!(datos.Lector["ID_IMAGEN"] is DBNull))
+                    if (!(datos.Lector["URL_IMAGEN"] is DBNull))
                     {
                         Usuario usuario = new Usuario
                         {
@@ -29,7 +29,7 @@ namespace Conexion_Clinica
                             Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
                             Contraseña = (String)datos.Lector["CONTRASENA"],
                             Tipo = (String)datos.Lector["TIPO"],
-                            Id_Imagen = (int)datos.Lector["ID_IMAGEN"]
+                            Imagen = (String)datos.Lector["URL_IMAGEN"]
                         };
                         lista.Add(usuario);
                     }
