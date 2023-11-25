@@ -194,7 +194,6 @@
     <Compile Include="Seleccionar_paciente.aspx.designer.cs">
       <DependentUpon>Seleccionar_paciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master-page.Master" />
