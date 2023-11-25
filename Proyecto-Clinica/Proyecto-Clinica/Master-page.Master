@@ -89,6 +89,12 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Médicos</span>
+                                    </a>
+                                </li>
                               <%break; %>
                                         
                               <%//Opciones disponibles para los RECEPCIONISTAS
@@ -112,6 +118,12 @@
                                             </a>
                                         </li>
                                     </ul>
+                                </li>
+                                <li>
+                                    <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-notepad'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Médicos</span>
+                                    </a>
                                 </li>
                               <%break;%>
 
