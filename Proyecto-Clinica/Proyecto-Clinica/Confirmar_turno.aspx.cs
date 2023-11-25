@@ -21,7 +21,6 @@ namespace Proyecto_Clinica
         Paciente paciente_actual;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             Cargar_componentes();
         }
         public void Cargar_componentes()
@@ -30,7 +29,8 @@ namespace Proyecto_Clinica
             List<Turno> turno = new List<Turno>();
             turno_a_reservar = (Turno)Session["Turno"];
             turno.Add(turno_a_reservar);
-           
+            paciente_actual = new Paciente(); // Cargarlo con su respectiva informacion 
+
             DGVTurno_a_confirmar.DataSource = turno;
             DGVTurno_a_confirmar.DataBind();
         }
