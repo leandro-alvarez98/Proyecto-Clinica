@@ -24,5 +24,10 @@ namespace Proyecto_Clinica
             repeaterMedicos.DataSource = lista_Medicos;
             repeaterMedicos.DataBind();
         }
+
+        protected void btnEditarDatos_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

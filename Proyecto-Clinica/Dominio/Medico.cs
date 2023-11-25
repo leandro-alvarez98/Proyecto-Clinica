@@ -19,9 +19,7 @@ namespace Proyecto_Clinica.Dominio
         public string Mail { get; set; }
         public bool Estado { get; set; }
         public List<Especialidad> Especialidades { get; set; }
-        public Usuario Usuario { get; set; }
         public List<Turno> Turnos {  get; set; }
-
         public Medico()
         {
             Id = -1;

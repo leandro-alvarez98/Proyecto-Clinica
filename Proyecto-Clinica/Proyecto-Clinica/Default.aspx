@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Page_master_default.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Proyecto_Clinica.Default" %>
+﻿
+<%@ Page Title="" Language="C#" MasterPageFile="~/Page_master_default.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Proyecto_Clinica.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
   
