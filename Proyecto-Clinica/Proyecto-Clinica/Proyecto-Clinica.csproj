@@ -72,6 +72,7 @@
     <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="MailContraseña.aspx" />
+    <Content Include="Medicos.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
     <Content Include="content\styles.css" />
     <Content Include="AltaUsuario.aspx" />
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="MailContraseña.aspx.designer.cs">
       <DependentUpon>MailContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medicos.aspx.cs">
+      <DependentUpon>Medicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicos.aspx.designer.cs">
+      <DependentUpon>Medicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page_master_default.Master.cs">
       <DependentUpon>Page_master_default.Master</DependentUpon>
@@ -186,6 +194,7 @@
     <Compile Include="Seleccionar_paciente.aspx.designer.cs">
       <DependentUpon>Seleccionar_paciente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master-page.Master" />
