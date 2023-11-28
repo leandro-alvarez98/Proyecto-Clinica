@@ -3,6 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <textarea id="txt_Nueva_Especialidad" cols="20" rows="2" runat="server"></textarea>
+    <br />
+    <asp:Button ID="btn_Nueva_Especialidad" runat="server" Text="Cargar nueva especialidad" CssClass="Boton" OnClick="btn_Nueva_Especialidad_Click"/>
+    <asp:Label ID="lblError_Especialidad" runat="server" Text="No se pudo cargar la nueva especialidad, pruebe un nombre válido" Visible="false"></asp:Label>
+    <asp:Label ID="lblCargada_Correctamente" runat="server" Text="Especialidad cargada con éxito!" Visible="false"></asp:Label>
+
+    <hr />
     <div class="row">
     <asp:Repeater ID="repeaterMedicos" runat="server">
         <ItemTemplate>

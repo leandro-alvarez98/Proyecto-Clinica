@@ -1,6 +1,7 @@
 ﻿
 using Proyecto_Clinica.Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    internal class EspecialidadesConexion
+    public class EspecialidadesConexion
     {
         public List<Especialidad> Listar()
         {
@@ -40,6 +41,26 @@ namespace Conexion_Clinica
             finally 
             {
                 datos.cerrarConexion(); 
+            }
+        }
+
+        public void Insertar_Especialidad_En_BBDD(string nueva_Especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO ESPECIALIDADES (TIPO) VALUES (@TIPO)");
+                datos.setParametro("@TIPO", nueva_Especialidad);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

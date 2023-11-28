@@ -29,5 +29,36 @@ namespace Proyecto_Clinica
         {
             
         }
+
+        protected void btn_Nueva_Especialidad_Click(object sender, EventArgs e)
+        {
+            String Nueva_Especialidad = txt_Nueva_Especialidad.Value;
+            bool Existe = Comprobar_Especialidad(Nueva_Especialidad);
+
+            if (Nueva_Especialidad != null && Nueva_Especialidad.Length > 5 && !Existe) // puse mayor a 5 por tirar xd
+            {
+                EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
+                especialidadesConexion.Insertar_Especialidad_En_BBDD(Nueva_Especialidad);
+                lblCargada_Correctamente.Visible = true;
+                lblError_Especialidad.Visible = false;
+            }
+            else
+            {
+                lblError_Especialidad.Visible = true;
+                lblCargada_Correctamente.Visible = false;
+            }
+        }
+
+        private bool Comprobar_Especialidad(string nueva_Especialidad)
+        {
+            foreach(Especialidad especialidad in clinica.Especialidades)
+            {
+                if(especialidad.Tipo == nueva_Especialidad)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
