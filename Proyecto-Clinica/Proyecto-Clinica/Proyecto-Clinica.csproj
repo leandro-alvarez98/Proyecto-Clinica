@@ -69,7 +69,6 @@
     <Content Include="Confirmar_turno.aspx" />
     <Content Include="Detalle_turno.aspx" />
     <Content Include="img\fondo de pantalla.jpg" />
-    <Content Include="img\user.png" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="MailContraseña.aspx" />
     <Content Include="Medicos.aspx" />
@@ -194,7 +193,6 @@
     <Compile Include="Seleccionar_paciente.aspx.designer.cs">
       <DependentUpon>Seleccionar_paciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master-page.Master" />
