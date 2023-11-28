@@ -18,9 +18,9 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT M.ID_MEDICO AS ID, U.ID_USUARIO AS IDUSUARIO, M.DNI AS DNI, M.NOMBRE AS NOMBRE, M.APELLIDO AS APELLIDO, M.TELEFONO AS TELEFONO, M.DIRECCION AS DIRECCION, M.FECHA_NACIMIENTO AS FECHANACIMIENTO, MAIL, M.ESTADO AS ESTADO,E.ID_ESPECIALIDAD AS IDESPECIALIDAD, E.TIPO AS ESPECIALIDAD FROM MEDICOS M INNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO INNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO INNER JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD");
+                datos.setConsulta("SELECT \r\n\t\tM.ID_MEDICO AS ID, \r\n\t\tU.ID_USUARIO AS IDUSUARIO,\r\n\t\tM.DNI AS DNI,\r\n\t\tM.NOMBRE AS NOMBRE, \r\n\t\tM.APELLIDO AS APELLIDO, \r\n\t\tM.TELEFONO AS TELEFONO, \r\n\t\tM.DIRECCION AS DIRECCION, \r\n\t\tM.FECHA_NACIMIENTO AS FECHANACIMIENTO, \r\n\t\tMAIL, M.ESTADO AS ESTADO,\r\n\t\tE.ID_ESPECIALIDAD AS IDESPECIALIDAD, \r\n\t\tE.TIPO AS ESPECIALIDAD,\r\n\t\tMJ.ID_JORNADA AS JORNADA,\r\n\t\tI.URL_IMAGEN AS URL\r\n\tFROM MEDICOS M \r\n\tINNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO \r\n\tINNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO \r\n\tINNER JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD\r\n\tINNER JOIN MEDICOXJORNADA MJ ON MJ.ID_MEDICO = M.ID_MEDICO\r\n\tLEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_USUARIO");
                 datos.ejecutarLectura();
-
+                
                 while (datos.Lector.Read())
                 {
                     Medico medico = new Medico
@@ -45,14 +45,24 @@ namespace Conexion_Clinica
 
                         Estado = (bool)datos.Lector["ESTADO"],
 
-                        Especialidades = new List<Especialidad>()
+                        Especialidades = new List<Especialidad>(),
+
+                        Jornadas = new List<int>()
                     };
+
                     Especialidad nueva = new Especialidad
                     {
                         Id = (byte)datos.Lector["IDESPECIALIDAD"],
                         Tipo = (String)datos.Lector["ESPECIALIDAD"]
                     };
                     medico.Especialidades.Add(nueva);
+
+                    medico.Jornadas.Add((int)datos.Lector["JORNADA"]);
+
+                    if (!(datos.Lector["URL"] is DBNull))
+                    {
+                        medico.Imagen = (String)datos.Lector["URL"];
+                    }
 
                     lista.Add(medico);
                 }

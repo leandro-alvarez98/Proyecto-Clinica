@@ -36,7 +36,7 @@ namespace Conexion_Clinica
 
                 MedicoConexion medicoConexion = new MedicoConexion();
                 objetoClinica.Medicos = medicoConexion.Listar();
-                Agrupar_Especialidades_Medicos(objetoClinica.Medicos);
+                Agrupar_Medicos(objetoClinica.Medicos);
                 Eliminar_Medicos_Repetidos(objetoClinica.Medicos);
 
                 EspecialidadesConexion especialidadConexion = new EspecialidadesConexion();
@@ -77,7 +77,7 @@ namespace Conexion_Clinica
             }
             return repetidos;
         }
-        private List<Medico> Agrupar_Especialidades_Medicos(List<Medico> lista)
+        private List<Medico> Agrupar_Medicos(List<Medico> lista) // Agrupa especialidades y Jornadas de un médico
         {
             List<Medico> repetidos = Encontrar_Repetidos(lista);
 
@@ -87,7 +87,11 @@ namespace Conexion_Clinica
                 {
                     if (repetido.Id == actual.Id)
                     {
-                        actual.Especialidades.Add(repetido.Especialidades[0]);
+                        if (!actual.Especialidades.Any(e => e.Id == repetido.Especialidades[0].Id))
+                            actual.Especialidades.Add(repetido.Especialidades[0]);
+                        
+                        if(!actual.Jornadas.Any(j => j == repetido.Jornadas[0]))
+                            actual.Jornadas.Add(repetido.Jornadas[0]);
                     }
                 }
             }

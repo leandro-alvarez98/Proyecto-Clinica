@@ -19,9 +19,9 @@ namespace Proyecto_Clinica.Dominio
         public string Mail { get; set; }
         public bool Estado { get; set; }
         public List<Especialidad> Especialidades { get; set; }
-        public Usuario Usuario { get; set; }
         public List<Turno> Turnos {  get; set; }
-
+        public List<int> Jornadas { get; set; }
+        public String Imagen {  get; set; }
         public Medico()
         {
             Id = -1;
@@ -33,6 +33,7 @@ namespace Proyecto_Clinica.Dominio
             Direccion = "No especificado";
             Fecha_Nacimiento = new DateTime();
             Mail = "No especificado";
+            Imagen = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
             Estado = false;
         }
     }
