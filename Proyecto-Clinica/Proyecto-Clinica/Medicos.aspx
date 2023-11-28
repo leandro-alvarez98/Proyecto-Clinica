@@ -8,7 +8,7 @@
         <ItemTemplate>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="<%# Eval("Imagen") %>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><%# Eval("Nombre") %>, <%# Eval("Apellido") %></h5>
                         <p class="card-text"><strong>Telefono: </strong>  <%# Eval("Telefono") %></p>
@@ -19,8 +19,8 @@
                             <strong>Jornada/s: </strong> 
                             <asp:Repeater ID="repeaterJornadas" runat="server" DataSource='<%# Eval("Jornadas") %>'>
                                 <ItemTemplate>
-                                    <%# Container.DataItem %>
                                     <br />
+                                    <%# Container.DataItem %>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </p>
@@ -28,6 +28,7 @@
                             <strong>Especialidad/es: </strong>
                             <asp:Repeater ID="repeaterEspecialidades" runat="server" DataSource='<%# Eval("Especialidades") %>'>
                                 <ItemTemplate>
+                                    <br />
                                     <%# Eval("Tipo") %><br />
                                 </ItemTemplate>
                             </asp:Repeater>
