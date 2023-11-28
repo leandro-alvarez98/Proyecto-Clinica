@@ -20,6 +20,7 @@ namespace Proyecto_Clinica.Dominio
         public bool Estado { get; set; }
         public List<Especialidad> Especialidades { get; set; }
         public List<Turno> Turnos {  get; set; }
+        public List<int> Jornadas { get; set; }
         public Medico()
         {
             Id = -1;

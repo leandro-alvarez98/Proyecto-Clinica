@@ -15,12 +15,20 @@
                         <p class="card-text"><strong>Direccion: </strong>  <%# Eval("Direccion") %></p>
                         <p class="card-text"><strong>Fecha de Nacimiento:</strong> <%# Eval("Fecha_Nacimiento") %> </p>
                         <p class="card-text"><strong>Mail: </strong><%# Eval("Mail") %></p>
-                        <p class="card-text"><strong>Jornada/s: </strong> </p>
                         <p class="card-text">
-                         <strong>Especialidad/es: </strong>
+                            <strong>Jornada/s: </strong> 
+                            <asp:Repeater ID="repeaterJornadas" runat="server" DataSource='<%# Eval("Jornadas") %>'>
+                                <ItemTemplate>
+                                    <%# Container.DataItem %>
+                                    <br />
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </p>
+                        <p class="card-text">
+                            <strong>Especialidad/es: </strong>
                             <asp:Repeater ID="repeaterEspecialidades" runat="server" DataSource='<%# Eval("Especialidades") %>'>
                                 <ItemTemplate>
-                                    <%# Eval("Tipo") %><br/>
+                                    <%# Eval("Tipo") %><br />
                                 </ItemTemplate>
                             </asp:Repeater>
                         </p>
