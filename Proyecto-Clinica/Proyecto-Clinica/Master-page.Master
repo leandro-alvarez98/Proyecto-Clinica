@@ -40,24 +40,14 @@
             border: none;
             text-decoration:none;
         }
-        .custom-col-xl-1 {
-          flex: 0 0 9.333333%;
-          max-width: 9.333333%;
-        }
-        .custom-col-xl-1 {
-          position: relative;
-          width: 100%;
-          padding-right: 15px;
-          padding-left: 15px;
-          box-sizing: border-box;
-        }
+      
     </style>
     <form id="form1" runat="server">
         <div>
             <%-- NAV --%>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="Home.aspx" visible="True" runat="server">Gestión de Clinica</a>
+                    <a class="navbar-brand fs-2 " href="Home.aspx" visible="True" runat="server">Gestión de Clinica</a>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <asp:Image ID="imgPerfil" Width="50" Height="50" class="rounded-circle" runat="server" />
@@ -75,7 +65,7 @@
             <%-- Menu Lateral --%>
             <div class="container-fluid">
                 <div class="row flex-nowrap">
-                    <div class="col-auto col-md-3 custom-col-xl-1 px-sm-2 px-0 bg-dark">
+                    <div class="col-auto px-sm-2 px-0 bg-dark">
                         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
 
                             <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">

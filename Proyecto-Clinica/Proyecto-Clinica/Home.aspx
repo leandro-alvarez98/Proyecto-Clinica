@@ -55,7 +55,7 @@
             flex:1 1 45rem;
         }
         .home .image img{
-            width:100%;
+            width:25%;
         }
         .home .content{
             flex:1 1 45rem;
