@@ -14,6 +14,7 @@ namespace Proyecto_Clinica
     {
         public Clinica clinica = new Clinica();
         public List<Medico> lista_Medicos = new List<Medico>();
+        public List<Medico> lista_Medicos_x_dni;
         protected void Page_Load(object sender, EventArgs e)
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
@@ -88,5 +89,68 @@ namespace Proyecto_Clinica
             }
             return new Medico();
         }
+
+        protected void Btn_buscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lista_Medicos_x_dni = new List<Medico>();
+                string dni_medico = txt_dni.Text;
+                Cargar_Medicos_x_Dni(dni_medico);
+
+                //limpia la grilla actual
+                repeaterMedicos.DataSource = null;
+                repeaterMedicos.DataBind();
+                //cargar la nueva grilla de datos 
+                repeaterMedicos.DataSource = lista_Medicos_x_dni;
+                repeaterMedicos.DataBind();
+                if (lista_Medicos_x_dni.Count() == 0)
+                {
+                    Lbl_sin_medicos.Visible = true;
+                }
+                else
+                {
+                    Lbl_sin_medicos.Visible = false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public void Cargar_Medicos_x_Dni(string dni)
+        {
+            foreach (Medico medico in lista_Medicos)
+            {
+                if(medico.Dni == dni)
+                {
+                    lista_Medicos_x_dni.Add(medico);
+                }
+            }
+        }
+
+        protected void Btn_limpiar_Click(object sender, EventArgs e)
+        {
+            //limpia la grilla actual
+            repeaterMedicos.DataSource = null;
+            repeaterMedicos.DataBind();
+            //cargar la nueva grilla de datos 
+            repeaterMedicos.DataSource = lista_Medicos;
+            repeaterMedicos.DataBind();
+            if (lista_Medicos.Count() != 0)
+            {
+                Lbl_sin_medicos.Visible = false;
+            }
+        }
+        //public void Arreglar_Formato_Fecha()
+        //{
+        //    foreach (Medico medico in clinica.Medicos)
+        //    {
+        //        DateTime fecha_nacimiento = medico.Fecha_Nacimiento;
+        //        string aux_fecha_nacimiento = fecha_nacimiento.ToString();
+
+        //    }
+        //}
     }
 }
