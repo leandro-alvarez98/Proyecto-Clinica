@@ -13,28 +13,10 @@
             --text-shadow:.4rem .4rem 0 rgba(0,0,0,.2);
             --border:.2rem solid var (--green);
         }
-        html{
-            font-size:62.5%;
-            overflow-x:hidden;
-            scroll-padding-top:7rem;
-            scroll-behavior:smooth;
-        }
-
-        * {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            border: none;
-            text-transform: capitalize;
-            transition: all .2s ease-out;
-            text-decoration:none;
-        }
         section{
             padding:2rem 9%;
         }
-        .btn{
+        .botonRepositorio{
             display:inline-block;
             margin-top:1rem;
             padding:.5rem;
@@ -46,18 +28,18 @@
             cursor:pointer;
             font-size:1.7rem;
         }
-        .btn span{
+        .botonRepositorio span{
             padding:.7rem 1rem;
-            border-radius:.5rem;
+            border-radius:.4rem;
             background:var(--green);
             color:#fff;
             margin-left:.5rem;
         }
-        .btn:hover{
+        .botonRepositorio:hover{
             background: var(--green);
             color:#fff;
         }
-        .btn:hover span{
+        .botonRepositorio:hover span{
             color: var(--green);
             background:#fff;
             margin-left:1rem;
@@ -91,14 +73,16 @@
             padding:1rem 0;
         }
     </style>
+
     <section class="home" id="home">
         <div class="image">
-            <img src="img/fondo%20de%20pantalla.jpg" alt="" />
+            <img src="img/fondoDoctores.svg" alt="" />
+
         </div>
         <div class="content">
             <h3>Bienvenido a la Clínica del equipo 18</h3>
             <p>Espacio para poner descripcion / mensaje</p>
-            <a href="#" class="btn"><i class='bx bxl-github'></i>Repositorio <span><i class='bx bxs-arrow-to-right'></i></span></a>
+            <a href="#" class="botonRepositorio"><i class='bx bxl-github'></i> Repositorio <span><i class='bx bxs-arrow-to-right'></i></span></a>
         </div>
     </section>
 
