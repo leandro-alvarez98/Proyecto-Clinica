@@ -15,8 +15,12 @@
 
     <!-- Estilos propios -->
     <link href="content\styles.css" rel="stylesheet" />
-    <!-- Iconos -->
+
+    <!-- BOXICONS ICONOS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+     <!-- FONTAWESOME ICONOS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body class="body">
@@ -56,18 +60,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle">
+                                    <a href="Perfil_Usuario.aspx" class="nav-link text-white px-0">
                                         <i class='bx bx-user'></i>
-                                        <span class="ms-1 d-none d-sm-inline">Persona</span>
+                                        <span class="d-none d-sm-inline">Mi Perfil</span>
                                     </a>
-                                    <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                        <li class="w-100">
-                                            <a href="Perfil_Usuario.aspx" class="nav-link text-white px-0">
-                                                <i class='bx bxs-user-circle'></i>
-                                                <span class="d-none d-sm-inline">Mi Perfil</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                               <%switch(Usuario_Actual.Tipo)
                                 {
@@ -95,8 +91,14 @@
                                 </li>
                                 <li>
                                     <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
-                                        <i class='bx bx-notepad'></i>
+                                        <i class='bx bx-user-plus'></i>
                                         <span class="ms-1 d-none d-sm-inline">Médicos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="Estadisticas.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-signal-5'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Estadísticas</span>
                                     </a>
                                 </li>
                               <%break; %>
@@ -125,8 +127,14 @@
                                 </li>
                                 <li>
                                     <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
-                                        <i class='bx bx-notepad'></i>
+                                        <i class='bx bx-user-plus'></i>
                                         <span class="ms-1 d-none d-sm-inline">Médicos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="Estadisticas.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-signal-5'></i>
+                                        <span class="ms-1 d-none d-sm-inline">Estadísticas</span>
                                     </a>
                                 </li>
                               <%break;%>
@@ -142,7 +150,7 @@
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
-                                                <span class="d-none d-sm-inline">Gestionar Turnos</span>
+                                                <span class="d-none d-sm-inline">Reservar Turno</span>
                                             </a>
                                         </li>
                                         <li class="w-100">
