@@ -4,12 +4,23 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="container form_top containerbott">
+    <div class="container form_top containerbott ">
         <div class="row">
-            <div class="card col-md-6">
+            <%--comienzo de la card--%>
+            <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">Perfil de Usuario</h1>
+                    <h1 class="card-title text-center">Perfil de Usuario</h1>
                     <hr />
+                   <%-- foto del perfil--%>
+                    <div class="col-md-9">
+                        <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" IsPostBack="true" />
+                        <input type="file" id="txtImagen" class="form-control" runat="server" />
+                        <br />
+                        <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Confirmar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />
+                        <asp:Label ID="lbl_Error_Imagen" runat="server" Text="Hubo un error al cargar la imagen, asegurese que sea .jpg de tamaño menor a 5 mb" Visible="false"></asp:Label>
+                    </div>
+                    <hr />
+                    <%--listado de datos del perfil--%>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
@@ -48,7 +59,7 @@
                         </li>
                     </ul>
 
-                    <div class="mb-2">
+                    <div class="mb-2 ">
                         <br />
                         <asp:Button ID="btnEditarDatos" CssClass="Boton" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
                         <asp:Button ID="btnGuardar" CssClass="Boton" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
@@ -58,13 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" IsPostBack="true" />
-                <input type="file" id="txtImagen" class="form-control" runat="server" />
-                <br />
-                <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Cambiar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />
-                <asp:Label ID="lbl_Error_Imagen" runat="server" Text="Hubo un error al cargar la imagen, asegurese que sea .jpg de tamaño menor a 5 mb" Visible="false"></asp:Label>
-            </div>
+          
         </div>
     </div>
 
