@@ -15,13 +15,22 @@ namespace Proyecto_Clinica
     {
 
         /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// Control txt_Nueva_Especialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txt_Nueva_Especialidad;
+        protected global::System.Web.UI.WebControls.TextBox txt_Nueva_Especialidad;
 
         /// <summary>
         /// Control btn_Nueva_Especialidad.

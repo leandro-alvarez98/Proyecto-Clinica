@@ -68,6 +68,7 @@
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="Confirmar_turno.aspx" />
     <Content Include="Detalle_turno.aspx" />
+    <Content Include="Editar_medicos.aspx" />
     <Content Include="img\fondo de pantalla.jpg" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="MailContraseña.aspx" />
@@ -104,6 +105,13 @@
     </Compile>
     <Compile Include="Detalle_turno.aspx.designer.cs">
       <DependentUpon>Detalle_turno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Editar_medicos.aspx.cs">
+      <DependentUpon>Editar_medicos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editar_medicos.aspx.designer.cs">
+      <DependentUpon>Editar_medicos.aspx</DependentUpon>
     </Compile>
     <Compile Include="MailCambioContraseña.aspx.cs">
       <DependentUpon>MailCambioContraseña.aspx</DependentUpon>
