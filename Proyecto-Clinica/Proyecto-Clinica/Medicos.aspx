@@ -57,7 +57,7 @@
                                             </ItemTemplate>
                                         </asp:Repeater>
                                     </p>
-                                    <asp:Button ID="btnEditarDatos" CssClass="Boton" runat="server" Text="Editar Datos" CommandArgument='<<%# Eval("id") %>' CommandName="id_medico"  OnClick="btnEditarDatos_Click"/>
+                                    <asp:Button ID="btnEditarDatos" CssClass="Boton" runat="server" Text="Editar Datos" CommandArgument='<%# Eval("id") %>' CommandName="id_medico"  OnClick="btnEditarDatos_Click"/>
                                 </div>
                             </div>
                         </div>
