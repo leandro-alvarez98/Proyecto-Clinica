@@ -13,6 +13,10 @@
             --text-shadow:.4rem .4rem 0 rgba(0,0,0,.2);
             --border:.2rem solid var (--green);
         }
+        *{
+            text-transform:capitalize;
+            transition: all .2s ease-out;
+        }
         section{
             padding:2rem 9%;
         }

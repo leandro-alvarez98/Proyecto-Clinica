@@ -40,6 +40,9 @@
             border: none;
             text-decoration:none;
         }
+        .titulo_pagina{
+
+        }
       
     </style>
     <form id="form1" runat="server">
@@ -47,7 +50,7 @@
             <%-- NAV --%>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand fs-2 " href="Home.aspx" visible="True" runat="server">Gestión de Clinica</a>
+                    <a class="navbar-brand fs-1 " href="Home.aspx" visible="True" runat="server"><span class="titulo_pagina">Gestión de Clinica</span></a>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <asp:Image ID="imgPerfil" Width="50" Height="50" class="rounded-circle" runat="server" />
@@ -69,19 +72,19 @@
                         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
 
                             <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                                <span class="fs-2 d-none d-sm-inline">Menu</span>
+                                <span class="fs-3 d-none d-sm-inline">Menu</span>
                             </a>
                             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                                 <li class="nav-item ">
                                     <a href="Home.aspx" class="nav-link align-middle text-white px-0">
                                         <i class='bx bx-home'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">INICIO</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">INICIO</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="Perfil_Usuario.aspx" class="nav-link text-white px-0">
                                         <i class='bx bx-user'></i>
-                                        <span class="fs-4 d-none d-sm-inline">Mi Perfil</span>
+                                        <span class="fs-5 d-none d-sm-inline">Mi Perfil</span>
                                     </a>
                                 </li>
 
@@ -92,19 +95,19 @@
                                 <li>
                                     <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-notepad'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Turnos</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
                                     <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
-                                                <span class="fs-5 d-none d-sm-inline">Gestionar Turnos</span>
+                                                <span class="fs-6 d-none d-sm-inline">Gestionar Turnos</span>
                                             </a>
                                         </li>
                                         <li class="w-100">
                                             <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
                                                 <i class='bx bx-calendar'></i>
-                                                <span class="fs-5 d-none d-sm-inline">Turnos</span>
+                                                <span class="fs-6 d-none d-sm-inline">Turnos</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -112,13 +115,13 @@
                                 <li>
                                     <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-user-plus'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Médicos</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Médicos</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="Estadisticas.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-signal-5'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Estadísticas</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Estadísticas</span>
                                     </a>
                                 </li>
                               <%break; %>
@@ -128,19 +131,19 @@
                                 <li>
                                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-notepad'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Turnos</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
                                     <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
-                                                <span class="fs-5 d-none d-sm-inline">Gestionar Turnos</span>
+                                                <span class="fs-6 d-none d-sm-inline">Gestionar Turnos</span>
                                             </a>
                                         </li>
                                         <li class="w-100">
                                             <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
                                                 <i class='bx bx-calendar'></i>
-                                                <span class="fs-5 d-none d-sm-inline">Turnos</span>
+                                                <span class="fs-6 d-none d-sm-inline">Turnos</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -148,13 +151,13 @@
                                 <li>
                                     <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-user-plus'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Médicos</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Médicos</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="Estadisticas.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-signal-5'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Estadísticas</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Estadísticas</span>
                                     </a>
                                 </li>
                               <%break;%>
@@ -164,19 +167,19 @@
                                 <li>
                                     <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-notepad'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Turnos</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
                                     <ul class="collapse nav flex-column ms-1" id = "submenu2" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
-                                                <span class="fs-5 d-none d-sm-inline">Reservar Turno</span>
+                                                <span class="fs-6 d-none d-sm-inline">Reservar Turno</span>
                                             </a>
                                         </li>
                                         <li class="w-100">
                                             <a href="MisTurnos.aspx" class="nav-link  text-white px-0">
                                                 <i class='bx bx-calendar'></i>
-                                                <span class="fs-5 d-none d-sm-inline">Mis Turnos</span>
+                                                <span class="fs-6 d-none d-sm-inline">Mis Turnos</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -188,7 +191,7 @@
                                 <li>
                                     <a href="MisTurnos.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-calendar'></i>
-                                        <span class="fs-4 d-none d-sm-inline">Mis Turnos</span>
+                                        <span class="fs-5 d-none d-sm-inline">Mis Turnos</span>
                                     </a>
                                 </li>
                               <%break;
@@ -196,7 +199,7 @@
                                 <li>
                                     <a href="#" class="nav-link px-0 text-white align-middle scrollFooter">
                                         <i class='bx bx-phone'></i>
-                                        <span class="fs-4 ms-1 d-none d-sm-inline">Contacto</span>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Contacto</span>
                                     </a>
                                 </li>
                             </ul>
@@ -221,7 +224,7 @@
 
             $('html, body').animate({
                 scrollTop: targetPosition
-            }, 500); 
+            }, 50); 
         });
     });
             </script>
