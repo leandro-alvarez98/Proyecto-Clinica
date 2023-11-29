@@ -444,8 +444,16 @@ namespace Proyecto_Clinica
         }
         protected void btn_CambiarImagen_Click(object sender, EventArgs e)
         {
+            if(!Imagen_Cambiada())
+            {
+                lbl_Error_Imagen.Visible = true;
+            }
+        }
+
+        private bool Imagen_Cambiada()
+        {
             try
-            { 
+            {
                 //Escritura de imagen
                 string ruta = Server.MapPath("./img/");
 
@@ -459,12 +467,17 @@ namespace Proyecto_Clinica
                 //Lectura de imagen
                 Image img = (Image)Master.FindControl("imgPerfil");
                 img.ImageUrl = "~/img/" + Usuario_Actual.Imagen;
+                imgPerfil.ImageUrl = "~/img/" + Usuario_Actual.Imagen;
+
+                return true;
             }
             catch (Exception ex)
             {
+                return false;
                 throw ex;
             }
         }
+
         public void Visibilidad_labels(bool valor)
         {
             dniLbl.Visible = valor;

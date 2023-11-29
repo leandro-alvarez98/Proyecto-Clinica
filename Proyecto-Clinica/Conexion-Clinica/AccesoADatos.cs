@@ -20,10 +20,10 @@ namespace Conexion_Clinica
         public AccesoDatos()
         {
             //Para nash xd
-           conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CLINICA; integrated security=true");
+           //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CLINICA; integrated security=true");
 
             //Lean y facu
-           //conexion = new SqlConnection("server=.; database=CLINICA; integrated security=true");
+            conexion = new SqlConnection("server=.; database=CLINICA; integrated security=true");
 
             comando = new SqlCommand();
         }

@@ -174,9 +174,10 @@
                               <%break;
                                 }%>
                                 <li>
-                                    <a href="#" class="nav-link px-0 text-white align-middle">
+                                    <a href="#" class="nav-link px-0 text-white align-middle scrollFooter">
                                         <i class='bx bx-phone'></i>
-                                        <span class="ms-1 d-none d-sm-inline">Contacto</span></a>
+                                        <span class="ms-1 d-none d-sm-inline">Contacto</span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -193,7 +194,7 @@
 
             <script>
     $(document).ready(function () {
-        $('a.nav-link').click(function (event) {
+        $('.scrollFooter').click(function (event) {
             event.preventDefault();
             
             var targetPosition = $('#footer').offset().top;

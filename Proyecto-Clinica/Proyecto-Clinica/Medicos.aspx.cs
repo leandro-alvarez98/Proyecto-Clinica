@@ -27,12 +27,13 @@ namespace Proyecto_Clinica
                 repeaterMedicos.DataSource = lista_Medicos;
                 repeaterMedicos.DataBind();
             }
+            
         }
         protected void btnEditarDatos_Click(object sender, EventArgs e)
         {
             //guardo el id del medico para asi poder utilizarlo en la proxima pagina
             //string id_medico = ((System.Web.UI.WebControls.Button)sender).CommandArgument;
-            //int Id_Medico = int.Parse(id_medico); 
+            //int Id_Medico = int.Parse(id_medico);
 
             Session["Medico"] = Cargar_Médico_Clinica(1);
             Response.Redirect("Editar_medicos.aspx");

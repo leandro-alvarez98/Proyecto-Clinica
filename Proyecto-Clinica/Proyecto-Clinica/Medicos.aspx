@@ -17,7 +17,9 @@
                     <ItemTemplate>
                         <div class="col-md-4 mb-4">
                             <div class="card">
-                                <img src="  <%# Eval("Imagen") %>" class="card-img-top" alt="...">
+
+                                <img src="<%# Eval("Imagen") %>" class="card-img-top">
+
                                 <div class="card-body">
                                     <h5 class="card-title"><%# Eval("Nombre") %>, <%# Eval("Apellido") %></h5>
                                     <p class="card-text"><strong>Telefono: </strong><%# Eval("Telefono") %></p>

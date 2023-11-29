@@ -63,6 +63,7 @@
                 <input type="file" id="txtImagen" class="form-control" runat="server" />
                 <br />
                 <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Cambiar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />
+                <asp:Label ID="lbl_Error_Imagen" runat="server" Text="Hubo un error al cargar la imagen, asegurese que sea .jpg de tamaño menor a 5 mb" Visible="false"></asp:Label>
             </div>
         </div>
     </div>
