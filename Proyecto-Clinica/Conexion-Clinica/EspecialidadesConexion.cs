@@ -25,7 +25,7 @@ namespace Conexion_Clinica
                 {
                     Especialidad especialidad = new Especialidad
                     {
-                        Id = (byte)datos.Lector["ID_ESPECIALIDAD"],
+                        Id = (int)datos.Lector["ID_ESPECIALIDAD"],
                         Tipo = (string)datos.Lector["TIPO"]
                     };
                     lista.Add(especialidad);

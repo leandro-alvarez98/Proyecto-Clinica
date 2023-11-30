@@ -52,7 +52,7 @@ namespace Conexion_Clinica
 
                     Especialidad nueva = new Especialidad
                     {
-                        Id = (byte)datos.Lector["IDESPECIALIDAD"],
+                        Id = (int)datos.Lector["IDESPECIALIDAD"],
                         Tipo = (String)datos.Lector["ESPECIALIDAD"]
                     };
                     medico.Especialidades.Add(nueva);

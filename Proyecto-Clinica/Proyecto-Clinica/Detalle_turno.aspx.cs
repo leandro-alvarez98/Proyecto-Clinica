@@ -26,8 +26,10 @@ namespace Proyecto_Clinica
             Cargar_componentes();
         }
         public void Cargar_componentes()
-        {       
-            clinica = new Clinica();
+        {
+            ClinicaConexion conexion = new ClinicaConexion();
+            clinica = conexion.Listar();
+
             Turnos_Disponibles = new List<Turno>();
             medicos_disponibles = new List<Medico>();
             turno_actual = new Turno();
@@ -131,8 +133,6 @@ namespace Proyecto_Clinica
         }
         private void Cargar_Turnos_Disponibles()
         {
-
-            int ID_Especialidad_Seleccionada = turnoConexion.Get_Especialidad_Turno(turno_actual);
             DateTime Fecha_Seleccionada = new DateTime();
 
             // si es valida ...
@@ -147,21 +147,18 @@ namespace Proyecto_Clinica
                     Fecha_Seleccionada = fecha_turnos;
                 }
             }
+            // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
+            Medicos_segun_Especialidad(turno_actual.Id_Especialidad);
+            // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
+            Obtener_Disponibilidad(Fecha_Seleccionada);
 
-           
-                // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
-                Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
-                // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
-                Obtener_Disponibilidad(Fecha_Seleccionada);
+            // CARGAR TURNOS DISPONIBLES
+            Cargar_Lista_Turnos();
 
-                // CARGAR TURNOS DISPONIBLES
-                Cargar_Lista_Turnos();
-             
 
-                // LISTAR TURNOS EN LA GRILLA
-                DGV_turnos_disponibles.DataSource = Turnos_Disponibles;
-                DGV_turnos_disponibles.DataBind();
-            
+            // LISTAR TURNOS EN LA GRILLA
+            DGV_turnos_disponibles.DataSource = Turnos_Disponibles;
+            DGV_turnos_disponibles.DataBind();
         }
         private void Obtener_Disponibilidad(DateTime Fecha)
         {

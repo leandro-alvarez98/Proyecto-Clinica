@@ -17,7 +17,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("\tSELECT T.ID_TURNO AS IDTURNO,T.ID_MEDICO AS IDMEDICO,T.ID_PACIENTE AS IDPACIENTE,T.ID_HORARIO,T.FECHA AS FECHA,T.ID_HORARIO AS IDHORARIO,H.HORA AS HORA,P.DNI AS DNIPACIENTE,T.ESTADO AS ESTADO,M.NOMBRE AS MNOMBRE,M.APELLIDO AS MAPELLIDO,P.NOMBRE AS PNOMBRE,P.APELLIDO AS PAPELLIDO ,T.OBS_PACIENTE AS OBSERVACION_PACIENTE,T.OBS_MEDICO AS OBSERVACION_MEDICO FROM TURNOS T INNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO INNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE INNER JOIN HORARIOS H ON H.ID_HORARIO = T.ID_HORARIO");
+                datos.setConsulta("SELECT \r\n\t\tT.ID_TURNO AS IDTURNO,\r\n\t\tT.ID_MEDICO AS IDMEDICO,\r\n\t\tT.ID_PACIENTE AS IDPACIENTE,\r\n\t\tT.ID_HORARIO AS IDHORARIO,\r\n\t\tT.ID_ESPECIALIDAD AS IDESPECIALIDAD, \r\n\t\tT.FECHA AS FECHA,\r\n\t\tH.HORA AS HORA,\r\n\t\tP.DNI AS DNIPACIENTE,\r\n\t\tT.ESTADO AS ESTADO,\r\n\t\tM.NOMBRE AS MNOMBRE,\r\n\t\tM.APELLIDO AS MAPELLIDO,\r\n\t\tP.NOMBRE AS PNOMBRE,\r\n\t\tP.APELLIDO AS PAPELLIDO,\r\n\t\tT.OBS_PACIENTE AS OBSERVACION_PACIENTE,\r\n\t\tT.OBS_MEDICO AS OBSERVACION_MEDICO \r\n\tFROM TURNOS T \r\n\tINNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO \r\n\tINNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE \r\n\tINNER JOIN HORARIOS H ON H.ID_HORARIO = T.ID_HORARIO");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -28,6 +28,7 @@ namespace Conexion_Clinica
                         Id_Medico = (int)datos.Lector["IDMEDICO"],
                         Id_Paciente = (int)datos.Lector["IDPACIENTE"],
                         Id_Horario = (int)datos.Lector["IDHORARIO"],
+                        Id_Especialidad = (int)datos.Lector["IDESPECIALIDAD"],
                         Horario = (TimeSpan)datos.Lector["HORA"],
                         Dni_paciente = (String)datos.Lector["DNIPACIENTE"],
                         Fecha = (DateTime)datos.Lector["FECHA"],
@@ -36,8 +37,8 @@ namespace Conexion_Clinica
                         Apellido_Medico = (String)datos.Lector["MAPELLIDO"],
                         Nombre_Paciente = (String)datos.Lector["PNOMBRE"],
                         Apellido_Paciente = (String)datos.Lector["PAPELLIDO"],
-                        Obs_paciente = (string)datos.Lector["OBSERVACION_PACIENTE"],
-                        Obs_medico = (string)datos.Lector["OBSERVACION_MEDICO"],
+                        Obs_paciente = (String)datos.Lector["OBSERVACION_PACIENTE"],
+                        Obs_medico = (String)datos.Lector["OBSERVACION_MEDICO"],
                 };
 
                     lista.Add(turno);
@@ -212,32 +213,6 @@ namespace Conexion_Clinica
                 datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Finalizado' WHERE ID_TURNO = @ID_TURNO");
                 datos.setParametro("@ID_TURNO", id);
                 datos.ejecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-        public int Get_Especialidad_Turno(Turno turno)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            int Id_Especialidad = -1;
-            try
-            {
-                datos.setConsulta("SELECT E.ID_ESPECIALIDAD AS ID FROM ESPECIALIDADES E\r\n\tINNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_ESPECIALIDAD = E.ID_ESPECIALIDAD\r\n\tINNER JOIN TURNOS T ON T.ID_MEDICO = ME.ID_MEDICO\r\n\tWHERE ME.ID_MEDICO = @ID_MEDICO");
-                datos.setParametro("@ID_MEDICO", turno.Id_Medico);
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
-                {
-                    Id_Especialidad = (int)datos.Lector["ID"];
-                }
-                return Id_Especialidad;
 
             }
             catch (Exception ex)

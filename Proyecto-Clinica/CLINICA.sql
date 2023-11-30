@@ -10,7 +10,7 @@
 	GO
 -- CREACION DE TABLAS
 CREATE TABLE ESPECIALIDADES (
-    ID_ESPECIALIDAD TINYINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    ID_ESPECIALIDAD INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     TIPO VARCHAR(20) NOT NULL
 )
 GO
@@ -101,13 +101,15 @@ CREATE TABLE TURNOS (
 	ID_MEDICO INT NOT NULL,
 	ID_PACIENTE INT NOT NULL,
 	ID_HORARIO int not null,
+	ID_ESPECIALIDAD INT NOT NULL,
 	FECHA DATE not null,
 	OBS_PACIENTE VARCHAR(1500) NOT NULL,
 	OBS_MEDICO VARCHAR(1500) NOT NULL,
     ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reservado', 'Reprogramado', 'Cancelado', 'No asistió', 'Finalizado')),
 	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
 	FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTES(ID_PACIENTE),
-	FOREIGN KEY (ID_HORARIO) REFERENCES HORARIOS(ID_HORARIO)
+	FOREIGN KEY (ID_HORARIO) REFERENCES HORARIOS(ID_HORARIO),
+	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD)
 )
 GO
 
@@ -121,7 +123,7 @@ GO
 CREATE TABLE MEDICOSXESPECIALIDAD(
 	ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_MEDICO INT NOT NULL,
-	ID_ESPECIALIDAD TINYINT NOT NULL,
+	ID_ESPECIALIDAD INT NOT NULL,
 	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
 	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD)
 )
@@ -217,25 +219,19 @@ VALUES  (18, '123456789', 'Laura', 'Gómez', '7755599994', 'Calle Principal 123',
 		(23, '777777777', 'Pablo', 'Sánchez', '9453215684', 'Calle Moderna 789', '1995-01-15', 'pablo.sanchez@email.com', 1)
 		------------------------------
 
-INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) 
+INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD ,FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) 
 VALUES 
-    (1, 1, 1, '2023-11-11','Duele panza', 'El paciente presentó mejoras significativas.','Reservado'),
-    (2, 1, 2, '2023-11-12', 'Duele cabeza', 'Se recomienda realizar pruebas adicionales para evaluar la condición del paciente.', 'Reservado'),
-    (3, 1, 3, '2023-11-13','Duele oreja','El tratamiento actual está mostrando resultados positivos.', 'Reservado'),
-    (3, 2, 4, '2023-11-14','Duele riñon','El paciente necesita seguir con el tratamiento según lo indicado.' , 'Reservado'),
-    (4, 2, 5, '2023-11-15','Duele masticar' ,'Se observaron síntomas preocupantes durante la consulta.', 'Reservado'),
-    (5, 3, 6, '2023-11-16','Duele pensar' ,'El médico sugiere ajustar la medicación del paciente.','Reservado'),
-    (6, 1, 7, '2023-11-17','Duele pestañear', 'Se discutieron posibles cambios en el plan de tratamiento.', 'Reservado'),
-    (7, 2, 8, '2023-11-18','Duele trabajar','El paciente informó de efectos secundarios leves, se monitoreará.' , 'Reservado'),
-    (8, 4, 9, '2023-11-19','Duele jugar lol','Es necesario programar un seguimiento para evaluar progresos.' , 'Reservado'),
-    (9, 4, 10, '2023-11-20','Duele comer ensalada en navidad', 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.','Reservado'),
-    (10, 4, 11, '2023-11-21', 'Duele la base de datos', 'Hay que ver la solucion', 'Reservado')
-			------------------------------
-
-
-			------------------------------
-
-
+    (1, 1, 1, 1, '2023-11-11','Duele panza', 'El paciente presentó mejoras significativas.','Reservado'),
+    (2, 1, 2, 1, '2023-11-12', 'Duele cabeza', 'Se recomienda realizar pruebas adicionales para evaluar la condición del paciente.', 'Reservado'),
+    (3, 1, 3, 1,'2023-11-13','Duele oreja','El tratamiento actual está mostrando resultados positivos.', 'Reservado'),
+    (3, 2, 4, 4,'2023-11-14','Duele riñon','El paciente necesita seguir con el tratamiento según lo indicado.' , 'Reservado'),
+    (4, 2, 5, 2,'2023-11-15','Duele masticar' ,'Se observaron síntomas preocupantes durante la consulta.', 'Reservado'),
+    (5, 3, 6, 2,'2023-11-16','Duele pensar' ,'El médico sugiere ajustar la medicación del paciente.','Reservado'),
+    (6, 1, 7, 2,'2023-11-17','Duele pestañear', 'Se discutieron posibles cambios en el plan de tratamiento.', 'Reservado'),
+    (7, 2, 8, 3,'2023-11-18','Duele trabajar','El paciente informó de efectos secundarios leves, se monitoreará.' , 'Reservado'),
+    (8, 4, 9, 3,'2023-11-19','Duele jugar lol','Es necesario programar un seguimiento para evaluar progresos.' , 'Reservado'),
+    (9, 4, 10, 3,'2023-11-20','Duele comer ensalada en navidad', 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.','Reservado'),
+    (10, 4, 11, 4,'2023-11-21', 'Duele la base de datos', 'Hay que ver la solucion', 'Reservado')
 			------------------------------
 
 INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD)

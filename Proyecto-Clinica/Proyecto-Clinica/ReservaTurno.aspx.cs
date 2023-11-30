@@ -18,6 +18,7 @@ namespace Proyecto_Clinica
         Usuario usuario;
         List<Medico> medicos_disponibles;
         public List<Turno> Turnos_Disponibles;
+        int ID_Especialidad_Seleccionada;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -33,7 +34,7 @@ namespace Proyecto_Clinica
             Turnos_Disponibles = new List<Turno>();
 
             //DROP_DOWN_LIST ESPECIALIDADES
-            Cargar_DDL();
+            Cargar_DDL_Especialidades();
             
         }
         protected void Buscar_Turno_Click(object sender, EventArgs e)
@@ -43,8 +44,10 @@ namespace Proyecto_Clinica
         private void Cargar_Turnos_Disponibles()
         {
             
-            int ID_Especialidad_Seleccionada = int.Parse(DDL_especialidades.SelectedValue);
+            ID_Especialidad_Seleccionada = int.Parse(DDL_especialidades.SelectedValue);
+
             DateTime Fecha_Seleccionada = Calendario.SelectedDate;
+
             if (Fecha_Seleccionada > DateTime.Now)
             {
                 // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
@@ -137,7 +140,7 @@ namespace Proyecto_Clinica
                 }
             }
         }
-        public void Cargar_DDL()
+        public void Cargar_DDL_Especialidades()
         {
             List<Especialidad> especialidades;
             especialidades = clinica.Especialidades;
@@ -148,7 +151,7 @@ namespace Proyecto_Clinica
         }
         protected void Grilla_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
-          Turno turno_seleccionado = new Turno();
+            Turno turno_seleccionado = new Turno();
             string fecha = Grilla_turnos_disponibles.SelectedRow.Cells[0].Text;
             string hora = Grilla_turnos_disponibles.SelectedRow.Cells[1].Text;
             string apellidoMedico = Grilla_turnos_disponibles.SelectedRow.Cells[2].Text;
@@ -156,12 +159,14 @@ namespace Proyecto_Clinica
             string idMedico = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
             
 
+
             turno_seleccionado.Fecha = DateTime.Parse(fecha);
             turno_seleccionado.Horario = TimeSpan.Parse(hora);
             turno_seleccionado.Id_Horario = Get_IDHorario(TimeSpan.Parse(hora));
             turno_seleccionado.Apellido_Medico = apellidoMedico;
             turno_seleccionado.Nombre_Medico = nombreMedico;
             turno_seleccionado.Id_Medico = int.Parse(idMedico);
+            turno_seleccionado.Id_Especialidad = ID_Especialidad_Seleccionada;
 
             if (usuario.Tipo == "Paciente")
             {
