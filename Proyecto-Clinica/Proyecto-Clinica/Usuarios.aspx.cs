@@ -14,6 +14,7 @@ namespace Proyecto_Clinica
     {
         Clinica Clinica;
         Usuario usuario_actual;
+        Usuario usuario_Seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
@@ -131,7 +132,6 @@ namespace Proyecto_Clinica
         }
         protected void btn_ActualizarTipo_Click(object sender, EventArgs e)
         {
-            Usuario usuario_Seleccionado = new Usuario();
             string opcionSeleccionada = rblTipos.SelectedValue;
 
             if (usuario_Seleccionado.Tipo == "Médico" || usuario_Seleccionado.Tipo == "Paciente")
@@ -204,6 +204,30 @@ namespace Proyecto_Clinica
                     }
                 break;
             }
+        }
+
+        protected void btn_SeleccionarUsuario_Click(object sender, EventArgs e)
+        {
+                Button btn = (Button)sender;
+                int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
+
+                usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
+
+            string script = @"
+        $(document).ready(function () {
+            $('#mod_ElegirTipo').modal('show');
+        });
+    ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
+        private Usuario GetUsuario(int id)
+        {
+            foreach(Usuario usuario in Clinica.Usuarios)
+            {
+                if(usuario.Id == id)
+                    return usuario;
+            }
+            return new Usuario();
         }
     }
 }

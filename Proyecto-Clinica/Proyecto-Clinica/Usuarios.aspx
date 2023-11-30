@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master-page.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="Proyecto_Clinica.Usuarios"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master-page.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="Proyecto_Clinica.Usuarios" EnableEventValidation="false"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -6,7 +6,7 @@
 
 
     <div class="container">
-
+        <asp:Label ID="Label1" runat="server" ></asp:Label>
         <div class="modal fade" id="mod_ElegirTipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -39,9 +39,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Username: <%# Eval("Username") %> </h5>
                             <p class="card-text"><strong>Tipo: </strong><%# Eval("Tipo") %></p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirTipo">
-                              Cambiar Tipo
-                            </button>
+                            <asp:Button ID="btn_SeleccionarUsuario" runat="server" Text="Cambiar tipo" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirTipo" OnClick="btn_SeleccionarUsuario_Click" CommandName="SeleccionarUsuario" CommandArgument='<%# Eval("Id") %>' />
                         </div>
                     </div>
                 </div>
