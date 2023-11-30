@@ -329,6 +329,7 @@ namespace Proyecto_Clinica
                 string nuevaDireccion = txtDireccionEdit.Text;
                 DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
 
+
                 // Actualizar los datos del paciente
                 switch (Usuario_Actual?.Tipo)
                 {

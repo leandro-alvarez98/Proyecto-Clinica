@@ -43,7 +43,7 @@ namespace Proyecto_Clinica
         private void Cargar_Turnos_Disponibles()
         {
             
-            String ID_Especialidad_Seleccionada = DDL_especialidades.SelectedValue;
+            int ID_Especialidad_Seleccionada = int.Parse(DDL_especialidades.SelectedValue);
             DateTime Fecha_Seleccionada = Calendario.SelectedDate;
             if (Fecha_Seleccionada > DateTime.Now)
             {
@@ -83,13 +83,13 @@ namespace Proyecto_Clinica
                 }
             }
         }
-        public void Medicos_segun_Especialidad(String ID_Especialidad)
+        public void Medicos_segun_Especialidad(int ID_Especialidad)
         {
             foreach (Medico medico in clinica.Medicos)
             {
                 foreach (Especialidad especialidad in medico.Especialidades)
                 {
-                    if (especialidad.Id.ToString() == ID_Especialidad)
+                    if (especialidad.Id == ID_Especialidad)
                     {
                         medicos_disponibles.Add(medico);
                     }
@@ -209,7 +209,6 @@ namespace Proyecto_Clinica
             }
             return new Paciente();
         }
-
         private bool Paciente_Disponible(int ID, Turno turno_seleccionado)
         {
             foreach (Turno turno in clinica.Turnos)

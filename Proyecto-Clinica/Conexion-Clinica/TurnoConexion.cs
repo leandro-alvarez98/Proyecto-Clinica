@@ -224,6 +224,31 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public int Get_Especialidad_Turno(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int Id_Especialidad = -1;
+            try
+            {
+                datos.setConsulta("SELECT E.ID_ESPECIALIDAD AS ID FROM ESPECIALIDADES E\r\n\tINNER JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_ESPECIALIDAD = E.ID_ESPECIALIDAD\r\n\tINNER JOIN TURNOS T ON T.ID_MEDICO = ME.ID_MEDICO\r\n\tWHERE ME.ID_MEDICO = @ID_MEDICO");
+                datos.setParametro("@ID_MEDICO", turno.Id_Medico);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Id_Especialidad = (int)datos.Lector["ID"];
+                }
+                return Id_Especialidad;
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
