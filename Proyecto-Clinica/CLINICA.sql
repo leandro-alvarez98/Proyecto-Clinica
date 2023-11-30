@@ -1,4 +1,5 @@
 -- ELIMINAR BASE DE DATOS
+	USE master
 	DROP DATABASE CLINICA
 	GO
 	USE MASTER
@@ -23,7 +24,7 @@ CREATE TABLE HORARIOS (
     ID_HORARIO INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_JORNADA INT NOT NULL FOREIGN KEY REFERENCES JORNADA(ID_JORNADA),
 	HORA TIME NOT NULL,
-	DISPONIBILIDAD bit not null default(1)
+	DISPONIBILIDAD BIT NOT NULL default(1)
 )
 GO
 CREATE TABLE IMAGENES(
@@ -116,6 +117,7 @@ GO
 CREATE TABLE MEDICOXJORNADA (
     ID_MEDICO INT NOT NULL,
     ID_JORNADA INT NOT NULL,
+	ESTADO BIT NOT NULL,
     FOREIGN KEY (ID_MEDICO) REFERENCES Medicos(ID_MEDICO),
     FOREIGN KEY (ID_JORNADA) REFERENCES JORNADA(ID_JORNADA)
 )
@@ -124,6 +126,7 @@ CREATE TABLE MEDICOSXESPECIALIDAD(
 	ID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	ID_MEDICO INT NOT NULL,
 	ID_ESPECIALIDAD INT NOT NULL,
+	ESTADO BIT NOT NULL,
 	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
 	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD)
 )
@@ -234,39 +237,39 @@ VALUES
     (10, 4, 11, 4,'2023-11-21', 'Duele la base de datos', 'Hay que ver la solucion', 'Reservado')
 			------------------------------
 
-INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD)
-VALUES (1, 1), -- Especialidad 1
-  	   (2, 1),
-       (3, 1),
-       (4, 2), -- Especialidad 2
-       (5, 2),
-	   (6, 2),
-	   (7, 3), -- Especialidad 3
-	   (8, 3),
-	   (9, 3),
-	   (10, 4), -- Especialidad 4
-	   (1, 4),
-  	   (2, 4),
-       (3, 5), -- Especialidad 5
-       (4, 5),
-       (5, 5),
-	   (1, 6) -- Especialidad 6
+INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD, ESTADO)
+VALUES (1, 1, 1), -- Especialidad 1
+  	   (2, 1, 1),
+       (3, 1, 1),
+       (4, 2, 1), -- Especialidad 2
+       (5, 2, 1),
+	   (6, 2, 1),
+	   (7, 3, 1), -- Especialidad 3
+	   (8, 3, 1),
+	   (9, 3, 1),
+	   (10, 4, 1), -- Especialidad 4
+	   (1, 4, 1),
+  	   (2, 4, 1),
+       (3, 5, 1), -- Especialidad 5
+       (4, 5, 1),
+       (5, 5, 1),
+	   (1, 6, 1) -- Especialidad 6
 	   		------------------------------
 
-INSERT INTO MEDICOXJORNADA(ID_MEDICO, ID_JORNADA)
-VALUES (1, 1), -- Trabajan de mañana
-       (2, 1),
-       (3, 1), 
-       (4, 1),
-	   (5, 1),
-	   (6, 1),
-	   (7, 2), -- Trabajan de tarde
-	   (8, 2),
-	   (9, 2),
-	   (10,2),
-	   (1, 2), -- Trabajan de noche
-       (2, 3),
-       (3, 3), 
-       (4, 3),
-	   (5, 3)
+INSERT INTO MEDICOXJORNADA(ID_MEDICO, ID_JORNADA, ESTADO)
+VALUES (1, 1, 1), -- Trabajan de mañana
+       (2, 1, 1),
+       (3, 1, 1), 
+       (4, 1, 1),
+	   (5, 1, 1),
+	   (6, 1, 1),
+	   (7, 2, 1), -- Trabajan de tarde
+	   (8, 2, 1),
+	   (9, 2, 1),
+	   (10,2, 1),
+	   (1, 2, 1), -- Trabajan de noche
+       (2, 3, 1),
+       (3, 3, 1), 
+       (4, 3, 1),
+	   (5, 3, 1)
 	   		------------------------------

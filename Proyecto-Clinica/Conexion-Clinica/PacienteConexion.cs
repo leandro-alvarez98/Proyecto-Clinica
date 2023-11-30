@@ -36,14 +36,13 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public List<Paciente> Listar()
         {
             List<Paciente> lista = new List<Paciente>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_PACIENTE, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES");
+                datos.setConsulta("SELECT ID_PACIENTE, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES WHERE ESTADO != 0");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

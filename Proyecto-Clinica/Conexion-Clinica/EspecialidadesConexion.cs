@@ -69,7 +69,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("DELETE FROM MEDICOSXESPECIALIDAD WHERE ID_MEDICO = @IDMEDICO");
+                datos.setConsulta("UPDATE MEDICOSXESPECIALIDAD SET ESTADO = 0 WHERE ID_MEDICO = @IDMEDICO");
                 datos.setParametro("@IDMEDICO", id);
                 datos.ejecutarAccion();
             }

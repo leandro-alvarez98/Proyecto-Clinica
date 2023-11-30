@@ -14,77 +14,78 @@ namespace Proyecto_Clinica
     {
         Clinica Clinica;
         Usuario usuario_actual;
-        Usuario usuario_Seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             Clinica = clinicaConexion.Listar();
             usuario_actual = (Usuario)Session["Usuario"];
-            Cargar_Datos_Usuario();
+            
+            usuario_actual = Cargar_Datos_Usuario(usuario_actual);
 
             repeaterUsuarios.DataSource = Clinica.Usuarios;
             repeaterUsuarios.DataBind();
         }
-        private void Cargar_Datos_Usuario()
+        private Usuario Cargar_Datos_Usuario(Usuario usuario)
         {
-            switch (usuario_actual.Tipo)
+            switch (usuario.Tipo)
             {
                 case "Médico":
-                    Medico Medico_actual = Cargar_Médico_Clinica(usuario_actual.Id);
+                    Medico Medico_actual = Cargar_Médico_Clinica(usuario.Id);
                     if (Medico_actual.Id != -1)
                     {
-                        usuario_actual.Nombre = Medico_actual.Nombre;
-                        usuario_actual.Apellido = Medico_actual.Apellido;
-                        usuario_actual.Dni = int.Parse(Medico_actual.Dni);
-                        usuario_actual.Telefono = Medico_actual.Telefono;
-                        usuario_actual.Direccion = Medico_actual.Direccion;
-                        usuario_actual.Fecha_Nacimiento = Medico_actual.Fecha_Nacimiento;
-                        usuario_actual.Mail = Medico_actual.Mail;
+                        usuario.Nombre = Medico_actual.Nombre;
+                        usuario.Apellido = Medico_actual.Apellido;
+                        usuario.Dni = int.Parse(Medico_actual.Dni);
+                        usuario.Telefono = Medico_actual.Telefono;
+                        usuario.Direccion = Medico_actual.Direccion;
+                        usuario.Fecha_Nacimiento = Medico_actual.Fecha_Nacimiento;
+                        usuario.Mail = Medico_actual.Mail;
                     }
                     break;
 
                 case "Paciente":
-                    Paciente paciente_actual = Cargar_Paciente_Clinica(usuario_actual.Id);
+                    Paciente paciente_actual = Cargar_Paciente_Clinica(usuario.Id);
                     if (paciente_actual.Id != -1)
                     {
-                        usuario_actual.Nombre = paciente_actual.Nombre;
-                        usuario_actual.Apellido = paciente_actual.Apellido;
-                        usuario_actual.Dni = int.Parse(paciente_actual.Dni);
-                        usuario_actual.Telefono = paciente_actual.Telefono;
-                        usuario_actual.Direccion = paciente_actual.Direccion;
-                        usuario_actual.Fecha_Nacimiento = paciente_actual.Fecha_Nacimiento;
-                        usuario_actual.Mail = paciente_actual.Mail;
+                        usuario.Nombre = paciente_actual.Nombre;
+                        usuario.Apellido = paciente_actual.Apellido;
+                        usuario.Dni = int.Parse(paciente_actual.Dni);
+                        usuario.Telefono = paciente_actual.Telefono;
+                        usuario.Direccion = paciente_actual.Direccion;
+                        usuario.Fecha_Nacimiento = paciente_actual.Fecha_Nacimiento;
+                        usuario.Mail = paciente_actual.Mail;
                     }
                     break;
 
                 case "Administrador":
-                    Administrador Administrador_actual = Cargar_Administracion_Clinica(usuario_actual.Id);
+                    Administrador Administrador_actual = Cargar_Administracion_Clinica(usuario.Id);
                     if (Administrador_actual.Id != -1)
                     {
-                        usuario_actual.Nombre = Administrador_actual.Nombre;
-                        usuario_actual.Apellido = Administrador_actual.Apellido;
-                        usuario_actual.Dni = int.Parse(Administrador_actual.Dni);
-                        usuario_actual.Telefono = Administrador_actual.Telefono;
-                        usuario_actual.Direccion = Administrador_actual.Direccion;
-                        usuario_actual.Fecha_Nacimiento = Administrador_actual.Fecha_Nacimiento;
-                        usuario_actual.Mail = Administrador_actual.Mail;
+                        usuario.Nombre = Administrador_actual.Nombre;
+                        usuario.Apellido = Administrador_actual.Apellido;
+                        usuario.Dni = int.Parse(Administrador_actual.Dni);
+                        usuario.Telefono = Administrador_actual.Telefono;
+                        usuario.Direccion = Administrador_actual.Direccion;
+                        usuario.Fecha_Nacimiento = Administrador_actual.Fecha_Nacimiento;
+                        usuario.Mail = Administrador_actual.Mail;
                     }
                     break;
 
                 case "Recepcionista":
-                    Recepcionista Recepcionista_actual = Cargar_Recepcionista_Clinica(usuario_actual.Id);
+                    Recepcionista Recepcionista_actual = Cargar_Recepcionista_Clinica(usuario.Id);
                     if (Recepcionista_actual.Id != -1)
                     {
-                        usuario_actual.Nombre = Recepcionista_actual.Nombre;
-                        usuario_actual.Apellido = Recepcionista_actual.Apellido;
-                        usuario_actual.Dni = int.Parse(Recepcionista_actual.Dni);
-                        usuario_actual.Telefono = Recepcionista_actual.Telefono;
-                        usuario_actual.Direccion = Recepcionista_actual.Direccion;
-                        usuario_actual.Fecha_Nacimiento = Recepcionista_actual.Fecha_Nacimiento;
-                        usuario_actual.Mail = Recepcionista_actual.Mail;
+                        usuario.Nombre = Recepcionista_actual.Nombre;
+                        usuario.Apellido = Recepcionista_actual.Apellido;
+                        usuario.Dni = int.Parse(Recepcionista_actual.Dni);
+                        usuario.Telefono = Recepcionista_actual.Telefono;
+                        usuario.Direccion = Recepcionista_actual.Direccion;
+                        usuario.Fecha_Nacimiento = Recepcionista_actual.Fecha_Nacimiento;
+                        usuario.Mail = Recepcionista_actual.Mail;
                     }
                     break;
             }
+            return usuario;
         }
         private Medico Cargar_Médico_Clinica(int IDUsuario)
         {
@@ -133,6 +134,7 @@ namespace Proyecto_Clinica
         protected void btn_ActualizarTipo_Click(object sender, EventArgs e)
         {
             string opcionSeleccionada = rblTipos.SelectedValue;
+            Usuario usuario_Seleccionado = (Usuario)Session["UsuarioSeleccionado"];
 
             if (usuario_Seleccionado.Tipo == "Médico" || usuario_Seleccionado.Tipo == "Paciente")
                 Baja_Logica_Turnos(usuario_Seleccionado);
@@ -208,10 +210,14 @@ namespace Proyecto_Clinica
 
         protected void btn_SeleccionarUsuario_Click(object sender, EventArgs e)
         {
-                Button btn = (Button)sender;
-                int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
+            Button btn = (Button)sender;
+            int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
 
-                usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
+            Usuario usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
+
+            usuario_Seleccionado = Cargar_Datos_Usuario(usuario_Seleccionado);
+
+            Session["UsuarioSeleccionado"] = usuario_Seleccionado;
 
             string script = @"
         $(document).ready(function () {

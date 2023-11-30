@@ -274,16 +274,16 @@ namespace Conexion_Clinica
                 switch (usuario_actual.Tipo)
                 {
                     case "Administrador":
-                        datos.setConsulta("DELETE FROM ADMINISTRADOR WHERE ID_USUARIO = @IDUSUARIO");
+                        datos.setConsulta("UPDATE ADMINISTRADOR SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
                         break;
                     case "Recepcionista":
-                        datos.setConsulta("DELETE FROM RECEPCIONISTA WHERE ID_USUARIO = @IDUSUARIO");
+                        datos.setConsulta("UPDATE RECEPCIONISTA SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
                         break;
                     case "Médico":
-                        datos.setConsulta("DELETE FROM MEDICOS WHERE ID_USUARIO = @IDUSUARIO");
+                        datos.setConsulta("UPDATE MEDICOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
                         break;
                     case "Paciente":
-                        datos.setConsulta("DELETE FROM PACIENTES WHERE ID_USUARIO = @IDUSUARIO");
+                        datos.setConsulta("UPDATE PACIENTES SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
                         break;
 
                 }

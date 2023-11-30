@@ -6,7 +6,6 @@
 
 
     <div class="container">
-        <asp:Label ID="Label1" runat="server" ></asp:Label>
         <div class="modal fade" id="mod_ElegirTipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -15,7 +14,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <asp:RadioButtonList ID="rblTipos" runat="server" AutoPostBack="True">
+                        <asp:RadioButtonList ID="rblTipos" runat="server" AutoPostBack="False">
                             <asp:ListItem Text=" Administrador/a" Value="Administrador"/>
                             <asp:ListItem Text=" Recepcionista" Value="Recepcionista" />
                             <asp:ListItem Text=" Médico/a" Value="Médico" />

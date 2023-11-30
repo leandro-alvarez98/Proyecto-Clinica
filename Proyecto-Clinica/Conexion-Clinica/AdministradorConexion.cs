@@ -44,7 +44,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_ADMINISTRADOR, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM ADMINISTRADOR");
+                datos.setConsulta("SELECT ID_ADMINISTRADOR, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM ADMINISTRADOR WHERE ESTADO != 0");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
