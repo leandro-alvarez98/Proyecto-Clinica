@@ -14,16 +14,7 @@ namespace Proyecto_Clinica
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // Limpia la ddl
-                ddlRegistrarTipo.Items.Clear();
-                // Agrega los tipos de usuario
-                ddlRegistrarTipo.Items.Add(new ListItem("Administrador/a", "Administrador"));
-                ddlRegistrarTipo.Items.Add(new ListItem("Recepcionista", "Recepcionista"));
-                ddlRegistrarTipo.Items.Add(new ListItem("Médico/a", "Médico"));
-                ddlRegistrarTipo.Items.Add(new ListItem("Paciente", "Paciente"));
-            }
+
         }
         protected void btn_AceptarAltaUsuario_Click(object sender, EventArgs e)
         {
@@ -37,37 +28,22 @@ namespace Proyecto_Clinica
             //Si las pasa, se crea un usuario nuevo y se lo ingresa en la BBDD
             if (usuarioValido)
             {
+                UsuarioConexion usuarioConexion = new UsuarioConexion();
+
                 Usuario nuevo_usuario = new Usuario
                 {
                     Nombre = txtRegistrarUsuario.Text,
                     Contraseña = txtRegistrarContrasena.Text,
-                    Tipo = ddlRegistrarTipo.SelectedValue
+                    Tipo = "Paciente"
                 };
-                InsertarUsuarioEnBBDD(nuevo_usuario);
+                usuarioConexion.InsertarUsuarioEnBBDD(nuevo_usuario);
 
                 Session["Usuario"] = nuevo_usuario;
                 Response.Redirect("Perfil_Usuario.aspx");
             }
-        }
-        protected void InsertarUsuarioEnBBDD(Usuario usuario)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
+            else
             {
-                datos.setConsulta("INSERT INTO USUARIOS (NOMBRE_USUARIO, CONTRASENA, TIPO) VALUES(@Nombre, @Contrasena, @Tipo)");
-                datos.setParametro("@Nombre", usuario.Nombre);
-                datos.setParametro("@Contrasena", usuario.Contraseña);
-                datos.setParametro("@Tipo", usuario.Tipo);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
+                lbl_Error_Registro.Visible = true;
             }
         }
     }

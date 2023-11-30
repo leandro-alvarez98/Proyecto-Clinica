@@ -59,6 +59,28 @@ namespace Conexion_Clinica
             }
         }
 
+        public void InsertarUsuarioEnBBDD(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO USUARIOS (NOMBRE_USUARIO, CONTRASENA, TIPO) VALUES(@Nombre, @Contrasena, @Tipo)");
+                datos.setParametro("@Nombre", usuario.Nombre);
+                datos.setParametro("@Contrasena", usuario.Contraseña);
+                datos.setParametro("@Tipo", usuario.Tipo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void ActualizarPaciente(Paciente paciente)
         {
             AccesoDatos datos = new AccesoDatos();

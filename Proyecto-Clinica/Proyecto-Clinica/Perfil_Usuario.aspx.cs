@@ -177,62 +177,15 @@ namespace Proyecto_Clinica
 
             // Mostrar botón de guardar
             btnGuardar.Visible = true;
-            btnCancelar.Visible = true; 
+            btnCancelar.Visible = true;
 
-            // Llenar TextBox con datos actuales
-            switch (Usuario_Actual.Tipo)
-            {
-                case "Médico":
-                    Medico_actual = new Medico();
-                    Medico_actual = Cargar_Médico_Clinica();
-                    txtDniEdit.Text = Medico_actual.Dni;
-                    txtNombreEdit.Text = Medico_actual.Nombre;
-                    txtApellidoEdit.Text = Medico_actual.Apellido;
-                    txtMailEdit.Text = Medico_actual.Mail;
-                    txtTelefonoEdit.Text = Medico_actual.Telefono;
-                    txtDireccionEdit.Text = Medico_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
-                    break;
-
-                case "Paciente":
-                    paciente_actual = new Paciente();
-                    paciente_actual = Cargar_Paciente_Clinica();
-                    txtDniEdit.Text = paciente_actual.Dni;
-                    txtNombreEdit.Text = paciente_actual.Nombre;
-                    txtApellidoEdit.Text = paciente_actual.Apellido;
-                    txtMailEdit.Text = paciente_actual.Mail;
-                    txtTelefonoEdit.Text = paciente_actual.Telefono;
-                    txtDireccionEdit.Text = paciente_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = paciente_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
-                    break;
-
-                // Puedes agregar más casos según sea necesario
-                case "Administrador":
-                    Administrador_actual = new Administrador();
-                    Administrador_actual = Cargar_Administracion_Clinica();
-                    txtDniEdit.Text = Administrador_actual.Dni;
-                    txtNombreEdit.Text = Administrador_actual.Nombre;
-                    txtApellidoEdit.Text = Administrador_actual.Apellido;
-                    txtMailEdit.Text = Administrador_actual.Mail;
-                    txtTelefonoEdit.Text = Administrador_actual.Telefono;
-                    txtDireccionEdit.Text = Administrador_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = Administrador_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
-                    break;
-
-
-                case "Recepcionista":
-                    Recepcionista_actual = new Recepcionista();
-                    Recepcionista_actual = Cargar_Recepcionista_Clinica();
-                    txtDniEdit.Text = Recepcionista_actual.Dni;
-                    txtNombreEdit.Text = Recepcionista_actual.Nombre;
-                    txtApellidoEdit.Text = Recepcionista_actual.Apellido;
-                    txtMailEdit.Text = Recepcionista_actual.Mail;
-                    txtTelefonoEdit.Text = Recepcionista_actual.Telefono;
-                    txtDireccionEdit.Text = Recepcionista_actual.Direccion;
-                    txtFechaNacimientoEdit.Text = Recepcionista_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
-                    break;
-            }
-            
+            txtDniEdit.Text = Usuario_Actual.Dni.ToString();
+            txtNombreEdit.Text = Usuario_Actual.Nombre;
+            txtApellidoEdit.Text = Usuario_Actual.Apellido;
+            txtMailEdit.Text = Usuario_Actual.Mail;
+            txtTelefonoEdit.Text = Usuario_Actual.Telefono;
+            txtDireccionEdit.Text = Usuario_Actual.Direccion;
+            txtFechaNacimientoEdit.Text = Usuario_Actual.Fecha_Nacimiento.ToString("d/M/yyyy");
         }
         public void ocultarTxtEditables()
         {
@@ -450,7 +403,6 @@ namespace Proyecto_Clinica
                 lbl_Error_Imagen.Visible = true;
             }
         }
-
         private bool Imagen_Cambiada()
         {
             try
@@ -478,7 +430,6 @@ namespace Proyecto_Clinica
                 throw ex;
             }
         }
-
         public void Visibilidad_labels(bool valor)
         {
             dniLbl.Visible = valor;

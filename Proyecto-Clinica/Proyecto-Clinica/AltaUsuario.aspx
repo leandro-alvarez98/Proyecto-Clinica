@@ -26,22 +26,11 @@
                     <asp:Label ID="lblRegistrarContrasena2" CssClass="lbl fw-semibold" runat="server" Text="Repita su contraseña"></asp:Label>
                     <asp:TextBox ID="txtRegistrarContrasena2" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
-
-                <div class="col-auto">
-                    <asp:Label ID="lblRegistrarTipo" CssClass="lbl fw-semibold" runat="server" Text="Tipo de usuario"></asp:Label>
-                    <asp:DropDownList ID="ddlRegistrarTipo" runat="server"></asp:DropDownList>
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-                <input type="file" id="txtImagen" class="form-control" runat="server" />
-
-                <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 200px; height: 200px;" />
             </div>
         </div>
         <br />
         <asp:Button ID="btnAceptarAltaUsuario" runat="server" Text="Aceptar" CssClass="Boton" OnClick="btn_AceptarAltaUsuario_Click" />
+        <asp:Label ID="lbl_Error_Registro" runat="server" CssClass="lbl" Text="Error al registrar el usuario" Visible="false"></asp:Label>
     </div>
 
 </asp:Content>

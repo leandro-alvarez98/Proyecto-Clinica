@@ -8,12 +8,11 @@
 
 
         <div class="row">
-            <%--comienzo de la card--%>
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-center">Perfil de Usuario</h1>
                     <hr />
-                   <%-- foto del perfil--%>
+                   <%-- Imagen del perfil--%>
                     <div class="col-md-9">
                         <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" IsPostBack="true" />
                         <input type="file" id="txtImagen" class="form-control" runat="server" />
@@ -22,7 +21,8 @@
                         <asp:Label ID="lbl_Error_Imagen" runat="server" Text="Hubo un error al cargar la imagen, asegurese que sea .jpg de tamaño menor a 5 mb" Visible="false"></asp:Label>
                     </div>
                     <hr />
-                    <%--listado de datos del perfil--%>
+
+                    <%-- Datos del perfil--%>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
@@ -72,7 +72,6 @@
                     </div>
                 </div>
             </div>
-          
         </div>
     </div>
 

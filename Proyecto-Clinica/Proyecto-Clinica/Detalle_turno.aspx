@@ -57,6 +57,7 @@
 
                 <br />
                 <asp:Label ID="lblMensajeError" CssClass="lbl" runat="server"></asp:Label>
+                <asp:Label ID="lblMensajeErrorHora" CssClass="lbl" runat="server"></asp:Label>
                 <br />
 
 
