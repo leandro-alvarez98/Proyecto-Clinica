@@ -133,8 +133,8 @@ namespace Proyecto_Clinica
         }
         protected void btn_ActualizarTipo_Click(object sender, EventArgs e)
         {
-            string opcionSeleccionada = rblTipos.SelectedValue;
             Usuario usuario_Seleccionado = (Usuario)Session["UsuarioSeleccionado"];
+            string tipoSeleccionado = rblTipos.SelectedValue;
 
             if (usuario_Seleccionado.Tipo == "Médico" || usuario_Seleccionado.Tipo == "Paciente")
                 Baja_Logica_Turnos(usuario_Seleccionado);
@@ -153,7 +153,7 @@ namespace Proyecto_Clinica
 
             usuarioConexion.Actualizar_Usuario(usuario_Seleccionado);
 
-            switch (opcionSeleccionada)
+            switch (tipoSeleccionado)
             {
                 case "Administrador":
                     AdministradorConexion administradorConexion = new AdministradorConexion();
