@@ -101,5 +101,129 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public void Cancelar_Turno(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Cancelado' WHERE ID_TURNO = @ID_TURNO");
+                datos.setParametro("@ID_TURNO", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Activar_Turno(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Activo' WHERE ID_TURNO = @ID_TURNO");
+                datos.setParametro("@ID_TURNO", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Modificar_Turno(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE TURNOS SET FECHA = @FECHA ,ID_HORARIO = @ID_HORARIO,ID_MEDICO = @ID_MEDICO WHERE ID_TURNO = @ID_TURNO ");
+                datos.setParametro("@FECHA", turno.Fecha);
+                datos.setParametro("@ID_MEDICO", turno.Id_Medico);
+                datos.setParametro("@ID_TURNO", turno.Id);
+                datos.setParametro("@ID_HORARIO", turno.Id_Horario);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Reprogramar_Turno(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Reprogramado' WHERE ID_TURNO = @ID_TURNO");
+                datos.setParametro("@ID_TURNO", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void No_asistio_Turno(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'No asistió' WHERE ID_TURNO = @ID_TURNO");
+                datos.setParametro("@ID_TURNO", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Finalizar_Turno(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Finalizado' WHERE ID_TURNO = @ID_TURNO");
+                datos.setParametro("@ID_TURNO", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

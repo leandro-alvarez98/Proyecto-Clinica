@@ -26,5 +26,7 @@ namespace Proyecto_Clinica
 
             }
         }
+
+
     }
 }

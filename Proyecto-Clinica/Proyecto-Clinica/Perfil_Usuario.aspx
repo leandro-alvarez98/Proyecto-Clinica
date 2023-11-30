@@ -57,7 +57,8 @@
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
                             <asp:Label ID="fechaNacimientoLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtFechaNacimientoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtFechaNacimientoEdit" CssClass="form-control" runat="server" Visible="false" TextMode="Date"></asp:TextBox>
+
                         </li>
                     </ul>
 

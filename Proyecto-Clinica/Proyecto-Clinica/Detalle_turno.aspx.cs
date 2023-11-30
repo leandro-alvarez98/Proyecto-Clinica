@@ -17,6 +17,7 @@ namespace Proyecto_Clinica
         Turno turno_actual;
         Clinica clinica;
         TurnoConexion turnoConexion;
+        Usuario usuario_actual;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -26,8 +27,11 @@ namespace Proyecto_Clinica
             clinica = new Clinica();
             turno_actual = new Turno();
             turno_actual = (Turno)Session["Turno"];
+            usuario_actual = (Usuario)Session["Usuario"];
+
 
             Cargar_labels();
+            Cargar_botones();
 
         }
         protected void Btn_agregar_obs_Click(object sender, EventArgs e)
@@ -89,6 +93,35 @@ namespace Proyecto_Clinica
             Lbl_Id_Turno.Text = turno_actual.Id.ToString();
             Lbl_motivo_consulta.Text = turno_actual.Obs_paciente;
             P_observacion.InnerText = turno_actual.Obs_medico;
+        }
+        public void Cargar_botones()
+        {
+            switch (usuario_actual.Tipo )
+            {
+                case "Medico":
+
+                    Btn_agregar_obs.Visible = true;
+
+                    break;
+                case "Recepcionista":
+
+                    Btn_agregar_obs.Visible = false;
+                    Btn_Modificar.Visible = true;
+
+
+                    break;
+                case "Administrador":
+
+                    Btn_agregar_obs.Visible = false;
+                    Btn_Modificar.Visible = true;
+                    break;
+            }
+        }
+        protected void Btn_Modificar_Click(object sender, EventArgs e)
+        {
+           
+            turnoConexion.Modificar_Turno(turno_actual); 
+            Response.Redirect("Detalle_Turno.aspx");
         }
     }
 }

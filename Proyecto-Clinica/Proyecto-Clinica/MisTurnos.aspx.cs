@@ -128,10 +128,6 @@ namespace Proyecto_Clinica
             }
             return new Turno();
         }
-        private void Baja_Logica_Turno(Turno turno_Seleccionado)
-        {
-
-        }
         public void Cargar_turnos_x_Dni(string dni)
         {
             foreach (Turno turno in clinica.Turnos)
@@ -145,30 +141,48 @@ namespace Proyecto_Clinica
                 }
             }
         }
-        protected void dgv_Turnos_Pacientes_SelectedIndexChanged(object sender, EventArgs e)
+
+        //GRILLA PARA PACIENTES, SOLO PUEDE CANCELAR EL TURNO 
+        protected void DGV_Turnos_Pacientes_Cancelar(object sender, EventArgs e)
         {
+            
             string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
             int ID_Turno = int.Parse(str_ID_Turno);
             Turno_Seleccionado = Get_Turno(ID_Turno);
-            Baja_Logica_Turno(Turno_Seleccionado);
+
+            TurnoConexion turno_conexion = new TurnoConexion();
+            turno_conexion.Cancelar_Turno(Turno_Seleccionado.Id);
+
+            Response.Redirect("MisTurnos.aspx");
+;           
         }
-        protected void DGV_Turnos_totales_SelectedIndexChanged(object sender, EventArgs e)
+        //GRILLA PARA RECEPCIONISTA Y ADMIN, PUEDEN CANCELAR Y MODIFICAR EL TURNO 
+        protected void DGV_Turnos_totales_Cancelar_Modificar(object sender, EventArgs e)
         {
-            if (DGV_Turnos_totales.SelectedIndex >= 0)
-            {
+         
                 string str_ID_Turno = DGV_Turnos_totales.SelectedRow.Cells[0].Text;
                 int ID_Turno = int.Parse(str_ID_Turno);
                 Turno_Seleccionado = Get_Turno(ID_Turno);
-            }
+
+                Session["Turno"] = Turno_Seleccionado;
+            
+                Response.Redirect("Detalle_turno.aspx");
+            
         }    
         protected void dgv_Turnos_Medicos_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
             string str_ID_Turno = dgv_Turnos_Medicos.SelectedRow.Cells[0].Text;
             int ID_Turno = int.Parse(str_ID_Turno);
             Turno_Seleccionado = Get_Turno(ID_Turno);
 
-            Session["Turno"] = Turno_Seleccionado;
-            Response.Redirect("Detalle_turno.aspx");
+            if(Turno_Seleccionado.Estado == "Finalizado")
+            {
+                Session["Turno"] = Turno_Seleccionado;
+                Response.Redirect("Detalle_turno.aspx");
+            }
+
 
             //mostrar en otra pagina los detalles del turno y el hecho de poder agregarle la observacion
         }

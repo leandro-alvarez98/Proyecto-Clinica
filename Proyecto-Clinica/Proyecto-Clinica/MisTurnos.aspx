@@ -14,7 +14,7 @@
                         <asp:Button ID="Btn_busqueda" runat="server" OnClick="Btn_busqueda_Click" CssClass="Boton" Text="Buscar" />
                         <asp:Button ID="Btn_limpiar_busqueda" OnClick="Btn_limpiar_busqueda_Click" runat="server" CssClass="Boton" Text="Limpiar" />
                         <hr />
-                    <asp:GridView ID="DGV_Turnos_totales" CssClass="table table-dark table-hover PAD_TOP"  OnSelectedIndexChanged="DGV_Turnos_totales_SelectedIndexChanged"  runat="server" AutoGenerateColumns="false" AutoPostBack="true" EnableViewState="true">
+                    <asp:GridView ID="DGV_Turnos_totales" CssClass="table table-dark table-hover PAD_TOP"  OnSelectedIndexChanged="DGV_Turnos_totales_Cancelar_Modificar"  runat="server" AutoGenerateColumns="false" AutoPostBack="true" EnableViewState="true">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />
                                 <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
@@ -26,8 +26,7 @@
                                 <asp:BoundField HeaderText="DNI Paciente" DataField="Dni_Paciente" />
                                 <asp:BoundField HeaderText="Motivo Consulta" DataField="Obs_paciente" />
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
-                                <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Modificar" />
-                                <asp:CommandField ShowSelectButton="true" SelectText="Cancelar" HeaderText="Cancelar" />
+                                <asp:CommandField ShowSelectButton="true" SelectText="Modificar" HeaderText="Cancelar" />
                             </Columns>
                         </asp:GridView>
                         <asp:Label ID="Lbl_sin_turnos" runat="server" Text="No hay Turnos asociados a este Dni" Visible="false"></asp:Label>
@@ -54,7 +53,7 @@
                  <%}else%>
                 <%{%>
                     <div class="container form_top containerbott">
-                        <asp:GridView ID="Dgv_Turnos_Paciente" CssClass="table table-dark table-hover PAD_TOP" OnSelectedIndexChanged="dgv_Turnos_Pacientes_SelectedIndexChanged" runat="server" AutoGenerateColumns="false">
+                        <asp:GridView ID="Dgv_Turnos_Paciente" CssClass="table table-dark table-hover PAD_TOP" OnSelectedIndexChanged="DGV_Turnos_Pacientes_Cancelar" runat="server" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />
                                 <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />

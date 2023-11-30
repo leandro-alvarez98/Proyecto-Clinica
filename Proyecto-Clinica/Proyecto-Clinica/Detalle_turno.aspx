@@ -5,6 +5,8 @@
 
     <div class="container form_top containerbott">
 
+        
+
 
         <div class="card" style="width: 18rem;">
 
@@ -15,8 +17,9 @@
                 <li class="list-group-item">Medico:   
                     <asp:Label ID="Lbl_nombre_medico" runat="server" Text=""></asp:Label>
                 </li>
-                <li class="list-group-item">Fecha:   
+                <li class="list-group-item">Fecha:
                     <asp:Label ID="Lbl_Fecha" runat="server" Text=""></asp:Label>
+                    <asp:TextBox ID="txtFechaNacimiento" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
                 </li>
                 <li class="list-group-item">Horario:  
                     <asp:Label ID="Lbl_Horario" runat="server" Text=""></asp:Label>
@@ -41,6 +44,6 @@
         <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
         <asp:Button ID="Btn_aceptar" CssClass="Boton" Onclick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
         <asp:Button ID="Btn_cancelar" CssClass="Boton" runat="server" OnClick="Btn_cancelar_Click" Text="Cancelar" Visible="false" />
-
+        <asp:Button ID="Btn_Modificar"   CssClass="Boton" runat="server" OnClick="Btn_Modificar_Click" Text="Modificar" Visible="false" />
     </div>
 </asp:Content>

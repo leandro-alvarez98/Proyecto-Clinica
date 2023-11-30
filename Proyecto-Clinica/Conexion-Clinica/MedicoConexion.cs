@@ -78,5 +78,67 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
+        public void Alta_Medico (int ID )
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE MEDICOS SET ESTADO = 1 WHERE ID_MEDICO = @ID_MEDICO");
+                datos.setParametro("@ID_MEDICO", ID);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Baja_Medico(int ID)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE MEDICOS SET ESTADO = 0 WHERE ID_MEDICO = @ID_MEDICO");
+                datos.setParametro("@ID_MEDICO", ID);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Modificar_Jornada(int ID)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE MEDICOS SET ESTADO = 1 WHERE ID_MEDICO = @ID_MEDICO");
+                datos.setParametro("@ID_MEDICO", ID);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
