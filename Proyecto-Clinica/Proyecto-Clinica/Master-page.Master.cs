@@ -23,7 +23,7 @@ namespace Proyecto_Clinica
             {
                 Usuario_Actual = (Usuario)Session["Usuario"];
 
-                if (Usuario_Actual.Imagen != "NoImagen")
+                if (Usuario_Actual.Imagen != "https://cdn-icons-png.flaticon.com/512/5987/5987424.png")
                     imgPerfil.ImageUrl = "~/img/" + Usuario_Actual.Imagen;
                 else
                     imgPerfil.ImageUrl = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";

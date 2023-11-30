@@ -75,7 +75,7 @@ namespace Proyecto_Clinica
                             Usuario usuario = new Usuario
                             {
                                 Id = (int)datos.Lector["ID_USUARIO"],
-                                Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
+                                Username = (String)datos.Lector["NOMBRE_USUARIO"],
                                 Contraseña = (String)datos.Lector["CONTRASENA"],
                                 Tipo = (String)datos.Lector["TIPO"]
                             };

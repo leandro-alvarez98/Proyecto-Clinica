@@ -1,7 +1,9 @@
 ﻿using Proyecto_Clinica.Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,7 +28,7 @@ namespace Conexion_Clinica
                         Usuario usuario = new Usuario
                         {
                             Id = (int)datos.Lector["ID_USUARIO"],
-                            Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Username = (String)datos.Lector["NOMBRE_USUARIO"],
                             Contraseña = (String)datos.Lector["CONTRASENA"],
                             Tipo = (String)datos.Lector["TIPO"],
                             Imagen = (String)datos.Lector["URL_IMAGEN"]
@@ -38,7 +40,7 @@ namespace Conexion_Clinica
                         Usuario usuario = new Usuario
                         {
                             Id = (int)datos.Lector["ID_USUARIO"],
-                            Nombre = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Username = (String)datos.Lector["NOMBRE_USUARIO"],
                             Contraseña = (String)datos.Lector["CONTRASENA"],
                             Tipo = (String)datos.Lector["TIPO"]
                         };
@@ -58,14 +60,13 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void InsertarUsuarioEnBBDD(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setConsulta("INSERT INTO USUARIOS (NOMBRE_USUARIO, CONTRASENA, TIPO) VALUES(@Nombre, @Contrasena, @Tipo)");
-                datos.setParametro("@Nombre", usuario.Nombre);
+                datos.setParametro("@Nombre", usuario.Username);
                 datos.setParametro("@Contrasena", usuario.Contraseña);
                 datos.setParametro("@Tipo", usuario.Tipo);
                 datos.ejecutarAccion();
@@ -80,7 +81,28 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
+        public void Actualizar_Usuario(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE USUARIOS SET NOMBRE_USUARIO = @USERNAME, CONTRASENA = @CONTRASENA, TIPO = @TIPO WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@USERNAME", usuario.Username);
+                datos.setParametro("@CONTRASENA", usuario.Contraseña);
+                datos.setParametro("@TIPO", usuario.Tipo);
+                datos.setParametro("@IDUSUARIO", usuario.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void ActualizarPaciente(Paciente paciente)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -114,7 +136,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void ActualizarMedico(Medico medico)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -144,7 +165,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void ActualizarRecepcionista(Recepcionista recepcionista)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -174,7 +194,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void ActualizarAdministracion(Administrador administrador)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -204,13 +223,11 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void actualizarImagen(Usuario usuario_Actual)
         {
             Insertar_Imagen(usuario_Actual.Imagen);
             ActualizarImagenUsuario(usuario_Actual.Id);
         }
-
         private void ActualizarImagenUsuario(int ID)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -230,7 +247,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         private void Insertar_Imagen(String URL)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -249,6 +265,36 @@ namespace Conexion_Clinica
             {
                 datos.cerrarConexion();
             }
+        }
+        public void EliminarDatos(Usuario usuario_actual)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                switch (usuario_actual.Tipo)
+                {
+                    case "Administrador":
+                        datos.setConsulta("DELETE FROM ADMINISTRADOR WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+                    case "Recepcionista":
+                        datos.setConsulta("DELETE FROM RECEPCIONISTA WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+                    case "Médico":
+                        datos.setConsulta("DELETE FROM MEDICOS WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+                    case "Paciente":
+                        datos.setConsulta("DELETE FROM PACIENTES WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+
+                }
+                datos.setParametro("@IDUSUARIO", usuario_actual.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            
         }
     }
 }

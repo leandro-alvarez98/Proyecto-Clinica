@@ -1,5 +1,6 @@
 ﻿using Proyecto_Clinica.Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,35 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    internal class AdministradorConexion
+    public class AdministradorConexion
     {
+        public void InsertarAdministrador(Usuario usuario_actual)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO ADMINISTRADOR (ID_USUARIO, DNI, NOMBRE,APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) \r\nVALUES(@IDUSUARIO, @DNI, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                datos.setParametro("@IDUSUARIO",usuario_actual.Id);
+                datos.setParametro("@DNI", usuario_actual.Dni);
+                datos.setParametro("@NOMBRE", usuario_actual.Nombre);
+                datos.setParametro("@APELLIDO", usuario_actual.Apellido);
+                datos.setParametro("@TELEFONO", usuario_actual.Telefono);
+                datos.setParametro("@DIRECCION", usuario_actual.Direccion);
+                datos.setParametro("@FECHANACIMIENTO", usuario_actual.Fecha_Nacimiento);
+                datos.setParametro("@MAIL", usuario_actual.Mail);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public List<Administrador> Listar()
         {
             List<Administrador> lista = new List<Administrador>();

@@ -63,5 +63,25 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
+        public void EliminarEspecialidadxMedico(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("DELETE FROM MEDICOSXESPECIALIDAD WHERE ID_MEDICO = @IDMEDICO");
+                datos.setParametro("@IDMEDICO", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

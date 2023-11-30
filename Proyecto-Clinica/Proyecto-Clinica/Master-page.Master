@@ -124,6 +124,12 @@
                                         <span class="fs-5 ms-1 d-none d-sm-inline">Estadísticas</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="Usuarios.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bxs-user-account'></i>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Usuarios</span>
+                                    </a>
+                                </li>
                               <%break; %>
                                         
                               <%//Opciones disponibles para los RECEPCIONISTAS

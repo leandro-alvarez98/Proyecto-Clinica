@@ -10,7 +10,7 @@ using Proyecto_Clinica.Dominio;
 
 namespace Conexion_Clinica
 {
-    internal class MedicoConexion
+    public class MedicoConexion
     {
         public List<Medico> Listar()
         {
@@ -140,5 +140,31 @@ namespace Conexion_Clinica
             }
         }
 
+        public void InsertarMedico(Usuario usuario_actual)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO MEDICOS (ID_USUARIO, DNI, NOMBRE,APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES(@IDUSUARIO, @DNI, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                datos.setParametro("@IDUSUARIO", usuario_actual.Id);
+                datos.setParametro("@DNI", usuario_actual.Dni);
+                datos.setParametro("@NOMBRE", usuario_actual.Nombre);
+                datos.setParametro("@APELLIDO", usuario_actual.Apellido);
+                datos.setParametro("@TELEFONO", usuario_actual.Telefono);
+                datos.setParametro("@DIRECCION", usuario_actual.Direccion);
+                datos.setParametro("@FECHANACIMIENTO", usuario_actual.Fecha_Nacimiento);
+                datos.setParametro("@MAIL", usuario_actual.Mail);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

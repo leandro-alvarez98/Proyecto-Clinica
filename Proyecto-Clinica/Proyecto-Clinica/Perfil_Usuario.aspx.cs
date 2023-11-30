@@ -95,7 +95,7 @@ namespace Proyecto_Clinica
                         Usuario_Actual.Nombre = Recepcionista_actual.Nombre;
                         Usuario_Actual.Apellido = Recepcionista_actual.Apellido;
                         Usuario_Actual.Dni = int.Parse(Recepcionista_actual.Dni);
-                        Usuario_Actual.Telefono = paciente_actual.Telefono;
+                        Usuario_Actual.Telefono = Recepcionista_actual.Telefono;
                         Usuario_Actual.Direccion = Recepcionista_actual.Direccion;
                         Usuario_Actual.Fecha_Nacimiento = Recepcionista_actual.Fecha_Nacimiento;
                         Usuario_Actual.Mail = Recepcionista_actual.Mail;

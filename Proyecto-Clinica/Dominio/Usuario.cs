@@ -35,7 +35,7 @@ namespace Proyecto_Clinica.Dominio
             Fecha_Nacimiento = new DateTime();
             Mail = "No especificado";
             Estado = true;
-            Imagen = "NoImagen";
+            Imagen = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
         }
         
     }
