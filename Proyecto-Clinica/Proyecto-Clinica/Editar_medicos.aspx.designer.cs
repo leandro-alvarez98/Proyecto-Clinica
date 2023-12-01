@@ -51,12 +51,57 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button btn_ActualizarJornada;
 
         /// <summary>
-        /// Control repeaterMedicos.
+        /// Control repeaterJornadas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repeaterMedicos;
+        protected global::System.Web.UI.WebControls.Repeater repeaterJornadas;
+
+        /// <summary>
+        /// Control repeaterEspecialidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repeaterEspecialidades;
+
+        /// <summary>
+        /// Control btn_SeleccionarMedicoJornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_SeleccionarMedicoJornada;
+
+        /// <summary>
+        /// Control btn_SeleccionarMedicoEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_SeleccionarMedicoEspecialidad;
+
+        /// <summary>
+        /// Control btn_EliminarEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_EliminarEspecialidad;
+
+        /// <summary>
+        /// Control btn_EliminarJornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_EliminarJornada;
     }
 }

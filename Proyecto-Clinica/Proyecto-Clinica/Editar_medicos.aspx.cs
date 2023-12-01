@@ -1,4 +1,5 @@
 ﻿using Conexion_Clinica;
+using Dominio;
 using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
@@ -11,23 +12,25 @@ namespace Proyecto_Clinica
 {
     public partial class Editar_medicos : System.Web.UI.Page
     {
-        public List<Medico> lista_Medicos = new List<Medico>();
         public Medico Medico_actual;
-        Clinica Clinica;
+        public Clinica Clinica;
+        List<Especialidad> lista_Especialidades; 
         protected void Page_Load(object sender, EventArgs e)
         {
             Medico_actual = (Medico)Session["Medico"];
-            lista_Medicos.Clear();
-            lista_Medicos.Add(Medico_actual);
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             Clinica = clinicaConexion.Listar();
+            EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
+            lista_Especialidades = especialidadesConexion.Listar_2();
+
+
 
             if (!IsPostBack)
             {
-
-                repeaterMedicos.DataSource = lista_Medicos;
-                repeaterMedicos.DataBind();
-
+                repeaterJornadas.DataSource = Medico_actual.Jornadas;
+                repeaterJornadas.DataBind();
+                repeaterEspecialidades.DataSource = Medico_actual.Especialidades;
+                repeaterEspecialidades.DataBind();
             }
         }
         //MODAL ESPECIALIDADES
@@ -38,13 +41,13 @@ namespace Proyecto_Clinica
         //
         protected void btn_SeleccionarMedicoEspecialidad_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            
+            rbl_Especialidades.DataSource = lista_Especialidades;
+            rbl_Especialidades.DataTextField = "Tipo";
+            rbl_Especialidades.DataValueField = "Id";
+            rbl_Especialidades.DataBind();
 
-            int idMedicoSeleccionado = int.Parse(btn.CommandArgument);
-
-            Medico medico_Seleccionado = GetMedico(idMedicoSeleccionado);
-
-            Session["MedicoSeleccionado"] = medico_Seleccionado;
+            
 
             string script = @"
                 $(document).ready(function () {
@@ -60,15 +63,11 @@ namespace Proyecto_Clinica
         protected void btn_SeleccionarMedicoJornada_Click(object sender, EventArgs e)
         {
             rbl_Jornada.DataSource = Clinica.Jornadas; 
+            rbl_Jornada.DataTextField = "Tipo";
+            rbl_Jornada.DataValueField= "Id";
             rbl_Jornada.DataBind();
 
-            Button btn = (Button)sender;
-
-            int idMedicoSeleccionado = int.Parse(btn.CommandArgument);
-
-            Medico medico_Seleccionado = GetMedico(idMedicoSeleccionado);
-
-            Session["MedicoSeleccionado"] = medico_Seleccionado;
+            
 
             string script = @"
                 $(document).ready(function () {
@@ -92,6 +91,16 @@ namespace Proyecto_Clinica
                     return medico;
             }
             return new Medico();
+        }
+
+        protected void btn_EliminarEspecialidad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btn_EliminarJornada_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
