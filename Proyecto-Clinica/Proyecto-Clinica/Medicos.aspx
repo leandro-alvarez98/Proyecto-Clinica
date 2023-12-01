@@ -44,7 +44,7 @@
                                         <asp:Repeater ID="repeaterJornadas" runat="server" DataSource='<%# Eval("Jornadas") %>'>
                                             <ItemTemplate>
                                                 <br />
-                                                <%# Container.DataItem %>
+                                                <%# Eval("Tipo") %><br />
                                             </ItemTemplate>
                                         </asp:Repeater>
                                     </p>
