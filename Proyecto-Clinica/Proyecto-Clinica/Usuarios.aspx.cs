@@ -2,6 +2,7 @@
 using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -12,6 +13,8 @@ namespace Proyecto_Clinica
 {
     public partial class Usuarios : System.Web.UI.Page
     {
+        public List<Usuario> lista_usuario_x_nombre;
+
         Clinica Clinica;
         Usuario usuario_actual;
         protected void Page_Load(object sender, EventArgs e)
@@ -19,7 +22,7 @@ namespace Proyecto_Clinica
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             Clinica = clinicaConexion.Listar();
             usuario_actual = (Usuario)Session["Usuario"];
-            
+
             usuario_actual = Cargar_Datos_Usuario(usuario_actual);
 
             repeaterUsuarios.DataSource = Clinica.Usuarios;
@@ -120,7 +123,7 @@ namespace Proyecto_Clinica
             }
             return new Administrador();
         }
-        private Recepcionista Cargar_Recepcionista_Clinica(int IDUsuario)       
+        private Recepcionista Cargar_Recepcionista_Clinica(int IDUsuario)
         {
             foreach (Recepcionista recepcionista in Clinica.Recepcionistas)
             {
@@ -139,7 +142,7 @@ namespace Proyecto_Clinica
             if (usuario_Seleccionado.Tipo == "Médico" || usuario_Seleccionado.Tipo == "Paciente")
                 Baja_Logica_Turnos(usuario_Seleccionado);
 
-            if(usuario_Seleccionado.Tipo == "Médico")
+            if (usuario_Seleccionado.Tipo == "Médico")
             {
                 Medico medico = Cargar_Médico_Clinica(usuario_Seleccionado.Id);
                 EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
@@ -187,7 +190,7 @@ namespace Proyecto_Clinica
 
             Medico medico = Cargar_Médico_Clinica(usuario_Seleccionado.Id);
 
-            switch(usuario_Seleccionado.Tipo)
+            switch (usuario_Seleccionado.Tipo)
             {
                 case "Médico":
                     foreach (Turno turno in Clinica.Turnos)
@@ -197,17 +200,17 @@ namespace Proyecto_Clinica
                             turnoConexion.Cancelar_Turno(turno.Id);
                         }
                     }
-                break;
+                    break;
 
                 case "Paciente":
                     foreach (Turno turno in Clinica.Turnos)
                     {
-                        if (turno.Id_Medico ==  paciente.Id)
+                        if (turno.Id_Medico == paciente.Id)
                         {
                             turnoConexion.Cancelar_Turno(turno.Id);
                         }
                     }
-                break;
+                    break;
             }
         }
 
@@ -232,12 +235,62 @@ namespace Proyecto_Clinica
         }
         private Usuario GetUsuario(int id)
         {
-            foreach(Usuario usuario in Clinica.Usuarios)
+            foreach (Usuario usuario in Clinica.Usuarios)
             {
-                if(usuario.Id == id)
+                if (usuario.Id == id)
                     return usuario;
             }
             return new Usuario();
+        }
+
+        protected void Btn_buscar_usuario_Click(object sender, EventArgs e)
+        {
+            lista_usuario_x_nombre = new List<Usuario>();
+            string nombre_usuario = Txt_usuario.Text;
+            Cargar_usuario_buscado(nombre_usuario);
+
+            //limpia el listado actual
+            repeaterUsuarios.DataSource = null;
+            repeaterUsuarios.DataBind();
+            //muestra el usuario
+            repeaterUsuarios.DataSource = lista_usuario_x_nombre;
+            repeaterUsuarios.DataBind();
+            if (lista_usuario_x_nombre.Count() == 0)
+            {
+                Lbl_sin_usuarios.Visible = true;
+            }
+            else
+            {
+                Lbl_sin_usuarios.Visible = false;
+            }
+
+        }
+
+
+
+        public void Cargar_usuario_buscado(string nombre_usuario)
+        {
+            foreach (Usuario usuario in Clinica.Usuarios)
+            {
+                if (usuario.Username == nombre_usuario)
+                {
+                    lista_usuario_x_nombre.Add(usuario);
+                }
+            }
+        }
+
+        protected void Btn_limpiar_Click(object sender, EventArgs e)
+        {
+            //limpia la grilla actual
+            repeaterUsuarios.DataSource = null;
+            repeaterUsuarios.DataBind();
+            //cargar la nueva grilla de datos 
+            repeaterUsuarios.DataSource = Clinica.Usuarios;
+            repeaterUsuarios.DataBind();
+            if (Clinica.Usuarios.Count() != 0)
+            {
+                Lbl_sin_usuarios.Visible = false;
+            }
         }
     }
 }

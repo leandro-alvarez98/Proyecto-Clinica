@@ -14,11 +14,13 @@ namespace Proyecto_Clinica
 {
     public partial class ReservaTurno : System.Web.UI.Page
     {
+
         Clinica clinica;
         Usuario usuario;
         List<Medico> medicos_disponibles;
         public List<Turno> Turnos_Disponibles;
         int ID_Especialidad_Seleccionada;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -34,47 +36,79 @@ namespace Proyecto_Clinica
             Turnos_Disponibles = new List<Turno>();
 
             //DROP_DOWN_LIST ESPECIALIDADES
+            if (!IsPostBack) { 
             Cargar_DDL_Especialidades();
+            }
             
         }
         protected void Buscar_Turno_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
         }
+        private void mostrarLbl(bool fecha, bool especialidad) {
+            LbL_falta_especialidad.Visible = !especialidad;
+            Lbl_fecha_valida.Visible = !fecha;
+        }
         private void Cargar_Turnos_Disponibles()
         {
-            
+            bool fechaValida;
+            bool especialidadValida;
+
             ID_Especialidad_Seleccionada = int.Parse(DDL_especialidades.SelectedValue);
 
-            DateTime Fecha_Seleccionada = Calendario.SelectedDate;
-
-            if (Fecha_Seleccionada > DateTime.Now)
+            if (txtFechaSeleccionada.Text.Length == 0)
             {
-                // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
-                Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
-                // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
-                Obtener_Disponibilidad(Fecha_Seleccionada);
-
-                // CARGAR TURNOS DISPONIBLES
-                Cargar_Lista_Turnos();
-                if (Turnos_Disponibles.Count() == 0)
-                {
-                    lblturnos.Text = "No hay Turnos Disponibles ";
-                }
-                else
-                {
-                    lblturnos.Text = "";
-                }
-                Lbl_fecha_valida.Visible = false;
+                fechaValida = false;
             }
-            else
+            else {
+                fechaValida = true;
+            }
+            if (ID_Especialidad_Seleccionada == 0)
             {
-                Lbl_fecha_valida.Visible = true;
+                especialidadValida = false;
+            }
+            else {
+                especialidadValida = true;
+            }
+            if (fechaValida && especialidadValida)
+            {
+                DateTime Fecha_Seleccionada = DateTime.Parse(txtFechaSeleccionada.Text);
+
+
+
+                if (Fecha_Seleccionada >= DateTime.Now)
+                {
+                    mostrarLbl(fechaValida, especialidadValida);
+                    // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
+                    Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
+                    // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
+                    Obtener_Disponibilidad(Fecha_Seleccionada);
+
+                    // CARGAR TURNOS DISPONIBLES
+                    Cargar_Lista_Turnos();
+                    if (Turnos_Disponibles.Count() == 0)
+                    {
+                        lblturnos.Text = "No hay Turnos Disponibles ";
+                    }
+                    else
+                    {
+                        lblturnos.Text = "";
+                    }
+                }
+
+                // LISTAR TURNOS EN LA GRILLA
+                Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
+                Grilla_turnos_disponibles.DataBind();
+
+            }
+            else {
+                mostrarLbl(fechaValida, especialidadValida);
             }
 
-            // LISTAR TURNOS EN LA GRILLA
-            Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
-            Grilla_turnos_disponibles.DataBind();
+
+        
+
+
         }
         private void Cargar_Lista_Turnos()
         {
@@ -144,6 +178,7 @@ namespace Proyecto_Clinica
         {
             List<Especialidad> especialidades;
             especialidades = clinica.Especialidades;
+
             DDL_especialidades.DataTextField = "TIPO";
             DDL_especialidades.DataValueField = "Id";
             DDL_especialidades.DataSource = especialidades;

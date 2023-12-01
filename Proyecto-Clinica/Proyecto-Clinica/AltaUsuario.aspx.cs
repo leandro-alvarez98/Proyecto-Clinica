@@ -16,13 +16,23 @@ namespace Proyecto_Clinica
         {
 
         }
+
+        private bool EsNumero(string valor)
+        {
+            // Intentar convertir el valor a un número
+            return double.TryParse(valor, out _);
+        }
         protected void btn_AceptarAltaUsuario_Click(object sender, EventArgs e)
         {
             bool usuarioValido = false;
-
+            
             //Comprueba que los campos pasen las condiciones
             if (txtRegistrarUsuario != null && txtRegistrarUsuario.Text != "" && txtRegistrarContrasena.Text != "" && txtRegistrarContrasena.Text == txtRegistrarContrasena2.Text)
             {
+                //if (EsNumero(txtDniEdit.Text) && EsNumero(txtTelefonoEdit.Text) && DateTime.Parse(txtFechaNacimientoEdit.Text) <= DateTime.Now && DateTime.Parse(txtFechaNacimientoEdit.Text).Year >= 1900 && txtMailEdit.Text.EndsWith("@gmail.com")){ 
+                    
+                //}
+
                 usuarioValido = true;
             }
             //Si las pasa, se crea un usuario nuevo y se lo ingresa en la BBDD

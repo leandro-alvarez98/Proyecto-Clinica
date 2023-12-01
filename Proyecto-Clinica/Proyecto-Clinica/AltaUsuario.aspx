@@ -21,12 +21,12 @@
                     <li class="list-group-item">
 
                         <asp:Label ID="lblRegistrarContrasena" CssClass="lbl fw-semibold" runat="server" Text="Contraseña"></asp:Label>
-                        <asp:TextBox ID="txtRegistrarContrasena" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtRegistrarContrasena" type="password" runat="server" CssClass="form-control"></asp:TextBox>
                     </li>
                     <li class="list-group-item">
 
                         <asp:Label ID="lblRegistrarContrasena2" CssClass="lbl fw-semibold" runat="server" Text="Repita su contraseña"></asp:Label>
-                        <asp:TextBox ID="txtRegistrarContrasena2" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtRegistrarContrasena2"  type="password" runat="server" CssClass="form-control"></asp:TextBox>
                     </li>
                     <li class="list-group-item">
                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
