@@ -22,5 +22,7 @@ namespace Proyecto_Clinica.Dominio
         public List<Turno> Turnos { get; set; }
         public List<Especialidad> Especialidades { get; set; }
         public List <Horario> Horarios { get; set; }
+        public List <Jornada> Jornadas { get; set; }
+
     }
 }

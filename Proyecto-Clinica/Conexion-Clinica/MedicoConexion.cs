@@ -19,7 +19,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT \r\n        M.ID_MEDICO AS ID, \r\n        U.ID_USUARIO AS IDUSUARIO,\r\n        M.DNI AS DNI,\r\n        M.NOMBRE AS NOMBRE, \r\n        M.APELLIDO AS APELLIDO, \r\n        M.TELEFONO AS TELEFONO, \r\n        M.DIRECCION AS DIRECCION, \r\n        M.FECHA_NACIMIENTO AS FECHANACIMIENTO, \r\n        MAIL, M.ESTADO AS ESTADO,\r\n        E.ID_ESPECIALIDAD AS IDESPECIALIDAD, \r\n        E.TIPO AS ESPECIALIDAD,\r\n\t\tMJ.ID_JORNADA AS IDJORNADA,\r\n        J.TIPO_JORNADA AS JORNADA,\r\n        I.URL_IMAGEN AS URL_IMAGEN\r\n    FROM MEDICOS M \r\n    LEFT JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO \r\n    LEFT JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD\r\n    LEFT JOIN MEDICOXJORNADA MJ ON MJ.ID_MEDICO = M.ID_MEDICO\r\n\tINNER JOIN JORNADA J ON J.ID_JORNADA = MJ.ID_JORNADA\r\n    INNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO \r\n    LEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN");
+                datos.setConsulta("SELECT \r\n        M.ID_MEDICO AS ID, \r\n        U.ID_USUARIO AS IDUSUARIO,\r\n        M.DNI AS DNI,\r\n        M.NOMBRE AS NOMBRE, \r\n        M.APELLIDO AS APELLIDO, \r\n        M.TELEFONO AS TELEFONO, \r\n        M.DIRECCION AS DIRECCION, \r\n        M.FECHA_NACIMIENTO AS FECHANACIMIENTO, \r\n        MAIL, M.ESTADO AS ESTADO,\r\n        E.ID_ESPECIALIDAD AS IDESPECIALIDAD, \r\n        E.TIPO AS ESPECIALIDAD,\r\n\t\tMJ.ID_JORNADA AS IDJORNADA,\r\n        J.TIPO_JORNADA AS JORNADA,\r\n        I.URL_IMAGEN AS URL_IMAGEN\r\n    FROM MEDICOS M \r\n    LEFT JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO \r\n    LEFT JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD\r\n    LEFT JOIN MEDICOXJORNADA MJ ON MJ.ID_MEDICO = M.ID_MEDICO\r\n\tINNER JOIN JORNADAS J ON J.ID_JORNADA = MJ.ID_JORNADA\r\n    INNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO \r\n    LEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -131,12 +131,14 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        public void Modificar_Jornada(int ID)
+        
+
+        public void Modificar_Especialidades(int ID)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("UPDATE MEDICOS SET ESTADO = 1 WHERE ID_MEDICO = @ID_MEDICO");
+                datos.setConsulta("UPDATE MEDICOSXESPECIALIDAD SET ESTADO = 1 WHERE ID_MEDICO = @ID_MEDICO");
                 datos.setParametro("@ID_MEDICO", ID);
                 datos.ejecutarAccion();
 

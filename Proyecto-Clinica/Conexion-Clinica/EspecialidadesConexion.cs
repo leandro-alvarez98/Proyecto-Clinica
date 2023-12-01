@@ -63,7 +63,7 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
+        
         public void EliminarEspecialidadxMedico(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -72,6 +72,37 @@ namespace Conexion_Clinica
                 datos.setConsulta("UPDATE MEDICOSXESPECIALIDAD SET ESTADO = 0 WHERE ID_MEDICO = @IDMEDICO");
                 datos.setParametro("@IDMEDICO", id);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<Especialidad> Listar_2()
+        {
+            List<Especialidad> lista = new List<Especialidad>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("SELECT ID_ESPECIALIDAD,TIPO FROM ESPECIALIDADES WHERE ID_ESPECIALIDAD > 0");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Especialidad especialidad = new Especialidad
+                    {
+                        Id = (int)datos.Lector["ID_ESPECIALIDAD"],
+                        Tipo = (string)datos.Lector["TIPO"]
+                    };
+                    lista.Add(especialidad);
+
+                }
+                return lista;
             }
             catch (Exception ex)
             {

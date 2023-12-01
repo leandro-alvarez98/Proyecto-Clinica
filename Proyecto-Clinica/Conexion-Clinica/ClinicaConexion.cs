@@ -24,6 +24,7 @@ namespace Conexion_Clinica
                 objetoClinica.Horarios = new List<Horario>();
                 objetoClinica.Administracion = new List<Administrador>();
                 objetoClinica.Recepcionistas = new List<Recepcionista>();
+                objetoClinica.Jornadas = new List<Jornada>();
 
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
                 objetoClinica.Usuarios = usuarioConexion.Listar();
@@ -50,6 +51,9 @@ namespace Conexion_Clinica
 
                 RecepcionistaConexion recepcionistaConexion = new RecepcionistaConexion();
                 objetoClinica.Recepcionistas = recepcionistaConexion.Listar();
+
+                JornadaConexion jornadaConexion = new JornadaConexion();
+                objetoClinica.Jornadas = jornadaConexion.Listar();
 
                 return objetoClinica;
             }

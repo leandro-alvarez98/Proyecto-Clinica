@@ -15,6 +15,42 @@ namespace Proyecto_Clinica
     {
 
         /// <summary>
+        /// Control rbl_Especialidades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_Especialidades;
+
+        /// <summary>
+        /// Control btn_ActualizarEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ActualizarEspecialidad;
+
+        /// <summary>
+        /// Control rbl_Jornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_Jornada;
+
+        /// <summary>
+        /// Control btn_ActualizarJornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ActualizarJornada;
+
+        /// <summary>
         /// Control repeaterMedicos.
         /// </summary>
         /// <remarks>
