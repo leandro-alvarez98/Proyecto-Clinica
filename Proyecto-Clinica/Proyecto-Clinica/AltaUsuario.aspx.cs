@@ -32,14 +32,26 @@ namespace Proyecto_Clinica
 
                 Usuario nuevo_usuario = new Usuario
                 {
-                    Nombre = txtRegistrarUsuario.Text,
+                    Username = txtRegistrarUsuario.Text,
                     Contraseña = txtRegistrarContrasena.Text,
                     Tipo = "Paciente"
                 };
                 usuarioConexion.InsertarUsuarioEnBBDD(nuevo_usuario);
 
-                Session["Usuario"] = nuevo_usuario;
-                Response.Redirect("Perfil_Usuario.aspx");
+                Paciente paciente = new Paciente();
+                paciente.Id_Usuario = usuarioConexion.Get_ID_Usuario(nuevo_usuario);
+                paciente.Nombre = txtNombreEdit.Text;
+                paciente.Dni = txtDniEdit.Text;
+                paciente.Apellido = txtApellidoEdit.Text;
+                paciente.Mail = txtMailEdit.Text;
+                paciente.Telefono = txtTelefonoEdit.Text;
+                paciente.Direccion = txtDireccionEdit.Text;
+                paciente.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+
+                PacienteConexion pacienteConexion = new PacienteConexion();
+                pacienteConexion.InsertarPaciente(paciente);
+
+                Response.Redirect("Default.aspx");
             }
             else
             {

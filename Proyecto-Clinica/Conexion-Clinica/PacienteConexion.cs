@@ -36,6 +36,32 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public void InsertarPaciente(Paciente paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO PACIENTES (ID_USUARIO, DNI, NOMBRE,APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES(@IDUSUARIO, @DNI, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                datos.setParametro("@IDUSUARIO", paciente.Id_Usuario);
+                datos.setParametro("@DNI", paciente.Dni);
+                datos.setParametro("@NOMBRE", paciente.Nombre);
+                datos.setParametro("@APELLIDO", paciente.Apellido);
+                datos.setParametro("@TELEFONO", paciente.Telefono);
+                datos.setParametro("@DIRECCION", paciente.Direccion);
+                datos.setParametro("@FECHANACIMIENTO", paciente.Fecha_Nacimiento);
+                datos.setParametro("@MAIL", paciente.Mail);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Paciente> Listar()
         {
             List<Paciente> lista = new List<Paciente>();

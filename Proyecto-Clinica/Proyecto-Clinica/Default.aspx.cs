@@ -31,6 +31,7 @@ namespace Proyecto_Clinica
 
             usuario_actual = Buscar_Usuario_En_BBDD(usuario, contrasena);
             
+
             if(usuario_actual.Id != -1)
             {
                 Session["Usuario"] = usuario_actual;

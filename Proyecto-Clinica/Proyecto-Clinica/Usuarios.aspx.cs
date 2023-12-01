@@ -142,14 +142,16 @@ namespace Proyecto_Clinica
             if(usuario_Seleccionado.Tipo == "Médico")
             {
                 Medico medico = Cargar_Médico_Clinica(usuario_Seleccionado.Id);
-
                 EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
+
                 especialidadesConexion.EliminarEspecialidadxMedico(medico.Id);
             }
 
             UsuarioConexion usuarioConexion = new UsuarioConexion();
 
             usuarioConexion.EliminarDatos(usuario_Seleccionado);
+
+            usuario_Seleccionado.Tipo = tipoSeleccionado;
 
             usuarioConexion.Actualizar_Usuario(usuario_Seleccionado);
 
@@ -182,9 +184,10 @@ namespace Proyecto_Clinica
             TurnoConexion turnoConexion = new TurnoConexion();
 
             Paciente paciente = Cargar_Paciente_Clinica(usuario_Seleccionado.Id);
+
             Medico medico = Cargar_Médico_Clinica(usuario_Seleccionado.Id);
 
-            switch(usuario_actual.Tipo)
+            switch(usuario_Seleccionado.Tipo)
             {
                 case "Médico":
                     foreach (Turno turno in Clinica.Turnos)
@@ -211,6 +214,7 @@ namespace Proyecto_Clinica
         protected void btn_SeleccionarUsuario_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
+
             int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
 
             Usuario usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
@@ -220,10 +224,10 @@ namespace Proyecto_Clinica
             Session["UsuarioSeleccionado"] = usuario_Seleccionado;
 
             string script = @"
-        $(document).ready(function () {
-            $('#mod_ElegirTipo').modal('show');
-        });
-    ";
+                $(document).ready(function () {
+                    $('#mod_ElegirTipo').modal('show');
+                });
+            ";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
         }
         private Usuario GetUsuario(int id)

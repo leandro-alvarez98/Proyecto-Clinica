@@ -296,5 +296,28 @@ namespace Conexion_Clinica
             }
             
         }
+
+        public int Get_ID_Usuario(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int id = 0;
+            try
+            {
+                datos.setConsulta("SELECT ID_USUARIO FROM USUARIOS WHERE NOMBRE_USUARIO = @USERNAME");
+                datos.setParametro("@USERNAME", usuario.Username);
+                datos.ejecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    id = (int)datos.Lector["ID_USUARIO"];
+                    return id;
+                }
+                return id;
+
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
     }
 }

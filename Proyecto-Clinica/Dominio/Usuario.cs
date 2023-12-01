@@ -24,16 +24,16 @@ namespace Proyecto_Clinica.Dominio
         public Usuario()
         {
             Id = -1;
-            Dni=00000000;
-            Nombre = "No especificado";
-            Contraseña = "No especificado";
-            Tipo = "No especificado";
-            Nombre = "No especificado";
-            Apellido = "No especificado";
-            Telefono = "No especificado";
-            Direccion = "No especificado";
+            Dni=0;
+            Nombre = "";
+            Contraseña = "";
+            Tipo = "";
+            Nombre = "";
+            Apellido = "";
+            Telefono = "";
+            Direccion = "";
             Fecha_Nacimiento = new DateTime();
-            Mail = "No especificado";
+            Mail = "";
             Estado = true;
             Imagen = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
         }

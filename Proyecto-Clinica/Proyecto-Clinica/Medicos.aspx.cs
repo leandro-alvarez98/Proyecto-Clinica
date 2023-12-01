@@ -19,8 +19,8 @@ namespace Proyecto_Clinica
         {
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.Listar();
-            lista_Medicos.Clear();
 
+            lista_Medicos.Clear();
             lista_Medicos = clinica.Medicos;
 
             if (!IsPostBack)

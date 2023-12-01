@@ -29,7 +29,7 @@
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
 
-                                                <%-- TEST DEL DESPLAZAMIENTO AL FOOTER  --%>
+            <%-- TEST DEL DESPLAZAMIENTO AL FOOTER  --%>
 
                         <script>
                             $(document).ready(function () {
@@ -44,8 +44,6 @@
                                 });
                             });
                         </script>
-
-
 
             <%-- FOOTER --%>
             <footer class=" bg-dark text-white pt-5 pb-4 footer" id="footer" runat="server">
