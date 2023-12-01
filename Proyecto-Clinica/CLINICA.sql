@@ -147,7 +147,7 @@ INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Ortopedia');
 		------------------------------
 
 INSERT INTO JORNADA (TIPO_JORNADA)
-VALUES('mañana'), ('tarde'), ('noche')
+VALUES('Mañana'), ('Tarde'), ('Noche')
 		------------------------------
 
 INSERT INTO Horarios (ID_JORNADA, HORA, DISPONIBILIDAD)

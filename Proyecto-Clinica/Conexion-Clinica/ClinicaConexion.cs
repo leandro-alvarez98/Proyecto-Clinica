@@ -90,7 +90,7 @@ namespace Conexion_Clinica
                         if (!actual.Especialidades.Any(e => e.Id == repetido.Especialidades[0].Id))
                             actual.Especialidades.Add(repetido.Especialidades[0]);
                         
-                        if(!actual.Jornadas.Any(j => j == repetido.Jornadas[0]))
+                        if(!actual.Jornadas.Any(j => j.Id == repetido.Jornadas[0].Id))
                             actual.Jornadas.Add(repetido.Jornadas[0]);
                     }
                 }
