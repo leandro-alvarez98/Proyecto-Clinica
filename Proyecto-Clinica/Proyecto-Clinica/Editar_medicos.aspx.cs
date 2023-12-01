@@ -15,13 +15,25 @@ namespace Proyecto_Clinica
         public Medico Medico_actual;
         public Clinica Clinica;
         List<Especialidad> lista_Especialidades; 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Medico_actual = (Medico)Session["Medico"];
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             Clinica = clinicaConexion.Listar();
             EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
-            lista_Especialidades = especialidadesConexion.Listar_2();
+            Clinica.Especialidades = especialidadesConexion.Listar_2();
+            lista_Especialidades = new List<Especialidad>();   
+            //revisar el bucle 
+            foreach (Especialidad especialidad in Clinica.Especialidades)
+            {
+                foreach (Especialidad esp in Medico_actual.Especialidades)
+                {
+                    if (especialidad.Id != esp.Id) {
+                        lista_Especialidades.Add(especialidad);
+                    }
+                }
+            }
 
 
 
