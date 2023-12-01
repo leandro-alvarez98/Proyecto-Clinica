@@ -20,7 +20,7 @@ namespace Conexion_Clinica
             {
                 datos.setConsulta("SELECT \r\n\t\tM.ID_MEDICO AS ID, \r\n\t\tU.ID_USUARIO AS IDUSUARIO,\r\n\t\tM.DNI AS DNI,\r\n\t\tM.NOMBRE AS NOMBRE, \r\n\t\tM.APELLIDO AS APELLIDO, \r\n\t\tM.TELEFONO AS TELEFONO, \r\n\t\tM.DIRECCION AS DIRECCION, \r\n\t\tM.FECHA_NACIMIENTO AS FECHANACIMIENTO, \r\n\t\tMAIL, M.ESTADO AS ESTADO,\r\n\t\tE.ID_ESPECIALIDAD AS IDESPECIALIDAD, \r\n\t\tE.TIPO AS ESPECIALIDAD,\r\n\t\tMJ.ID_JORNADA AS JORNADA,\r\n\t\tI.URL_IMAGEN\r\n\tFROM MEDICOS M \r\n\tLEFT JOIN MEDICOSXESPECIALIDAD ME ON ME.ID_MEDICO = M.ID_MEDICO \r\n\tLEFT JOIN ESPECIALIDADES E ON E.ID_ESPECIALIDAD = ME.ID_ESPECIALIDAD\r\n\tLEFT JOIN MEDICOXJORNADA MJ ON MJ.ID_MEDICO = M.ID_MEDICO\r\n\tINNER JOIN USUARIOS U ON U.ID_USUARIO = M.ID_USUARIO \r\n\tLEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN");
                 datos.ejecutarLectura();
-                
+
                 while (datos.Lector.Read())
                 {
                     Medico medico = new Medico
@@ -50,18 +50,24 @@ namespace Conexion_Clinica
                         Jornadas = new List<int>()
                     };
 
-                    Especialidad nueva = new Especialidad
+                    Especialidad nueva = new Especialidad();
+
+                    if (!(datos.Lector["IDESPECIALIDAD"] is DBNull))
                     {
-                        Id = (int)datos.Lector["IDESPECIALIDAD"],
-                        Tipo = (String)datos.Lector["ESPECIALIDAD"]
-                    };
+                        nueva.Id = (int)datos.Lector["IDESPECIALIDAD"];
+                        nueva.Tipo = (String)datos.Lector["ESPECIALIDAD"];
+                    }
+
                     medico.Especialidades.Add(nueva);
 
-                    medico.Jornadas.Add((int)datos.Lector["JORNADA"]);
-
-                    if (!(datos.Lector["URL"] is DBNull))
+                    if (!(datos.Lector["JORNADA"] is DBNull))
                     {
-                        medico.Imagen = "~/img/" + (String)datos.Lector["URL"];
+                        medico.Jornadas.Add((int)datos.Lector["JORNADA"]);
+                    }
+
+                    if (!(datos.Lector["URL_IMAGEN"] is DBNull))
+                    {
+                        medico.Imagen = "~/img/" + (String)datos.Lector["URL_IMAGEN"];
                     }
 
                     lista.Add(medico);
