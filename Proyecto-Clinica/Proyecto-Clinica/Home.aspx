@@ -86,7 +86,7 @@
         <div class="content">
             <h3>Bienvenido a la Clínica del equipo 18</h3>
             <p>Espacio para poner descripcion / mensaje</p>
-            <a href="#" class="botonRepositorio"><i class='bx bxl-github'></i> Repositorio <span><i class='bx bxs-arrow-to-right'></i></span></a>
+            <a href="https://github.com/leandro-alvarez98/Proyecto-Clinica.git" class="botonRepositorio" target="_blank"><i class='bx bxl-github'></i> Repositorio <span><i class='bx bxs-arrow-to-right'></i></span></a>
         </div>
     </section>
 

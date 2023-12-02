@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="mb-3 container containerbott form_top ">
+        <h1 class="fs-1 font-monospace">Reservar Turno</h1>
         <asp:Label CssClass="fs-3 font-monospace fw-semibold" runat="server" Text="Seleccionar Fecha"></asp:Label>
-        <%--<h3 CssClass="fs-4 font-monospace">Reservar Turno</h3>--%>
         <hr />
 
         <%-- Especialidades --%>

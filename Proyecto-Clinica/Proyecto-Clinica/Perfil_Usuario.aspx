@@ -14,7 +14,7 @@
                     <hr />
                    <%-- Imagen del perfil--%>
                     <div class="col-md-9">
-                        <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" ImageUrl="img/user.png" Style="width: 400px; height: 400px;" IsPostBack="true" />
+                        <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" Style="width: 400px; height: 400px;" IsPostBack="true" />
                         <input type="file" id="txtImagen" class="form-control" runat="server" />
                         <br />
                         <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Confirmar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />

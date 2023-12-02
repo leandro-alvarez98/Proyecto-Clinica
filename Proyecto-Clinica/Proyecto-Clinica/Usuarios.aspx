@@ -8,6 +8,8 @@
 
 
     <div class="container">
+        <h1 class="fs-1 font-monospace">Usuarios</h1>
+
         <%--buscador de usuarios--%>
         <asp:Label ID="Lbl_user" CssClass="form-label" runat="server" Text="Label"></asp:Label>
         <asp:TextBox ID="Txt_usuario" CssClass="form-control" runat="server"></asp:TextBox>
