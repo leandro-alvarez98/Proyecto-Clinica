@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Conexion_Clinica
 {
-    internal class JornadaConexion
+    public class JornadaConexion
     {
         public List<Jornada> Listar()
         {
@@ -41,14 +41,14 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        public void Insertar_Jornada(int Id_Jornada, int Id_Medico)
+        public void Insertar_Jornada(int Id_Medico, int Id_Jornada)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO MEDICOXJORNADA (IDJORNADA, ID_MEDICO) VALUES (@IDJORNADA, @ID_MEDICO)");
-                datos.setParametro("@IDJORNADA", Id_Jornada);
+                datos.setConsulta("INSERT INTO MEDICOXJORNADA (ID_JORNADA, ID_MEDICO, ESTADO) VALUES (@IDJORNADA, @ID_MEDICO, 1)");
                 datos.setParametro("@ID_MEDICO", Id_Medico);
+                datos.setParametro("@IDJORNADA", Id_Jornada);
                 datos.ejecutarAccion();
 
             }

@@ -119,7 +119,18 @@ namespace Proyecto_Clinica
         // Toma la Jornada elegida y la Agrega
         protected void btn_ActualizarJornada_Click(object sender, EventArgs e)
         {
+            int indiceSeleccionado = int.Parse(rbl_Jornada.SelectedValue);
+            int jornadaSeleccionada = Clinica.Jornadas[indiceSeleccionado - 1].Id;
 
+            if(jornadaSeleccionada >= 0)
+            {
+                AsignarJornadaEnBaseDeDatos(Medico_actual.Id, jornadaSeleccionada);
+            }
+        }
+        private void AsignarJornadaEnBaseDeDatos(int idMedico, int idJornada)
+        {
+            JornadaConexion jornadaConexion = new JornadaConexion();
+            jornadaConexion.Insertar_Jornada(idMedico, idJornada);
         }
 
 
