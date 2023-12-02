@@ -19,7 +19,7 @@
         <br />
         <asp:Label ID="Lbl_sin_usuarios" runat="server" CssClass="form-label" Text="No existe ningun Usuario con ese Nombre" Visible="false"></asp:Label>
         <br />
-
+        <%--modal--%>
         <div class="modal fade" id="mod_ElegirTipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

@@ -180,6 +180,7 @@ namespace Proyecto_Clinica
 
                     break;
             }
+            Response.Redirect("Usuarios.aspx");
         }
 
         private void Baja_Logica_Turnos(Usuario usuario_Seleccionado)

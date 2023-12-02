@@ -145,15 +145,13 @@ namespace Proyecto_Clinica
         //GRILLA PARA PACIENTES, SOLO PUEDE CANCELAR EL TURNO 
         protected void DGV_Turnos_Pacientes_Cancelar(object sender, EventArgs e)
         {
-            
-            string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
-            int ID_Turno = int.Parse(str_ID_Turno);
-            Turno_Seleccionado = Get_Turno(ID_Turno);
 
-            TurnoConexion turno_conexion = new TurnoConexion();
-            turno_conexion.Cancelar_Turno(Turno_Seleccionado.Id);
-
-            Response.Redirect("MisTurnos.aspx");
+            string script = @"
+                $(document).ready(function () {
+                    $('#Modal_cancelar_turno').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);          
 ;           
         }
         //GRILLA PARA RECEPCIONISTA Y ADMIN, PUEDEN CANCELAR Y MODIFICAR EL TURNO 
@@ -228,6 +226,18 @@ namespace Proyecto_Clinica
             {
                 Lbl_sin_turnos.Visible=false;
             }
+        }
+
+        protected void Btn_aceptar_cancelar_turno_Click(object sender, EventArgs e)
+        {
+            string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
+            int ID_Turno = int.Parse(str_ID_Turno);
+            Turno_Seleccionado = Get_Turno(ID_Turno);
+
+            TurnoConexion turno_conexion = new TurnoConexion();
+            turno_conexion.Cancelar_Turno(Turno_Seleccionado.Id);
+
+            Response.Redirect("MisTurnos.aspx");
         }
     }
 }

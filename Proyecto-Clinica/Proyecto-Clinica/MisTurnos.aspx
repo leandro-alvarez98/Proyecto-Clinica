@@ -2,11 +2,32 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+            <div class="container form_top containerbott">
+                
+                <%--modal para cancelar--%>
+                <div class="modal" tabindex="-1" id ="Modal_cancelar_turno">
+                    <div class="modal-dialog modal-dialog-centered " >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Cancelar Turno </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Estas seguro que queres cancelar el turno?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <asp:Button ID="Btn_aceptar_cancelar_turno" CssClass="btn btn-primary" runat="server" OnClick="Btn_aceptar_cancelar_turno_Click" Text="Aceptar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <%-- Esta página maneja los turnos del usuario sólo si el mismo es un Médico --%>
                 <%if (usuarioActual.Tipo == "Recepcionista" || usuarioActual.Tipo == "Administrador")%>
                 <%{ %>
-                    <div class="container form_top containerbott">
+
+
                         <h1 class="fs-1 font-monospace">Turnos</h1>
 
                         <asp:Label ID="Lbl_Busqueda" runat="server" CssClass="form-label" Text="Buscar Turno por Dni del paciente"></asp:Label>
@@ -31,10 +52,10 @@
                             </Columns>
                         </asp:GridView>
                         <asp:Label ID="Lbl_sin_turnos" runat="server" Text="No hay Turnos asociados a este Dni" Visible="false"></asp:Label>
-                    </div>
+                    
                 <%}else if (usuarioActual.Tipo == "Médico")%>
                 <%{%>
-                    <div class="container form_top containerbott">
+                    
                         <h1 class="fs-1 font-monospace">Mis Turnos</h1>
 
                         <asp:GridView ID="dgv_Turnos_Medicos" CssClass="table table-dark table-hover PAD_TOP" runat="server" OnSelectedIndexChanged="dgv_Turnos_Medicos_SelectedIndexChanged" AutoGenerateColumns="false">
@@ -52,10 +73,10 @@
                                 <asp:CommandField ShowSelectButton="true" SelectText="Agregar Observacion" HeaderText="Observaciones" />
                             </Columns>
                         </asp:GridView>
-                    </div>
+                   
                  <%}else%>
                 <%{%>
-                    <div class="container form_top containerbott">
+                    
                         <h1 class="fs-1 font-monospace">Mis Turnos</h1>
 
                         <asp:GridView ID="Dgv_Turnos_Paciente" CssClass="table table-dark table-hover PAD_TOP" OnSelectedIndexChanged="DGV_Turnos_Pacientes_Cancelar" runat="server" AutoGenerateColumns="false">
@@ -72,7 +93,8 @@
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:CommandField ShowSelectButton="true" SelectText="Cancelar" HeaderText="Accion" />
                             </Columns>
-                        </asp:GridView>
-                    </div>
+                        </asp:GridView>               
+
                  <%}%>
+     </div>
 </asp:Content>
