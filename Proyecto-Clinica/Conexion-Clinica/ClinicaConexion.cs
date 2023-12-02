@@ -27,7 +27,7 @@ namespace Conexion_Clinica
                 objetoClinica.Jornadas = new List<Jornada>();
 
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
-                objetoClinica.Usuarios = usuarioConexion.Listar();
+                objetoClinica.Usuarios = usuarioConexion.Listar_todos();
 
                 PacienteConexion pacienteConexion = new PacienteConexion();
                 objetoClinica.Pacientes = pacienteConexion.Listar();

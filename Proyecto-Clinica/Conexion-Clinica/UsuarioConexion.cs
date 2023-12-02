@@ -12,7 +12,7 @@ namespace Conexion_Clinica
 {
     public class UsuarioConexion
     {
-        public List<Usuario> Listar()
+        public List<Usuario> Listar_todos()
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
@@ -56,7 +56,109 @@ namespace Conexion_Clinica
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<Usuario> Listar_Activos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("\tSELECT \r\n\t\tID_USUARIO, \r\n\t\tNOMBRE_USUARIO, \r\n\t\tCONTRASENA, TIPO, \r\n\t\tURL_IMAGEN, \r\n\t\tESTADO\r\n\tFROM USUARIOS U \r\n\tLEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN\r\n\tWHERE ESTADO = 1");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    if (!(datos.Lector["URL_IMAGEN"] is DBNull))
+                    {
+                        Usuario usuario = new Usuario
+                        {
+                            Id = (int)datos.Lector["ID_USUARIO"],
+                            Username = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Contraseña = (String)datos.Lector["CONTRASENA"],
+                            Tipo = (String)datos.Lector["TIPO"],
+                            Imagen = (String)datos.Lector["URL_IMAGEN"],
+                            Estado = (bool)datos.Lector["ESTADO"]
+
+                        };
+                        lista.Add(usuario);
+                    }
+                    else
+                    {
+                        Usuario usuario = new Usuario
+                        {
+                            Id = (int)datos.Lector["ID_USUARIO"],
+                            Username = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Contraseña = (String)datos.Lector["CONTRASENA"],
+                            Tipo = (String)datos.Lector["TIPO"],
+                            Estado = (bool)datos.Lector["ESTADO"]
+                        };
+                        lista.Add(usuario);
+                    }
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<Usuario> Listar_Inactivos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("SELECT \r\n\t\tID_USUARIO, \r\n\t\tNOMBRE_USUARIO, \r\n\t\tCONTRASENA, TIPO, \r\n\t\tURL_IMAGEN, \r\n\t\tESTADO\r\n\tFROM USUARIOS U \r\n\tLEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN\r\n\tWHERE ESTADO = 0");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    if (!(datos.Lector["URL_IMAGEN"] is DBNull))
+                    {
+                        Usuario usuario = new Usuario
+                        {
+                            Id = (int)datos.Lector["ID_USUARIO"],
+                            Username = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Contraseña = (String)datos.Lector["CONTRASENA"],
+                            Tipo = (String)datos.Lector["TIPO"],
+                            Imagen = (String)datos.Lector["URL_IMAGEN"],
+                            Estado = (bool)datos.Lector["ESTADO"]
+
+                        };
+                        lista.Add(usuario);
+                    }
+                    else
+                    {
+                        Usuario usuario = new Usuario
+                        {
+                            Id = (int)datos.Lector["ID_USUARIO"],
+                            Username = (String)datos.Lector["NOMBRE_USUARIO"],
+                            Contraseña = (String)datos.Lector["CONTRASENA"],
+                            Tipo = (String)datos.Lector["TIPO"],
+                            Estado = (bool)datos.Lector["ESTADO"]
+                        };
+                        lista.Add(usuario);
+                    }
+
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+                throw ex;
             }
             finally
             {
@@ -329,6 +431,25 @@ namespace Conexion_Clinica
             try
             {
                 datos.setConsulta("UPDATE USUARIOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Alta_logica_usuario(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE USUARIOS SET ESTADO = 1 WHERE ID_USUARIO = @IDUSUARIO");
                 datos.setParametro("@IDUSUARIO", id);
                 datos.ejecutarAccion();
             }
