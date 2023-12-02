@@ -64,7 +64,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btn_Eliminar_Especialidad" CssClass="btn btn-primary" runat="server" Text="Guardar selección" OnClick="btn_Eliminar_Especialidad_Click1" />
+                        <asp:Button ID="btn_Seleccionar_Especialidad_a_Eliminar" CssClass="btn btn-primary" runat="server" Text="Guardar selección" onclick="btn_Seleccionar_Especialidad_a_Eliminar_Click"/>
                     </div>
                 </div>
             </div>
