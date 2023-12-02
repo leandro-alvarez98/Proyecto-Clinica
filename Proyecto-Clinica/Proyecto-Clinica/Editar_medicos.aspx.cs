@@ -196,9 +196,20 @@ namespace Proyecto_Clinica
         // Toma la especialidad a eliminar y la elimina.
         protected void btn_Seleccionar_Especialidad_a_Eliminar_Click(object sender, EventArgs e)
         {
+            int indiceSeleccionado = int.Parse(rbl_Elimina_Especialidad.SelectedValue);
+            int especialidadSeleccionada = Clinica.Especialidades[indiceSeleccionado - 1].Id;
 
+            if (especialidadSeleccionada > 0)
+            {
+                EliminarMedicoxEspecialidad(Medico_actual.Id, especialidadSeleccionada);
+                Response.Redirect("Editar_medicos.aspx");
+            }
         }
-
+        private void EliminarMedicoxEspecialidad(int idMedico, int idEspecialidad)
+        {
+            EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
+            especialidadesConexion.EliminarEspecialidadxMedico(idMedico, idEspecialidad);
+        }
 
         // ------------------ MODAL ELIMINAR JORNADA ------------------
         // Abre el modal

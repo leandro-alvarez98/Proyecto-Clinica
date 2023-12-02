@@ -101,8 +101,28 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("UPDATE MEDICOSXESPECIALIDAD SET ESTADO = 0 WHERE ID_MEDICO = @IDMEDICO");
+                datos.setConsulta("delete from MEDICOSXESPECIALIDAD WHERE ID_MEDICO = @IDMEDICO");
                 datos.setParametro("@IDMEDICO", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void EliminarEspecialidadxMedico(int idMedico, int idEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("delete from MEDICOSXESPECIALIDAD WHERE ID_MEDICO = @IDMEDICO AND ID_ESPECIALIDAD = @IDESPECIALIDAD");
+                datos.setParametro("@IDMEDICO", idMedico);
+                datos.setParametro("@IDESPECIALIDAD", idEspecialidad);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
