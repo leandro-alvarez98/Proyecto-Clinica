@@ -59,7 +59,7 @@
 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Perfil_Usuario.aspx">Mi Perfil</a></li>
-                            <li><a class="dropdown-item" href="Default.aspx">Salir</a></li>
+                            <li> <asp:LinkButton ID="LinkButton1" CssClass="dropdown-item" OnClick="LinkButton1_Click" runat="server">Salir</asp:LinkButton></li>
                         </ul>
                     </div>
                 </div>

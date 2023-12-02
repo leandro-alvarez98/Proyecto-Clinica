@@ -78,6 +78,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button btn_ActualizarTipo;
 
         /// <summary>
+        /// Control Btn_aceptar_baja_usuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_aceptar_baja_usuario;
+
+        /// <summary>
         /// Control repeaterUsuarios.
         /// </summary>
         /// <remarks>

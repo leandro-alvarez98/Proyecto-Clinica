@@ -19,7 +19,7 @@
         <br />
         <asp:Label ID="Lbl_sin_usuarios" runat="server" CssClass="form-label" Text="No existe ningun Usuario con ese Nombre" Visible="false"></asp:Label>
         <br />
-        <%--modal--%>
+        <%--MODAL ACTUALIZAR TIPO--%>
         <div class="modal fade" id="mod_ElegirTipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -43,6 +43,25 @@
             </div>
         </div>
 
+        <%--modal para cancelar--%>
+        <div class="modal" tabindex="-1" id="Modal_Baja_usuario">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Dar de baja un usuario </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Estas seguro que queres dar de baja el usuario?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <asp:Button ID="Btn_aceptar_baja_usuario" CssClass="btn btn-primary" runat="server" OnClick="Btn_aceptar_baja_usuario_Click" Text="Aceptar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <asp:Repeater ID="repeaterUsuarios" runat="server">
                 <ItemTemplate>
@@ -53,7 +72,8 @@
                                 <h5 class="card-title">Username: <%# Eval("Username") %> </h5>
                                 <p class="card-text"><strong>Tipo: </strong><%# Eval("Tipo") %></p>
                                 <asp:Button ID="btn_SeleccionarUsuario" runat="server" Text="Cambiar tipo" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirTipo" OnClick="btn_SeleccionarUsuario_Click" CommandName="SeleccionarUsuario" CommandArgument='<%# Eval("Id") %>' />
-                            </div>
+                                <asp:Button ID="Btn_dar_baja_usuario" CssClass="btn btn-primary" runat="server" CommandName="Dar_de_baja_Usuario" CommandArgument='<%# Eval("Id") %>' Text="Dar de baja" OnClick="Btn_dar_baja_usuario_Click" />
+                                </div>
                         </div>
                     </div>
                 </ItemTemplate>

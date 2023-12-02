@@ -18,7 +18,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("SELECT ID_USUARIO, NOMBRE_USUARIO, CONTRASENA, TIPO, URL_IMAGEN FROM USUARIOS U LEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN");
+                datos.setConsulta("\tSELECT \r\n\t\tID_USUARIO, \r\n\t\tNOMBRE_USUARIO, \r\n\t\tCONTRASENA, TIPO, \r\n\t\tURL_IMAGEN, \r\n\t\tESTADO\r\n\tFROM USUARIOS U \r\n\tLEFT JOIN IMAGENES I ON I.ID_IMAGEN = U.ID_IMAGEN");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -31,7 +31,9 @@ namespace Conexion_Clinica
                             Username = (String)datos.Lector["NOMBRE_USUARIO"],
                             Contraseña = (String)datos.Lector["CONTRASENA"],
                             Tipo = (String)datos.Lector["TIPO"],
-                            Imagen = (String)datos.Lector["URL_IMAGEN"]
+                            Imagen = (String)datos.Lector["URL_IMAGEN"],
+                            Estado = (bool)datos.Lector["ESTADO"]
+
                         };
                         lista.Add(usuario);
                     }
@@ -42,7 +44,8 @@ namespace Conexion_Clinica
                             Id = (int)datos.Lector["ID_USUARIO"],
                             Username = (String)datos.Lector["NOMBRE_USUARIO"],
                             Contraseña = (String)datos.Lector["CONTRASENA"],
-                            Tipo = (String)datos.Lector["TIPO"]
+                            Tipo = (String)datos.Lector["TIPO"],
+                            Estado = (bool)datos.Lector["ESTADO"]
                         };
                         lista.Add(usuario);
                     }
@@ -317,6 +320,26 @@ namespace Conexion_Clinica
             catch (Exception Ex)
             {
                 throw Ex;
+            }
+        }
+
+        public void Baja_logica_usuario (int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE USUARIOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

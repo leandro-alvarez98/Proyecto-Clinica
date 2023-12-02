@@ -293,5 +293,34 @@ namespace Proyecto_Clinica
                 Lbl_sin_usuarios.Visible = false;
             }
         }
+
+        protected void Btn_dar_baja_usuario_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
+
+            Usuario usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
+
+            usuario_Seleccionado = Cargar_Datos_Usuario(usuario_Seleccionado);
+
+            Session["UsuarioSeleccionado"] = usuario_Seleccionado;
+            string script = @"
+                $(document).ready(function () {
+                    $('#Modal_Baja_usuario').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
+
+        protected void Btn_aceptar_baja_usuario_Click(object sender, EventArgs e)
+        {
+            int idUsuarioSeleccionado = ((Usuario)Session["UsuarioSeleccionado"]).Id;
+
+            UsuarioConexion usuarioConexion = new UsuarioConexion();
+
+            usuarioConexion.Baja_logica_usuario(idUsuarioSeleccionado);
+            Response.Redirect("Usuarios.aspx");
+        }
     }
 }

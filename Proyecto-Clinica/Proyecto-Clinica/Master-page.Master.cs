@@ -29,5 +29,11 @@ namespace Proyecto_Clinica
                     imgPerfil.ImageUrl = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
             }
         }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }
