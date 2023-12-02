@@ -62,14 +62,14 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        public void Eliminar_Jornada(int id_jornada, int id_medico)
+        public void Eliminar_Jornada(int idMedico, int idJornada)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setConsulta("DELETE FROM MEDICOXJORNADA WHERE ID_JORNADA = @ID_JORNADA AND ID_MEDICO = @ID_MEDICO");
-                datos.setParametro("@ID_JORNADA", id_jornada);
-                datos.setParametro("@IDMEDICO", id_medico);
+                datos.setParametro("@ID_MEDICO", idMedico);
+                datos.setParametro("@ID_JORNADA", idJornada);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

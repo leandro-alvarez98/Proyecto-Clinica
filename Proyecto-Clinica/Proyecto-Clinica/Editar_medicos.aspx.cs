@@ -125,6 +125,7 @@ namespace Proyecto_Clinica
             if(jornadaSeleccionada >= 0)
             {
                 AsignarJornadaEnBaseDeDatos(Medico_actual.Id, jornadaSeleccionada);
+                Response.Redirect("Editar_medicos.aspx");
             }
         }
         private void AsignarJornadaEnBaseDeDatos(int idMedico, int idJornada)
@@ -231,8 +232,20 @@ namespace Proyecto_Clinica
         // Toma la jornada elegida y la elimina.
         protected void btn_Eliminar_Jornada_Click(object sender, EventArgs e)
         {
+            int indiceSeleccionado = int.Parse(rbl_Eliminar_Jornada.SelectedValue);
+            int jornadaSeleccionada = Clinica.Jornadas[indiceSeleccionado - 1].Id;
 
+            if (jornadaSeleccionada >= 0)
+            {
+                EliminarMedicoxJornada(Medico_actual.Id, jornadaSeleccionada);
+                Response.Redirect("Editar_medicos.aspx");
+            }
         }
 
+        private void EliminarMedicoxJornada(int idMedico, int idJornada)
+        {
+            JornadaConexion jornadaConexion = new JornadaConexion();
+            jornadaConexion.Eliminar_Jornada(idMedico, idJornada);
+        }
     }
 }

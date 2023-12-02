@@ -135,7 +135,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void AsignarEspecialidadAMedico(int idMedico, int idEspecialidad)
         {
             AccesoDatos datos = new AccesoDatos();
