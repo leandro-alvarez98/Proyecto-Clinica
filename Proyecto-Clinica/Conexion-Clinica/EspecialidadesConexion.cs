@@ -114,5 +114,80 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        
+        
+        public void AsignarEspecialidadAMedico(int idMedico, string especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            if (!string.IsNullOrEmpty(especialidad))
+            {
+                int idEspecialidad = ObtenerIdEspecialidadPorTipo(especialidad);
+
+                if (idEspecialidad > 0)
+                {
+                    try
+                    {
+                        // Asegúrate de tener la lógica adecuada para asociar la especialidad al médico
+                        datos.setConsulta("INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD, ESTADO) VALUES (@ID_MEDICO, @ID_ESPECIALIDAD, 1)");
+                        datos.setParametro("@ID_MEDICO", idMedico);
+                        datos.setParametro("@ID_ESPECIALIDAD", idEspecialidad); // Utiliza el idEspecialidad directamente
+                        datos.ejecutarAccion();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                        throw;
+                    }
+                    finally
+                    {
+                        datos.cerrarConexion();
+                    }
+                }
+                else
+                {
+                    // Manejar el caso donde ObtenerIdEspecialidadPorTipo no devuelve un valor válido
+                    // Puedes lanzar una excepción, mostrar un mensaje de error, etc.
+                    Console.WriteLine("El ID de especialidad no es válido.");
+                }
+            }
+            else
+            {
+                // Manejar el caso donde especialidad es null o una cadena vacía
+                Console.WriteLine("La especialidad no es válida.");
+            }
+        }
+
+        public int ObtenerIdEspecialidadPorTipo(string tipoEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idEspecialidad = 0;  // El valor predeterminado si no se encuentra la especialidad
+
+            try
+            {
+                datos.setConsulta("SELECT ID_ESPECIALIDAD FROM ESPECIALIDADES WHERE TIPO = @TIPO");
+                datos.setParametro("@TIPO", tipoEspecialidad);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    idEspecialidad = (int)datos.Lector["ID_ESPECIALIDAD"];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return idEspecialidad;
+        }
+
+
+
     }
 }

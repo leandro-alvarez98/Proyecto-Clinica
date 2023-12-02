@@ -1,18 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master-page.Master" AutoEventWireup="true" CodeBehind="Editar_medicos.aspx.cs" Inherits="Proyecto_Clinica.Editar_medicos" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container form_top containerbott">
-        <%--MODAL ESPECIALIDAD--%>
+        <%--MODAL AGREGAR ESPECIALIDAD--%>
         <div class="modal fade" id="mod_ElegirEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Cambiar Especialidad</h1>
+                        <h1 class="modal-title fs-5">Agregar Especialidad</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                                <%--PROBANDO EL POSTBACK--%>
                         <asp:RadioButtonList ID="rbl_Especialidades" runat="server" AutoPostBack="False">
                         </asp:RadioButtonList>
 
@@ -24,13 +26,13 @@
                 </div>
             </div>
         </div>
-                <%--MODAL JORNADA--%>
+        <%--MODAL AGREGAR JORNADA--%>
 
         <div class="modal fade" id="mod_ElegirJornada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Cambiar Jornada</h1>
+                        <h1 class="modal-title fs-5">Agregar Jornada</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -47,6 +49,47 @@
 
         </div>
 
+        <%--MODAL ELIMINAR ESPECIALIDAD--%>
+        <div class="modal fade" id="mod_eliminarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Eliminar Especialidad</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:RadioButtonList ID="rbl_Elimina_Especialidad" runat="server" AutoPostBack="False">
+                        </asp:RadioButtonList>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btn_Eliminar_Especialidad" CssClass="btn btn-primary" runat="server" Text="Guardar selección" OnClick="btn_Eliminar_Especialidad_Click1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%--MODAL ELIMINAR JORNADA--%>
+        <div class="modal fade" id="mod_eliminarJornada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Eliminar Jornada</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:RadioButtonList ID="rbl_Eliminar_Jornada" runat="server" AutoPostBack="False">
+                        </asp:RadioButtonList>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btn_Eliminar_Jornada" CssClass="btn btn-primary" runat="server" Text="Guardar selección" OnClick="btn_Eliminar_Jornada_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
 
@@ -61,7 +104,7 @@
                         <h5 class="card-title"><% = Medico_actual.Nombre %>, <% = Medico_actual.Apellido %></h5>
                         <p class="card-text"><strong>Telefono: </strong><% = Medico_actual.Telefono %></p>
                         <p class="card-text"><strong>Direccion: </strong><% = Medico_actual.Direccion %></p>
-                        <p class="card-text"><strong>Fecha de Nacimiento:</strong> <% = Medico_actual.Fecha_Nacimiento %> </p>
+                        <p class="card-text"><strong>Fecha de Nacimiento:</strong> <% = Medico_actual.Fecha_Nacimiento.ToShortDateString() %> </p>
                         <p class="card-text"><strong>Mail: </strong><% = Medico_actual.Mail %></p>
                         <p class="card-text">
                             <strong>Jornada/s: </strong>
@@ -84,12 +127,13 @@
 
                             </asp:Repeater>
                         </p>
-                        <%--botones para actualizar datos--%>
+                        <%--botones para actualizar/agregar datos--%>
                         <asp:Button ID="btn_SeleccionarMedicoJornada" runat="server" Text="Agregar jornada" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirJornada" OnClick="btn_SeleccionarMedicoJornada_Click"   />
                         <asp:Button ID="btn_SeleccionarMedicoEspecialidad" runat="server" Text="Agregar especialidad" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirEspecialidad" OnClick="btn_SeleccionarMedicoEspecialidad_Click"  />
+                        <%--botones para eliminar datos--%>
+                        <asp:Button ID="btn_EliminarEspecialidad" runat="server" Text="Eliminar especialidad" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_EliminarEspecialidad" OnClick="btn_EliminarEspecialidad_Click" />
+                        <asp:Button ID="btn_EliminarJornada" runat="server" Text="Eliminar jornada" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_eliminarJornada" OnClick="btn_EliminarJornada_Click" />
 
-                        <asp:Button ID="btn_EliminarEspecialidad" runat="server" Text="Eliminar especialidad" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirEspecialidad" OnClick="btn_EliminarEspecialidad_Click" />
-                        <asp:Button ID="btn_EliminarJornada" runat="server" Text="Eliminar especialidad" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirEspecialidad" OnClick="btn_EliminarJornada_Click"  />
                     </div>
                 </div>
             </div>

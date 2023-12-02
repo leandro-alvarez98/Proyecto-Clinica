@@ -51,6 +51,42 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button btn_ActualizarJornada;
 
         /// <summary>
+        /// Control rbl_Elimina_Especialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_Elimina_Especialidad;
+
+        /// <summary>
+        /// Control btn_Eliminar_Especialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Eliminar_Especialidad;
+
+        /// <summary>
+        /// Control rbl_Eliminar_Jornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbl_Eliminar_Jornada;
+
+        /// <summary>
+        /// Control btn_Eliminar_Jornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_Eliminar_Jornada;
+
+        /// <summary>
         /// Control repeaterJornadas.
         /// </summary>
         /// <remarks>
