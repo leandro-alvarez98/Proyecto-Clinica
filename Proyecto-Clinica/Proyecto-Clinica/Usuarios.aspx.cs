@@ -145,9 +145,122 @@ namespace Proyecto_Clinica
             }
             return new Recepcionista();
         }
+        private Usuario GetUsuario(int id)
+        {
+            foreach (Usuario usuario in Clinica.Usuarios)
+            {
+                if (usuario.Id == id)
+                    return usuario;
+            }
+            return new Usuario();
+        }
+
+
+        // ---------- FILTRO PARA BUSCAR UN USUARIO ----------
+        protected void Btn_buscar_usuario_Click(object sender, EventArgs e)
+        {
+            lista_usuario_x_nombre = new List<Usuario>();
+            string nombre_usuario = Txt_usuario.Text;
+            Cargar_usuario_buscado(nombre_usuario);
+
+            //limpia el listado actual
+            repeaterUsuarios.DataSource = null;
+            repeaterUsuarios.DataBind();
+            //muestra el usuario
+            repeaterUsuarios.DataSource = lista_usuario_x_nombre;
+            repeaterUsuarios.DataBind();
+            if (lista_usuario_x_nombre.Count() == 0)
+            {
+                Lbl_sin_usuarios.Visible = true;
+            }
+            else
+            {
+                Lbl_sin_usuarios.Visible = false;
+            }
+
+        }
+        public void Cargar_usuario_buscado(string nombre_usuario)
+        {
+            if (!inactivos)
+            {
+                foreach (Usuario usuario in Clinica.Usuarios)
+                {
+                    if (usuario.Username == nombre_usuario)
+                    {
+                        lista_usuario_x_nombre.Add(usuario);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Usuario usuario in usuarioConexion.Listar_Inactivos())
+                {
+                    if (usuario.Username == nombre_usuario)
+                    {
+                        lista_usuario_x_nombre.Add(usuario);
+                    }
+                }
+            }
+        }
+
+        // ---------- FILTRO PARA USUARIOS INACTIVOS  ----------
+        protected void Btn_listar_inactivos_Click(object sender, EventArgs e)
+        {
+            Session["inactivo"] = true;
+            //limpia la grilla actual
+            repeaterUsuarios.DataSource = null;
+            repeaterUsuarios.DataBind();
+            //cargar la nueva grilla de datos 
+            repeaterUsuarios.DataSource = usuarioConexion.Listar_Inactivos();
+            repeaterUsuarios.DataBind();
+
+            if (Clinica.Usuarios.Count() != 0)
+            {
+                Lbl_sin_usuarios.Visible = false;
+            }
+
+        }
+        // ---------- LIMPIA CUALQUIER FILTRO ----------
+        protected void Btn_limpiar_Click(object sender, EventArgs e)
+        {
+            Session["inactivo"] = false;
+            //limpia la grilla actual
+            repeaterUsuarios.DataSource = null;
+            repeaterUsuarios.DataBind();
+            //cargar la nueva grilla de datos 
+            repeaterUsuarios.DataSource = Clinica.Usuarios;
+            repeaterUsuarios.DataBind();
+            if (Clinica.Usuarios.Count() != 0)
+            {
+                Lbl_sin_usuarios.Visible = false;
+            }
+        }
+
+
+        // ---------- MODAL ACTUALIZAR TIPO DE USUARIO ----------
+        protected void btn_SeleccionarUsuario_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
+
+            Usuario usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
+
+            usuario_Seleccionado = Cargar_Datos_Usuario(usuario_Seleccionado);
+
+            Session["UsuarioSeleccionado"] = usuario_Seleccionado;
+
+            string script = @"
+                $(document).ready(function () {
+                    $('#mod_ElegirTipo').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
         protected void btn_ActualizarTipo_Click(object sender, EventArgs e)
         {
             Usuario usuario_Seleccionado = (Usuario)Session["UsuarioSeleccionado"];
+
             string tipoSeleccionado = rblTipos.SelectedValue;
 
             if (usuario_Seleccionado.Tipo == "Médico" || usuario_Seleccionado.Tipo == "Paciente")
@@ -224,93 +337,7 @@ namespace Proyecto_Clinica
                     break;
             }
         }
-        protected void btn_SeleccionarUsuario_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-
-            int idUsuarioSeleccionado = int.Parse(btn.CommandArgument);
-
-            Usuario usuario_Seleccionado = GetUsuario(idUsuarioSeleccionado);
-
-            usuario_Seleccionado = Cargar_Datos_Usuario(usuario_Seleccionado);
-
-            Session["UsuarioSeleccionado"] = usuario_Seleccionado;
-
-            string script = @"
-                $(document).ready(function () {
-                    $('#mod_ElegirTipo').modal('show');
-                });
-            ";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
-        }
-        private Usuario GetUsuario(int id)
-        {
-            foreach (Usuario usuario in Clinica.Usuarios)
-            {
-                if (usuario.Id == id)
-                    return usuario;
-            }
-            return new Usuario();
-        }
-        protected void Btn_buscar_usuario_Click(object sender, EventArgs e)
-        {
-            lista_usuario_x_nombre = new List<Usuario>();
-            string nombre_usuario = Txt_usuario.Text;
-            Cargar_usuario_buscado(nombre_usuario);
-
-            //limpia el listado actual
-            repeaterUsuarios.DataSource = null;
-            repeaterUsuarios.DataBind();
-            //muestra el usuario
-            repeaterUsuarios.DataSource = lista_usuario_x_nombre;
-            repeaterUsuarios.DataBind();
-            if (lista_usuario_x_nombre.Count() == 0)
-            {
-                Lbl_sin_usuarios.Visible = true;
-            }
-            else
-            {
-                Lbl_sin_usuarios.Visible = false;
-            }
-
-        }
-        public void Cargar_usuario_buscado(string nombre_usuario)
-        {
-            if (!inactivos)
-            {
-                foreach (Usuario usuario in Clinica.Usuarios)
-                {
-                    if (usuario.Username == nombre_usuario)
-                    {
-                        lista_usuario_x_nombre.Add(usuario);
-                    }
-                }
-            }
-            else
-            {
-                foreach (Usuario usuario in usuarioConexion.Listar_Inactivos())
-                {
-                    if (usuario.Username == nombre_usuario)
-                    {
-                        lista_usuario_x_nombre.Add(usuario);
-                    }
-                }
-            }
-        }
-        protected void Btn_limpiar_Click(object sender, EventArgs e)
-        {
-            Session["inactivo"] = false;
-            //limpia la grilla actual
-            repeaterUsuarios.DataSource = null;
-            repeaterUsuarios.DataBind();
-            //cargar la nueva grilla de datos 
-            repeaterUsuarios.DataSource = Clinica.Usuarios;
-            repeaterUsuarios.DataBind();
-            if (Clinica.Usuarios.Count() != 0)
-            {
-                Lbl_sin_usuarios.Visible = false;
-            }
-        }
+        // ---------- MODAL ALTA / BAJA USUARIO ----------
         protected void Btn_Cambiar_estado_usuario_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -343,32 +370,6 @@ namespace Proyecto_Clinica
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
             }
         }
-        protected void Btn_aceptar_baja_usuario_Click(object sender, EventArgs e)
-        {
-            int idUsuarioSeleccionado = ((Usuario)Session["UsuarioSeleccionado"]).Id;
-
-            UsuarioConexion usuarioConexion = new UsuarioConexion();
-
-            usuarioConexion.Baja_logica_usuario(idUsuarioSeleccionado);
-            Response.Redirect("Usuarios.aspx");
-        }
-        protected void Btn_listar_inactivos_Click(object sender, EventArgs e)
-        {
-            Session["inactivo"] = true;
-            //limpia la grilla actual
-            repeaterUsuarios.DataSource = null;
-            repeaterUsuarios.DataBind();
-            //cargar la nueva grilla de datos 
-            repeaterUsuarios.DataSource = usuarioConexion.Listar_Inactivos();
-            repeaterUsuarios.DataBind();
-
-            if (Clinica.Usuarios.Count() != 0)
-            {
-                Lbl_sin_usuarios.Visible = false;
-            }
-
-        }
-
         protected void Btn_alta_usuario_Click(object sender, EventArgs e)
         {
             int idUsuarioSeleccionado = ((Usuario)Session["UsuarioSeleccionado"]).Id;
@@ -376,6 +377,15 @@ namespace Proyecto_Clinica
             UsuarioConexion usuarioConexion = new UsuarioConexion();
 
             usuarioConexion.Alta_logica_usuario(idUsuarioSeleccionado);
+            Response.Redirect("Usuarios.aspx");
+        }
+        protected void Btn_aceptar_baja_usuario_Click(object sender, EventArgs e)
+        {
+            int idUsuarioSeleccionado = ((Usuario)Session["UsuarioSeleccionado"]).Id;
+
+            UsuarioConexion usuarioConexion = new UsuarioConexion();
+
+            usuarioConexion.Baja_logica_usuario(idUsuarioSeleccionado);
             Response.Redirect("Usuarios.aspx");
         }
     }

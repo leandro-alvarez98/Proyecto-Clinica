@@ -33,8 +33,8 @@ namespace Proyecto_Clinica
             Cargar_Datos_Usuario();
             Cargar_labels();
 
-            if (Usuario_Actual.Imagen != "NoImagen")
-                imgPerfil.ImageUrl = "~/img/" + Usuario_Actual.Imagen;
+            if (Usuario_Actual.Imagen != "https://cdn-icons-png.flaticon.com/512/5987/5987424.png")
+                imgPerfil.ImageUrl = "img/" + Usuario_Actual.Imagen;
             else
                 imgPerfil.ImageUrl = "https://cdn-icons-png.flaticon.com/512/5987/5987424.png";
         }
@@ -405,16 +405,22 @@ namespace Proyecto_Clinica
         }
         private bool Imagen_Cambiada()
         {
+
+            string datoHorario = DateTime.Now.Hour.ToString() + DateTime.Now.Second +  DateTime.Now.DayOfYear;
+
             try
             {
                 //Escritura de imagen
                 string ruta = Server.MapPath("./img/");
 
-                txtImagen.PostedFile.SaveAs(ruta + "perfil-" + Usuario_Actual.Id + ".jpg");
+                txtImagen.PostedFile.SaveAs(ruta + "perfil-" + Usuario_Actual.Id + datoHorario +  ".jpg");
 
-                Usuario_Actual.Imagen = "perfil-" + Usuario_Actual.Id + ".jpg";
+                Usuario_Actual.Imagen = "perfil-" + Usuario_Actual.Id + datoHorario + ".jpg";
 
                 UsuarioConexion usuarioConexion = new UsuarioConexion();
+
+                usuarioConexion.EliminarImagen(Usuario_Actual.Id);
+
                 usuarioConexion.actualizarImagen(Usuario_Actual);
 
                 //Lectura de imagen

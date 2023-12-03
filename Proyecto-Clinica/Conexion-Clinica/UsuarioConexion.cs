@@ -165,6 +165,28 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public int Get_ID_Usuario(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int id = 0;
+            try
+            {
+                datos.setConsulta("SELECT ID_USUARIO FROM USUARIOS WHERE NOMBRE_USUARIO = @USERNAME");
+                datos.setParametro("@USERNAME", usuario.Username);
+                datos.ejecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    id = (int)datos.Lector["ID_USUARIO"];
+                    return id;
+                }
+                return id;
+
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
         public void InsertarUsuarioEnBBDD(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -186,6 +208,7 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
         public void Actualizar_Usuario(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -328,6 +351,76 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public void EliminarDatos(Usuario usuario_actual)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                switch (usuario_actual.Tipo)
+                {
+                    case "Administrador":
+                        datos.setConsulta("UPDATE ADMINISTRADOR SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+                    case "Recepcionista":
+                        datos.setConsulta("UPDATE RECEPCIONISTA SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+                    case "Médico":
+                        datos.setConsulta("UPDATE MEDICOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+                    case "Paciente":
+                        datos.setConsulta("UPDATE PACIENTES SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                        break;
+
+                }
+                datos.setParametro("@IDUSUARIO", usuario_actual.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            
+        }
+
+        public void Alta_logica_usuario(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE USUARIOS SET ESTADO = 1 WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void Baja_logica_usuario (int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("UPDATE USUARIOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
+                datos.setParametro("@IDUSUARIO", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void actualizarImagen(Usuario usuario_Actual)
         {
             Insertar_Imagen(usuario_Actual.Imagen);
@@ -371,86 +464,13 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        public void EliminarDatos(Usuario usuario_actual)
+        public void EliminarImagen(int Id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                switch (usuario_actual.Tipo)
-                {
-                    case "Administrador":
-                        datos.setConsulta("UPDATE ADMINISTRADOR SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
-                        break;
-                    case "Recepcionista":
-                        datos.setConsulta("UPDATE RECEPCIONISTA SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
-                        break;
-                    case "Médico":
-                        datos.setConsulta("UPDATE MEDICOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
-                        break;
-                    case "Paciente":
-                        datos.setConsulta("UPDATE PACIENTES SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
-                        break;
-
-                }
-                datos.setParametro("@IDUSUARIO", usuario_actual.Id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex;
-            }
-            
-        }
-
-        public int Get_ID_Usuario(Usuario usuario)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            int id = 0;
-            try
-            {
-                datos.setConsulta("SELECT ID_USUARIO FROM USUARIOS WHERE NOMBRE_USUARIO = @USERNAME");
-                datos.setParametro("@USERNAME", usuario.Username);
-                datos.ejecutarLectura();
-                while(datos.Lector.Read())
-                {
-                    id = (int)datos.Lector["ID_USUARIO"];
-                    return id;
-                }
-                return id;
-
-            }
-            catch (Exception Ex)
-            {
-                throw Ex;
-            }
-        }
-
-        public void Baja_logica_usuario (int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("UPDATE USUARIOS SET ESTADO = 0 WHERE ID_USUARIO = @IDUSUARIO");
-                datos.setParametro("@IDUSUARIO", id);
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-        public void Alta_logica_usuario(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("UPDATE USUARIOS SET ESTADO = 1 WHERE ID_USUARIO = @IDUSUARIO");
-                datos.setParametro("@IDUSUARIO", id);
+                datos.setConsulta("delete from IMAGENES where ID_IMAGEN = (select ID_IMAGEN from USUARIOS WHERE ID_USUARIO = @IDUSUARIO)");
+                datos.setParametro("@IDUSUARIO", Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
