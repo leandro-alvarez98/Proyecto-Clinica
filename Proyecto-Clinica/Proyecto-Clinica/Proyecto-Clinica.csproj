@@ -71,6 +71,7 @@
     <Content Include="Editar_medicos.aspx" />
     <Content Include="Estadisticas.aspx" />
     <Content Include="img\fondo de pantalla.jpg" />
+    <Content Include="JavaScript\JavaScript.js" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="MailContraseña.aspx" />
     <Content Include="Medicos.aspx" />

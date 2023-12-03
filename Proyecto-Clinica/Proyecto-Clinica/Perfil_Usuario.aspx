@@ -4,6 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+
+    <%-- referencia a la carpeta JS que contiene los script --%>
+    <%--<script type="text/javascript" src="JS/JavaScript.js"></script>--%>
+        <%-- A TXTDNIEDIT HAY QUE AGREGARLE LO SIGUIENTE: onkeypress="return soloNumeros(event);" maxlength="8" --%>
+
     <div class="container form_top containerbott ">
 
 
