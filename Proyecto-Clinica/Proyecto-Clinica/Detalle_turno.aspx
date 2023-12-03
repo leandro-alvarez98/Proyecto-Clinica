@@ -35,6 +35,7 @@
                         <h5 class="card-title">Observacion</h5>
                         <p id="P_observacion" runat="server" class="card-text"></p>
                         <textarea class="form-control" runat="server" id="Txt_Observacion" rows="3" visible="false"></textarea>
+
                     </div>
                 </div>
 

@@ -127,7 +127,7 @@ namespace Proyecto_Clinica
         }
         protected void Btn_Modificar_Click(object sender, EventArgs e)
         {
-             
+            Txt_Observacion.Visible = true;
             turnoConexion.Modificar_Turno(turno_actual); 
             Response.Redirect("Detalle_Turno.aspx");
         }
@@ -142,7 +142,7 @@ namespace Proyecto_Clinica
             if (DateTime.TryParse(txt_FechaSeleccionada.Text, out DateTime fecha_turnos))
             {
                 //Comprueba que la fecha seleccionada sea correcta
-                if (fecha_turnos < DateTime.Now)
+                if (fecha_turnos < DateTime.Now.Date)
                 {
                     lblMensajeError.Text = "La fecha ingresada no es válida. Por favor, selecciona una fecha válida.";
                 }
@@ -156,9 +156,10 @@ namespace Proyecto_Clinica
                 {
 
                     TimeSpan horaActual = DateTime.Now.TimeOfDay;
+                    DateTime fechaActual = DateTime.Now.Date;
 
 
-                    if (horaSeleccionada > horaActual)
+                    if (horaSeleccionada > horaActual && Fecha_Seleccionada >= fechaActual)
                     {
                         HoraValida = true;
                         Hora_Seleccionada = horaSeleccionada;

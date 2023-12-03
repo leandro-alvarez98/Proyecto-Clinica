@@ -5,23 +5,26 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="mb-3 container containerbott form_top ">
-        <h1 class="fs-1 font-monospace">Reservar Turno</h1>
-        <asp:Label CssClass="fs-3 font-monospace fw-semibold" runat="server" Text="Seleccionar Fecha"></asp:Label>
+        <h1 class="fs-1 font-monospace fw-semibold">Reservar Turno</h1>
+<%--        <asp:Label CssClass="fs-3 font-monospace " runat="server" Text="Seleccionar Fecha"></asp:Label>--%>
         <hr />
 
         <%-- Especialidades --%>
+        <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Seleccione la especialidad: "></asp:Label>
         <asp:DropDownList ID="DDL_especialidades" CssClass="form-select" runat="server"></asp:DropDownList>
-        <br />
         <asp:Label ID="LbL_falta_especialidad" runat="server" Text="Por favor ingrese una especialidad" Visible="false"></asp:Label>
 
+        <br />
 
         <%-- Fecha --%>
         <div class="mb-3">
             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Seleccione la fecha: "></asp:Label>
             <asp:TextBox ID="txtFechaSeleccionada" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
-            <asp:Label ID="Lbl_fecha_valida" runat="server" CssClass="fs-4 font-monospace" Text="Por Favor Ingrese una fecha valida" Visible="false"></asp:Label>
+            <asp:Label ID="Lbl_fecha_valida" runat="server" Text="Por Favor Ingrese una fecha valida" Visible="false"></asp:Label>
 
         </div>
+        <br />
+                <%-- btn BUSCAR TURNO --%>
 
         <asp:Button ID="Buscar_Turno" runat="server" OnClick="Buscar_Turno_Click" CssClass="Boton" Text="Buscar Turnos" />
         <br />
