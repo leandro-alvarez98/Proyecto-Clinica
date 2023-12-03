@@ -155,7 +155,7 @@ namespace Conexion_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Activo' WHERE ID_TURNO = @ID_TURNO");
+                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Disponible' WHERE ID_TURNO = @ID_TURNO");
                 datos.setParametro("@ID_TURNO", id);
                 datos.ejecutarAccion();
 

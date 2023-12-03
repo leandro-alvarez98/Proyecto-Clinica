@@ -274,9 +274,9 @@ namespace Proyecto_Clinica
             try
             {
                 // guardamos los valores editados de los TextBox
-                string nuevoDni = txtDniEdit.Text;
                 string nuevoNombre = txtNombreEdit.Text;
                 string nuevoApellido = txtApellidoEdit.Text;
+                string nuevoDni = txtDniEdit.Text;
                 string nuevoMail = txtMailEdit.Text;
                 string nuevoTelefono = txtTelefonoEdit.Text;
                 string nuevaDireccion = txtDireccionEdit.Text;

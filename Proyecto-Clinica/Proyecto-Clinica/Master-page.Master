@@ -121,6 +121,12 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="Pacientes.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-user-plus'></i>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Pacientes</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="Estadisticas.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-signal-5'></i>
                                         <span class="fs-5 ms-1 d-none d-sm-inline">Estadísticas</span>
@@ -160,6 +166,12 @@
                                     <a href="Medicos.aspx" class="nav-link px-0 text-white align-middle ">
                                         <i class='bx bx-user-plus'></i>
                                         <span class="fs-5 ms-1 d-none d-sm-inline">Médicos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="Pacientes.aspx" class="nav-link px-0 text-white align-middle ">
+                                        <i class='bx bx-user-plus'></i>
+                                        <span class="fs-5 ms-1 d-none d-sm-inline">Pacientes</span>
                                     </a>
                                 </li>
                                 <li>

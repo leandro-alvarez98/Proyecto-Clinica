@@ -35,6 +35,7 @@ namespace Proyecto_Clinica
             //guardo el id del medico para asi poder utilizarlo en la proxima pagina
             string id_medico = ((System.Web.UI.WebControls.Button)sender).CommandArgument;
             int Id_Medico = int.Parse(id_medico);
+            
 
             Session["Medico"] = Cargar_Médico_Clinica(Id_Medico);
             Response.Redirect("Editar_medicos.aspx");

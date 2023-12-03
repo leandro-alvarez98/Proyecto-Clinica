@@ -69,12 +69,14 @@
     <Content Include="Confirmar_turno.aspx" />
     <Content Include="Detalle_turno.aspx" />
     <Content Include="Editar_medicos.aspx" />
+    <Content Include="Editar_paciente.aspx" />
     <Content Include="Estadisticas.aspx" />
     <Content Include="img\fondo de pantalla.jpg" />
     <Content Include="JavaScript\JavaScript.js" />
     <Content Include="MailCambioContraseña.aspx" />
     <Content Include="MailContraseña.aspx" />
     <Content Include="Medicos.aspx" />
+    <Content Include="Pacientes.aspx" />
     <Content Include="Perfil_Usuario.aspx" />
     <Content Include="content\styles.css" />
     <Content Include="AltaUsuario.aspx" />
@@ -116,6 +118,13 @@
     <Compile Include="Editar_medicos.aspx.designer.cs">
       <DependentUpon>Editar_medicos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Editar_paciente.aspx.cs">
+      <DependentUpon>Editar_paciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Editar_paciente.aspx.designer.cs">
+      <DependentUpon>Editar_paciente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Estadisticas.aspx.cs">
       <DependentUpon>Estadisticas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -143,6 +152,13 @@
     </Compile>
     <Compile Include="Medicos.aspx.designer.cs">
       <DependentUpon>Medicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pacientes.aspx.cs">
+      <DependentUpon>Pacientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pacientes.aspx.designer.cs">
+      <DependentUpon>Pacientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Page_master_default.Master.cs">
       <DependentUpon>Page_master_default.Master</DependentUpon>
