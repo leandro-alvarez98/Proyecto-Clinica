@@ -74,10 +74,13 @@ namespace Proyecto_Clinica
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA,OBS_PACIENTE,OBS_MEDICO, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA,@OBS_PACIENTE,@OBS_MEDICO, @ESTADO)");
+                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD, FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) VALUES (@IDMEDICO, @IDPACIENTE, @IDHORA, @IDESPECIALIDAD, @FECHA, @OBS_PACIENTE, @OBS_MEDICO, @ESTADO)");
+
+                //datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA,OBS_PACIENTE,OBS_MEDICO, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA,@OBS_PACIENTE,@OBS_MEDICO, @ESTADO)");
                 datos.setParametro("@IDMEDICO", turno_a_reservar.Id_Medico);
                 datos.setParametro("@IDPACIENTE", turno_a_reservar.Id_Paciente);
                 datos.setParametro("@IDHORA", turno_a_reservar.Id_Horario);
+                datos.setParametro("@IDESPECIALIDAD", turno_a_reservar.Id_Especialidad);
                 datos.setParametro("@FECHA", turno_a_reservar.Fecha);
                 datos.setParametro("@OBS_PACIENTE",turno_a_reservar.Obs_paciente);
                 datos.setParametro("@OBS_MEDICO", turno_a_reservar.Obs_medico);
