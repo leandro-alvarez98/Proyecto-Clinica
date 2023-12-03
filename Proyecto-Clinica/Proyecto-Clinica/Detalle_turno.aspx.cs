@@ -142,41 +142,26 @@ namespace Proyecto_Clinica
             if (DateTime.TryParse(txt_FechaSeleccionada.Text, out DateTime fecha_turnos))
             {
                 //Comprueba que la fecha seleccionada sea correcta
-                if (fecha_turnos < DateTime.Now.Date)
-                {
-                    lblMensajeError.Text = "La fecha ingresada no es válida. Por favor, selecciona una fecha válida.";
-                }
-                else
+                if (!(fecha_turnos < DateTime.Now.Date))
                 {
                     FechaValida = true;
                     Fecha_Seleccionada = fecha_turnos;
                 }
 
-                if(TimeSpan.TryParse(txt_HoraSeleccionada.Text, out TimeSpan horaSeleccionada))
+                if (TimeSpan.TryParse(txt_HoraSeleccionada.Text, out TimeSpan horaSeleccionada))
                 {
 
                     TimeSpan horaActual = DateTime.Now.TimeOfDay;
                     DateTime fechaActual = DateTime.Now.Date;
 
-
-                    if (horaSeleccionada > horaActual && Fecha_Seleccionada >= fechaActual)
+                    if ((horaSeleccionada > horaActual && Fecha_Seleccionada == fechaActual) || (Fecha_Seleccionada > fechaActual))
                     {
                         HoraValida = true;
                         Hora_Seleccionada = horaSeleccionada;
                     }
-                    else
-                    {
-
-                        lblMensajeErrorHora.Text = "La hora seleccionada no es válida. Debe ser mayor que la hora actual.";
-                    }
-                }
-                else
-                {
-                    // La conversion de la hora falla
-                    lblMensajeErrorHora.Text = "Formato de hora no válido. Por favor, ingresa una hora válida.";
                 }
 
-                if(HoraValida && FechaValida)
+                if (HoraValida && FechaValida)
                 {
                     // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
                     Medicos_segun_Especialidad(turno_actual.Id_Especialidad);
@@ -190,6 +175,14 @@ namespace Proyecto_Clinica
                     // LISTAR TURNOS EN LA GRILLA
                     DGV_turnos_disponibles.DataSource = Turnos_Disponibles;
                     DGV_turnos_disponibles.DataBind();
+                }
+                else if (!HoraValida)
+                {
+                    lblMensajeErrorHora.Text = "Formato de hora no válido. Por favor, ingresa una hora válida.";
+                }
+                else if (!FechaValida)
+                {
+                    lblMensajeError.Text = "La fecha ingresada no es válida. Por favor, selecciona una fecha válida.";
                 }
             }
         }
