@@ -102,6 +102,34 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public void Insertar_Turno(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD, FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) VALUES (@IDMEDICO, @IDPACIENTE, @IDHORA, @IDESPECIALIDAD, @FECHA, @OBS_PACIENTE, @OBS_MEDICO, @ESTADO)");
+
+                //datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA,OBS_PACIENTE,OBS_MEDICO, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA,@OBS_PACIENTE,@OBS_MEDICO, @ESTADO)");
+                datos.setParametro("@IDMEDICO", turno.Id_Medico);
+                datos.setParametro("@IDPACIENTE", turno.Id_Paciente);
+                datos.setParametro("@IDHORA", turno.Id_Horario);
+                datos.setParametro("@IDESPECIALIDAD", turno.Id_Especialidad);
+                datos.setParametro("@FECHA", turno.Fecha);
+                datos.setParametro("@OBS_PACIENTE", turno.Obs_paciente);
+                datos.setParametro("@OBS_MEDICO", turno.Obs_medico);
+                datos.setParametro("@ESTADO", "Reservado");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void Cancelar_Turno(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -165,6 +193,8 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
+        //falta decir a que fecha se reprograma y con que doctor osea faltan pasarle mas parametros
         public void Reprogramar_Turno(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -225,5 +255,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
     }
 }

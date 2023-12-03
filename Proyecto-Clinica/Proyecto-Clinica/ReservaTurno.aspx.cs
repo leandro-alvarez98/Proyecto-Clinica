@@ -142,7 +142,7 @@ namespace Proyecto_Clinica
 
                 try
                 {
-                    datos.setConsulta("SELECT   \r\n\t\t\tH.ID_HORARIO AS IDHORARIO,\r\n\t\t\tH.HORA AS HORA,ISNULL(T.ID_TURNO, 0) AS IDTURNO,\r\n\t\t\t@IDMedico AS IDMEDICO,\r\n\t\t\tISNULL(T.ESTADO, 'Disponible') AS ESTADO\r\n\t\tFROM  HORARIOS H \r\n\t\t\tJOIN  MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico \r\n\t\t\tLEFT JOIN  TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico \r\n\t\t\tWHERE T.ESTADO IS  NULL\r\n\t\tORDER BY  H.HORA;");
+                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO, \r\n\tH.HORA AS HORA,\r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO,\r\n\t@IDMedico AS IDMEDICO,\r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO\r\nFROM  HORARIOS H \r\nJOIN  MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico\r\nLEFT JOIN  TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico\r\nWHERE T.ESTADO IS  NULL ORDER BY  H.HORA;");
                     datos.setParametro("@IDMedico", medico.Id);
                     datos.setParametro("@FechaConsulta", Fecha);
                     datos.ejecutarLectura();
@@ -249,11 +249,11 @@ namespace Proyecto_Clinica
             }
             return new Paciente();
         }
-        private bool Paciente_Disponible(int ID, Turno turno_seleccionado)
+        private bool Paciente_Disponible(int ID_paciente, Turno turno_seleccionado)
         {
             foreach (Turno turno in clinica.Turnos)
             {
-                if (turno.Id_Paciente == ID)
+                if (turno.Id_Paciente == ID_paciente)
                 {
                     if (turno.Fecha == turno_seleccionado.Fecha && turno.Horario == turno_seleccionado.Horario)
                     {

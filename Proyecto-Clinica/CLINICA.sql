@@ -107,7 +107,7 @@ CREATE TABLE TURNOS (
 	FECHA DATE not null,
 	OBS_PACIENTE VARCHAR(1500) NOT NULL,
 	OBS_MEDICO VARCHAR(1500) NOT NULL,
-    ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reservado', 'Reprogramado', 'Cancelado', 'No asistió', 'Finalizado')),
+    ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reservado', 'Reprogramado', 'Cancelado', 'No asistió', 'Finalizado','Activo')),
 	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
 	FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTES(ID_PACIENTE),
 	FOREIGN KEY (ID_HORARIO) REFERENCES HORARIOS(ID_HORARIO),
@@ -267,3 +267,5 @@ VALUES (1, 1, 1), -- Trabajan de mañana
        (4, 3, 1),
 	   (5, 3, 1)
 	   		------------------------------
+			--select * from TURNOS
+			--UPDATE TURNOS SET ESTADO = 'Activo' WHERE ID_TURNO = 12

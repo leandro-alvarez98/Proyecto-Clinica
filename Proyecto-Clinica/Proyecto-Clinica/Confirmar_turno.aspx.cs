@@ -19,6 +19,7 @@ namespace Proyecto_Clinica
         Usuario usuario_actual;
         EmailService email_service;
         Paciente paciente_actual;
+        TurnoConexion turnoConexion;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
@@ -30,6 +31,7 @@ namespace Proyecto_Clinica
             turno_a_reservar = (Turno)Session["Turno"];
             turno.Add(turno_a_reservar);
             paciente_actual = new Paciente(); // Cargarlo con su respectiva informacion 
+            turnoConexion = new TurnoConexion();
 
             DGVTurno_a_confirmar.DataSource = turno;
             DGVTurno_a_confirmar.DataBind();
@@ -39,8 +41,9 @@ namespace Proyecto_Clinica
         {
             turno_a_reservar.Obs_paciente = Txt_observacion_paciente.Text;
             turno_a_reservar.Obs_medico = "";
-            Insertar_Turno();
-            
+            turnoConexion.Insertar_Turno(turno_a_reservar);
+
+
             lbl_TurnoIngresado.Visible = true;
             // armamos el envio por mail
 
@@ -69,34 +72,7 @@ namespace Proyecto_Clinica
 
             Response.Redirect("Home.aspx");
         }
-        private void Insertar_Turno()
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD, FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) VALUES (@IDMEDICO, @IDPACIENTE, @IDHORA, @IDESPECIALIDAD, @FECHA, @OBS_PACIENTE, @OBS_MEDICO, @ESTADO)");
-
-                //datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA,OBS_PACIENTE,OBS_MEDICO, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA,@OBS_PACIENTE,@OBS_MEDICO, @ESTADO)");
-                datos.setParametro("@IDMEDICO", turno_a_reservar.Id_Medico);
-                datos.setParametro("@IDPACIENTE", turno_a_reservar.Id_Paciente);
-                datos.setParametro("@IDHORA", turno_a_reservar.Id_Horario);
-                datos.setParametro("@IDESPECIALIDAD", turno_a_reservar.Id_Especialidad);
-                datos.setParametro("@FECHA", turno_a_reservar.Fecha);
-                datos.setParametro("@OBS_PACIENTE",turno_a_reservar.Obs_paciente);
-                datos.setParametro("@OBS_MEDICO", turno_a_reservar.Obs_medico);
-                datos.setParametro("@ESTADO", "Reservado");
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
+       
         private void BuscarMailPaciente() {
 
             if (usuario_actual != null)

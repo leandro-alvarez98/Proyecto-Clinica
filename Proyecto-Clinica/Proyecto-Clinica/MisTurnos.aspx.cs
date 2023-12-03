@@ -235,7 +235,17 @@ namespace Proyecto_Clinica
             Turno_Seleccionado = Get_Turno(ID_Turno);
 
             TurnoConexion turno_conexion = new TurnoConexion();
-            turno_conexion.Cancelar_Turno(Turno_Seleccionado.Id);
+
+            // si la fecha en la que esta cancelando el turno es mayor a la fecha del turno en si 
+            // tiene que activarse de nuevo sino queda como cancelado
+            if(DateTime.Today > Turno_Seleccionado.Fecha)
+            {
+                turno_conexion.Activar_Turno(Turno_Seleccionado.Id);
+            }
+            else
+            {
+                turno_conexion.Cancelar_Turno(Turno_Seleccionado.Id);
+            }
 
             Response.Redirect("MisTurnos.aspx");
         }
