@@ -125,13 +125,40 @@
 
                             </asp:Repeater>
                         </p>
-                        <%--botones para actualizar/agregar datos--%>
-                        <asp:Button ID="btn_SeleccionarMedicoJornada" runat="server" Text="Agregar jornada" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirJornada" OnClick="btn_SeleccionarMedicoJornada_Click"   />
-                        <asp:Button ID="btn_SeleccionarMedicoEspecialidad" runat="server" Text="Agregar especialidad" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_ElegirEspecialidad" OnClick="btn_SeleccionarMedicoEspecialidad_Click"  />
-                        <%--botones para eliminar datos--%>
-                        <asp:Button ID="btn_EliminarEspecialidad" runat="server" Text="Eliminar especialidad" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_EliminarEspecialidad" OnClick="btn_EliminarEspecialidad_Click" />
-                        <asp:Button ID="btn_EliminarJornada" runat="server" Text="Eliminar jornada" CssClass="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mod_eliminarJornada" OnClick="btn_EliminarJornada_Click" />
 
+                        <%--botones para eliminar datos--%>
+
+                        <%--agregar especialidades o jornadas--%>
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Agregar
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                         <asp:Button ID="btn_SeleccionarMedicoJornada" runat="server" Text="Agregar jornada" CssClass="Boton" data-bs-toggle="modal" data-bs-target="#mod_ElegirJornada" OnClick="btn_SeleccionarMedicoJornada_Click"   />
+                                    </li>
+                                    <li>
+                                         <asp:Button ID="btn_SeleccionarMedicoEspecialidad" runat="server" Text="Agregar especialidad" CssClass="Boton" data-bs-toggle="modal" data-bs-target="#mod_ElegirEspecialidad" OnClick="btn_SeleccionarMedicoEspecialidad_Click"  />
+                                    </li>
+                                </ul>
+                            </div> 
+                           <%-- Eliminar especialidades o jornadas--%>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Eliminar
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                         <asp:Button ID="btn_EliminarEspecialidad" runat="server" Text="Eliminar especialidad" CssClass="Boton" data-bs-toggle="modal" data-bs-target="#mod_EliminarEspecialidad" OnClick="btn_EliminarEspecialidad_Click" />
+                                    </li>
+                                    <li>
+                                         <asp:Button ID="Button1" runat="server" Text="Eliminar jornada" CssClass="Boton" data-bs-toggle="modal" data-bs-target="#mod_eliminarJornada" OnClick="btn_EliminarJornada_Click" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
