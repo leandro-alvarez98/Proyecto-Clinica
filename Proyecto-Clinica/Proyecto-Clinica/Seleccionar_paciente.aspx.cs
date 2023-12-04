@@ -54,9 +54,18 @@ namespace Proyecto_Clinica
 
             string Dni = txtDni.Text;
             paciente_buscado = Buscar_Paciente(Dni);
-            ps.Add(paciente_buscado);
+
+            if (paciente_buscado.Id != -1)
+            {
+                ps.Add(paciente_buscado);
+            }
+            if (ps.Count() == 0)
+            {
+                lbl_no_existe_paciente.Visible = true;
+            }
+
             DGV_Paciente.DataSource = ps;
-            DGV_Paciente.DataBind();          
+            DGV_Paciente.DataBind();
         }
         protected void DGV_Paciente_SelectedIndexChanged(object sender, EventArgs e)
         {

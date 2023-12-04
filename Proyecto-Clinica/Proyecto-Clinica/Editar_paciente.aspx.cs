@@ -76,27 +76,7 @@ namespace Proyecto_Clinica
         }
         public void btnEditar_Click(object sender, EventArgs e)
         {
-            ////oculta botones de defecto
-            //btnEditarDatos.Visible = false;
-
-            ////Habilitar TextBox para la edición
-            //Visibilidad_Texbox(true);
-
-            //// Oculta los Label originales
-            //Visibilidad_labels(false);
-
-            //// Mostrar botón de guardar
-            //btnGuardar.Visible = true;
-            //btnCancelar.Visible = true;
-
-            //txtDniEdit.Text = Paciente_actual.Dni.ToString();
-            //txtNombreEdit.Text = Paciente_actual.Nombre;
-            //txtApellidoEdit.Text = Paciente_actual.Apellido;
-            //txtMailEdit.Text = Paciente_actual.Mail;
-            //txtTelefonoEdit.Text = Paciente_actual.Telefono;
-            //txtDireccionEdit.Text = Paciente_actual.Direccion;
-            //txtFechaNacimientoEdit.Text = Paciente_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
-            // Activa la edición de los controles necesarios
+            
             txtNombreEdit.Visible = true;
             txtApellidoEdit.Visible = true;
             txtDniEdit.Visible = true;
