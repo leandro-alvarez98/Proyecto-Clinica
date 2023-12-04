@@ -247,7 +247,7 @@ namespace Conexion_Clinica
                 datos.setParametro("@Direccion", paciente.Direccion);
                 datos.setParametro("@FechaNacimiento", paciente.Fecha_Nacimiento);
                 datos.setParametro("@Mail", paciente.Mail);
-                datos.setParametro("@Id", paciente.Id);
+                datos.setParametro("@Id", paciente.Id_Usuario);
                 datos.ejecutarAccion();
 
                 
@@ -279,7 +279,7 @@ namespace Conexion_Clinica
                 datos.setParametro("@Direccion", medico.Direccion);
                 datos.setParametro("@FechaNacimiento", medico.Fecha_Nacimiento);
                 datos.setParametro("@Mail", medico.Mail);
-                datos.setParametro("@Id", medico.Id);
+                datos.setParametro("@Id", medico.Id_Usuario);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -308,7 +308,7 @@ namespace Conexion_Clinica
                 datos.setParametro("@Direccion", recepcionista.Direccion);
                 datos.setParametro("@FechaNacimiento", recepcionista.Fecha_Nacimiento);
                 datos.setParametro("@Mail", recepcionista.Mail);
-                datos.setParametro("@Id", recepcionista.Id);
+                datos.setParametro("@Id", recepcionista.Id_Usuario);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

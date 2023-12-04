@@ -186,6 +186,9 @@ namespace Proyecto_Clinica
             txtTelefonoEdit.Text = Usuario_Actual.Telefono;
             txtDireccionEdit.Text = Usuario_Actual.Direccion;
             txtFechaNacimientoEdit.Text = Usuario_Actual.Fecha_Nacimiento.ToString("d/M/yyyy");
+
+
+
         }
         public void ocultarTxtEditables()
         {
@@ -282,7 +285,7 @@ namespace Proyecto_Clinica
 
 
             // Actualizar los datos del paciente
-            switch (Usuario_Actual?.Tipo)
+            switch (Usuario_Actual.Tipo)
             {
                 case "Paciente":
                     if (Usuario_Actual != null)
@@ -304,7 +307,7 @@ namespace Proyecto_Clinica
                     }
                     break;
 
-                case "Medico":
+                case "Médico":
                     if (Usuario_Actual != null)
                     {
                         Medico medicoActualizado = new Medico
