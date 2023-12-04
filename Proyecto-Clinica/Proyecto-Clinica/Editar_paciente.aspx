@@ -8,7 +8,7 @@
 
     <div class="container form_top containerbott">
 
-        <div class="row">
+        <div class="row justify-content-center">
 
             <div class="col-md-4 mb-4">
                 <div class="card">
