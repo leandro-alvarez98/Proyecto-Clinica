@@ -141,10 +141,6 @@ INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Gastroenterología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Neurología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Oftalmología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Ortopedia');
-
-
-
-
 		------------------------------
 
 INSERT INTO JORNADAS (TIPO_JORNADA)
@@ -191,7 +187,7 @@ VALUES ('paciente1', '123', 'Paciente'), -- Usuarios de los pacientes
 		------------------------------
 
 INSERT INTO PACIENTES (ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO)
-VALUES (1, '11111111', 'Paciente1', 'Apellido1', '1234567891', 'Dirección1', '1990-01-01', 'paciente1@mail.com', 1),
+VALUES (1, '11111111', 'Paciente1', 'Apellido1', '1234567891', 'Dirección1', '1990-01-01', 'fancus4n@gmail.com', 1),
        (2, '11222222','Paciente2', 'Apellido2', '1234567892', 'Dirección2', '1990-02-02', 'paciente2@mail.com', 1),
        (3, '11333333','Paciente3', 'Apellido3', '1234567893', 'Dirección3', '1990-03-03', 'paciente3@mail.com', 1),
        (4, '11444444','Paciente4', 'Apellido4', '1234567894', 'Dirección4', '1990-04-04', 'paciente4@mail.com', 1)
@@ -265,11 +261,9 @@ VALUES (1, 1, 1), -- Trabajan de mañana
 	   (8, 2, 1),
 	   (9, 2, 1),
 	   (10,2, 1),
-	   (1, 2, 1), -- Trabajan de noche
-       (2, 3, 1),
+	   (1, 2, 1), 
+       (2, 3, 1), -- Trabajan de noche
        (3, 3, 1), 
        (4, 3, 1),
 	   (5, 3, 1)
 	   		------------------------------
-			--select * from TURNOS
-			--UPDATE TURNOS SET ESTADO = 'Activo' WHERE ID_TURNO = 12

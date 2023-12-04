@@ -1,5 +1,6 @@
 ﻿using Proyecto_Clinica.Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,52 @@ namespace Conexion_Clinica
 {
     public class PacienteConexion
     {
+        public Paciente getPaciente(int id_Paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Paciente paciente = new Paciente();
+
+            try
+            {
+                datos.setConsulta("SELECT ID_PACIENTE, ID_USUARIO, DNI, NOMBRE, APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO FROM PACIENTES WHERE ESTADO != 0 AND ID_PACIENTE = @IDPACIENTE");
+                datos.setParametro("@IDPACIENTE", id_Paciente);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    paciente.Id = (int)datos.Lector["ID_PACIENTE"];
+
+                    paciente.Id_Usuario = (int)datos.Lector["ID_USUARIO"];
+
+                    paciente.Dni = (string)datos.Lector["DNI"];
+
+                    paciente.Nombre = (string)datos.Lector["NOMBRE"];
+
+                    paciente.Apellido = (string)datos.Lector["APELLIDO"];
+
+                    paciente.Telefono = (string)datos.Lector["TELEFONO"];
+
+                    paciente.Direccion = (string)datos.Lector["DIRECCION"];
+
+                    paciente.Fecha_Nacimiento = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+
+                    paciente.Mail = (string)datos.Lector["MAIL"];
+
+                    paciente.Estado = (bool)datos.Lector["ESTADO"];
+                }
+                return paciente;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void InsertarPaciente(Usuario usuario_actual)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -109,7 +109,6 @@ namespace Conexion_Clinica
             {
                 datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD, FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) VALUES (@IDMEDICO, @IDPACIENTE, @IDHORA, @IDESPECIALIDAD, @FECHA, @OBS_PACIENTE, @OBS_MEDICO, @ESTADO)");
 
-                //datos.setConsulta("INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, FECHA,OBS_PACIENTE,OBS_MEDICO, ESTADO) VALUES(@IDMEDICO, @IDPACIENTE, @IDHORA, @FECHA,@OBS_PACIENTE,@OBS_MEDICO, @ESTADO)");
                 datos.setParametro("@IDMEDICO", turno.Id_Medico);
                 datos.setParametro("@IDPACIENTE", turno.Id_Paciente);
                 datos.setParametro("@IDHORA", turno.Id_Horario);
@@ -256,5 +255,29 @@ namespace Conexion_Clinica
             }
         }
 
+        public int GetMaxID()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int MaxId = 0;
+            try
+            {
+                datos.setConsulta("SELECT MAX(ID_TURNO) AS MAXID FROM TURNOS");
+                datos.ejecutarLectura();
+                while(datos.Lector.Read())
+                {
+                    MaxId = (int)datos.Lector["MAXID"];
+                }
+                return MaxId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

@@ -19,19 +19,21 @@ namespace Proyecto_Clinica
         Usuario usuario_actual;
         EmailService email_service;
         Paciente paciente_actual;
-        TurnoConexion turnoConexion;
         protected void Page_Load(object sender, EventArgs e)
         {
             Cargar_componentes();
         }
         public void Cargar_componentes()
         {
+            TurnoConexion turnoConexion = new TurnoConexion();
             usuario_actual = (Usuario)Session["Usuario"];
-            List<Turno> turno = new List<Turno>();
+
             turno_a_reservar = (Turno)Session["Turno"];
+            List<Turno> turno = new List<Turno>();
             turno.Add(turno_a_reservar);
-            paciente_actual = new Paciente(); // Cargarlo con su respectiva informacion 
-            turnoConexion = new TurnoConexion();
+            PacienteConexion pacienteConexion = new PacienteConexion();
+
+            paciente_actual = pacienteConexion.getPaciente(turno_a_reservar.Id_Paciente);
 
             DGVTurno_a_confirmar.DataSource = turno;
             DGVTurno_a_confirmar.DataBind();
@@ -41,38 +43,31 @@ namespace Proyecto_Clinica
         {
             turno_a_reservar.Obs_paciente = Txt_observacion_paciente.Text;
             turno_a_reservar.Obs_medico = "";
+            TurnoConexion turnoConexion = new TurnoConexion();
             turnoConexion.Insertar_Turno(turno_a_reservar);
 
-
+            turno_a_reservar.Id = turnoConexion.GetMaxID();
             lbl_TurnoIngresado.Visible = true;
-            // armamos el envio por mail
 
             if (paciente_actual.Mail != null)
             {
                 btn_Confirmar_Turno.Visible = false;
-                BuscarMailPaciente();
                 email_service = new EmailService();
-
                 email_service.cuerpoCorreo(turno_a_reservar, paciente_actual.Mail);
                 email_service.enviarCorreo();
                 lbl_TurnoMailEnviado.Visible = true;
-
             }
             else
             {
                 lbl_TurnoIngresado.Text = "Error: No se encontro el mail del paciente.";
                 lbl_TurnoIngresado.Visible = true;
-
             }
-
              btn_Aceptar.Visible = true;
-
         }
         protected void Aceptar_Click(object sender, EventArgs e) {
 
             Response.Redirect("Home.aspx");
         }
-       
         private void BuscarMailPaciente() {
 
             if (usuario_actual != null)
