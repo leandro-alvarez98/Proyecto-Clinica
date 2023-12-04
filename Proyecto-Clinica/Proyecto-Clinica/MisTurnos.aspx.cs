@@ -180,8 +180,6 @@ namespace Proyecto_Clinica
             }
             else
             {
-                Session["Turno"] = Turno_Seleccionado;
-                Response.Redirect("Detalle_turno.aspx");
                 lblTurnoNoFinalizado.Visible = true;
             }
         }

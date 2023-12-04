@@ -36,7 +36,15 @@ namespace Proyecto_Clinica
             turno_actual = (Turno)Session["Turno"];
             usuario_actual = (Usuario)Session["Usuario"];
             turnoConexion = new TurnoConexion();
-
+            if (usuario_actual.Tipo != "Médico")
+            {
+                DGV_turnos_disponibles.Visible = true;
+                Lbl.Visible= true;
+                txt_FechaSeleccionada.Visible = true;
+                txt_HoraSeleccionada.Visible=true;
+                lbl_Hora.Visible = true;
+                Btn_BuscarTurnosDisponibles.Visible=true;
+            }
 
             Cargar_labels();
             Cargar_botones();
@@ -263,23 +271,42 @@ namespace Proyecto_Clinica
         }
         protected void DGV_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DateTime fechaSeleccionada = DateTime.Parse(DGV_turnos_disponibles.SelectedRow.Cells[0].Text);
+
+            string script = @"
+                $(document).ready(function () {
+                    $('#Modal_Modificar_Turno').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+
+        }
+
+        protected void Btn_aceptar_Modificar_turno_Click(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = DateTime.Parse(txt_FechaSeleccionada.Text);
             TimeSpan horaSeleccionada = TimeSpan.Parse(DGV_turnos_disponibles.SelectedRow.Cells[1].Text);
             int IDMedico = int.Parse(DGV_turnos_disponibles.SelectedRow.Cells[5].Text);
 
             Turno turno = new Turno();
+            turno = turno_actual;
             turno.Id_Medico = IDMedico;
+            turno.Nombre_Medico = DGV_turnos_disponibles.SelectedRow.Cells[3].Text;
+            turno.Apellido_Medico = DGV_turnos_disponibles.SelectedRow.Cells[2].Text;
             turno.Fecha = fechaSeleccionada;
             turno.Id = turno_actual.Id;
             HorarioConexion horarioConexion = new HorarioConexion();
             turno.Id_Horario = horarioConexion.GetIdHorario(horaSeleccionada);
 
-            if(!turnoConexion.Modificar_Turno(turno))
+            if (!turnoConexion.Modificar_Turno(turno))
             {
                 lblMensajeError.Text = "Error al modificar el turno";
                 lblMensajeError.Visible = true;
             }
-            
+            else
+            {
+                Response.Redirect("Detalle_turno.aspx");
+                Session["Turno"] = turno;
+            }
         }
     }
 }

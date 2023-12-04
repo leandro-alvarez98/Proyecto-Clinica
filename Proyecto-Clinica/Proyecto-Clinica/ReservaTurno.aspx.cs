@@ -37,7 +37,7 @@ namespace Proyecto_Clinica
 
             //DROP_DOWN_LIST ESPECIALIDADES
             if (!IsPostBack) { 
-            Cargar_DDL_Especialidades();
+                Cargar_DDL_Especialidades();
             }
             
         }
@@ -203,21 +203,21 @@ namespace Proyecto_Clinica
         protected void Grilla_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
             Turno turno_seleccionado = new Turno();
-            string fecha = Grilla_turnos_disponibles.SelectedRow.Cells[0].Text;
+            string fecha = txtFechaSeleccionada.Text;
             string hora = Grilla_turnos_disponibles.SelectedRow.Cells[1].Text;
             string apellidoMedico = Grilla_turnos_disponibles.SelectedRow.Cells[2].Text;
             string nombreMedico = Grilla_turnos_disponibles.SelectedRow.Cells[3].Text;
             string idMedico = Grilla_turnos_disponibles.SelectedRow.Cells[5].Text;
             
 
-
+            
             turno_seleccionado.Fecha = DateTime.Parse(fecha);
             turno_seleccionado.Horario = TimeSpan.Parse(hora);
             turno_seleccionado.Id_Horario = Get_IDHorario(TimeSpan.Parse(hora));
             turno_seleccionado.Apellido_Medico = apellidoMedico;
             turno_seleccionado.Nombre_Medico = nombreMedico;
             turno_seleccionado.Id_Medico = int.Parse(idMedico);
-            turno_seleccionado.Id_Especialidad = ID_Especialidad_Seleccionada;
+            turno_seleccionado.Id_Especialidad = int.Parse(DDL_especialidades.SelectedValue);
 
             if (usuario.Tipo == "Paciente")
             {

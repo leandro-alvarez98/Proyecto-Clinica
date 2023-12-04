@@ -113,7 +113,7 @@ namespace Conexion_Clinica
                 datos.setParametro("@IDPACIENTE", turno.Id_Paciente);
                 datos.setParametro("@IDHORA", turno.Id_Horario);
                 datos.setParametro("@IDESPECIALIDAD", turno.Id_Especialidad);
-                datos.setParametro("@FECHA", turno.Fecha);
+                datos.setParametro("@FECHA", turno.Fecha.Year + "-" + turno.Fecha.Month + "-" + turno.Fecha.Day);
                 datos.setParametro("@OBS_PACIENTE", turno.Obs_paciente);
                 datos.setParametro("@OBS_MEDICO", turno.Obs_medico);
                 datos.setParametro("@ESTADO", "Reservado");
