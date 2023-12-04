@@ -60,6 +60,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button Btn_limpiar_busqueda;
 
         /// <summary>
+        /// Control Ver_turnos_del_dia_RA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Ver_turnos_del_dia_RA;
+
+        /// <summary>
         /// Control DGV_Turnos_totales.
         /// </summary>
         /// <remarks>
@@ -78,6 +87,60 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos;
 
         /// <summary>
+        /// Control Lbl_sin_turnos_hoy.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos_hoy;
+
+        /// <summary>
+        /// Control Lbl_buscar_turno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_buscar_turno;
+
+        /// <summary>
+        /// Control Txt_buscar_turno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txt_buscar_turno;
+
+        /// <summary>
+        /// Control Buscar_turno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Buscar_turno;
+
+        /// <summary>
+        /// Control Limpiar_turno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Limpiar_turno;
+
+        /// <summary>
+        /// Control Ver_turnos_del_dia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Ver_turnos_del_dia;
+
+        /// <summary>
         /// Control lblTurnoNoFinalizado.
         /// </summary>
         /// <remarks>
@@ -94,6 +157,24 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgv_Turnos_Medicos;
+
+        /// <summary>
+        /// Control Lbl_sin_turnos_dni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos_dni;
+
+        /// <summary>
+        /// Control Lbl_sin_turnos_hoy_m.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos_hoy_m;
 
         /// <summary>
         /// Control Dgv_Turnos_Paciente.

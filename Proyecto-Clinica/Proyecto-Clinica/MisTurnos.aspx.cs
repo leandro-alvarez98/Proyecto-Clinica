@@ -18,8 +18,9 @@ namespace Proyecto_Clinica
         public  Usuario usuarioActual;
         Medico medicoActual;
         Paciente pacienteActual;
-        List<Turno> misTurnos;
+        List<Turno> misTurnos_totales;
         List<Turno> turnos_x_dni;
+        List<Turno> Turnos_del_dia;
         Turno Turno_Seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,9 +33,11 @@ namespace Proyecto_Clinica
             clinica = clinicaConexion.Listar();
 
             usuarioActual = new Usuario();
-            usuarioActual = (Proyecto_Clinica.Dominio.Usuario)Session["Usuario"];
+            usuarioActual = (Usuario)Session["Usuario"];
 
             Turno_Seleccionado = new Turno();
+            misTurnos_totales = new List<Turno>();
+            
 
             if (usuarioActual.Tipo == "Médico")
             {
@@ -47,22 +50,22 @@ namespace Proyecto_Clinica
                 pacienteActual = Cargar_Paciente_Clinica();
             }
 
-            misTurnos = new List<Turno>();
             Cargar_Turnos();
+            
 
             if(usuarioActual.Tipo == "Recepcionista" || usuarioActual.Tipo == "Administrador")
             {
-                DGV_Turnos_totales.DataSource = misTurnos;
+                DGV_Turnos_totales.DataSource = misTurnos_totales;
                 DGV_Turnos_totales.DataBind();
             }
             else if (usuarioActual.Tipo == "Médico")
             {
-                dgv_Turnos_Medicos.DataSource = misTurnos;
+                dgv_Turnos_Medicos.DataSource = misTurnos_totales;
                 dgv_Turnos_Medicos.DataBind();
             }
             else
             {
-                Dgv_Turnos_Paciente.DataSource = misTurnos; 
+                Dgv_Turnos_Paciente.DataSource = misTurnos_totales; 
                 Dgv_Turnos_Paciente.DataBind();
             }
         }
@@ -96,7 +99,7 @@ namespace Proyecto_Clinica
                 {
                     if (medicoActual.Id == turno.Id_Medico)
                     {
-                        misTurnos.Add(turno);
+                        misTurnos_totales.Add(turno);
                     }
                 }
             }
@@ -106,14 +109,14 @@ namespace Proyecto_Clinica
                 {
                     if (pacienteActual.Id == turno.Id_Paciente)
                     {
-                        misTurnos.Add(turno);
+                        misTurnos_totales.Add(turno);
                     }
                 }
             }else if (usuarioActual.Tipo == "Recepcionista" || usuarioActual.Tipo == "Administrador")
             {
                 foreach (Turno turno in clinica.Turnos)
-                {     
-                    misTurnos.Add(turno);   
+                {
+                    misTurnos_totales.Add(turno);   
                 }
             }
         }
@@ -141,8 +144,34 @@ namespace Proyecto_Clinica
                 }
             }
         }
+        public void Cargar_turnos_x_Dni(string dni,int id_medico)
+        {
+            foreach (Turno turno in clinica.Turnos)
+            {
+                foreach (Paciente paciente in clinica.Pacientes)
+                {
+                    if (paciente.Dni == dni && paciente.Id == turno.Id_Paciente && id_medico == turno.Id_Medico)
+                    {
+                        turnos_x_dni.Add(turno);
+                    }
+                }
+            }
+        }
+        public void Cargar_turnos_del_dia()
+        {
+            Turnos_del_dia = new List<Turno>();
+            foreach (Turno turno in misTurnos_totales)
+            {
+                if(turno.Fecha == DateTime.Today)
+                {
+                    Turnos_del_dia.Add(turno);
+                }
+            }
+        }
 
-        //GRILLA PARA PACIENTES, SOLO PUEDE CANCELAR EL TURNO 
+
+
+                        //GRILLA PARA PACIENTES, SOLO PUEDE CANCELAR EL TURNO 
         protected void DGV_Turnos_Pacientes_Cancelar(object sender, EventArgs e)
         {
 
@@ -154,34 +183,21 @@ namespace Proyecto_Clinica
             ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);          
 ;           
         }
+
+                             //EVENTOS DE BUSQUEDA COMO ADMIN Y RECEP
+
         //GRILLA PARA RECEPCIONISTA Y ADMIN, PUEDEN CANCELAR Y MODIFICAR EL TURNO 
         protected void DGV_Turnos_totales_Cancelar_Modificar(object sender, EventArgs e)
         {
-         
-                string str_ID_Turno = DGV_Turnos_totales.SelectedRow.Cells[0].Text;
-                int ID_Turno = int.Parse(str_ID_Turno);
-                Turno_Seleccionado = Get_Turno(ID_Turno);
 
-                Session["Turno"] = Turno_Seleccionado;
-            
-                Response.Redirect("Detalle_turno.aspx");
-            
-        }
-        //GRILLA PARA MEDICO
-        protected void dgv_Turnos_Medicos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int ID_Turno = int.Parse(dgv_Turnos_Medicos.SelectedRow.Cells[0].Text);
+            string str_ID_Turno = DGV_Turnos_totales.SelectedRow.Cells[0].Text;
+            int ID_Turno = int.Parse(str_ID_Turno);
             Turno_Seleccionado = Get_Turno(ID_Turno);
 
-            if(Turno_Seleccionado.Estado == "Finalizado")
-            {
-                Session["Turno"] = Turno_Seleccionado;
-                Response.Redirect("Detalle_turno.aspx");
-            }
-            else
-            {
-                lblTurnoNoFinalizado.Visible = true;
-            }
+            Session["Turno"] = Turno_Seleccionado;
+
+            Response.Redirect("Detalle_turno.aspx");
+
         }
         protected void Btn_busqueda_Click(object sender, EventArgs e)
         {
@@ -205,6 +221,7 @@ namespace Proyecto_Clinica
                 {
                     Lbl_sin_turnos.Visible = false;
                 }
+                Lbl_sin_turnos_hoy.Visible = false;
             }
             catch (Exception ex)
             {
@@ -219,14 +236,14 @@ namespace Proyecto_Clinica
             DGV_Turnos_totales.DataSource = null;
             DGV_Turnos_totales.DataBind();
             //cargar la nueva grilla de datos 
-            DGV_Turnos_totales.DataSource = misTurnos;
+            DGV_Turnos_totales.DataSource = misTurnos_totales;
             DGV_Turnos_totales.DataBind();
-            if(misTurnos.Count() != 0)
+            if(misTurnos_totales.Count() != 0)
             {
                 Lbl_sin_turnos.Visible=false;
             }
+            Lbl_sin_turnos_hoy.Visible = false;
         }
-
         protected void Btn_aceptar_cancelar_turno_Click(object sender, EventArgs e)
         {
             string str_ID_Turno = Dgv_Turnos_Paciente.SelectedRow.Cells[0].Text;
@@ -248,5 +265,106 @@ namespace Proyecto_Clinica
 
             Response.Redirect("MisTurnos.aspx");
         }
+        protected void Ver_turnos_del_dia_RA_Click(object sender, EventArgs e)
+        {
+            Cargar_turnos_del_dia();
+            //limpia la grilla actual
+            DGV_Turnos_totales.DataSource = null;
+            DGV_Turnos_totales.DataBind();
+            //cargar la nueva grilla de datos 
+            DGV_Turnos_totales.DataSource = Turnos_del_dia;
+            DGV_Turnos_totales.DataBind();
+            if (Turnos_del_dia.Count() != 0)
+            {
+                Lbl_sin_turnos_hoy.Visible = false;
+            }
+            else
+            {
+                Lbl_sin_turnos_hoy.Visible = true;
+            }
+        }
+
+
+                                //EVENTOS DE BUSQUEDA COMO MEDICO
+        //GRILLA PARA MEDICO
+        protected void dgv_Turnos_Medicos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int ID_Turno = int.Parse(dgv_Turnos_Medicos.SelectedRow.Cells[0].Text);
+            Turno_Seleccionado = Get_Turno(ID_Turno);
+
+            if (Turno_Seleccionado.Estado == "Finalizado")
+            {
+                Session["Turno"] = Turno_Seleccionado;
+                Response.Redirect("Detalle_turno.aspx");
+            }
+            else
+            {
+                lblTurnoNoFinalizado.Visible = true;
+            }
+        }
+        protected void Limpiar_turno_Click(object sender, EventArgs e)
+        {
+            //limpia la grilla actual
+            dgv_Turnos_Medicos.DataSource = null;
+            dgv_Turnos_Medicos.DataBind();
+            //cargar la nueva grilla de datos 
+            dgv_Turnos_Medicos.DataSource = misTurnos_totales;
+            dgv_Turnos_Medicos.DataBind();
+            if (misTurnos_totales.Count() != 0)
+            {
+                Lbl_sin_turnos_dni.Visible = false;
+            }
+            Lbl_sin_turnos_hoy_m.Visible = false;
+        }
+        protected void Buscar_turno_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                turnos_x_dni = new List<Turno>();
+                string dni_paciente = Txt_buscar_turno.Text;
+                Cargar_turnos_x_Dni(dni_paciente,medicoActual.Id);
+
+                //limpia la grilla actual
+                dgv_Turnos_Medicos.DataSource = null;
+                dgv_Turnos_Medicos.DataBind();
+                //cargar la nueva grilla de datos 
+                dgv_Turnos_Medicos.DataSource = turnos_x_dni;
+                dgv_Turnos_Medicos.DataBind();
+                if (turnos_x_dni.Count() == 0)
+                {
+                    Lbl_sin_turnos_dni.Visible = true;
+                }
+                else
+                {
+                    Lbl_sin_turnos_dni.Visible = false;
+                }
+                Lbl_sin_turnos_hoy_m.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw;
+            }
+        }
+        protected void Ver_turnos_del_dia_Click(object sender, EventArgs e)
+        {
+            Cargar_turnos_del_dia();
+            //limpia la grilla actual
+            dgv_Turnos_Medicos.DataSource = null;
+            dgv_Turnos_Medicos.DataBind();
+            //cargar la nueva grilla de datos 
+            dgv_Turnos_Medicos.DataSource = Turnos_del_dia;
+            dgv_Turnos_Medicos.DataBind();
+            if (Turnos_del_dia.Count() != 0)
+            {
+                Lbl_sin_turnos_hoy_m.Visible = false;
+            }
+            else
+            {
+                Lbl_sin_turnos_hoy_m.Visible = true;
+            }
+        }
+
+       
     }
 }

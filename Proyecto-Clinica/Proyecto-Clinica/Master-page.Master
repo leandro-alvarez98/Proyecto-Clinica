@@ -1,4 +1,5 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master-page.master.cs" Inherits="Proyecto_Clinica.Master_page" %>
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master-page.master.cs" Inherits="Proyecto_Clinica.Master_page" %>
 
 <!DOCTYPE html>
 <html>
@@ -100,7 +101,7 @@
                                         <i class='bx bx-notepad'></i>
                                         <span class="fs-5 ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
-                                    <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
+                                    <ul class="collapse nav flex-column ms-1" id="submenu5" style="padding-left:20px" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
@@ -148,7 +149,7 @@
                                         <i class='bx bx-notepad'></i>
                                         <span class="fs-5 ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
-                                    <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                                    <ul class="collapse nav flex-column ms-1" style="padding-left:20px" id="submenu4" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
@@ -190,7 +191,7 @@
                                         <i class='bx bx-notepad'></i>
                                         <span class="fs-5 ms-1 d-none d-sm-inline">Turnos</span>
                                     </a>
-                                    <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                    <ul class="collapse nav flex-column ms-1" style="padding-left:20px" id="submenu2" data-bs-parent="#menu">
                                         <li class="w-100">
                                             <a href="ReservaTurno.aspx" class="nav-link text-white px-0">
                                                 <i class='bx bx-edit-alt'></i>
