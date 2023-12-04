@@ -3,6 +3,7 @@ using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -39,14 +40,12 @@ namespace Proyecto_Clinica
 
             Session["Paciente"] = Cargar_Paciente_Clinica(Id_Paciente);
             Response.Redirect("Editar_paciente.aspx");
-
         }
 
         protected void Btn_buscar_pacientes_Click(object sender, EventArgs e)
         {
             try
             {
-                
                 string dni_paciente = txt_dni.Text;
                 Cargar_Pacientes_x_Dni(dni_paciente);
 
@@ -105,6 +104,33 @@ namespace Proyecto_Clinica
                 }
             }
             return new Paciente();
+        }
+
+        //----- MODAL ALTA PACIENTE -----
+
+        protected void Btn_AltaPaciente_Click(object sender, EventArgs e)
+        {
+            string script = @"
+                $(document).ready(function () {
+                    $('#mod_AltaPaciente').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
+
+        protected void Btn_AltaPacienteConfirmar_Click(object sender, EventArgs e)
+        {
+            Paciente paciente = new Paciente();
+            paciente.Dni = txtDniEdit.Text;
+            paciente.Nombre = txtNombreEdit.Text;
+            paciente.Apellido = txtApellidoEdit.Text;
+            paciente.Telefono = txtTelefonoEdit.Text;
+            paciente.Direccion = txtDireccionEdit.Text;
+            paciente.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+            paciente.Mail = txtMailEdit.Text;
+
+            PacienteConexion pacienteConexion = new PacienteConexion();
+            pacienteConexion.InsertarPacienteSinUsuario(paciente);
         }
     }
 }

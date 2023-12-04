@@ -287,7 +287,7 @@ namespace Proyecto_Clinica
             TimeSpan horaSeleccionada = TimeSpan.Parse(DGV_turnos_disponibles.SelectedRow.Cells[1].Text);
             int IDMedico = int.Parse(DGV_turnos_disponibles.SelectedRow.Cells[5].Text);
 
-            Turno turno = new Turno();
+            Turno turno;
             turno = turno_actual;
             turno.Id_Medico = IDMedico;
             turno.Nombre_Medico = DGV_turnos_disponibles.SelectedRow.Cells[3].Text;

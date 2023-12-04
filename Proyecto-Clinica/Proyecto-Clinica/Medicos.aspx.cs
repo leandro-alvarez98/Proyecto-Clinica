@@ -144,14 +144,30 @@ namespace Proyecto_Clinica
                 Lbl_sin_medicos.Visible = false;
             }
         }
-        //public void Arreglar_Formato_Fecha()
-        //{
-        //    foreach (Medico medico in clinica.Medicos)
-        //    {
-        //        DateTime fecha_nacimiento = medico.Fecha_Nacimiento;
-        //        string aux_fecha_nacimiento = fecha_nacimiento.ToString();
 
-        //    }
-        //}
+        protected void Btn_AltaMedico_Click(object sender, EventArgs e)
+        {
+            string script = @"
+                $(document).ready(function () {
+                    $('#mod_AltaMedico').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
+        protected void Btn_AltaMedicoConfirmar_Click(object sender, EventArgs e)
+        {
+            Medico medico = new Medico();
+            medico.Dni = txtDniEdit.Text;
+            medico.Nombre = txtNombreEdit.Text;
+            medico.Apellido = txtApellidoEdit.Text;
+            medico.Telefono = txtTelefonoEdit.Text;
+            medico.Direccion = txtDireccionEdit.Text;
+            medico.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+            medico.Mail = txtMailEdit.Text;
+
+            MedicoConexion medicoConexion = new MedicoConexion();
+            medicoConexion.InsertarMedicoSinUsuario(medico);
+        }
+
     }
 }

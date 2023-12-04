@@ -109,6 +109,31 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public void InsertarPacienteSinUsuario(Paciente paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO PACIENTES (DNI, NOMBRE,APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES(@DNI, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                datos.setParametro("@DNI", paciente.Dni);
+                datos.setParametro("@NOMBRE", paciente.Nombre);
+                datos.setParametro("@APELLIDO", paciente.Apellido);
+                datos.setParametro("@TELEFONO", paciente.Telefono);
+                datos.setParametro("@DIRECCION", paciente.Direccion);
+                datos.setParametro("@FECHANACIMIENTO", paciente.Fecha_Nacimiento);
+                datos.setParametro("@MAIL", paciente.Mail);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Paciente> Listar()
         {
             List<Paciente> lista = new List<Paciente>();

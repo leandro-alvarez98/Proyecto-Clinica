@@ -29,11 +29,10 @@ namespace Proyecto_Clinica
             //Comprueba que los campos pasen las condiciones
             if (txtRegistrarUsuario != null && txtRegistrarUsuario.Text != "" && txtRegistrarContrasena.Text != "" && txtRegistrarContrasena.Text == txtRegistrarContrasena2.Text)
             {
-                //if (EsNumero(txtDniEdit.Text) && EsNumero(txtTelefonoEdit.Text) && DateTime.Parse(txtFechaNacimientoEdit.Text) <= DateTime.Now && DateTime.Parse(txtFechaNacimientoEdit.Text).Year >= 1900 && txtMailEdit.Text.EndsWith("@gmail.com")){ 
-                    
-                //}
-
-                usuarioValido = true;
+                if (EsNumero(txtDniEdit.Text) && EsNumero(txtTelefonoEdit.Text) && DateTime.Parse(txtFechaNacimientoEdit.Text) <= DateTime.Now && DateTime.Parse(txtFechaNacimientoEdit.Text).Year >= 1900)
+                {
+                    usuarioValido = true;
+                }
             }
             //Si las pasa, se crea un usuario nuevo y se lo ingresa en la BBDD
             if (usuarioValido)
