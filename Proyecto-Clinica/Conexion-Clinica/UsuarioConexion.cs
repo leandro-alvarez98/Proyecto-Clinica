@@ -208,7 +208,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public void Actualizar_Usuario(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -338,7 +337,7 @@ namespace Conexion_Clinica
                 datos.setParametro("@Direccion", administrador.Direccion);
                 datos.setParametro("@FechaNacimiento", administrador.Fecha_Nacimiento);
                 datos.setParametro("@Mail", administrador.Mail);
-                datos.setParametro("@Id", administrador.Id);
+                datos.setParametro("@Id", administrador.Id_Usuario);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

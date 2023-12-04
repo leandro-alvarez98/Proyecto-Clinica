@@ -44,7 +44,6 @@
                 <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
                 <asp:Button ID="Btn_aceptar" CssClass="Boton" OnClick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
                 <asp:Button ID="Btn_cancelar" CssClass="Boton" runat="server" OnClick="Btn_cancelar_Click" Text="Cancelar" Visible="false" />
-                <asp:Button ID="Btn_Modificar" CssClass="Boton" runat="server" OnClick="Btn_Modificar_Click" Text="Modificar" Visible="false" />
             </div>
 
             
@@ -59,10 +58,11 @@
                 <br />
                 <asp:Label ID="lblMensajeError" CssClass="lbl" runat="server"></asp:Label>
                 <asp:Label ID="lblMensajeErrorHora" CssClass="lbl" runat="server"></asp:Label>
+
                 <br />
 
 
-                <asp:GridView ID="DGV_turnos_disponibles" runat="server"  AutoGenerateColumns="false" CssClass="table table-dark table-hover ">
+                <asp:GridView ID="DGV_turnos_disponibles" runat="server"  AutoGenerateColumns="false" CssClass="table table-dark table-hover " OnSelectedIndexChanged="DGV_turnos_disponibles_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:BoundField HeaderText="Hora" DataField="Horario" />

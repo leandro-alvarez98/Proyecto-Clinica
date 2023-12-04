@@ -271,131 +271,108 @@ namespace Proyecto_Clinica
         }
         private void ActualizarDatosEnBBDD()
         {
-            try
+            // guardamos los valores editados de los TextBox
+            string nuevoNombre = txtNombreEdit.Text;
+            string nuevoApellido = txtApellidoEdit.Text;
+            string nuevoDni = txtDniEdit.Text;
+            string nuevoMail = txtMailEdit.Text;
+            string nuevoTelefono = txtTelefonoEdit.Text;
+            string nuevaDireccion = txtDireccionEdit.Text;
+            DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+
+
+            // Actualizar los datos del paciente
+            switch (Usuario_Actual?.Tipo)
             {
-                // guardamos los valores editados de los TextBox
-                string nuevoNombre = txtNombreEdit.Text;
-                string nuevoApellido = txtApellidoEdit.Text;
-                string nuevoDni = txtDniEdit.Text;
-                string nuevoMail = txtMailEdit.Text;
-                string nuevoTelefono = txtTelefonoEdit.Text;
-                string nuevaDireccion = txtDireccionEdit.Text;
-                DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
-
-
-                // Actualizar los datos del paciente
-                switch (Usuario_Actual?.Tipo)
-                {
-                    case "Paciente":
-                        if (Usuario_Actual != null)
+                case "Paciente":
+                    if (Usuario_Actual != null)
+                    {
+                        Paciente pacienteActualizado = new Paciente
                         {
-                            Paciente pacienteActualizado = new Paciente
-                            {
-                                Id_Usuario = Usuario_Actual.Id,
-                                Dni = nuevoDni,
-                                Nombre = nuevoNombre,
-                                Apellido = nuevoApellido,
-                                Mail = nuevoMail,
-                                Telefono = nuevoTelefono,
-                                Direccion = nuevaDireccion,
-                                Fecha_Nacimiento = nuevaFechaNacimiento
-                            };
+                            Id_Usuario = Usuario_Actual.Id,
+                            Dni = nuevoDni,
+                            Nombre = nuevoNombre,
+                            Apellido = nuevoApellido,
+                            Mail = nuevoMail,
+                            Telefono = nuevoTelefono,
+                            Direccion = nuevaDireccion,
+                            Fecha_Nacimiento = nuevaFechaNacimiento
+                        };
 
-                            UsuarioConexion conexionPaciente = new UsuarioConexion();
-                            conexionPaciente.ActualizarPaciente(pacienteActualizado);
+                        UsuarioConexion conexionPaciente = new UsuarioConexion();
+                        conexionPaciente.ActualizarPaciente(pacienteActualizado);
+                    }
+                    break;
 
-                            // Oculta el TextBox y botón de guardar
-                            OcultarControlesEdicion();
-                            // Redirecciona a la misma página para refrescar los datos
-                            Response.Redirect(Request.RawUrl);
-                        }
-                        break;
-
-                    case "Medico":
-                        if (Usuario_Actual != null)
+                case "Medico":
+                    if (Usuario_Actual != null)
+                    {
+                        Medico medicoActualizado = new Medico
                         {
-                            Medico medicoActualizado = new Medico
-                            {
-                                Id_Usuario = Usuario_Actual.Id,
-                                Dni = nuevoDni,
+                            Id_Usuario = Usuario_Actual.Id,
+                            Dni = nuevoDni,
 
-                                Nombre = nuevoNombre,
-                                Apellido = nuevoApellido,
-                                Mail = nuevoMail,
-                                Telefono = nuevoTelefono,
-                                Direccion = nuevaDireccion,
-                                Fecha_Nacimiento = nuevaFechaNacimiento
-                            };
+                            Nombre = nuevoNombre,
+                            Apellido = nuevoApellido,
+                            Mail = nuevoMail,
+                            Telefono = nuevoTelefono,
+                            Direccion = nuevaDireccion,
+                            Fecha_Nacimiento = nuevaFechaNacimiento
+                        };
 
-                            UsuarioConexion conexionMedico = new UsuarioConexion();
-                            conexionMedico.ActualizarMedico(medicoActualizado);
-
-                            // Oculta el TextBox y botón de guardar
-                            OcultarControlesEdicion();
-                            // Redirecciona a la misma página para refrescar los datos
-                            Response.Redirect(Request.RawUrl);
-                        }
-                        break;
+                        UsuarioConexion conexionMedico = new UsuarioConexion();
+                        conexionMedico.ActualizarMedico(medicoActualizado);
+                    }
+                    break;
 
 
-                    case "Recepcionista":
-                        if (Usuario_Actual != null)
+                case "Recepcionista":
+                    if (Usuario_Actual != null)
+                    {
+                        Recepcionista recepcionistaActualizado = new Recepcionista
                         {
-                            Recepcionista recepcionistaActualizado = new Recepcionista
-                            {
-                                Id_Usuario = Usuario_Actual.Id,
-                                Dni = nuevoDni,
-                                Nombre = nuevoNombre,
-                                Apellido = nuevoApellido,
-                                Mail = nuevoMail,
-                                Telefono = nuevoTelefono,
-                                Direccion = nuevaDireccion,
-                                Fecha_Nacimiento = nuevaFechaNacimiento
-                            };
+                            Id_Usuario = Usuario_Actual.Id,
+                            Dni = nuevoDni,
+                            Nombre = nuevoNombre,
+                            Apellido = nuevoApellido,
+                            Mail = nuevoMail,
+                            Telefono = nuevoTelefono,
+                            Direccion = nuevaDireccion,
+                            Fecha_Nacimiento = nuevaFechaNacimiento
+                        };
 
-                            UsuarioConexion conexionRecepcionista = new UsuarioConexion();
+                        UsuarioConexion conexionRecepcionista = new UsuarioConexion();
 
-                            conexionRecepcionista.ActualizarRecepcionista(recepcionistaActualizado);
+                        conexionRecepcionista.ActualizarRecepcionista(recepcionistaActualizado);
+                    }
+                    break;
 
-                            // Oculta el TextBox y botón de guardar
-                            OcultarControlesEdicion();
-                            // Redirecciona a la misma página para refrescar los datos
-                            Response.Redirect(Request.RawUrl);
-                        }
-                        break;
-
-                    case "Administrador":
-                        if (Usuario_Actual != null)
+                case "Administrador":
+                    if (Usuario_Actual != null)
+                    {
+                        Administrador administradorActualizado = new Administrador
                         {
-                            Administrador administradorActualizado = new Administrador
-                            {
-                                Id_Usuario = Usuario_Actual.Id,
-                                Dni = nuevoDni,
-                                Nombre = nuevoNombre,
-                                Apellido = nuevoApellido,
-                                Mail = nuevoMail,
-                                Telefono = nuevoTelefono,
-                                Direccion = nuevaDireccion,
-                                Fecha_Nacimiento = nuevaFechaNacimiento
-                            };
+                            Id_Usuario = Usuario_Actual.Id,
+                            Dni = nuevoDni,
+                            Nombre = nuevoNombre,
+                            Apellido = nuevoApellido,
+                            Mail = nuevoMail,
+                            Telefono = nuevoTelefono,
+                            Direccion = nuevaDireccion,
+                            Fecha_Nacimiento = nuevaFechaNacimiento
+                        };
 
-                            UsuarioConexion conexionAdministrador = new UsuarioConexion();
-                            conexionAdministrador.ActualizarAdministracion(administradorActualizado);
-
-                            // Oculta el TextBox y botón de guardar
-                            OcultarControlesEdicion();
-                            // Redirecciona a la misma página para refrescar los datos
-                            Response.Redirect(Request.RawUrl);
-                        }
-                        break;
-                }
+                        UsuarioConexion conexionAdministrador = new UsuarioConexion();
+                        conexionAdministrador.ActualizarAdministracion(administradorActualizado);
+                    }
+                    break;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al actualizar los datos: " + ex.Message);
-                throw ex;
-            }
+            // Oculta el TextBox y botón de guardar
+            OcultarControlesEdicion();
+            // Redirecciona a la misma página para refrescar los datos
+            Response.Redirect(Request.RawUrl);
         }
+    
         protected void btn_CambiarImagen_Click(object sender, EventArgs e)
         {
             if(!Imagen_Cambiada())

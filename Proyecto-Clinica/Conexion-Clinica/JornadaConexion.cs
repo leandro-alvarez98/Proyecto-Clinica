@@ -103,7 +103,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        
         public void Eliminar_Especialidades(int id_especialidades, int id_medico)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -37,7 +37,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public List<Administrador> Listar()
         {
             List<Administrador> lista = new List<Administrador>();

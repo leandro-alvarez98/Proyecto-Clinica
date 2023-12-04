@@ -169,23 +169,26 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        public void Modificar_Turno(Turno turno)
+        public bool Modificar_Turno(Turno turno)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setConsulta("UPDATE TURNOS SET FECHA = @FECHA ,ID_HORARIO = @ID_HORARIO,ID_MEDICO = @ID_MEDICO WHERE ID_TURNO = @ID_TURNO ");
-                datos.setParametro("@FECHA", turno.Fecha);
+                datos.setParametro("@FECHA", turno.Fecha.Year + "-" + turno.Fecha.Month + "-" + turno.Fecha.Day);
+                datos.setParametro("@ID_HORARIO", turno.Id_Horario);
                 datos.setParametro("@ID_MEDICO", turno.Id_Medico);
                 datos.setParametro("@ID_TURNO", turno.Id);
-                datos.setParametro("@ID_HORARIO", turno.Id_Horario);
-                datos.ejecutarAccion();
 
+                datos.ejecutarAccion();
+                return true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                return false;
                 throw ex;
+                
             }
             finally
             {

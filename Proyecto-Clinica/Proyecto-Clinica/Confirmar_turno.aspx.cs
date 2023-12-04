@@ -25,7 +25,6 @@ namespace Proyecto_Clinica
         }
         public void Cargar_componentes()
         {
-            TurnoConexion turnoConexion = new TurnoConexion();
             usuario_actual = (Usuario)Session["Usuario"];
 
             turno_a_reservar = (Turno)Session["Turno"];

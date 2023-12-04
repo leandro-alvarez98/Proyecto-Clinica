@@ -57,6 +57,7 @@
                 <%{%>
                     
                         <h1 class="fs-1 font-monospace">Mis Turnos</h1>
+                <asp:Label ID="lblTurnoNoFinalizado" runat="server" Text="No puede agregar observación a un turno no finalizado" Visible ="false"></asp:Label>
 
                         <asp:GridView ID="dgv_Turnos_Medicos" CssClass="table table-dark table-hover PAD_TOP" runat="server" OnSelectedIndexChanged="dgv_Turnos_Medicos_SelectedIndexChanged" AutoGenerateColumns="false">
                             <Columns>

@@ -6,12 +6,9 @@
 
 
     <%-- referencia a la carpeta JS que contiene los script --%>
-    <%--<script type="text/javascript" src="JS/JavaScript.js"></script>--%>
-        <%-- A TXTDNIEDIT HAY QUE AGREGARLE LO SIGUIENTE: onkeypress="return soloNumeros(event);" maxlength="8" --%>
+    <script type="text/javascript" src="JS/JavaScript.js"></script>
 
     <div class="container form_top containerbott ">
-
-
         <div class="row">
             <div class="card">
                 <div class="card-body">
@@ -42,7 +39,7 @@
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
                             <asp:Label ID="dniLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false" onkeypress="return soloNumeros(event);" maxlength="8"></asp:TextBox>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>

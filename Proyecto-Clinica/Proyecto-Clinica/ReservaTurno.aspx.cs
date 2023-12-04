@@ -49,6 +49,8 @@ namespace Proyecto_Clinica
         {
             DateTime Fecha_Seleccionada = new DateTime();
             TimeSpan Hora_Seleccionada = new TimeSpan();
+            TimeSpan Hora_Default = new TimeSpan(8, 0, 0);
+
             bool HoraIngresada = true;
 
             ID_Especialidad_Seleccionada = int.Parse(DDL_especialidades.SelectedValue);
@@ -90,13 +92,20 @@ namespace Proyecto_Clinica
                     Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
 
                     // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
-                    if(HoraIngresada)
+                    if (HoraIngresada)
                     {
                         Obtener_Disponibilidad(Fecha_Seleccionada, Hora_Seleccionada);
                     }
                     else
                     {
-                        Obtener_Disponibilidad(Fecha_Seleccionada, DateTime.Now.TimeOfDay);
+                        if (Fecha_Seleccionada.Date > DateTime.Now.Date)
+                        {
+                            Obtener_Disponibilidad(Fecha_Seleccionada, Hora_Default);
+                        }
+                        else
+                        {
+                            Obtener_Disponibilidad(Fecha_Seleccionada, DateTime.Now.TimeOfDay);
+                        }
                     }
 
                     // CARGAR TURNOS DISPONIBLES

@@ -104,37 +104,24 @@ namespace Proyecto_Clinica
         }
         public void Cargar_botones()
         {
-            switch (usuario_actual.Tipo )
+            switch (usuario_actual.Tipo)
             {
                 case "Medico":
-
                     Btn_agregar_obs.Visible = true;
-
                     break;
                 case "Recepcionista":
-
                     Btn_agregar_obs.Visible = false;
-                    Btn_Modificar.Visible = true;
-
-
                     break;
                 case "Administrador":
-
                     Btn_agregar_obs.Visible = false;
-                    Btn_Modificar.Visible = true;
                     break;
             }
-        }
-        protected void Btn_Modificar_Click(object sender, EventArgs e)
-        {
-            Txt_Observacion.Visible = true;
-            turnoConexion.Modificar_Turno(turno_actual); 
-            Response.Redirect("Detalle_Turno.aspx");
         }
         private void Cargar_Turnos_Disponibles()
         {
             DateTime Fecha_Seleccionada = new DateTime();
             TimeSpan Hora_Seleccionada = new TimeSpan();
+            TimeSpan Hora_Default = new TimeSpan(8,0,0);
 
             bool HoraValida = false, FechaValida = false, HoraIngresada = true;
 
@@ -160,8 +147,9 @@ namespace Proyecto_Clinica
                         Hora_Seleccionada = horaSeleccionada;
                     }
                 }
-                else
+                else // NO SE INGRESA HORA
                 {
+                   
                     HoraIngresada = false;
                     HoraValida = true;
                 }
@@ -178,7 +166,14 @@ namespace Proyecto_Clinica
                     }
                     else
                     {
-                        Obtener_Disponibilidad(Fecha_Seleccionada, DateTime.Now.TimeOfDay);
+                        if (Fecha_Seleccionada.Date > DateTime.Now.Date)
+                        {
+                            Obtener_Disponibilidad(Fecha_Seleccionada, Hora_Default);
+                        }
+                        else
+                        {
+                            Obtener_Disponibilidad(Fecha_Seleccionada, DateTime.Now.TimeOfDay);
+                        }
                     }
                     // CARGAR TURNOS DISPONIBLES
                     Cargar_Lista_Turnos();
@@ -265,6 +260,26 @@ namespace Proyecto_Clinica
         protected void Btn_BuscarTurnosDisponibles_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
+        }
+        protected void DGV_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = DateTime.Parse(DGV_turnos_disponibles.SelectedRow.Cells[0].Text);
+            TimeSpan horaSeleccionada = TimeSpan.Parse(DGV_turnos_disponibles.SelectedRow.Cells[1].Text);
+            int IDMedico = int.Parse(DGV_turnos_disponibles.SelectedRow.Cells[5].Text);
+
+            Turno turno = new Turno();
+            turno.Id_Medico = IDMedico;
+            turno.Fecha = fechaSeleccionada;
+            turno.Id = turno_actual.Id;
+            HorarioConexion horarioConexion = new HorarioConexion();
+            turno.Id_Horario = horarioConexion.GetIdHorario(horaSeleccionada);
+
+            if(!turnoConexion.Modificar_Turno(turno))
+            {
+                lblMensajeError.Text = "Error al modificar el turno";
+                lblMensajeError.Visible = true;
+            }
+            
         }
     }
 }

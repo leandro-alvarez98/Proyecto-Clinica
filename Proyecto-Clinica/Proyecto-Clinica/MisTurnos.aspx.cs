@@ -166,13 +166,11 @@ namespace Proyecto_Clinica
             
                 Response.Redirect("Detalle_turno.aspx");
             
-        }    
+        }
+        //GRILLA PARA MEDICO
         protected void dgv_Turnos_Medicos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-            string str_ID_Turno = dgv_Turnos_Medicos.SelectedRow.Cells[0].Text;
-            int ID_Turno = int.Parse(str_ID_Turno);
+            int ID_Turno = int.Parse(dgv_Turnos_Medicos.SelectedRow.Cells[0].Text);
             Turno_Seleccionado = Get_Turno(ID_Turno);
 
             if(Turno_Seleccionado.Estado == "Finalizado")
@@ -180,9 +178,12 @@ namespace Proyecto_Clinica
                 Session["Turno"] = Turno_Seleccionado;
                 Response.Redirect("Detalle_turno.aspx");
             }
-
-
-            //mostrar en otra pagina los detalles del turno y el hecho de poder agregarle la observacion
+            else
+            {
+                Session["Turno"] = Turno_Seleccionado;
+                Response.Redirect("Detalle_turno.aspx");
+                lblTurnoNoFinalizado.Visible = true;
+            }
         }
         protected void Btn_busqueda_Click(object sender, EventArgs e)
         {

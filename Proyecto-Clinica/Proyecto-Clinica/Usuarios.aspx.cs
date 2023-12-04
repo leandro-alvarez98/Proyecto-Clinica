@@ -25,9 +25,11 @@ namespace Proyecto_Clinica
             ClinicaConexion clinicaConexion = new ClinicaConexion();
             Clinica = clinicaConexion.Listar();
             usuario_actual = (Usuario)Session["Usuario"];
+
             usuarioConexion = new UsuarioConexion();
 
             usuario_actual = Cargar_Datos_Usuario(usuario_actual);
+
 
             repeaterUsuarios.DataSource = usuarioConexion.Listar_Activos();
             repeaterUsuarios.DataBind();

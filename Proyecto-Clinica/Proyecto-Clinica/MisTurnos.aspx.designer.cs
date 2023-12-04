@@ -78,6 +78,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos;
 
         /// <summary>
+        /// Control lblTurnoNoFinalizado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTurnoNoFinalizado;
+
+        /// <summary>
         /// Control dgv_Turnos_Medicos.
         /// </summary>
         /// <remarks>

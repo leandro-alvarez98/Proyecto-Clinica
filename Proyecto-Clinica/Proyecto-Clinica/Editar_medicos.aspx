@@ -144,7 +144,7 @@
                                 </ul>
                             </div> 
                            <%-- Eliminar especialidades o jornadas--%>
-                            <div class="dropdown">
+                            <div class="dropdown" style="margin-left: 145px">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                    <i class='bx bx-trash'></i> Eliminar
                                 </button>
