@@ -82,7 +82,7 @@
                 <br />
 
 
-                <asp:GridView ID="DGV_turnos_disponibles" Visible="false" runat="server"  AutoGenerateColumns="false" CssClass="table table-dark table-hover " OnSelectedIndexChanged="DGV_turnos_disponibles_SelectedIndexChanged">
+                <asp:GridView ID="DGV_turnos_disponibles" Visible="false" runat="server"  AutoGenerateColumns="false" CssClass="table table-dark table-sm table-hover " OnSelectedIndexChanged="DGV_turnos_disponibles_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField HeaderText="Fecha" DataField="Fecha" DataFormatString="{0:dd-MM-yyyy}" />
                         <asp:BoundField HeaderText="Hora" DataField="Horario" />

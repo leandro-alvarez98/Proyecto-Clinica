@@ -3,6 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <div class="container form_top containerbott">
+
+                <h1 class="fs-1 font-monospace">Mis Turnos</h1>
                 
                 <%--modal para cancelar--%>
                 <div class="modal" tabindex="-1" id ="Modal_cancelar_turno">
@@ -28,7 +30,7 @@
                 <%{ %>
 
 
-                        <h1 class="fs-1 font-monospace">Turnos</h1>
+                        
 
                         <asp:Label ID="Lbl_Busqueda" runat="server" CssClass="form-label" Text="Buscar Turno por Dni del paciente"></asp:Label>
                         <asp:TextBox ID="Txt_Busqueda"  CssClass="form-control"  runat="server"></asp:TextBox>
@@ -56,7 +58,7 @@
                 <%}else if (usuarioActual.Tipo == "Médico")%>
                 <%{%>
                     
-                        <h1 class="fs-1 font-monospace">Mis Turnos</h1>
+                        
                 <asp:Label ID="lblTurnoNoFinalizado" runat="server" Text="No puede agregar observación a un turno no finalizado" Visible ="false"></asp:Label>
 
                         <asp:GridView ID="dgv_Turnos_Medicos" CssClass="table table-dark table-hover PAD_TOP" runat="server" OnSelectedIndexChanged="dgv_Turnos_Medicos_SelectedIndexChanged" AutoGenerateColumns="false">
@@ -78,7 +80,7 @@
                  <%}else%>
                 <%{%>
                     
-                        <h1 class="fs-1 font-monospace">Mis Turnos</h1>
+                       
 
                         <asp:GridView ID="Dgv_Turnos_Paciente" CssClass="table table-dark table-hover PAD_TOP" OnSelectedIndexChanged="DGV_Turnos_Pacientes_Cancelar" runat="server" AutoGenerateColumns="false">
                             <Columns>

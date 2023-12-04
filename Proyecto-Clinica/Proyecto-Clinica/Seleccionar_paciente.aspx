@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="mb-3 container containerbott form_top ">
-        <asp:Label CssClass="fs-3 font-monospace fw-semibold" runat="server" Text="Seleccionar Paciente"></asp:Label>
+        <asp:Label CssClass="fs-1 font-monospacee" runat="server" Text="Seleccionar Paciente"></asp:Label>
         <hr />
 
         <div class="mb-3">

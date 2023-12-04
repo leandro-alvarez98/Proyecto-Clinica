@@ -12,7 +12,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title text-center">Perfil de Usuario</h1>
+                    <h1 class="card-title text-center fs-1 font-monospace">Perfil de Usuario</h1>
                     <hr />
                    <%-- Imagen del perfil--%>
                     <div class="col-md-9">

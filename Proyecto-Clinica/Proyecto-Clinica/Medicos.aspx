@@ -6,7 +6,7 @@
 
     <div class="container form_top containerbott">
 
-        <h1 class="fs-1 font-monospace">Médicos</h1>
+        <h1 class="fs-1 font-monospace ">Médicos</h1>
 
         <asp:Label ID="lbl_IngresarEspecialidad" runat="server" Text="Ingresar una nueva especialidad"></asp:Label>
         <asp:TextBox ID="txt_Nueva_Especialidad" CssClass="form-control" runat="server"></asp:TextBox>

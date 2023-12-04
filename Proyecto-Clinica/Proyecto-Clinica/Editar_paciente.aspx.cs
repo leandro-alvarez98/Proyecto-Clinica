@@ -73,6 +73,7 @@ namespace Proyecto_Clinica
             {
                 ActualizarDatosEnBBDD();
             }
+            btnCambioContraseña.Visible = true;
         }
         public void btnEditar_Click(object sender, EventArgs e)
         {
@@ -109,10 +110,12 @@ namespace Proyecto_Clinica
 
             // Oculta el botón de Editar
             btnEditarDatos.Visible = false;
+            btnCambioContraseña.Visible = false;
         }
         public void btnCancelar_Click(object sender, EventArgs e)
         {
             btnCancelar.Visible = false;
+            btnCambioContraseña.Visible = true;
             OcultarControlesEdicion();
             Visibilidad_labels(true);
             Cargar_labels();
