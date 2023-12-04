@@ -32,6 +32,13 @@ namespace Proyecto_Clinica
 
         protected void btnEditarDatos_Click(object sender, EventArgs e)
         {
+            //guardo el id del paciente para asi poder utilizarlo en la proxima pagina
+            string id_paciente = ((System.Web.UI.WebControls.Button)sender).CommandArgument;
+            int Id_Paciente = int.Parse(id_paciente);
+
+
+            Session["Paciente"] = Cargar_Paciente_Clinica(Id_Paciente);
+            Response.Redirect("Editar_paciente.aspx");
 
         }
 
@@ -87,6 +94,17 @@ namespace Proyecto_Clinica
                     lista_Pacientes_x_dni.Add(paciente);
                 }
             }
+        }
+        private Paciente Cargar_Paciente_Clinica(int paciente_id)
+        {
+            foreach (Paciente paciente in clinica.Pacientes)
+            {
+                if (paciente.Id == paciente_id)
+                {
+                    return paciente;
+                }
+            }
+            return new Paciente();
         }
     }
 }

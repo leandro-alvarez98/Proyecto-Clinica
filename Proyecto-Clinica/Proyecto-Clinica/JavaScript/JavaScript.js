@@ -5,7 +5,7 @@ function soloNumeros(evt) {
         return false;
     }
     var textBox = document.getElementById('<%= txtDniEdit.ClientID %>');
-    if (textBox.value.lenght >= 8) {
+    if (textBox.value.length >= 8) {
         return false;
     }
     return true;
