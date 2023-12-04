@@ -20,9 +20,15 @@
         <div class="mb-3">
             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Seleccione la fecha: "></asp:Label>
             <asp:TextBox ID="txtFechaSeleccionada" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
-            <asp:Label ID="Lbl_fecha_valida" runat="server" Text="Por Favor Ingrese una fecha valida" Visible="false"></asp:Label>
+
+            <asp:Label ID="lbl_FechaInvalida" runat="server" Text="Por Favor Ingrese una fecha valida" Visible="false"></asp:Label>
+
+            <asp:Label ID="lbl_Hora" runat="server" Text="Hora: "></asp:Label>
+            <asp:TextBox ID="txt_HoraSeleccionada" CssClass="form-control" runat="server" TextMode="Time"></asp:TextBox>
+            <asp:Label ID="lbl_HoraInvalida" runat="server" Text="Por Favor Ingrese una Hora valida" Visible="false"></asp:Label>
 
         </div>
+
         <br />
                 <%-- btn BUSCAR TURNO --%>
 

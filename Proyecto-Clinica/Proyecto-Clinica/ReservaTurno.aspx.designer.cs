@@ -42,13 +42,40 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.TextBox txtFechaSeleccionada;
 
         /// <summary>
-        /// Control Lbl_fecha_valida.
+        /// Control lbl_FechaInvalida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_fecha_valida;
+        protected global::System.Web.UI.WebControls.Label lbl_FechaInvalida;
+
+        /// <summary>
+        /// Control lbl_Hora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Hora;
+
+        /// <summary>
+        /// Control txt_HoraSeleccionada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_HoraSeleccionada;
+
+        /// <summary>
+        /// Control lbl_HoraInvalida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_HoraInvalida;
 
         /// <summary>
         /// Control Buscar_Turno.

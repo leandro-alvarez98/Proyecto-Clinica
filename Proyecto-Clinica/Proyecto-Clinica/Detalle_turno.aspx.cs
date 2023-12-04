@@ -136,7 +136,7 @@ namespace Proyecto_Clinica
             DateTime Fecha_Seleccionada = new DateTime();
             TimeSpan Hora_Seleccionada = new TimeSpan();
 
-            bool HoraValida = false, FechaValida = false;
+            bool HoraValida = false, FechaValida = false, HoraIngresada = true;
 
             // Hace un casteo de la fecha seleccionada para que sea datetime
             if (DateTime.TryParse(txt_FechaSeleccionada.Text, out DateTime fecha_turnos))
@@ -160,6 +160,11 @@ namespace Proyecto_Clinica
                         Hora_Seleccionada = horaSeleccionada;
                     }
                 }
+                else
+                {
+                    HoraIngresada = false;
+                    HoraValida = true;
+                }
 
                 if (HoraValida && FechaValida)
                 {
@@ -167,8 +172,14 @@ namespace Proyecto_Clinica
                     Medicos_segun_Especialidad(turno_actual.Id_Especialidad);
 
                     // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
-                    Obtener_Disponibilidad(Fecha_Seleccionada, Hora_Seleccionada);
-
+                    if (HoraIngresada)
+                    {
+                        Obtener_Disponibilidad(Fecha_Seleccionada, Hora_Seleccionada);
+                    }
+                    else
+                    {
+                        Obtener_Disponibilidad(Fecha_Seleccionada, DateTime.Now.TimeOfDay);
+                    }
                     // CARGAR TURNOS DISPONIBLES
                     Cargar_Lista_Turnos();
 
@@ -195,7 +206,7 @@ namespace Proyecto_Clinica
 
                 try
                 {
-                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO, \r\n\tH.HORA AS HORA,\r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO,\r\n\t@IDMedico AS IDMEDICO,\r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO\r\nFROM  HORARIOS H \r\nJOIN  MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico\r\nLEFT JOIN  TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico\r\nWHERE T.ESTADO IS  NULL AND H.HORA = @HORA\r\nORDER BY  H.HORA");
+                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO, \r\n\tH.HORA AS HORA,\r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO,\r\n\t@IDMedico AS IDMEDICO,\r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO\r\nFROM  HORARIOS H \r\nJOIN  MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico\r\nLEFT JOIN  TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico\r\nWHERE T.ESTADO IS  NULL AND H.HORA >= @HORA\r\nORDER BY  H.HORA");
                     datos.setParametro("@IDMedico", medico.Id);
                     datos.setParametro("@FechaConsulta", Fecha);
                     datos.setParametro("@HORA", Hora);

@@ -45,70 +45,76 @@ namespace Proyecto_Clinica
         {
             Cargar_Turnos_Disponibles();
         }
-        private void mostrarLbl(bool fecha, bool especialidad) {
-            LbL_falta_especialidad.Visible = !especialidad;
-            Lbl_fecha_valida.Visible = !fecha;
-        }
         private void Cargar_Turnos_Disponibles()
         {
-            bool fechaValida;
-            bool especialidadValida;
+            DateTime Fecha_Seleccionada = new DateTime();
+            TimeSpan Hora_Seleccionada = new TimeSpan();
+            bool HoraIngresada = true;
 
             ID_Especialidad_Seleccionada = int.Parse(DDL_especialidades.SelectedValue);
 
-            if (txtFechaSeleccionada.Text.Length == 0)
-            {
-                fechaValida = false;
-            }
-            else {
-                fechaValida = true;
-            }
-            if (ID_Especialidad_Seleccionada == 0)
-            {
-                especialidadValida = false;
-            }
-            else {
-                especialidadValida = true;
-            }
-            if (fechaValida && especialidadValida)
-            {
-                DateTime Fecha_Seleccionada = DateTime.Parse(txtFechaSeleccionada.Text);
+            bool HoraValida = false, FechaValida = false;
 
-
-
-                if (Fecha_Seleccionada >= DateTime.Now)
+            // Hace un casteo de la fecha seleccionada para que sea datetime
+            if (DateTime.TryParse(txtFechaSeleccionada.Text, out DateTime fecha_turnos))
+            {
+                //Comprueba que la fecha seleccionada sea correcta
+                if (!(fecha_turnos < DateTime.Now.Date))
                 {
-                    mostrarLbl(fechaValida, especialidadValida);
+                    FechaValida = true;
+                    Fecha_Seleccionada = fecha_turnos;
+                }
+
+                if (TimeSpan.TryParse(txt_HoraSeleccionada.Text, out TimeSpan horaSeleccionada))
+                {
+
+                    TimeSpan horaActual = DateTime.Now.TimeOfDay;
+                    DateTime fechaActual = DateTime.Now.Date;
+
+                    if ((horaSeleccionada > horaActual && Fecha_Seleccionada == fechaActual) || (Fecha_Seleccionada > fechaActual))
+                    {
+                        HoraValida = true;
+                        Hora_Seleccionada = horaSeleccionada;
+                    }
+                }
+                else
+                {
+                    HoraIngresada = false;
+
+                    HoraValida = true;
+                }
+
+                if (HoraValida && FechaValida)
+                {
                     // CREA UNA LISTA DE MEDICOS EN BASE A LA ESPECIALIDAD
                     Medicos_segun_Especialidad(ID_Especialidad_Seleccionada);
-                    // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
-                    Obtener_Disponibilidad(Fecha_Seleccionada);
 
-                    // CARGAR TURNOS DISPONIBLES
-                    Cargar_Lista_Turnos();
-                    if (Turnos_Disponibles.Count() == 0)
+                    // LLENA ESA LISTA DE MEDICOS CON SUS RESPECTIVOS HORARIOS DISPONIBLES
+                    if(HoraIngresada)
                     {
-                        lblturnos.Text = "No hay Turnos Disponibles ";
+                        Obtener_Disponibilidad(Fecha_Seleccionada, Hora_Seleccionada);
                     }
                     else
                     {
-                        lblturnos.Text = "";
+                        Obtener_Disponibilidad(Fecha_Seleccionada, DateTime.Now.TimeOfDay);
                     }
+
+                    // CARGAR TURNOS DISPONIBLES
+                    Cargar_Lista_Turnos();
+
+                    // LISTAR TURNOS EN LA GRILLA
+                    Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
+                    Grilla_turnos_disponibles.DataBind();
                 }
-
-                // LISTAR TURNOS EN LA GRILLA
-                Grilla_turnos_disponibles.DataSource = Turnos_Disponibles;
-                Grilla_turnos_disponibles.DataBind();
-
+                else if (!HoraValida)
+                {
+                    lbl_HoraInvalida.Visible = true;
+                }
+                else if (!FechaValida)
+                {
+                    lbl_FechaInvalida.Visible = true;
+                }
             }
-            else {
-                mostrarLbl(fechaValida, especialidadValida);
-            }
-
-
-        
-
-
         }
         private void Cargar_Lista_Turnos()
         {
@@ -133,33 +139,34 @@ namespace Proyecto_Clinica
                 }
             }
         }
-        private void Obtener_Disponibilidad(DateTime Fecha)
+        private void Obtener_Disponibilidad(DateTime Fecha, TimeSpan Hora)
         {
-            foreach(Medico medico in medicos_disponibles)
+            foreach (Medico medico in medicos_disponibles)
             {
                 AccesoDatos datos = new AccesoDatos();
                 medico.Turnos = new List<Turno>();
 
                 try
                 {
-                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO, \r\n\tH.HORA AS HORA,\r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO,\r\n\t@IDMedico AS IDMEDICO,\r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO\r\nFROM  HORARIOS H \r\nJOIN  MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico\r\nLEFT JOIN  TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico\r\nWHERE T.ESTADO IS  NULL ORDER BY  H.HORA;");
+                    datos.setConsulta("SELECT \r\n\tH.ID_HORARIO AS IDHORARIO, \r\n\tH.HORA AS HORA,\r\n\tISNULL(T.ID_TURNO, 0) AS IDTURNO,\r\n\t@IDMedico AS IDMEDICO,\r\n\tISNULL(T.ESTADO, 'Disponible') AS ESTADO\r\nFROM  HORARIOS H \r\nJOIN  MEDICOXJORNADA MJ ON H.ID_JORNADA = MJ.ID_JORNADA AND MJ.ID_MEDICO = @IDMedico\r\nLEFT JOIN  TURNOS T ON H.ID_HORARIO = T.ID_HORARIO AND T.FECHA = @FechaConsulta AND T.ID_MEDICO = @IDMedico\r\nWHERE T.ESTADO IS  NULL AND H.HORA >= @HORA\r\nORDER BY  H.HORA");
                     datos.setParametro("@IDMedico", medico.Id);
                     datos.setParametro("@FechaConsulta", Fecha);
+                    datos.setParametro("@HORA", Hora);
                     datos.ejecutarLectura();
 
                     while (datos.Lector.Read())
                     {
-                            Turno turno = new Turno
-                            {
-                                Id = (int)datos.Lector["IDTURNO"],
-                                Id_Medico = (int)datos.Lector["IDMEDICO"],
-                                Id_Horario = (int)datos.Lector["IDHORARIO"],
-                                Fecha = Fecha,
-                                Horario = (TimeSpan)datos.Lector["HORA"],
-                                Estado = (String)datos.Lector["ESTADO"],
-                                Nombre_Medico = medico.Nombre,
-                                Apellido_Medico = medico.Apellido
-                            };
+                        Turno turno = new Turno
+                        {
+                            Id = (int)datos.Lector["IDTURNO"],
+                            Id_Medico = (int)datos.Lector["IDMEDICO"],
+                            Id_Horario = (int)datos.Lector["IDHORARIO"],
+                            Fecha = Fecha,
+                            Horario = (TimeSpan)datos.Lector["HORA"],
+                            Estado = (String)datos.Lector["ESTADO"],
+                            Nombre_Medico = medico.Nombre,
+                            Apellido_Medico = medico.Apellido
+                        };
                         medico.Turnos.Add(turno);
                     }
                 }
