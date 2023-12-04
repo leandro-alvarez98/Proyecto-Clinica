@@ -4,6 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <div class="container form_top containerbott">
                
+                <style>
+                    .pad_boton{
+                       
+                    }
+                </style>
                
                 
                 <%--modal para cancelar //como paciente--%>
@@ -37,7 +42,7 @@
                         <br />
                         <asp:Button ID="Btn_busqueda" runat="server" OnClick="Btn_busqueda_Click" CssClass="Boton" Text="Buscar" />
                         <asp:Button ID="Btn_limpiar_busqueda" OnClick="Btn_limpiar_busqueda_Click" runat="server" CssClass="Boton" Text="Limpiar" />
-                        <asp:Button ID="Ver_turnos_del_dia_RA" runat="server" CssClass="Boton float-right mt-3"  OnClick="Ver_turnos_del_dia_RA_Click" Text="Turnos del dia" />        
+                        <asp:Button ID="Ver_turnos_del_dia_RA" runat="server" CssClass="Boton"  OnClick="Ver_turnos_del_dia_RA_Click" Text="Turnos del dia" />        
                         <hr />
                     <asp:GridView ID="DGV_Turnos_totales" CssClass="table table-dark table-hover PAD_TOP"  OnSelectedIndexChanged="DGV_Turnos_totales_Cancelar_Modificar"  runat="server" AutoGenerateColumns="false" AutoPostBack="true" EnableViewState="true">
                             <Columns>
@@ -67,7 +72,7 @@
                     <br />
                     <asp:Button ID="Buscar_turno" runat="server" OnClick="Buscar_turno_Click" CssClass="Boton" Text="Buscar" />
                     <asp:Button ID="Limpiar_turno" OnClick="Limpiar_turno_Click" runat="server" CssClass="Boton" Text="Limpiar" />
-                    <asp:Button ID="Ver_turnos_del_dia" runat="server" CssClass="Boton" OnClick="Ver_turnos_del_dia_Click" Text="Turnos del dia" />
+                    <asp:Button ID="Ver_turnos_del_dia" runat="server" CssClass="Boton"  OnClick="Ver_turnos_del_dia_Click" Text="Turnos del dia" />
                     <hr />
                 <asp:Label ID="lblTurnoNoFinalizado" runat="server" Text="No puede agregar observación a un turno no finalizado" Visible ="false"></asp:Label>
 
