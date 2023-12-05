@@ -106,31 +106,5 @@ namespace Proyecto_Clinica
             return new Paciente();
         }
 
-        //----- MODAL ALTA PACIENTE -----
-
-        protected void Btn_AltaPaciente_Click(object sender, EventArgs e)
-        {
-            string script = @"
-                $(document).ready(function () {
-                    $('#mod_AltaPaciente').modal('show');
-                });
-            ";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
-        }
-
-        protected void Btn_AltaPacienteConfirmar_Click(object sender, EventArgs e)
-        {
-            Paciente paciente = new Paciente();
-            paciente.Dni = txtDniEdit.Text;
-            paciente.Nombre = txtNombreEdit.Text;
-            paciente.Apellido = txtApellidoEdit.Text;
-            paciente.Telefono = txtTelefonoEdit.Text;
-            paciente.Direccion = txtDireccionEdit.Text;
-            paciente.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
-            paciente.Mail = txtMailEdit.Text;
-
-            PacienteConexion pacienteConexion = new PacienteConexion();
-            pacienteConexion.InsertarPacienteSinUsuario(paciente);
-        }
     }
 }

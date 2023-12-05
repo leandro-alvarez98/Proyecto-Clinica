@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container form_top containerbott ">
-        <%--MODAL AGREGAR ESPECIALIDAD--%>
+        <%--MODAL AGREGAR ESPECIALIDAD A MEDICO--%>
         <div class="modal fade" id="mod_ElegirEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -27,8 +27,7 @@
             </div>
         </div>
         <%-- </div>--%>
-        <%--MODAL AGREGAR JORNADA--%>
-
+        <%--MODAL AGREGAR JORNADA A MEDICO--%>
         <div class="modal fade" id="mod_ElegirJornada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -50,7 +49,7 @@
 
         </div>
 
-        <%--MODAL ELIMINAR ESPECIALIDAD--%>
+        <%--MODAL ELIMINAR ESPECIALIDAD A MEDICO--%>
         <div class="modal fade" id="mod_eliminarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -71,7 +70,7 @@
             </div>
         </div>
 
-        <%--MODAL ELIMINAR JORNADA--%>
+        <%--MODAL ELIMINAR JORNADA A MEDICO--%>
         <div class="modal fade" id="mod_eliminarJornada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

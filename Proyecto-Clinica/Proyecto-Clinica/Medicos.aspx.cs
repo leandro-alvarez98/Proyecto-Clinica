@@ -40,45 +40,7 @@ namespace Proyecto_Clinica
             Session["Medico"] = Cargar_Médico_Clinica(Id_Medico);
             Response.Redirect("Editar_medicos.aspx");
         }
-        protected void btn_Nueva_Especialidad_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                String Nueva_Especialidad = txt_Nueva_Especialidad.Text;
-                bool Existe = Comprobar_Especialidad(Nueva_Especialidad);
-
-                if (Nueva_Especialidad != null && Nueva_Especialidad.Length > 5 && !Existe) // puse mayor a 5 por tirar xd
-                {
-                    EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
-                    especialidadesConexion.Insertar_Especialidad_En_BBDD(Nueva_Especialidad);
-                    lblCargada_Correctamente.Visible = true;
-                    lblError_Especialidad.Visible = false;
-                }
-                else
-                {
-                    lblError_Especialidad.Visible = true;
-                    lblCargada_Correctamente.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw;
-            }
-           
-        }
-        private bool Comprobar_Especialidad(string nueva_Especialidad)
-        {
-            foreach(Especialidad especialidad in clinica.Especialidades)
-            {
-                if(especialidad.Tipo == nueva_Especialidad)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
+     
         private Medico Cargar_Médico_Clinica(int medico_id)
         {
             foreach (Medico medico in clinica.Medicos)
@@ -130,7 +92,6 @@ namespace Proyecto_Clinica
                 }
             }
         }
-
         protected void Btn_limpiar_Click(object sender, EventArgs e)
         {
             //limpia la grilla actual
@@ -143,30 +104,6 @@ namespace Proyecto_Clinica
             {
                 Lbl_sin_medicos.Visible = false;
             }
-        }
-
-        protected void Btn_AltaMedico_Click(object sender, EventArgs e)
-        {
-            string script = @"
-                $(document).ready(function () {
-                    $('#mod_AltaMedico').modal('show');
-                });
-            ";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
-        }
-        protected void Btn_AltaMedicoConfirmar_Click(object sender, EventArgs e)
-        {
-            Medico medico = new Medico();
-            medico.Dni = txtDniEdit.Text;
-            medico.Nombre = txtNombreEdit.Text;
-            medico.Apellido = txtApellidoEdit.Text;
-            medico.Telefono = txtTelefonoEdit.Text;
-            medico.Direccion = txtDireccionEdit.Text;
-            medico.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
-            medico.Mail = txtMailEdit.Text;
-
-            MedicoConexion medicoConexion = new MedicoConexion();
-            medicoConexion.InsertarMedicoSinUsuario(medico);
         }
 
     }
