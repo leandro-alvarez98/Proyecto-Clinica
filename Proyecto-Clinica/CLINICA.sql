@@ -268,6 +268,10 @@ VALUES
     (9, 4, 10, 3,'2023-12-20','Duele comer ensalada en navidad', 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.','Reservado'),
     (10, 4, 11, 4,'2023-12-21', 'Duele la base de datos', 'Hay que ver la solucion', 'Reservado')
 			------------------------------
+INSERT INTO TURNOS_CANCELADOS (ID_TURNO, ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD, FECHA, ESTADO, OBS_PACIENTE) 
+VALUES(2, 1, 2, 1, 1, '2023-12-12', 'Cancelado', 'Duele cabeza')
+
+
 
 INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD, ESTADO)
 VALUES (1, 1, 1), -- Especialidad 1
