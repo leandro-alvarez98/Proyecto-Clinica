@@ -11,11 +11,11 @@
       <div class="modal-dialog modal-dialog-centered ">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title">Modificar Turno </h5>
+                  <h5 class="modal-title">Reagendar Turno </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <p>Estas seguro que queres modificar el turno?</p>
+                  <p>Estas seguro que querés <strong>reagendar</strong> el turno?</p>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -42,6 +42,24 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" id="Modal_Finalizar_Turno">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Finalizar Turno </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Seguro que deseas finalizar el turno? <strong>Una vez hecho este cambio, no se puede revertir.</strong> Asegurate de ingresar una observación antes de finalizarlo.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="Btn_ConfirmarFinalizarTurno" CssClass="btn btn-primary" runat="server" OnClick="Btn_ConfirmarFinalizarTurno_Click" Text="Aceptar" />
+                </div>
+            </div>
+        </div>
+    </div>  
 
         <div class="row">
             <div class="col">
@@ -74,20 +92,26 @@
                         <p id="P_observacion" runat="server" class="card-text"></p>
                         <textarea class="form-control" runat="server" id="Txt_Observacion" rows="3" visible="false"></textarea>
 
+
+
+
+                        <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
+                        <asp:Button ID="Btn_aceptar" CssClass="Boton" OnClick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
+                        <asp:Button ID="Btn_cancelar" CssClass="Boton" runat="server" OnClick="Btn_cancelar_Click" Text="Cancelar" Visible="false" />
+
+                        <asp:Button ID="Btn_CancelarTurno" CssClass="Boton" OnClick="btn_CancelarTurno_Click" runat="server" Text="Cancelar turno" />
+                        <asp:Button ID="Btn_FinalizarTurno" CssClass="Boton" runat="server" OnClick="Btn_FinalizarTurno_Click" Text="Finalizar turno" />
                     </div>
                 </div>
-
-                <br />
-                <asp:Button ID="Btn_CancelarTurno" CssClass="Boton" OnClick="btn_CancelarTurno_Click" runat="server" Text="Cancelar turno" />
-
-                <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
-                <asp:Button ID="Btn_aceptar" CssClass="Boton" OnClick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />
-                <asp:Button ID="Btn_cancelar" CssClass="Boton" runat="server" OnClick="Btn_cancelar_Click" Text="Cancelar" Visible="false" />
             </div>
 
             
 
             <div class="col">
+                <h1>
+                    REAGENDAR TURNO
+                </h1>
+
                 <asp:Label ID="Lbl" runat="server" Visible="false"  Text="Fecha: "></asp:Label>
                 <asp:TextBox ID="txt_FechaSeleccionada" CssClass="form-control" runat="server" Visible="false" TextMode="Date"></asp:TextBox>
                 <asp:Label ID="lbl_Hora" runat="server" Visible="false"  Text="Hora: "></asp:Label>

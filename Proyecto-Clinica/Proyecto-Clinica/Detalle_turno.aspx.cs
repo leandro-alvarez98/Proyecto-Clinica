@@ -48,8 +48,8 @@ namespace Proyecto_Clinica
 
             Cargar_labels();
             Cargar_botones();
-
         }
+
         public void Cargar_labels()
         {
             Lbl_nombre_paciente.Text = turno_actual.Nombre_Paciente;
@@ -236,18 +236,24 @@ namespace Proyecto_Clinica
         protected void Btn_aceptar_Modificar_turno_Click(object sender, EventArgs e)
         {
             DateTime fechaSeleccionada = DateTime.Parse(txt_FechaSeleccionada.Text);
-            TimeSpan horaSeleccionada = TimeSpan.Parse(DGV_turnos_disponibles.SelectedRow.Cells[1].Text);
+
+            TimeSpan horaSeleccionada = TimeSpan.Parse(DGV_turnos_disponibles.SelectedRow.Cells[1].Text); 
+            HorarioConexion horarioConexion = new HorarioConexion();
+            int IDHorarioNuevo = horarioConexion.GetIdHorario(horaSeleccionada);
+
             int IDMedico = int.Parse(DGV_turnos_disponibles.SelectedRow.Cells[5].Text);
 
             Turno turno;
             turno = turno_actual;
+
+            turnoConexion.Insertar_Turno_Reagendado(turno, IDMedico, fechaSeleccionada, IDHorarioNuevo);
+
             turno.Id_Medico = IDMedico;
             turno.Nombre_Medico = DGV_turnos_disponibles.SelectedRow.Cells[3].Text;
             turno.Apellido_Medico = DGV_turnos_disponibles.SelectedRow.Cells[2].Text;
             turno.Fecha = fechaSeleccionada;
             turno.Id = turno_actual.Id;
-            HorarioConexion horarioConexion = new HorarioConexion();
-            turno.Id_Horario = horarioConexion.GetIdHorario(horaSeleccionada);
+            turno.Id_Horario = IDHorarioNuevo;
 
             if (!turnoConexion.Modificar_Turno(turno))
             {
@@ -276,6 +282,21 @@ namespace Proyecto_Clinica
             turnoConexion.Insertar_Turno_Cancelado(turno_actual);
             turnoConexion.EliminarTurno(turno_actual.Id);
             Response.Redirect("MisTurnos.aspx");
+        }
+
+        // ----- MODAL FINALIZAR TURNO -----
+        protected void Btn_FinalizarTurno_Click(object sender, EventArgs e)
+        {
+            string script = @"
+                $(document).ready(function () {
+                    $('#Modal_Finalizar_Turno').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
+        protected void Btn_ConfirmarFinalizarTurno_Click(object sender, EventArgs e)
+        {
+            turnoConexion.Finalizar_Turno(turno_actual.Id);
         }
 
         // ----- BOTONES OBSERVACIONES TURNO -----
@@ -329,5 +350,6 @@ namespace Proyecto_Clinica
             Cargar_labels();
 
         }
+
     }
 }

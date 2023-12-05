@@ -33,6 +33,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button btn_ConfirmarCancelarTurno;
 
         /// <summary>
+        /// Control Btn_ConfirmarFinalizarTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_ConfirmarFinalizarTurno;
+
+        /// <summary>
         /// Control Lbl_nombre_paciente.
         /// </summary>
         /// <remarks>
@@ -105,15 +114,6 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.HtmlControls.HtmlTextArea Txt_Observacion;
 
         /// <summary>
-        /// Control Btn_CancelarTurno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_CancelarTurno;
-
-        /// <summary>
         /// Control Btn_agregar_obs.
         /// </summary>
         /// <remarks>
@@ -139,6 +139,24 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_cancelar;
+
+        /// <summary>
+        /// Control Btn_CancelarTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_CancelarTurno;
+
+        /// <summary>
+        /// Control Btn_FinalizarTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_FinalizarTurno;
 
         /// <summary>
         /// Control Lbl.

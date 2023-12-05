@@ -295,9 +295,39 @@ namespace Conexion_Clinica
                 datos.setParametro("@IDPACIENTE", turno_Seleccionado.Id_Paciente);
                 datos.setParametro("@IDHORARIO", turno_Seleccionado.Id_Horario);
                 datos.setParametro("@IDESPECIALIDAD", turno_Seleccionado.Id_Especialidad);
-                datos.setParametro("@FECHA", turno_Seleccionado.Fecha);
+                datos.setParametro("@FECHA", turno_Seleccionado.Fecha.Year + "-" + turno_Seleccionado.Fecha.Month + "-" + turno_Seleccionado.Fecha.Day);
                 datos.setParametro("@OBSPACIENTE", turno_Seleccionado.Obs_paciente);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Insertar_Turno_Reagendado(Turno turno, int IDMedicoNuevo, DateTime FechaNueva, int IdHorarioNuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO TURNOS_Reagendados\r\n\t(ID_TURNO, \r\n\tID_PACIENTE,\r\n\tID_ESPECIALIDAD, \r\n\tOBS_PACIENTE,\r\n\tID_MEDICO_ANTERIOR , \r\n\tID_HORARIO_ANTERIOR, \r\n\tFECHA_ANTERIOR, \r\n\tID_MEDICO_NUEVO,\r\n\tID_HORARIO_NUEVO, \r\n\tFECHA_NUEVA ,\r\n\tESTADO)\r\n\r\nVALUES(\r\n\t@IDTURNO, \r\n\t@IDPACIENTE, \r\n\t@IDESPECIALIDAD, \r\n\t@OBSPACIENTE,\r\n\t@IDMEDICOANTERIOR, \r\n\t@IDHORARIOANTERIOR, \r\n\t@FECHAANTERIOR,\r\n\t@IDMEDICONUEVO,\r\n\t@IDHORARIONUEVO, \r\n\t@FECHANUEVA ,\r\n\t'Reasignado') ");
+               
+                datos.setParametro("@IDTURNO", turno.Id);
+                datos.setParametro("@IDPACIENTE", turno.Id_Paciente);
+                datos.setParametro("@IDESPECIALIDAD", turno.Id_Especialidad);
+                datos.setParametro("@OBSPACIENTE", turno.Obs_paciente);
+                datos.setParametro("@IDMEDICOANTERIOR", turno.Id_Medico);
+                datos.setParametro("@IDHORARIOANTERIOR", turno.Id_Horario);
+                datos.setParametro("@FECHAANTERIOR", turno.Fecha.Year + "-" + turno.Fecha.Month + "-" + turno.Fecha.Day);
+
+                datos.setParametro("@IDMEDICONUEVO", IDMedicoNuevo);
+                datos.setParametro("@IDHORARIONUEVO", IdHorarioNuevo);
+                datos.setParametro("@FECHANUEVA", FechaNueva.Year + "-" + FechaNueva.Month + "-" + FechaNueva.Day);
             }
             catch (Exception ex)
             {

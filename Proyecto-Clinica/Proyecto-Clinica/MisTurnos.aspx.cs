@@ -370,7 +370,7 @@ namespace Proyecto_Clinica
             int ID_Turno = int.Parse(dgv_Turnos_Medicos.SelectedRow.Cells[0].Text);
             Turno_Seleccionado = Get_Turno(ID_Turno);
 
-            if (Turno_Seleccionado.Estado == "Finalizado")
+            if (Turno_Seleccionado.Estado == "Finalizado") 
             {
                 Session["Turno"] = Turno_Seleccionado;
                 Response.Redirect("Detalle_turno.aspx");
@@ -378,6 +378,8 @@ namespace Proyecto_Clinica
             else
             {
                 lblTurnoNoFinalizado.Visible = true;
+                Session["Turno"] = Turno_Seleccionado;
+                Response.Redirect("Detalle_turno.aspx");
             }
         }
         protected void Limpiar_turno_Click(object sender, EventArgs e)
