@@ -25,9 +25,12 @@ namespace Proyecto_Clinica
             EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
             Clinica.Especialidades = especialidadesConexion.Listar_2();
 
+            
+
             int Id_Medico_Seleccionado = ((Medico)Session["Medico"]).Id;
             Medico_actual = Cargar_Médico_Clinica(Id_Medico_Seleccionado);
 
+            cargarDatosMedicos();
 
             lista_Especialidades_Faltantes = new List<Especialidad>();
             CargarEspecialidadesFaltantes();
@@ -119,14 +122,28 @@ namespace Proyecto_Clinica
         // Toma la Jornada elegida y la Agrega
         protected void btn_ActualizarJornada_Click(object sender, EventArgs e)
         {
-            int indiceSeleccionado = int.Parse(rbl_Jornada.SelectedValue);
-            int jornadaSeleccionada = Clinica.Jornadas[indiceSeleccionado - 1].Id;
-
-            if(jornadaSeleccionada >= 0)
+            try
             {
-                AsignarJornadaEnBaseDeDatos(Medico_actual.Id, jornadaSeleccionada);
-                Response.Redirect("Editar_medicos.aspx");
+                if (rbl_Jornada.SelectedValue != null)
+                {
+                    if (int.TryParse(rbl_Jornada.SelectedValue, out int indiceSeleccionado))
+                    {
+                        if (indiceSeleccionado > 0 && indiceSeleccionado <= Clinica.Jornadas.Count)
+                        {
+                            int jornadaSeleccionada = Clinica.Jornadas[indiceSeleccionado - 1].Id;
+                            AsignarJornadaEnBaseDeDatos(Medico_actual.Id, jornadaSeleccionada);
+                            Response.Redirect("Editar_medicos.aspx");
+                        }
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                // Manejar otras excepciones si es necesario.
+                throw ex;
+            }
+
+
         }
         private void AsignarJornadaEnBaseDeDatos(int idMedico, int idJornada)
         {
@@ -155,14 +172,28 @@ namespace Proyecto_Clinica
         // Toma la Especialidad elegida y la Agrega
         protected void btn_ActualizarEspecialidad_Click(object sender, EventArgs e)
         {
-            int indiceSeleccionado = int.Parse(rbl_Especialidades.SelectedValue);
-            int especialidadSeleccionada = Clinica.Especialidades[indiceSeleccionado - 1].Id;
-           
-            if (especialidadSeleccionada > 0)
+            try
             {
-                AsignarEspecialidadEnBaseDeDatos(Medico_actual.Id, especialidadSeleccionada);
-                Response.Redirect("Editar_medicos.aspx");
+                if (rbl_Especialidades.SelectedValue != null && int.TryParse(rbl_Especialidades.SelectedValue, out int indiceSeleccionado))
+                {
+                    if (indiceSeleccionado > 0 && indiceSeleccionado <= Clinica.Especialidades.Count)
+                    {
+                        int especialidadSeleccionada = Clinica.Especialidades[indiceSeleccionado - 1].Id;
+
+                        if (especialidadSeleccionada > 0)
+                        {
+                            AsignarEspecialidadEnBaseDeDatos(Medico_actual.Id, especialidadSeleccionada);
+                            Response.Redirect("Editar_medicos.aspx");
+                        }
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                // Manejar otras excepciones si es necesario.
+                throw ex;
+            }
+
         }
         private void AsignarEspecialidadEnBaseDeDatos(int idMedico, int idEspecialidad)
         {
@@ -197,15 +228,36 @@ namespace Proyecto_Clinica
         // Toma la especialidad a eliminar y la elimina.
         protected void btn_Seleccionar_Especialidad_a_Eliminar_Click(object sender, EventArgs e)
         {
-            int indiceSeleccionado = int.Parse(rbl_Elimina_Especialidad.SelectedValue);
-            int especialidadSeleccionada = Clinica.Especialidades[indiceSeleccionado - 1].Id;
-
-            if (especialidadSeleccionada > 0)
+            try
             {
-                EliminarMedicoxEspecialidad(Medico_actual.Id, especialidadSeleccionada);
-                Response.Redirect("Editar_medicos.aspx");
+                if (rbl_Elimina_Especialidad.SelectedValue != null && int.TryParse(rbl_Elimina_Especialidad.SelectedValue, out int indiceSeleccionado))
+                {
+                    if (indiceSeleccionado > 0 && indiceSeleccionado <= Clinica.Especialidades.Count)
+                    {
+                        int especialidadSeleccionada = Clinica.Especialidades[indiceSeleccionado - 1].Id;
+
+                        if (especialidadSeleccionada > 0)
+                        {
+                            EliminarMedicoxEspecialidad(Medico_actual.Id, especialidadSeleccionada);
+                            Response.Redirect("Editar_medicos.aspx");
+                        }
+                        else
+                        {
+                            // Manejar el caso en que especialidadSeleccionada no es mayor que 0.
+                            // Puedes mostrar un mensaje de error o realizar otras acciones.
+                            //    lbl_sin_datos.Visible = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar otras excepciones si es necesario.
+                throw ex;
             }
         }
+
+
         private void EliminarMedicoxEspecialidad(int idMedico, int idEspecialidad)
         {
             EspecialidadesConexion especialidadesConexion = new EspecialidadesConexion();
@@ -232,20 +284,256 @@ namespace Proyecto_Clinica
         // Toma la jornada elegida y la elimina.
         protected void btn_Eliminar_Jornada_Click(object sender, EventArgs e)
         {
-            int indiceSeleccionado = int.Parse(rbl_Eliminar_Jornada.SelectedValue);
-            int jornadaSeleccionada = Clinica.Jornadas[indiceSeleccionado - 1].Id;
-
-            if (jornadaSeleccionada >= 0)
+            try
             {
-                EliminarMedicoxJornada(Medico_actual.Id, jornadaSeleccionada);
-                Response.Redirect("Editar_medicos.aspx");
+                if (rbl_Eliminar_Jornada.SelectedValue != null && int.TryParse(rbl_Eliminar_Jornada.SelectedValue, out int indiceSeleccionado))
+                {
+                    if (indiceSeleccionado > 0 && indiceSeleccionado <= Clinica.Jornadas.Count)
+                    {
+                        int jornadaSeleccionada = Clinica.Jornadas[indiceSeleccionado - 1].Id;
+
+                        if (jornadaSeleccionada >= 0)
+                        {
+                            EliminarMedicoxJornada(Medico_actual.Id, jornadaSeleccionada);
+                            Response.Redirect("Editar_medicos.aspx");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar otras excepciones si es necesario.
+                throw ex;
             }
         }
+
 
         private void EliminarMedicoxJornada(int idMedico, int idJornada)
         {
             JornadaConexion jornadaConexion = new JornadaConexion();
             jornadaConexion.Eliminar_Jornada(idMedico, idJornada);
         }
+
+        protected void bntEditarMedico_Click(object sender, EventArgs e)
+        {
+
+            txtNombreEdit.Visible = true;
+            txtApellidoEdit.Visible = true;
+            txtDniEdit.Visible = true;
+            txtMailEdit.Visible = true;
+            txtTelefonoEdit.Visible = true;
+            txtDireccionEdit.Visible = true;
+            txtFechaNacimientoEdit.Visible = true;
+
+            // Asigna los valores actuales a los controles de edición
+            txtNombreEdit.Text = Medico_actual.Nombre;
+            txtApellidoEdit.Text = Medico_actual.Apellido;
+            txtDniEdit.Text = Medico_actual.Dni;
+            txtMailEdit.Text = Medico_actual.Mail;
+            txtTelefonoEdit.Text = Medico_actual.Telefono;
+            txtDireccionEdit.Text = Medico_actual.Direccion;
+            txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString("yyyy-MM-dd");
+
+            // Oculta los controles de visualización
+            nombrelbl.Visible = false;
+            apellidoLbl.Visible = false;
+            dniLbl.Visible = false;
+            emailLbl.Visible = false;
+            telefonoLbl.Visible = false;
+            direccionLbl.Visible = false;
+            fechaNacimientoLbl.Visible = false;
+
+            // Muestra los botones de Guardar y Cancelar
+            btnGuardar.Visible = true;
+            btnCancelar.Visible = true;
+
+            // Oculta el botón de Editar
+            btnEditarMedico.Visible = false;
+
+        }
+        public void cargarDatosMedicos()
+        {
+            if (Medico_actual != null)
+            {
+                nombrelbl.Text = Medico_actual.Nombre;
+                apellidoLbl.Text = Medico_actual.Apellido;
+                dniLbl.Text = Medico_actual.Dni.ToString();
+                emailLbl.Text = Medico_actual.Mail;
+                telefonoLbl.Text = Medico_actual.Telefono;
+                direccionLbl.Text = Medico_actual.Direccion;
+                fechaNacimientoLbl.Text = Medico_actual.Fecha_Nacimiento.ToString("yyyy-MM-dd");
+            }
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            bool nombreValido = true, apellidoValido = true, telefonoValido = true, emailValido = true, direccionValido = true, fechaNacimientoValido = true, dniValido = true;
+
+
+            if (!Validaciones.EsNumero(txtDniEdit.Text))
+            {
+                lblErrorDni.Visible = true;
+                dniValido = false;
+            }
+            if (!Validaciones.EsNumero(txtTelefonoEdit.Text))
+            {
+                lblErrorTelefono.Visible = true;
+                telefonoValido = false;
+            }
+            if (Validaciones.ContieneNumeros(txtNombreEdit.Text))
+            {
+                lblErrorNombre.Visible = true;
+                nombreValido = false;
+            }
+            if (Validaciones.ContieneNumeros(txtApellidoEdit.Text))
+            {
+                lblErrorApellido.Visible = true;
+                apellidoValido = false;
+            }
+
+            if (!Validaciones.EsFormatoCorreoElectronico(txtMailEdit.Text))
+            {
+                lblErrorMail.Visible = true;
+                emailValido = false;
+            }
+
+
+            if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
+            {
+                Ocultar_labels_Error();
+
+                if (Medico_actual.Nombre == null)
+                {
+                    InsertarDatosEnBBDD();
+                }
+                else
+                {
+
+
+                    ActualizarDatosEnBBDD();
+                }
+            }
+            
+        }
+        public void Ocultar_labels_Error()
+        {
+            lblErrorDni.Visible = false;
+
+            lblErrorTelefono.Visible = false;
+
+            lblErrorNombre.Visible = false;
+
+            lblErrorApellido.Visible = false;
+
+            lblErrorMail.Visible = false;
+
+        }
+        private void ActualizarDatosEnBBDD()
+        {
+
+            // guardamos los valores editados de los TextBox
+            string nuevoNombre = txtNombreEdit.Text;
+            string nuevoApellido = txtApellidoEdit.Text;
+            string nuevoDni = txtDniEdit.Text;
+            string nuevoMail = txtMailEdit.Text;
+            string nuevoTelefono = txtTelefonoEdit.Text;
+            string nuevaDireccion = txtDireccionEdit.Text;
+            DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+
+
+            // Actualizar los datos del paciente
+
+            if (Medico_actual != null)
+            {
+                Medico medicoActualizado = new Medico 
+                {
+                    Id_Usuario = Medico_actual.Id_Usuario,
+                    Dni = nuevoDni,
+                    Nombre = nuevoNombre,
+                    Apellido = nuevoApellido,
+                    Mail = nuevoMail,
+                    Telefono = nuevoTelefono,
+                    Direccion = nuevaDireccion,
+                    Fecha_Nacimiento = nuevaFechaNacimiento
+                };
+
+                UsuarioConexion conexionMedico = new UsuarioConexion();
+                conexionMedico.ActualizarMedico(medicoActualizado);
+
+                // Oculta el TextBox y botón de guardar
+                OcultarControlesEdicion();
+                // Redirecciona a la misma página para refrescar los datos
+                Response.Redirect(Request.RawUrl);
+            }
+
+        }
+        private void InsertarDatosEnBBDD()
+        {
+            string nuevoDni = txtDniEdit.Text;
+            string nuevoNombre = txtNombreEdit.Text;
+            string nuevoApellido = txtApellidoEdit.Text;
+            string nuevoMail = txtMailEdit.Text;
+            string nuevoTelefono = txtTelefonoEdit.Text;
+            string nuevaDireccion = txtDireccionEdit.Text;
+            DateTime nuevaFechaNacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+
+            UsuarioConexion usuarioConexion = new UsuarioConexion();
+            Medico_actual.Dni = nuevoDni;
+            Medico_actual.Nombre = nuevoNombre;
+            Medico_actual.Apellido = nuevoApellido;
+            Medico_actual.Mail = nuevoMail;
+            Medico_actual.Direccion = nuevaDireccion;
+            Medico_actual.Fecha_Nacimiento = nuevaFechaNacimiento;
+            usuarioConexion.ActualizarMedico(Medico_actual);
+        }
+        private void OcultarControlesEdicion()
+        {
+            //ocultar TextBox y boton de guardar
+            Visibilidad_Texbox(false);
+
+            //Ocultar botón de guardar
+            btnGuardar.Visible = false;
+            btnEditarMedico.Visible = true;
+        }
+        public void Visibilidad_Texbox(bool valor)
+        {
+            txtDniEdit.Visible = valor;
+            txtNombreEdit.Visible = valor;
+            txtApellidoEdit.Visible = valor;
+            txtMailEdit.Visible = valor;
+            txtTelefonoEdit.Visible = valor;
+            txtDireccionEdit.Visible = valor;
+            txtFechaNacimientoEdit.Visible = valor;
+        }
+
+        public void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnCancelar.Visible = false;
+            OcultarControlesEdicion();
+            Visibilidad_labels(true);
+            Cargar_labels();
+        }
+        public void Cargar_labels()
+        {
+            dniLbl.Text = Medico_actual.Dni.ToString();
+            apellidoLbl.Text = Medico_actual.Apellido;
+            nombrelbl.Text = Medico_actual.Nombre;
+            emailLbl.Text = Medico_actual.Mail;
+            telefonoLbl.Text = Medico_actual.Telefono;
+            direccionLbl.Text = Medico_actual.Direccion;
+            fechaNacimientoLbl.Text = Medico_actual.Fecha_Nacimiento.ToString("d/M/yyyy");
+        }
+        public void Visibilidad_labels(bool valor)
+        {
+            dniLbl.Visible = valor;
+            nombrelbl.Visible = valor;
+            apellidoLbl.Visible = valor;
+            emailLbl.Visible = valor;
+            telefonoLbl.Visible = valor;
+            direccionLbl.Visible = valor;
+            fechaNacimientoLbl.Visible = valor;
+        }
+
     }
 }

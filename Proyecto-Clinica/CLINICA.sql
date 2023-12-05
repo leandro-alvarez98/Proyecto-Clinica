@@ -268,3 +268,5 @@ VALUES (1, 1, 1), -- Trabajan de mañana
        (4, 3, 1),
 	   (5, 3, 1)
 	   		------------------------------
+
+select * from MEDICOS
