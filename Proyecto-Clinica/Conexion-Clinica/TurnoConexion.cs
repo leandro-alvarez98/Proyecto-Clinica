@@ -55,6 +55,51 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+
+        public List<Turno> Listar_Turnos_cancelados()
+        {
+            List<Turno> lista = new List<Turno>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("SELECT \r\n\t\tT.ID_TURNO AS IDTURNO,\r\n\t\tT.ID_MEDICO AS IDMEDICO,\r\n\t\tT.ID_PACIENTE AS IDPACIENTE,\r\n\t\tT.ID_HORARIO AS IDHORARIO,\r\n\t\tT.ID_ESPECIALIDAD AS IDESPECIALIDAD, \r\n\t\tT.FECHA AS FECHA,\r\n\t\tH.HORA AS HORA,\r\n\t\tP.DNI AS DNIPACIENTE,\r\n\t\tT.ESTADO AS ESTADO,\r\n\t\tM.NOMBRE AS MNOMBRE,\r\n\t\tM.APELLIDO AS MAPELLIDO,\r\n\t\tP.NOMBRE AS PNOMBRE,\r\n\t\tP.APELLIDO AS PAPELLIDO,\r\n\t\tT.OBS_PACIENTE AS OBSERVACION_PACIENTE FROM TURNOS_CANCELADOS T \r\n\tINNER JOIN MEDICOS M ON M.ID_MEDICO = T.ID_MEDICO \r\n\tINNER JOIN PACIENTES P ON P.ID_PACIENTE = T.ID_PACIENTE \r\n\tINNER JOIN HORARIOS H ON H.ID_HORARIO = T.ID_HORARIO");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Turno turno = new Turno
+                    {
+                        Id = (int)datos.Lector["IDTURNO"],
+                        Id_Medico = (int)datos.Lector["IDMEDICO"],
+                        Id_Paciente = (int)datos.Lector["IDPACIENTE"],
+                        Id_Horario = (int)datos.Lector["IDHORARIO"],
+                        Id_Especialidad = (int)datos.Lector["IDESPECIALIDAD"],
+                        Horario = (TimeSpan)datos.Lector["HORA"],
+                        Dni_paciente = (String)datos.Lector["DNIPACIENTE"],
+                        Fecha = (DateTime)datos.Lector["FECHA"],
+                        Estado = (String)datos.Lector["ESTADO"],
+                        Nombre_Medico = (String)datos.Lector["MNOMBRE"],
+                        Apellido_Medico = (String)datos.Lector["MAPELLIDO"],
+                        Nombre_Paciente = (String)datos.Lector["PNOMBRE"],
+                        Apellido_Paciente = (String)datos.Lector["PAPELLIDO"],
+                        Obs_paciente = (String)datos.Lector["OBSERVACION_PACIENTE"],
+                    };
+
+                    lista.Add(turno);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public string Listar_Observacion_x_ID(int ID)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -129,46 +174,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-        public void Cancelar_Turno(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Cancelado' WHERE ID_TURNO = @ID_TURNO");
-                datos.setParametro("@ID_TURNO", id);
-                datos.ejecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-        public void Activar_Turno(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Disponible' WHERE ID_TURNO = @ID_TURNO");
-                datos.setParametro("@ID_TURNO", id);
-                datos.ejecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
         public bool Modificar_Turno(Turno turno)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -195,34 +200,12 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
-        //falta decir a que fecha se reprograma y con que doctor osea faltan pasarle mas parametros
         public void Reprogramar_Turno(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setConsulta("UPDATE TURNOS SET ESTADO = 'Reprogramado' WHERE ID_TURNO = @ID_TURNO");
-                datos.setParametro("@ID_TURNO", id);
-                datos.ejecutarAccion();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-        public void No_asistio_Turno(int id)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setConsulta("UPDATE TURNOS SET ESTADO = 'No asistió' WHERE ID_TURNO = @ID_TURNO");
                 datos.setParametro("@ID_TURNO", id);
                 datos.ejecutarAccion();
 
@@ -257,7 +240,6 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
-
         public int GetMaxID()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -271,6 +253,51 @@ namespace Conexion_Clinica
                     MaxId = (int)datos.Lector["MAXID"];
                 }
                 return MaxId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void EliminarTurno(int iD_Turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("DELETE FROM TURNOS WHERE ID_TURNO = @IDTURNO");
+                datos.setParametro("@IDTURNO", iD_Turno);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Insertar_Turno_Cancelado(Turno turno_Seleccionado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO TURNOS_CANCELADOS (ID_TURNO, ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD, FECHA, ESTADO, OBS_PACIENTE) VALUES(@IDTURNO, @IDMEDICO, @IDPACIENTE, @IDHORARIO, @IDESPECIALIDAD, @FECHA, 'Cancelado', @OBSPACIENTE)");
+                datos.setParametro("@IDTURNO", turno_Seleccionado.Id);
+                datos.setParametro("@IDMEDICO", turno_Seleccionado.Id_Medico);
+                datos.setParametro("@IDPACIENTE", turno_Seleccionado.Id_Paciente);
+                datos.setParametro("@IDHORARIO", turno_Seleccionado.Id_Horario);
+                datos.setParametro("@IDESPECIALIDAD", turno_Seleccionado.Id_Especialidad);
+                datos.setParametro("@FECHA", turno_Seleccionado.Fecha);
+                datos.setParametro("@OBSPACIENTE", turno_Seleccionado.Obs_paciente);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

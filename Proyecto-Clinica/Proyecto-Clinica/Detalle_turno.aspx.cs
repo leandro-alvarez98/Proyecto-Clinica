@@ -15,8 +15,8 @@ namespace Proyecto_Clinica
     public partial class Detalle_turno : System.Web.UI.Page
     {
 
-        Turno turno_actual;
         Clinica clinica;
+        Turno turno_actual;
         TurnoConexion turnoConexion;
         Usuario usuario_actual;
         public List<Turno> Turnos_Disponibles;
@@ -48,56 +48,6 @@ namespace Proyecto_Clinica
 
             Cargar_labels();
             Cargar_botones();
-
-        }
-        protected void Btn_agregar_obs_Click(object sender, EventArgs e)
-        {
-            //oculta y muestra nuevos los botones
-            Btn_agregar_obs.Visible = false;
-            Btn_aceptar.Visible = true;
-            Btn_cancelar.Visible = true;
-
-            //oculta las la observacion actual 
-            P_observacion.Visible = false;
-            Txt_Observacion.Visible = true;
-            Txt_Observacion.Value = P_observacion.InnerText;
-        }
-        protected void Btn_aceptar_Click(object sender, EventArgs e)
-        {
-            turnoConexion = new TurnoConexion();
-
-            string Observacion = Txt_Observacion.Value.ToString();
-
-            //actualiza observacion
-            turnoConexion.Actualizar_Observacion_x_ID(Observacion, turno_actual.Id);
-
-            //Recarga  la observacion  desde la BBDD           
-            turno_actual.Obs_medico = turnoConexion.Listar_Observacion_x_ID(turno_actual.Id);
-
-            //actualiza el texto de la observacion
-            P_observacion.InnerText = turno_actual.Obs_medico;
-           
-            //muestra los campos por defecto
-            Btn_agregar_obs.Visible = true;
-            P_observacion.Visible = true;
-
-            //oculta lo que ya no se usa
-            Btn_aceptar.Visible = false;
-            Btn_cancelar.Visible=false;
-            Txt_Observacion.Visible = false;
-        }      
-        protected void Btn_cancelar_Click(object sender, EventArgs e)
-        {
-            //oculta y muestra botones correspondientes
-            Btn_cancelar.Visible = false;
-            Btn_aceptar.Visible = false;
-            Txt_Observacion.Visible=false;
-
-            //muestra los campos por defecto
-            Btn_agregar_obs.Visible = true;
-            P_observacion.Visible = true;
-            
-            Cargar_labels();
 
         }
         public void Cargar_labels()
@@ -265,10 +215,13 @@ namespace Proyecto_Clinica
                 }
             }
         }
+
         protected void Btn_BuscarTurnosDisponibles_Click(object sender, EventArgs e)
         {
             Cargar_Turnos_Disponibles();
         }
+
+        // ----- MODAL MODIFICAR TURNO -----
         protected void DGV_turnos_disponibles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -280,7 +233,6 @@ namespace Proyecto_Clinica
             ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
 
         }
-
         protected void Btn_aceptar_Modificar_turno_Click(object sender, EventArgs e)
         {
             DateTime fechaSeleccionada = DateTime.Parse(txt_FechaSeleccionada.Text);
@@ -307,6 +259,75 @@ namespace Proyecto_Clinica
                 Response.Redirect("Detalle_turno.aspx");
                 Session["Turno"] = turno;
             }
+        }
+
+        // ----- MODAL CANCELAR TURNO -----
+        protected void btn_CancelarTurno_Click(object sender, EventArgs e)
+        {
+            string script = @"
+                $(document).ready(function () {
+                    $('#Modal_Cancelar_Turno').modal('show');
+                });
+            ";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", script, true);
+        }
+        protected void btn_ConfirmarCancelarTurno_Click(object sender, EventArgs e)
+        {
+            turnoConexion.Insertar_Turno_Cancelado(turno_actual);
+            turnoConexion.EliminarTurno(turno_actual.Id);
+            Response.Redirect("MisTurnos.aspx");
+        }
+
+        // ----- BOTONES OBSERVACIONES TURNO -----
+        protected void Btn_agregar_obs_Click(object sender, EventArgs e)
+        {
+            //oculta y muestra nuevos los botones
+            Btn_agregar_obs.Visible = false;
+            Btn_aceptar.Visible = true;
+            Btn_cancelar.Visible = true;
+
+            //oculta las la observacion actual 
+            P_observacion.Visible = false;
+            Txt_Observacion.Visible = true;
+            Txt_Observacion.Value = P_observacion.InnerText;
+        }
+        protected void Btn_aceptar_Click(object sender, EventArgs e)
+        {
+            turnoConexion = new TurnoConexion();
+
+            string Observacion = Txt_Observacion.Value.ToString();
+
+            //actualiza observacion
+            turnoConexion.Actualizar_Observacion_x_ID(Observacion, turno_actual.Id);
+
+            //Recarga  la observacion  desde la BBDD           
+            turno_actual.Obs_medico = turnoConexion.Listar_Observacion_x_ID(turno_actual.Id);
+
+            //actualiza el texto de la observacion
+            P_observacion.InnerText = turno_actual.Obs_medico;
+           
+            //muestra los campos por defecto
+            Btn_agregar_obs.Visible = true;
+            P_observacion.Visible = true;
+
+            //oculta lo que ya no se usa
+            Btn_aceptar.Visible = false;
+            Btn_cancelar.Visible=false;
+            Txt_Observacion.Visible = false;
+        }      
+        protected void Btn_cancelar_Click(object sender, EventArgs e)
+        {
+            //oculta y muestra botones correspondientes
+            Btn_cancelar.Visible = false;
+            Btn_aceptar.Visible = false;
+            Txt_Observacion.Visible=false;
+
+            //muestra los campos por defecto
+            Btn_agregar_obs.Visible = true;
+            P_observacion.Visible = true;
+            
+            Cargar_labels();
+
         }
     }
 }

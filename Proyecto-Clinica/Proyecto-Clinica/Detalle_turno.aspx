@@ -25,6 +25,24 @@
       </div>
   </div>
 
+    <div class="modal" tabindex="-1" id="Modal_Cancelar_Turno">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancelar Turno </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Estas seguro que queres cancelar el turno?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btn_ConfirmarCancelarTurno" CssClass="btn btn-primary" runat="server" OnClick="btn_ConfirmarCancelarTurno_Click" Text="Aceptar" />
+                </div>
+            </div>
+        </div>
+    </div>
+
         <div class="row">
             <div class="col">
 
@@ -60,6 +78,7 @@
                 </div>
 
                 <br />
+                <asp:Button ID="Btn_CancelarTurno" CssClass="Boton" OnClick="btn_CancelarTurno_Click" runat="server" Text="Cancelar turno" />
 
                 <asp:Button ID="Btn_agregar_obs" CssClass="Boton" OnClick="Btn_agregar_obs_Click" runat="server" Text="Agregar Observacion" />
                 <asp:Button ID="Btn_aceptar" CssClass="Boton" OnClick="Btn_aceptar_Click" runat="server" Text="Aceptar" Visible="false" />

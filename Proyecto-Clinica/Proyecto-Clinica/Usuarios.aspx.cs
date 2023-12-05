@@ -38,8 +38,11 @@ namespace Proyecto_Clinica
             if (Session["inactivo"] != null)
             {
                 inactivos = (bool)Session["inactivo"];
-            }else
-            { inactivos = false; }
+            }
+            else
+            {
+                inactivos = false; 
+            }
         }
         private Usuario Cargar_Datos_Usuario(Usuario usuario)
         {
@@ -323,7 +326,8 @@ namespace Proyecto_Clinica
                     {
                         if (turno.Id_Medico == medico.Id)
                         {
-                            turnoConexion.Cancelar_Turno(turno.Id);
+                            turnoConexion.Insertar_Turno_Cancelado(turno);
+                            turnoConexion.EliminarTurno(turno.Id);
                         }
                     }
                     break;
@@ -333,7 +337,8 @@ namespace Proyecto_Clinica
                     {
                         if (turno.Id_Medico == paciente.Id)
                         {
-                            turnoConexion.Cancelar_Turno(turno.Id);
+                            turnoConexion.Insertar_Turno_Cancelado(turno);
+                            turnoConexion.EliminarTurno(turno.Id);
                         }
                     }
                     break;

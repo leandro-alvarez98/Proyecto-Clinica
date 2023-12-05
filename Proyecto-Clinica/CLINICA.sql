@@ -108,14 +108,52 @@ CREATE TABLE TURNOS (
 	FECHA DATE not null,
 	OBS_PACIENTE VARCHAR(1500) NOT NULL,
 	OBS_MEDICO VARCHAR(1500) NOT NULL,
-    ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reservado', 'Reprogramado', 'Cancelado', 'No asistió', 'Finalizado','Activo')),
+    ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reservado', 'Finalizado')),
 	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
 	FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTES(ID_PACIENTE),
 	FOREIGN KEY (ID_HORARIO) REFERENCES HORARIOS(ID_HORARIO),
 	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD)
 )
 GO
+CREATE TABLE TURNOS_CANCELADOS (
+    ID_TURNO INT NOT NULL PRIMARY KEY,
+	ID_MEDICO INT NOT NULL,
+	ID_PACIENTE INT NOT NULL,
+	ID_HORARIO int not null,
+	ID_ESPECIALIDAD INT NOT NULL,
+	FECHA DATE not null,
+	OBS_PACIENTE VARCHAR(1500) NOT NULL,
+    ESTADO VARCHAR(30) CHECK (ESTADO IN ('Cancelado')),
+	FOREIGN KEY (ID_MEDICO) REFERENCES MEDICOS(ID_MEDICO),
+	FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTES(ID_PACIENTE),
+	FOREIGN KEY (ID_HORARIO) REFERENCES HORARIOS(ID_HORARIO),
+	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD)
+)
+GO
+CREATE TABLE TURNOS_Reagendados (
+    ID_TURNO INT NOT NULL PRIMARY KEY,
+	ID_PACIENTE INT NOT NULL,
+	ID_ESPECIALIDAD INT NOT NULL,
+	OBS_PACIENTE VARCHAR(1500) NOT NULL,
+	ID_MEDICO_ANTERIOR INT NOT NULL,
+	ID_HORARIO_ANTERIOR int not null,
+	FECHA_ANTERIOR DATE not null,
+	ID_MEDICO_NUEVO INT NOT NULL,
+	ID_HORARIO_NUEVO int not null,
+	FECHA_NUEVA DATE not null,
+    ESTADO VARCHAR(30) CHECK (ESTADO IN ('Reasignado')),
 
+	FOREIGN KEY (ID_PACIENTE) REFERENCES PACIENTES(ID_PACIENTE),
+	FOREIGN KEY (ID_ESPECIALIDAD) REFERENCES ESPECIALIDADES(ID_ESPECIALIDAD),
+
+	FOREIGN KEY (ID_MEDICO_ANTERIOR) REFERENCES MEDICOS(ID_MEDICO),
+	FOREIGN KEY (ID_HORARIO_ANTERIOR) REFERENCES HORARIOS(ID_HORARIO),
+
+	FOREIGN KEY (ID_MEDICO_NUEVO) REFERENCES MEDICOS(ID_MEDICO),
+	FOREIGN KEY (ID_HORARIO_NUEVO) REFERENCES HORARIOS(ID_HORARIO),
+
+)
+GO
 CREATE TABLE MEDICOXJORNADA (
     ID_MEDICO INT NOT NULL,
     ID_JORNADA INT NOT NULL,
@@ -143,7 +181,6 @@ INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Neurología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Oftalmología');
 INSERT INTO ESPECIALIDADES (TIPO) VALUES ('Ortopedia');
 		------------------------------
-
 INSERT INTO JORNADAS (TIPO_JORNADA)
 VALUES('Mañana'), ('Tarde'), ('Noche')
 		------------------------------
@@ -219,17 +256,17 @@ VALUES  (16, '123456789', 'Laura', 'Gómez', '7755599994', 'Calle Principal 123',
 
 INSERT INTO TURNOS (ID_MEDICO, ID_PACIENTE, ID_HORARIO, ID_ESPECIALIDAD ,FECHA, OBS_PACIENTE, OBS_MEDICO, ESTADO) 
 VALUES 
-    (1, 1, 1, 1, '2023-11-11','Duele panza', 'El paciente presentó mejoras significativas.','Reservado'),
-    (2, 1, 2, 1, '2023-11-12', 'Duele cabeza', 'Se recomienda realizar pruebas adicionales para evaluar la condición del paciente.', 'Reservado'),
-    (3, 1, 3, 1,'2023-11-13','Duele oreja','El tratamiento actual está mostrando resultados positivos.', 'Reservado'),
-    (3, 2, 4, 4,'2023-11-14','Duele riñon','El paciente necesita seguir con el tratamiento según lo indicado.' , 'Reservado'),
-    (4, 2, 5, 2,'2023-11-15','Duele masticar' ,'Se observaron síntomas preocupantes durante la consulta.', 'Reservado'),
-    (5, 3, 6, 2,'2023-11-16','Duele pensar' ,'El médico sugiere ajustar la medicación del paciente.','Reservado'),
-    (6, 1, 7, 2,'2023-11-17','Duele pestañear', 'Se discutieron posibles cambios en el plan de tratamiento.', 'Reservado'),
-    (7, 2, 8, 3,'2023-11-18','Duele trabajar','El paciente informó de efectos secundarios leves, se monitoreará.' , 'Reservado'),
-    (8, 4, 9, 3,'2023-11-19','Duele jugar lol','Es necesario programar un seguimiento para evaluar progresos.' , 'Reservado'),
-    (9, 4, 10, 3,'2023-11-20','Duele comer ensalada en navidad', 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.','Reservado'),
-    (10, 4, 11, 4,'2023-11-21', 'Duele la base de datos', 'Hay que ver la solucion', 'Reservado')
+    (1, 1, 1, 1, '2023-12-11','Duele panza', 'El paciente presentó mejoras significativas.','Reservado'),
+    (2, 1, 2, 1, '2023-12-12', 'Duele cabeza', 'Se recomienda realizar pruebas adicionales para evaluar la condición del paciente.', 'Reservado'),
+    (3, 1, 3, 1,'2023-12-13','Duele oreja','El tratamiento actual está mostrando resultados positivos.', 'Reservado'),
+    (3, 2, 4, 4,'2023-12-14','Duele riñon','El paciente necesita seguir con el tratamiento según lo indicado.' , 'Reservado'),
+    (4, 2, 5, 2,'2023-12-15','Duele masticar' ,'Se observaron síntomas preocupantes durante la consulta.', 'Reservado'),
+    (5, 3, 6, 2,'2023-12-16','Duele pensar' ,'El médico sugiere ajustar la medicación del paciente.','Reservado'),
+    (6, 1, 7, 2,'2023-12-17','Duele pestañear', 'Se discutieron posibles cambios en el plan de tratamiento.', 'Reservado'),
+    (7, 2, 8, 3,'2023-12-18','Duele trabajar','El paciente informó de efectos secundarios leves, se monitoreará.' , 'Reservado'),
+    (8, 4, 9, 3,'2023-12-19','Duele jugar lol','Es necesario programar un seguimiento para evaluar progresos.' , 'Reservado'),
+    (9, 4, 10, 3,'2023-12-20','Duele comer ensalada en navidad', 'El médico proporcionó recomendaciones para mejorar la salud general del paciente.','Reservado'),
+    (10, 4, 11, 4,'2023-12-21', 'Duele la base de datos', 'Hay que ver la solucion', 'Reservado')
 			------------------------------
 
 INSERT INTO MEDICOSXESPECIALIDAD (ID_MEDICO, ID_ESPECIALIDAD, ESTADO)
@@ -268,5 +305,3 @@ VALUES (1, 1, 1), -- Trabajan de mañana
        (4, 3, 1),
 	   (5, 3, 1)
 	   		------------------------------
-
-select * from MEDICOS

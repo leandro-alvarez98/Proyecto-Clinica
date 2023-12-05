@@ -69,6 +69,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button Ver_turnos_del_dia_RA;
 
         /// <summary>
+        /// Control Btn_VerTurnosCancelados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_VerTurnosCancelados;
+
+        /// <summary>
         /// Control DGV_Turnos_totales.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos_hoy;
+
+        /// <summary>
+        /// Control lbl_SinTurnosCancelados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_SinTurnosCancelados;
 
         /// <summary>
         /// Control Lbl_buscar_turno.
@@ -177,6 +195,24 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Label Lbl_sin_turnos_hoy_m;
 
         /// <summary>
+        /// Control Btn_VerTurnosCanceladosPaciente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_VerTurnosCanceladosPaciente;
+
+        /// <summary>
+        /// Control Btn_LimpiarGrillaPacientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_LimpiarGrillaPacientes;
+
+        /// <summary>
         /// Control Dgv_Turnos_Paciente.
         /// </summary>
         /// <remarks>
@@ -184,5 +220,14 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView Dgv_Turnos_Paciente;
+
+        /// <summary>
+        /// Control LblPacienteSinTurnosCancelados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblPacienteSinTurnosCancelados;
     }
 }

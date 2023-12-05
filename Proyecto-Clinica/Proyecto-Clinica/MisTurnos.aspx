@@ -42,7 +42,9 @@
                         <br />
                         <asp:Button ID="Btn_busqueda" runat="server" OnClick="Btn_busqueda_Click" CssClass="Boton" Text="Buscar" />
                         <asp:Button ID="Btn_limpiar_busqueda" OnClick="Btn_limpiar_busqueda_Click" runat="server" CssClass="Boton" Text="Limpiar" />
-                        <asp:Button ID="Ver_turnos_del_dia_RA" runat="server" CssClass="Boton"  OnClick="Ver_turnos_del_dia_RA_Click" Text="Turnos del dia" />        
+                        <asp:Button ID="Ver_turnos_del_dia_RA" runat="server" CssClass="Boton"  OnClick="Ver_turnos_del_dia_RA_Click" Text="Turnos del dia" />  
+                        <asp:Button ID="Btn_VerTurnosCancelados" runat="server" CssClass="Boton"  OnClick="Btn_VerTurnosCancelados_Click" Text="Turnos Cancelados" />  
+
                         <hr />
                     <asp:GridView ID="DGV_Turnos_totales" CssClass="table table-dark table-hover PAD_TOP"  OnSelectedIndexChanged="DGV_Turnos_totales_Cancelar_Modificar"  runat="server" AutoGenerateColumns="false" AutoPostBack="true" EnableViewState="true">
                             <Columns>
@@ -61,6 +63,8 @@
                         </asp:GridView>
                         <asp:Label ID="Lbl_sin_turnos" runat="server" Text="No hay Turnos asociados a este Dni" Visible="false"></asp:Label>
                         <asp:Label ID="Lbl_sin_turnos_hoy" runat="server" Text="No hay ningun Turno para el dia de hoy" Visible="false"></asp:Label>
+                        <asp:Label ID="lbl_SinTurnosCancelados" runat="server" Text="Sin turnos cancelados" Visible="false"></asp:Label>
+
                     
                 <%}else if (usuarioActual.Tipo == "Médico")%>
                 <%{%>
@@ -94,11 +98,14 @@
                         <asp:Label ID="Lbl_sin_turnos_dni" runat="server" Text="No hay Turnos asociados a este Dni" Visible="false"></asp:Label>
                         <asp:Label ID="Lbl_sin_turnos_hoy_m" runat="server" Text="No hay ningun Turno para el dia de hoy" Visible="false"></asp:Label>
 
-                 <%}else%>
+                 <%}else if (usuarioActual.Tipo == "Paciente")%>
                 <%{%>
                     
                        
                         <h1 class="fs-1 font-monospace">Mis Turnos</h1>
+                        <asp:Button ID="Btn_VerTurnosCanceladosPaciente" runat="server" CssClass="Boton"  OnClick="Btn_VerTurnosCanceladosPaciente_Click" Text="Turnos Cancelados" />  
+                        <asp:Button ID="Btn_LimpiarGrillaPacientes" OnClick="Btn_LimpiarGrillaPacientes_Click" runat="server" CssClass="Boton" Text="Limpiar" />
+                        
                         <asp:GridView ID="Dgv_Turnos_Paciente" CssClass="table table-dark table-hover PAD_TOP" OnSelectedIndexChanged="DGV_Turnos_Pacientes_Cancelar" runat="server" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField HeaderText="Turno #" DataField="Id" />
@@ -113,7 +120,9 @@
                                 <asp:BoundField HeaderText="Estado" DataField="Estado" />
                                 <asp:CommandField ShowSelectButton="true" SelectText="Cancelar" HeaderText="Accion" />
                             </Columns>
-                        </asp:GridView>               
+                        </asp:GridView>
+                        <asp:Label ID="LblPacienteSinTurnosCancelados" runat="server" Text="Sin turnos cancelados" Visible="false"></asp:Label>
+
 
                  <%}%>
      </div>
