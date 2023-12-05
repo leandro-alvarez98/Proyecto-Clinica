@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+        <%-- referencia a la carpeta JS que contiene los script --%>
+<script type="text/javascript" src="JS/JavaScript.js"></script>
     <div class="container form_top containerbott">
 
         <%--MODAL ALTA PACIENTE--%>
@@ -27,7 +28,7 @@
                             </li>
                             <li class="list-group-item">
                                 <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
-                                <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" onkeypress="return soloNumeros(event);" maxlength="8"></asp:TextBox>
                             </li>
                             <li class="list-group-item">
                                 <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>

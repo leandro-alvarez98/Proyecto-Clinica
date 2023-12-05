@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <style>
+    .lbl_error {
+        color: red;
+    }
+</style>
 
     <%-- referencia a la carpeta JS que contiene los script --%>
     <script type="text/javascript" src="JS/JavaScript.js"></script>
@@ -29,37 +33,44 @@
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
                             <asp:Label ID="nombrelbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtNombreEdit" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtNombreEdit" runat="server" CssClass="form-control" Visible="false" MaxLength="100"></asp:TextBox>
+                            <asp:Label ID="lblErrorNombre" CssClass="lbl lbl_error" Text="El nombre solo debe contener letras" runat="server" Visible="false" ></asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Apellidos: "></asp:Label>
                             <asp:Label ID="apellidoLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtApellidoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtApellidoEdit" CssClass="form-control" runat="server" Visible="false" MaxLength="100"></asp:TextBox>
+                            <asp:Label ID="lblErrorApellido" CssClass="lbl lbl_error" Text="El apellido solo debe contener letras" runat="server" Visible="false"></asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
                             <asp:Label ID="dniLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false" onkeypress="return soloNumeros(event);" maxlength="8"></asp:TextBox>
+                            <asp:TextBox ID="txtDniEdit" CssClass="form-control" runat="server" Visible="false" onkeypress="return soloNumeros(event);" minLength="7" maxlength="8"></asp:TextBox>
+                        <asp:Label ID="lblErrorDni" CssClass="lbl lbl_error" Text="El dni solo debe contener números" runat="server" Visible="false"></asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>
                             <asp:Label ID="emailLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtMailEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtMailEdit" CssClass="form-control" runat="server" Visible="false" maxlength="50"></asp:TextBox>
+                            <asp:Label ID="lblErrorMail" CssClass="lbl lbl_error" Text="Ingrese un formato de Email correcto" runat="server" Visible="false"></asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Telefono: "></asp:Label>
                             <asp:Label ID="telefonoLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtTelefonoEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtTelefonoEdit" CssClass="form-control" runat="server" Visible="false" maxlength="15"></asp:TextBox>
+                            <asp:Label ID="lblErrorTelefono" CssClass="lbl lbl_error" Text="El telefono solo debe contener numero" runat="server" Visible="false"></asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Dirección: "></asp:Label>
                             <asp:Label ID="direccionLbl" CssClass="lbl" runat="server"></asp:Label>
-                            <asp:TextBox ID="txtDireccionEdit" CssClass="form-control" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtDireccionEdit" CssClass="form-control" runat="server" Visible="false" maxlength="100"></asp:TextBox>
+                            <asp:Label ID="lblErrorDireccion" CssClass="lbl lbl_error" Text="La dirección debe contener letras y números" runat="server" Visible="false"></asp:Label>
                         </li>
                         <li class="list-group-item">
                             <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
                             <asp:Label ID="fechaNacimientoLbl" CssClass="lbl" runat="server"></asp:Label>
                             <asp:TextBox ID="txtFechaNacimientoEdit" CssClass="form-control" runat="server" Visible="false" TextMode="Date"></asp:TextBox>
+                            <asp:Label ID="lblErrorFechaNacimiento" CssClass="lbl lbl_error" Text="La fecha es invalida" runat="server" Visible="false"></asp:Label>
 
                         </li>
                     </ul>

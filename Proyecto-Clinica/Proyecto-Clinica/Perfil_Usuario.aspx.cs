@@ -158,6 +158,7 @@ namespace Proyecto_Clinica
         }
         public void btnCancelar_Click(object sender, EventArgs e)
         {
+            Ocultar_labels_Error();
             btnCancelar.Visible = false;
             OcultarControlesEdicion();
             Visibilidad_labels(true);
@@ -185,8 +186,7 @@ namespace Proyecto_Clinica
             txtMailEdit.Text = Usuario_Actual.Mail;
             txtTelefonoEdit.Text = Usuario_Actual.Telefono;
             txtDireccionEdit.Text = Usuario_Actual.Direccion;
-            txtFechaNacimientoEdit.Text = Usuario_Actual.Fecha_Nacimiento.ToString("d/M/yyyy");
-
+            txtFechaNacimientoEdit.Text = Usuario_Actual.Fecha_Nacimiento.ToString("yyyy-MM-dd");
 
 
         }
@@ -214,13 +214,46 @@ namespace Proyecto_Clinica
         }
         public void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(Usuario_Actual.Nombre == null)
+            bool nombreValido = true, apellidoValido = true, telefonoValido = true, emailValido = true, direccionValido = true, fechaNacimientoValido = true, dniValido = true;
+
+
+            if (!Validaciones.EsNumero(txtDniEdit.Text))
             {
-                InsertarDatosEnBBDD();
+                lblErrorDni.Visible = true;
+                dniValido = false;
             }
-            else
+            if (!Validaciones.EsNumero(txtTelefonoEdit.Text))
             {
-                ActualizarDatosEnBBDD();
+                lblErrorTelefono.Visible = true;
+                telefonoValido = false;
+            }
+            if (Validaciones.ContieneNumeros(txtNombreEdit.Text))
+            {
+                lblErrorNombre.Visible = true;
+                nombreValido = false;
+            }
+            if (Validaciones.ContieneNumeros(txtApellidoEdit.Text))
+            {
+                lblErrorApellido.Visible = true;
+                apellidoValido = false;
+            }
+
+            if (!Validaciones.EsFormatoCorreoElectronico(txtMailEdit.Text))
+            {
+                lblErrorMail.Visible = true;
+                emailValido = false;
+            }
+            if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
+            {
+                
+                if (Usuario_Actual.Nombre == null)
+                {
+                    InsertarDatosEnBBDD();
+                }
+                else
+                {
+                    ActualizarDatosEnBBDD();
+                }
             }
         }
         private void InsertarDatosEnBBDD()
@@ -436,5 +469,21 @@ namespace Proyecto_Clinica
             txtDireccionEdit.Visible = valor;
             txtFechaNacimientoEdit.Visible = valor;
         }
+
+        public void Ocultar_labels_Error()
+        {
+            lblErrorDni.Visible = false;
+
+            lblErrorTelefono.Visible = false;
+
+            lblErrorNombre.Visible = false;
+
+            lblErrorApellido.Visible = false;
+
+            lblErrorMail.Visible = false;
+
+        }
+
+
     }
 }

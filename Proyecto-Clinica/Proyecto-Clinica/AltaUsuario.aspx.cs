@@ -16,14 +16,18 @@ namespace Proyecto_Clinica
         {
 
         }
-
-        private bool EsNumero(string valor)
+        public bool EsNumero(string valor)
         {
             // Intentar convertir el valor a un número
             return double.TryParse(valor, out _);
         }
-        protected void btn_AceptarAltaUsuario_Click(object sender, EventArgs e)
+    
+
+    protected void btn_AceptarAltaUsuario_Click(object sender, EventArgs e)
         {
+            
+
+            
             bool usuarioValido = false;
             
             //Comprueba que los campos pasen las condiciones

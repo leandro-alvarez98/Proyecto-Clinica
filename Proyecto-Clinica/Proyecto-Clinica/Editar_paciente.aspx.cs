@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Deployment.Internal;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -65,19 +66,56 @@ namespace Proyecto_Clinica
         }
         public void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (Paciente_actual.Nombre == null)
+            bool nombreValido = true, apellidoValido = true, telefonoValido = true, emailValido = true, direccionValido = true, fechaNacimientoValido = true, dniValido = true;
+
+
+            if (!Validaciones.EsNumero(txtDniEdit.Text))
             {
-                InsertarDatosEnBBDD();
+                lblErrorDni.Visible = true;
+                dniValido = false;
             }
-            else
+            if (!Validaciones.EsNumero(txtTelefonoEdit.Text))
             {
-                ActualizarDatosEnBBDD();
+                lblErrorTelefono.Visible = true;
+                telefonoValido = false;
             }
-            btnCambioContraseña.Visible = true;
+            if (Validaciones.ContieneNumeros(txtNombreEdit.Text))
+            {
+                lblErrorNombre.Visible = true;
+                nombreValido = false;
+            }
+            if (Validaciones.ContieneNumeros(txtApellidoEdit.Text))
+            {
+                lblErrorApellido.Visible = true;
+                apellidoValido = false;
+            }
+            
+            if (!Validaciones.EsFormatoCorreoElectronico(txtMailEdit.Text))
+            {
+                lblErrorMail.Visible = true;
+                emailValido = false;
+            }
+
+
+            if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
+            {
+                Ocultar_labels_Error();
+
+                if (Paciente_actual.Nombre == null)
+                {
+                    InsertarDatosEnBBDD();
+                }
+                else
+                {            
+
+
+                    ActualizarDatosEnBBDD();
+                }
+                btnCambioContraseña.Visible = true;
+            }
         }
         public void btnEditar_Click(object sender, EventArgs e)
         {
-            
             txtNombreEdit.Visible = true;
             txtApellidoEdit.Visible = true;
             txtDniEdit.Visible = true;
@@ -88,8 +126,8 @@ namespace Proyecto_Clinica
 
             // Asigna los valores actuales a los controles de edición
             txtNombreEdit.Text = Paciente_actual.Nombre;
-            txtApellidoEdit.Text = Paciente_actual.Apellido;
-            txtDniEdit.Text = Paciente_actual.Dni;
+            txtApellidoEdit.Text = Paciente_actual.Apellido;           
+            txtDniEdit.Text = Paciente_actual.Dni;          
             txtMailEdit.Text = Paciente_actual.Mail;
             txtTelefonoEdit.Text = Paciente_actual.Telefono;
             txtDireccionEdit.Text = Paciente_actual.Direccion;
@@ -229,5 +267,23 @@ namespace Proyecto_Clinica
             Paciente_actual.Fecha_Nacimiento = nuevaFechaNacimiento;
             usuarioConexion.ActualizarPaciente(Paciente_actual);
         }
+        public void Ocultar_labels_Error()
+        {
+            lblErrorDni.Visible = false;
+
+            lblErrorTelefono.Visible = false;
+
+            lblErrorNombre.Visible = false;
+
+            lblErrorApellido.Visible = false;
+
+            lblErrorMail.Visible = false;
+
+        }
+
     }
+
+    
+
 }
+
