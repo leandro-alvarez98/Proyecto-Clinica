@@ -105,6 +105,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.TextBox txtNombreEdit;
 
         /// <summary>
+        /// Control lblErrorNombreMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorNombreMedico;
+
+        /// <summary>
         /// Control txtApellidoEdit.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtApellidoEdit;
+
+        /// <summary>
+        /// Control lblErrorApellidoMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorApellidoMedico;
 
         /// <summary>
         /// Control txtDniEdit.
@@ -123,6 +141,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.TextBox txtDniEdit;
 
         /// <summary>
+        /// Control lblErrorDniMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorDniMedico;
+
+        /// <summary>
         /// Control txtMailEdit.
         /// </summary>
         /// <remarks>
@@ -130,6 +157,15 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMailEdit;
+
+        /// <summary>
+        /// Control lblErrorMailMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMailMedico;
 
         /// <summary>
         /// Control txtTelefonoEdit.
@@ -141,6 +177,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.TextBox txtTelefonoEdit;
 
         /// <summary>
+        /// Control lblErrorTelefonoMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorTelefonoMedico;
+
+        /// <summary>
         /// Control txtDireccionEdit.
         /// </summary>
         /// <remarks>
@@ -148,6 +193,15 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDireccionEdit;
+
+        /// <summary>
+        /// Control lblErrorDireccionMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorDireccionMedico;
 
         /// <summary>
         /// Control txtFechaNacimientoEdit.
@@ -159,6 +213,15 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.TextBox txtFechaNacimientoEdit;
 
         /// <summary>
+        /// Control lblErrorFechaNacimientoMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorFechaNacimientoMedico;
+
+        /// <summary>
         /// Control Btn_AltaMedicoConfirmar.
         /// </summary>
         /// <remarks>
@@ -166,6 +229,15 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_AltaMedicoConfirmar;
+
+        /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// Control txtNombresPaciente.

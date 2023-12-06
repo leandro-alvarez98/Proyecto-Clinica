@@ -46,6 +46,9 @@ namespace Proyecto_Clinica
             // Jornadas de la Card
             repeaterJornadas.DataSource = Medico_actual.Jornadas;
             repeaterJornadas.DataBind();
+            //---- evalua las expresiones de enlace de datos
+            Page.DataBind();
+
         }
         private Medico Cargar_Médico_Clinica(int medico_id)
         {
@@ -377,7 +380,7 @@ namespace Proyecto_Clinica
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             bool nombreValido = true, apellidoValido = true, telefonoValido = true, emailValido = true, direccionValido = true, fechaNacimientoValido = true, dniValido = true;
-
+            
 
             if (!Validaciones.EsNumero(txtDniEdit.Text))
             {
@@ -388,24 +391,28 @@ namespace Proyecto_Clinica
             {
                 lblErrorTelefono.Visible = true;
                 telefonoValido = false;
+
             }
             if (Validaciones.ContieneNumeros(txtNombreEdit.Text))
             {
                 lblErrorNombre.Visible = true;
                 nombreValido = false;
+
             }
             if (Validaciones.ContieneNumeros(txtApellidoEdit.Text))
             {
                 lblErrorApellido.Visible = true;
                 apellidoValido = false;
+
             }
 
             if (!Validaciones.EsFormatoCorreoElectronico(txtMailEdit.Text))
             {
                 lblErrorMail.Visible = true;
                 emailValido = false;
-            }
 
+            }
+           
 
             if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
             {

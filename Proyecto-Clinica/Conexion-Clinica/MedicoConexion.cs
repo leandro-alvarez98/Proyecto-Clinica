@@ -176,6 +176,32 @@ namespace Conexion_Clinica
                 datos.cerrarConexion();
             }
         }
+        public void InsertarMedico(Medico medico)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setConsulta("INSERT INTO MEDICOS (ID_USUARIO, DNI, NOMBRE,APELLIDO, TELEFONO, DIRECCION, FECHA_NACIMIENTO, MAIL, ESTADO) VALUES(@IDUSUARIO, @DNI, @NOMBRE, @APELLIDO, @TELEFONO, @DIRECCION, @FECHANACIMIENTO, @MAIL, 1)");
+                datos.setParametro("@IDUSUARIO", medico.Id_Usuario);
+                datos.setParametro("@DNI", medico.Dni);
+                datos.setParametro("@NOMBRE", medico.Nombre);
+                datos.setParametro("@APELLIDO", medico.Apellido);
+                datos.setParametro("@TELEFONO", medico.Telefono);
+                datos.setParametro("@DIRECCION", medico.Direccion);
+                datos.setParametro("@FECHANACIMIENTO", medico.Fecha_Nacimiento);
+                datos.setParametro("@MAIL", medico.Mail);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void InsertarMedicoSinUsuario(Medico medico)
         {
             AccesoDatos datos = new AccesoDatos();

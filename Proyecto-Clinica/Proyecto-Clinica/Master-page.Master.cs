@@ -61,17 +61,90 @@ namespace Proyecto_Clinica
         }
         protected void Btn_AltaMedicoConfirmar_Click(object sender, EventArgs e)
         {
-            Medico medico = new Medico();
-            medico.Dni = txtDniEdit.Text;
-            medico.Nombre = txtNombreEdit.Text;
-            medico.Apellido = txtApellidoEdit.Text;
-            medico.Telefono = txtTelefonoEdit.Text;
-            medico.Direccion = txtDireccionEdit.Text;
-            medico.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
-            medico.Mail = txtMailEdit.Text;
+            bool nombreValido = true, apellidoValido = true, telefonoValido = true, emailValido = true, direccionValido = true, fechaNacimientoValido = true, dniValido = true;
+            try
+            {
+                if (!Validaciones.EsNumero(txtDniEdit.Text))
+                {
+                    lblErrorDniMedico.Visible = true;
+                    dniValido = false;
+                }
+                if (!Validaciones.EsNumero(txtTelefonoEdit.Text))
+                {
+                    lblErrorTelefonoMedico.Visible = true;
+                    telefonoValido = false;
+                }
+                if (Validaciones.ContieneNumeros(txtNombreEdit.Text))
+                {
+                    lblErrorNombreMedico.Visible = true;
+                    nombreValido = false;
+                }
+                if (Validaciones.ContieneNumeros(txtApellidoEdit.Text))
+                {
+                    lblErrorApellidoMedico.Visible = true;
+                    apellidoValido = false;
+                }
 
-            MedicoConexion medicoConexion = new MedicoConexion();
-            medicoConexion.InsertarMedicoSinUsuario(medico);
+                if (!Validaciones.EsFormatoCorreoElectronico(txtMailEdit.Text))
+                {
+                    lblErrorMailMedico.Visible = true;
+                    emailValido = false;
+                }
+
+                if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
+                {
+
+                    Medico medico = new Medico();
+
+
+                    //INSERTAR NUEVO USUARIO CON MEDICO 
+                    MedicoConexion medicoConexion = new MedicoConexion();
+                    UsuarioConexion usuarioConexion = new UsuarioConexion();
+
+
+
+                    //medico.Dni = txtDniPaciente.Text;
+                    medico.Dni = txtDniEdit.Text;
+                    
+                    Usuario nuevo_usuario = new Usuario
+                    {
+                        Username = medico.Dni,
+                        Contraseña = medico.Dni,
+                        Tipo = "Médico"
+                    };
+
+
+                    usuarioConexion.InsertarUsuarioEnBBDD(nuevo_usuario);
+
+                    medico.Id_Usuario = usuarioConexion.buscarIdUsuarioPorDNI(medico.Dni);
+
+                    medico.Nombre = txtNombreEdit.Text;
+                    medico.Apellido = txtApellidoEdit.Text;
+                    medico.Telefono = txtTelefonoEdit.Text;
+                    medico.Direccion = txtDireccionEdit.Text;
+                    medico.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
+                    medico.Mail = txtMailEdit.Text;
+
+                    //MedicoConexion medicoConexion = new MedicoConexion();
+                    //medicoConexion.InsertarMedicoSinUsuario(medico);
+
+                    if (medico.Id_Usuario != 0)
+                    {
+                        medicoConexion.InsertarMedico(medico);
+
+                    }
+                    else
+                    {
+                        //lblError_CrearPaciente.Visible = true;
+                        // lblCargada_Correctamente.Visible = false;
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         //-----MODAL ALTA PACIENTE---
@@ -87,63 +160,86 @@ namespace Proyecto_Clinica
         protected void Btn_AltaPacienteConfirmar_Click(object sender, EventArgs e)
         {
             bool nombreValido = true, apellidoValido = true, telefonoValido = true, emailValido = true, direccionValido = true, fechaNacimientoValido = true, dniValido = true;
-
-
-            if (!Validaciones.EsNumero(txtDniPaciente.Text))
+            try
             {
-                lblErrorDni.Visible = true;
-                dniValido = false;
+                if (!Validaciones.EsNumero(txtDniPaciente.Text))
+                {
+                    lblErrorDni.Visible = true;
+                    dniValido = false;
+                }
+                if (!Validaciones.EsNumero(txtTelefonoPaciente.Text))
+                {
+                    lblErrorTelefono.Visible = true;
+                    telefonoValido = false;
+                }
+                if (Validaciones.ContieneNumeros(txtNombresPaciente.Text))
+                {
+                    lblErrorNombre.Visible = true;
+                    nombreValido = false;
+                }
+                if (Validaciones.ContieneNumeros(txtApellidosPaciente.Text))
+                {
+                    lblErrorApellido.Visible = true;
+                    apellidoValido = false;
+                }
+                if (!Validaciones.EsFormatoCorreoElectronico(txtEmailPaciente.Text))
+                {
+                    lblErrorMail.Visible = true;
+                    emailValido = false;
+                }
+
+                if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
+                {
+
+                    Paciente paciente = new Paciente();
+
+                    //INSERTAR NUEVO USUARIO CON PACIENTE 
+                    PacienteConexion pacienteConexion = new PacienteConexion();
+                    UsuarioConexion usuarioConexion = new UsuarioConexion();
+
+                    paciente.Dni = txtDniPaciente.Text;
+                    Usuario nuevo_usuario = new Usuario
+                    {
+                        Username = paciente.Dni,
+                        Contraseña = paciente.Dni,
+                        Tipo = "Paciente"
+                    };
+
+                    usuarioConexion.InsertarUsuarioEnBBDD(nuevo_usuario);
+
+                    paciente.Id_Usuario = usuarioConexion.buscarIdUsuarioPorDNI(paciente.Dni);
+                    
+                    paciente.Nombre = txtNombresPaciente.Text;
+                    paciente.Apellido = txtApellidosPaciente.Text;
+                    paciente.Telefono = txtTelefonoPaciente.Text;
+                    paciente.Direccion = TxtDireccionPaciente.Text;
+                    paciente.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoPaciente.Text);
+                    paciente.Mail = txtEmailPaciente.Text;
+
+
+                    if (paciente.Id_Usuario != 0)
+                    {
+                        pacienteConexion.InsertarPaciente(paciente);
+
+                    }
+                    else
+                    {
+                        //lblError_CrearPaciente.Visible = true;
+                       // lblCargada_Correctamente.Visible = false;
+                    }
+
+                }
+
+
             }
-            if (!Validaciones.EsNumero(txtTelefonoPaciente.Text))
+            catch (Exception)
             {
-                lblErrorTelefono.Visible = true;
-                telefonoValido = false;
-            }
-            if (Validaciones.ContieneNumeros(txtNombresPaciente.Text))
-            {
-                lblErrorNombre.Visible = true;
-                nombreValido = false;
-            }
-            if (Validaciones.ContieneNumeros(txtApellidosPaciente.Text))
-            {
-                lblErrorApellido.Visible = true;
-                apellidoValido = false;
+
+                throw;
             }
 
-            if (!Validaciones.EsFormatoCorreoElectronico(txtEmailPaciente.Text))
-            {
-                lblErrorMail.Visible = true;
-                emailValido = false;
-            }
 
-            if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
-            {
 
-                Paciente paciente = new Paciente();
-                paciente.Dni = txtDniPaciente.Text;
-                paciente.Nombre = txtNombresPaciente.Text;
-                paciente.Apellido = txtApellidosPaciente.Text;
-                paciente.Telefono = txtTelefonoPaciente.Text;
-                paciente.Direccion = TxtDireccionPaciente.Text;
-
-                paciente.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoPaciente.Text);
-                paciente.Mail = txtEmailPaciente.Text;
-
-                //INSERTAR NUEVO USUARIO CON PACIENTE 
-                //PacienteConexion pacienteConexion = new PacienteConexion();
-                //UsuarioConexion usuarioConexion = new UsuarioConexion();
-                //Usuario usuario = new Usuario();
-
-                //usuario.Nombre = paciente.Nombre + paciente.Dni;
-                //usuario.Contraseña = paciente.Dni;
-
-                //usuarioConexion.InsertarUsuarioEnBBDD(usuario);
-
-                //pacienteConexion.InsertarPacienteSinUsuario(paciente);
-                
-            }
-           
-            
         }
 
 

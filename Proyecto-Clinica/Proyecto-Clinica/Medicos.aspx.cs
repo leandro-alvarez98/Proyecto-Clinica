@@ -13,23 +13,31 @@ namespace Proyecto_Clinica
     public partial class Medicos : System.Web.UI.Page
     {
         public Clinica clinica = new Clinica();
-        public List<Medico> lista_Medicos = new List<Medico>();
+       public List<Medico> lista_Medicos = new List<Medico>();
         public List<Medico> lista_Medicos_x_dni;
+        ClinicaConexion clinicaConexion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClinicaConexion clinicaConexion = new ClinicaConexion();
+            lista_Medicos_x_dni = new List<Medico>();
+            clinicaConexion = new ClinicaConexion();
             clinica = clinicaConexion.Listar();
 
-            lista_Medicos.Clear();
-            lista_Medicos = clinica.Medicos;
+        //    lista_Medicos.Clear();
+          //  lista_Medicos = clinica.Medicos;
 
             if (!IsPostBack)
             { // solo se puede cargar una vez sino tira error
                 repeaterMedicos.DataSource = lista_Medicos;
+                repeaterMedicos.DataSource = clinica.Medicos;
                 repeaterMedicos.DataBind();
             }
             
         }
+
+        
+
+
+
         protected void btnEditarDatos_Click(object sender, EventArgs e)
         {
             //guardo el id del medico para asi poder utilizarlo en la proxima pagina

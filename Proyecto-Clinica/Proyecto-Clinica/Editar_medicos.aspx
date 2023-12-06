@@ -30,12 +30,12 @@
             </div>
         </div>
 <%--        -------------------%>
-           <script>   
+           <%--<script>   
         function mostrarMensajeModal(mensaje) {
     $('#mensajeContenido').text(mensaje);
     $('#modalMensaje').modal('show');
 }
-           </script>
+           </script>--%>
 
         <script>   
         function cerrarModalConRetraso() {
@@ -112,8 +112,13 @@
             </div>
         </div>
 
-       
+                       <!-- ESTILOS PARA TEXTO DE ERROR EN ROJO -->
 
+        <style>
+            .lbl_error {
+                color: red;
+            }
+        </style>
 
         <div class="row justify-content-center">
             <div class="col-md-5 mb-5">
@@ -228,7 +233,7 @@
             <asp:Button ID="btnCancelar" Style="margin-left: 10px" CssClass="Boton" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
 
         </div>
-        <div id="ocultarDropDown" class="dropdown claseDropdownEspecialidades">
+        <div id="ocultarDropDown" class="dropdown claseDropdownEspecialidades" >
             <button class="Boton btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class='bx bx-edit'></i>Editar Especialidades
             </button>
@@ -246,7 +251,7 @@
 
 
           
-<%--    OCULTA LOS DROPDOWN: JORNADA Y ESPECIALIDADES  ----   despues la llevo a la carpeta script- --%>
+<%--    OCULTA LOS DROPDOWN: JORNADA Y ESPECIALIDADES  ----   despues la llevo a la carpeta script---%>
             <script type="text/javascript">
                 function ocultarDropdown() {
                     var dropdown1 = document.querySelector('.claseDropdown');
@@ -256,8 +261,8 @@
                         dropdown1.style.display = "none";
                         dropdown2.style.display = "none";
                     }
-             
-                }
+            
+                }                
             </script>
 
 

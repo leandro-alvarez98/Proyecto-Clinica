@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -475,6 +476,37 @@ namespace Conexion_Clinica
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public int buscarIdUsuarioPorDNI(string Dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idUsuario=0; 
+
+            try
+            {
+                datos.setConsulta("SELECT ID_USUARIO FROM USUARIOS U WHERE U.NOMBRE_USUARIO = @DNI_USUARIO\r\n");
+                datos.setParametro("@DNI_USUARIO", Dni );
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    if (!(datos.Lector["ID_USUARIO"] is DBNull))
+                    {
+                        idUsuario = (int)datos.Lector["ID_USUARIO"];
+                    }
+                }                  
+                return idUsuario;                              
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+
                 throw ex;
             }
             finally
