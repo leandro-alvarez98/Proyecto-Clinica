@@ -21,4 +21,24 @@ $(document).ready(function () {
                 scrollTop: targetPosition
             }, 500);
         });
-    });
+});
+//OCULTA DROPDOWNLIST
+function ocultarDropdown() {
+    var dropdown = document.querySelector(claseDropdown);
+    if (dropdown) {
+        dropdown.style.display = "none";
+    }
+}
+//RETRASO DE CIERRE PARA LOS MODALES
+//function cerrarModalConRetraso() {
+//    setTimeout(function () {
+//        /* Cerrar el modal usando Bootstrap*/
+//        $('#ALTA_ESPECIALIDAD').modal('hide');
+//    }, 3000);
+//}
+
+//function cerrarModalConRetraso(modalID) {
+//    setTimeout(function () {
+//        $('#' + modalID).modal('hide');
+//    }, 3000);
+//}

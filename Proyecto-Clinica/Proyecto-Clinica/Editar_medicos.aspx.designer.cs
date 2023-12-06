@@ -303,13 +303,13 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button btn_SeleccionarMedicoJornada;
 
         /// <summary>
-        /// Control btn_SeleccionarMedicoEspecialidad.
+        /// Control Button1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_SeleccionarMedicoEspecialidad;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
         /// Control btnEditarMedico.
@@ -339,13 +339,13 @@ namespace Proyecto_Clinica
         protected global::System.Web.UI.WebControls.Button btnCancelar;
 
         /// <summary>
-        /// Control lbl_sin_datos.
+        /// Control btn_SeleccionarMedicoEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_sin_datos;
+        protected global::System.Web.UI.WebControls.Button btn_SeleccionarMedicoEspecialidad;
 
         /// <summary>
         /// Control btn_EliminarEspecialidad.
@@ -355,14 +355,5 @@ namespace Proyecto_Clinica
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_EliminarEspecialidad;
-
-        /// <summary>
-        /// Control Button1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

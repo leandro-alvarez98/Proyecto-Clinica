@@ -19,6 +19,8 @@
 
     <!-- Estilos propios -->
     <link href="content\styles.css" rel="stylesheet" />
+    <!--  JS PROPIOS -->
+    <script type="text/javascript" src="JS/JavaScript.js"></script>
 
     <!-- BOXICONS ICONOS -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -312,6 +314,10 @@
             </footer>
         </div>
            <%----Modales--%>
+        
+
+
+
    <div class="container">
 
        <%--MODAL ALTA MEDICO--%>
@@ -366,58 +372,72 @@
 
        <%--MODAL ALTA PACIENTE--%>
        <div class="modal fade" id="mod_AltaPaciente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-     <div class="modal-dialog">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Alta paciente</h1>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-             </div>
-             <div class="modal-body">
+           <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h1 class="modal-title fs-5" id="staticBackdropLabel">Alta paciente</h1>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   </div>
+                   <div class="modal-body">
 
-                 <ul class="list-group list-group-flush">
+                       <ul class="list-group list-group-flush">
 
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
-                         <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-                     </li>
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Apellidos: "></asp:Label>
-                         <asp:TextBox ID="TextBox2" CssClass="form-control" runat="server"></asp:TextBox>
-                     </li>
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
-                         <asp:TextBox ID="TextBox3" CssClass="form-control" runat="server" onkeypress="return soloNumeros(event);" maxlength="8"></asp:TextBox>
-                     </li>
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>
-                         <asp:TextBox ID="TextBox4" CssClass="form-control" runat="server"></asp:TextBox>
-                     </li>
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Telefono: "></asp:Label>
-                         <asp:TextBox ID="TextBox5" CssClass="form-control" runat="server"></asp:TextBox>
-                     </li>
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Dirección: "></asp:Label>
-                         <asp:TextBox ID="TextBox6" CssClass="form-control" runat="server"></asp:TextBox>
-                     </li>
-                     <li class="list-group-item">
-                         <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
-                         <asp:TextBox ID="TextBox7" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
-                     </li>
-                 </ul>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Nombres: "></asp:Label>
+                               <asp:TextBox ID="txtNombresPaciente" runat="server" CssClass="form-control"></asp:TextBox>
+                               <asp:Label ID="lblErrorNombre" CssClass="lbl lbl_error" Text="El nombre solo debe contener letras" runat="server" Visible="false"></asp:Label>
 
-             </div>
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                 <asp:Button ID="Btn_AltaPacienteConfirmar" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="Btn_AltaPacienteConfirmar_Click" />
-             </div>
-         </div>
-     </div>
- </div>
+                           </li>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Apellidos: "></asp:Label>
+                               <asp:TextBox ID="txtApellidosPaciente" CssClass="form-control" runat="server"></asp:TextBox>
+                               <asp:Label ID="lblErrorApellido" CssClass="lbl lbl_error" Text="El apellido solo debe contener letras" runat="server" Visible="false"></asp:Label>
+
+                           </li>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="DNI: "></asp:Label>
+                               <asp:TextBox ID="txtDniPaciente" CssClass="form-control" runat="server" onkeypress="return soloNumeros(event);" MaxLength="8"></asp:TextBox>
+                               <asp:Label ID="lblErrorDni" CssClass="lbl lbl_error" Text="El dni solo debe contener números" runat="server" Visible="false"></asp:Label>
+
+                           </li>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Email: "></asp:Label>
+                               <asp:TextBox ID="txtEmailPaciente" CssClass="form-control" runat="server"></asp:TextBox>
+                               <asp:Label ID="lblErrorMail" CssClass="lbl lbl_error" Text="Ingrese un formato de Email correcto" runat="server" Visible="false"></asp:Label>
+
+                           </li>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Telefono: "></asp:Label>
+                               <asp:TextBox ID="txtTelefonoPaciente" CssClass="form-control" runat="server"></asp:TextBox>
+                               <asp:Label ID="lblErrorTelefono" CssClass="lbl lbl_error" Text="El telefono solo debe contener numero" runat="server" Visible="false"></asp:Label>
+
+                           </li>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Dirección: "></asp:Label>
+                               <asp:TextBox ID="TxtDireccionPaciente" CssClass="form-control" runat="server"></asp:TextBox>
+                               <asp:Label ID="lblErrorDireccion" CssClass="lbl lbl_error" Text="La dirección debe contener letras y números" runat="server" Visible="false"></asp:Label>
+
+                           </li>
+                           <li class="list-group-item">
+                               <asp:Label CssClass="fs-4 font-monospace" runat="server" Text="Fecha de Nacimiento: "></asp:Label>
+                               <asp:TextBox ID="txtFechaNacimientoPaciente" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                               <asp:Label ID="lblErrorFechaNacimiento" CssClass="lbl lbl_error" Text="La fecha es invalida" runat="server" Visible="false"></asp:Label>
+
+                           </li>
+                       </ul>
+
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                       <asp:Button ID="Btn_AltaPacienteConfirmar" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="Btn_AltaPacienteConfirmar_Click" />
+                   </div>
+               </div>
+           </div>
+       </div>
 
        <%----MODAL ALTA ESPECIALIDAD--%>
 
-       <div class="modal" tabindex="-1" id="ALTA_ESPECIALIDAD">
+       <div class="modal" tabindex="-1" id="ALTA_ESPECIALIDAD" data-bs-backdrop="static">
            <div class="modal-dialog">
                <div class="modal-content">
                    <div class="modal-header">
@@ -433,13 +453,20 @@
 
                        <asp:Label ID="lblCargada_Correctamente" runat="server" Text="Especialidad cargada con éxito!" Visible="false"></asp:Label>
                    </div>
+
+
                    <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                        <asp:Button ID="btn_Nueva_Especialidad" runat="server" Text="Registrar especialidad" CssClass="Boton" OnClick="btn_Nueva_Especialidad_Click" />
                    </div>
+                          
+
+
                </div>
            </div>
        </div>
+
+       
 
    </div>
     </form>

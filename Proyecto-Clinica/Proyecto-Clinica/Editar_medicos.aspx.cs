@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 namespace Proyecto_Clinica
 {
@@ -183,7 +184,11 @@ namespace Proyecto_Clinica
                         if (especialidadSeleccionada > 0)
                         {
                             AsignarEspecialidadEnBaseDeDatos(Medico_actual.Id, especialidadSeleccionada);
-                            Response.Redirect("Editar_medicos.aspx");
+                            // Response.Redirect("Editar_medicos.aspx");
+                            string mensaje = "La acción se ha completado con éxito.";
+
+                            ScriptManager.RegisterStartupScript(this, GetType(), "MostrarMensajeModal", $"mostrarMensajeModal('{mensaje}');", true);
+
                         }
                     }
                 }
@@ -316,6 +321,9 @@ namespace Proyecto_Clinica
 
         protected void bntEditarMedico_Click(object sender, EventArgs e)
         {
+            
+            ScriptManager.RegisterStartupScript(this, GetType(), "OcultarDropdown", "ocultarDropdown();", true);
+
 
             txtNombreEdit.Visible = true;
             txtApellidoEdit.Visible = true;
@@ -327,12 +335,12 @@ namespace Proyecto_Clinica
 
             // Asigna los valores actuales a los controles de edición
             txtNombreEdit.Text = Medico_actual.Nombre;
-            txtApellidoEdit.Text = Medico_actual.Apellido;
-            txtDniEdit.Text = Medico_actual.Dni;
-            txtMailEdit.Text = Medico_actual.Mail;
-            txtTelefonoEdit.Text = Medico_actual.Telefono;
-            txtDireccionEdit.Text = Medico_actual.Direccion;
-            txtFechaNacimientoEdit.Text = Medico_actual.Fecha_Nacimiento.ToString("yyyy-MM-dd");
+            txtApellidoEdit.Text =  Medico_actual.Apellido;
+            txtDniEdit.Text =  Medico_actual.Dni;
+            txtMailEdit.Text =  Medico_actual.Mail;
+            txtTelefonoEdit.Text =  Medico_actual.Telefono;
+            txtDireccionEdit.Text =  Medico_actual.Direccion;
+            txtFechaNacimientoEdit.Text =  Medico_actual.Fecha_Nacimiento.ToString("yyyy-MM-dd");
 
             // Oculta los controles de visualización
             nombrelbl.Visible = false;

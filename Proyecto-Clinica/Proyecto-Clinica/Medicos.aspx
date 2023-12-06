@@ -33,7 +33,7 @@
                                 <h5 class="card-title"><%# Eval("Nombre") %>, <%# Eval("Apellido") %></h5>
                                 <p class="card-text"><strong>Telefono: </strong><%# Eval("Telefono") %></p>
                                 <p class="card-text"><strong>Direccion: </strong><%# Eval("Direccion") %></p>
-                                <p class="card-text"><strong>Fecha de Nacimiento:</strong> <%# Eval("Fecha_Nacimiento") %> </p>
+                                <p class="card-text"><strong>Fecha de Nacimiento:</strong> <%# ((DateTime)Eval("Fecha_Nacimiento")).ToShortDateString() %> </p>
                                 <p class="card-text"><strong>Mail: </strong><%# Eval("Mail") %></p>
                                 <p class="card-text"><strong>Dni: </strong><%# Eval("Dni") %></p>
                                 <p class="card-text">
@@ -42,7 +42,7 @@
 
                                         <ItemTemplate>
                                             <br />
-                                            <%# Eval("Tipo") %><br />
+                                            <%# Eval("Tipo") %>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </p>
@@ -52,7 +52,7 @@
 
                                         <ItemTemplate>
                                             <br />
-                                            <%# Eval("Tipo") %><br />
+                                            <%# Eval("Tipo") %>
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </p>
