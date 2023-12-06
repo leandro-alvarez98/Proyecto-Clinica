@@ -52,22 +52,22 @@ namespace Dominio
             miCorreo.To.Add(correo);
             miCorreo.Subject = "Confirmacion de turno";
             miCorreo.IsBodyHtml = true;
-            miCorreo.Body = $"{turno_a_reservar.Nombre_Paciente} {turno_a_reservar.Apellido_Paciente} le brindamos la informacion sobre su turno: <br/>Numero de turno: {turno_a_reservar.Id}<br/>Fecga: {turno_a_reservar.Fecha.Date}<br/>Hora: {turno_a_reservar.Horario}<br/>Medico: {turno_a_reservar.Nombre_Medico} {turno_a_reservar.Apellido_Medico}";
+            miCorreo.Body = $"{turno_a_reservar.Nombre_Paciente} {turno_a_reservar.Apellido_Paciente} le brindamos la informacion sobre su turno: <br/>Numero de turno: {turno_a_reservar.Id}<br/>Fecha: {turno_a_reservar.Fecha.Date}<br/>Hora: {turno_a_reservar.Horario}<br/>Medico: {turno_a_reservar.Nombre_Medico} {turno_a_reservar.Apellido_Medico}";
             miCorreo.Priority = MailPriority.High;
         }
         //Alta Paciente y Medico con Usuario mediante Recepcionista o Administrador 
-        //public void cuerpoCorreo(Usuario usuarioNuevo, string correo)
-        //{
-        //    miCorreo = new MailMessage
-        //    {
-        //        From = new MailAddress(miEmail, miAlias)
-        //    };
-        //    miCorreo.To.Add(correo);
-        //    miCorreo.Subject = "Confirmacion de turno";
-        //    miCorreo.IsBodyHtml = true;
-        //    miCorreo.Body = $"{turno_a_reservar.Nombre_Paciente} {turno_a_reservar.Apellido_Paciente} le brindamos la informacion sobre su turno: <br/>Numero de turno: {turno_a_reservar.Id}<br/>Fecga: {turno_a_reservar.Fecha.Date}<br/>Hora: {turno_a_reservar.Horario}<br/>Medico: {turno_a_reservar.Nombre_Medico} {turno_a_reservar.Apellido_Medico}";
-        //    miCorreo.Priority = MailPriority.High;
-        //}
+        public void cuerpoCorreo(Usuario usuarioNuevo, string correo)
+        {
+            miCorreo = new MailMessage
+            {
+                From = new MailAddress(miEmail, miAlias)
+            };
+            miCorreo.To.Add(correo);
+            miCorreo.Subject = "Usuario dado de alta";
+            miCorreo.IsBodyHtml = true;
+            miCorreo.Body = $"Le brindamos la informacion sobre su usuario: <br/>Username: {usuarioNuevo.Username}<br/>Contraseña: {usuarioNuevo.Contraseña}<br/>Con estos datos usted puede logerse, si desea cambiar su nombre de usuario y contraseña puede hacerlo desde el Perfil.";
+            miCorreo.Priority = MailPriority.High;
+        }
 
         public void enviarCorreo()
         {

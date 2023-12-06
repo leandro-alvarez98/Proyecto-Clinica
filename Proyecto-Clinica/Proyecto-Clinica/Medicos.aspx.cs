@@ -12,30 +12,21 @@ namespace Proyecto_Clinica
 {
     public partial class Medicos : System.Web.UI.Page
     {
-        public Clinica clinica = new Clinica();
-       public List<Medico> lista_Medicos = new List<Medico>();
+        public Clinica clinica;
         public List<Medico> lista_Medicos_x_dni;
-        ClinicaConexion clinicaConexion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            lista_Medicos_x_dni = new List<Medico>();
-            clinicaConexion = new ClinicaConexion();
+            ClinicaConexion clinicaConexion = new ClinicaConexion();
+            clinica = new Clinica();
             clinica = clinicaConexion.Listar();
-
-        //    lista_Medicos.Clear();
-          //  lista_Medicos = clinica.Medicos;
 
             if (!IsPostBack)
             { // solo se puede cargar una vez sino tira error
-                repeaterMedicos.DataSource = lista_Medicos;
                 repeaterMedicos.DataSource = clinica.Medicos;
                 repeaterMedicos.DataBind();
             }
-            
+
         }
-
-        
-
 
 
         protected void btnEditarDatos_Click(object sender, EventArgs e)
@@ -92,7 +83,7 @@ namespace Proyecto_Clinica
         }
         public void Cargar_Medicos_x_Dni(string dni)
         {
-            foreach (Medico medico in lista_Medicos)
+            foreach (Medico medico in clinica.Medicos)
             {
                 if(medico.Dni == dni)
                 {
@@ -106,9 +97,9 @@ namespace Proyecto_Clinica
             repeaterMedicos.DataSource = null;
             repeaterMedicos.DataBind();
             //cargar la nueva grilla de datos 
-            repeaterMedicos.DataSource = lista_Medicos;
+            repeaterMedicos.DataSource = clinica.Medicos;
             repeaterMedicos.DataBind();
-            if (lista_Medicos.Count() != 0)
+            if (clinica.Medicos.Count() != 0)
             {
                 Lbl_sin_medicos.Visible = false;
             }

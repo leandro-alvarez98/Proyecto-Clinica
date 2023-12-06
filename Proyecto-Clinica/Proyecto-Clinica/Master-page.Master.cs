@@ -124,6 +124,9 @@ namespace Proyecto_Clinica
                     medico.Direccion = txtDireccionEdit.Text;
                     medico.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoEdit.Text);
                     medico.Mail = txtMailEdit.Text;
+                    
+                    
+
 
                     //MedicoConexion medicoConexion = new MedicoConexion();
                     //medicoConexion.InsertarMedicoSinUsuario(medico);
@@ -131,6 +134,7 @@ namespace Proyecto_Clinica
                     if (medico.Id_Usuario != 0)
                     {
                         medicoConexion.InsertarMedico(medico);
+
 
                     }
                     else
@@ -216,10 +220,14 @@ namespace Proyecto_Clinica
                     paciente.Fecha_Nacimiento = DateTime.Parse(txtFechaNacimientoPaciente.Text);
                     paciente.Mail = txtEmailPaciente.Text;
 
+                    EmailService emailService = new EmailService();
+                    emailService.cuerpoCorreo(nuevo_usuario, txtEmailPaciente.Text);
 
                     if (paciente.Id_Usuario != 0)
                     {
                         pacienteConexion.InsertarPaciente(paciente);
+                        emailService.enviarCorreo();
+                        //lblMensaje.Text = "Correo enviado correctamente.";
 
                     }
                     else
