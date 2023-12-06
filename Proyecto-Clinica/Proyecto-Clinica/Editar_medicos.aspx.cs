@@ -187,7 +187,7 @@ namespace Proyecto_Clinica
                         if (especialidadSeleccionada > 0)
                         {
                             AsignarEspecialidadEnBaseDeDatos(Medico_actual.Id, especialidadSeleccionada);
-                            // Response.Redirect("Editar_medicos.aspx");
+                            Response.Redirect("Editar_medicos.aspx");
                             string mensaje = "La acción se ha completado con éxito.";
 
                             ScriptManager.RegisterStartupScript(this, GetType(), "MostrarMensajeModal", $"mostrarMensajeModal('{mensaje}');", true);
@@ -386,31 +386,33 @@ namespace Proyecto_Clinica
             {
                 lblErrorDni.Visible = true;
                 dniValido = false;
+                ScriptManager.RegisterStartupScript(this, GetType(), "OcultarDropdown", "ocultarDropdown();", true);
             }
             if (!Validaciones.EsNumero(txtTelefonoEdit.Text))
             {
                 lblErrorTelefono.Visible = true;
                 telefonoValido = false;
+                ScriptManager.RegisterStartupScript(this, GetType(), "OcultarDropdown", "ocultarDropdown();", true);
 
             }
             if (Validaciones.ContieneNumeros(txtNombreEdit.Text))
             {
                 lblErrorNombre.Visible = true;
                 nombreValido = false;
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "OcultarDropdown", "ocultarDropdown();", true);
             }
             if (Validaciones.ContieneNumeros(txtApellidoEdit.Text))
             {
                 lblErrorApellido.Visible = true;
                 apellidoValido = false;
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "OcultarDropdown", "ocultarDropdown();", true);
             }
 
             if (!Validaciones.EsFormatoCorreoElectronico(txtMailEdit.Text))
             {
                 lblErrorMail.Visible = true;
                 emailValido = false;
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "OcultarDropdown", "ocultarDropdown();", true);
             }
            
 
@@ -528,6 +530,11 @@ namespace Proyecto_Clinica
             OcultarControlesEdicion();
             Visibilidad_labels(true);
             Cargar_labels();
+            Ocultar_labels_Error();
+
+
+
+
         }
         public void Cargar_labels()
         {
@@ -549,6 +556,7 @@ namespace Proyecto_Clinica
             direccionLbl.Visible = valor;
             fechaNacimientoLbl.Visible = valor;
         }
-
+        
     }
+
 }

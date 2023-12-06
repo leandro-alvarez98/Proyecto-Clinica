@@ -80,7 +80,7 @@
                         <asp:Button ID="btnEditarDatos" CssClass="Boton" Style="margin-left: 10px" runat="server" Text="Editar Datos" OnClick="btnEditar_Click" />
                         <asp:Button ID="btnGuardar" CssClass="Boton" Style="margin-left: 10px" runat="server" Text="Guardar Cambios" OnClick="btnGuardar_Click" Visible="false" />
                         <asp:Button ID="btnCancelar" Style="margin-left: 110px" CssClass="Boton" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" Visible="false" />
-                        <asp:Button ID="btnCambioContraseña" Style="margin-left: 70px" CssClass="Boton" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />
+<%--                        <asp:Button ID="btnCambioContraseña" Style="margin-left: 70px" CssClass="Boton" runat="server" Text="Cambiar Contraseña" PostBackUrl="CambiarContraseña.aspx" />--%>
                         <br />
                     </div>
                 </div>

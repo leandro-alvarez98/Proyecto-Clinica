@@ -47,6 +47,7 @@ namespace Proyecto_Clinica
                     Medico_actual = Cargar_Médico_Clinica();
                     if(Medico_actual.Id != -1)
                     {
+                        
                         Usuario_Actual.Nombre = Medico_actual.Nombre;
                         Usuario_Actual.Apellido = Medico_actual.Apellido;
                         Usuario_Actual.Dni = int.Parse(Medico_actual.Dni);
@@ -77,6 +78,7 @@ namespace Proyecto_Clinica
                     Administrador_actual = Cargar_Administracion_Clinica();
                     if(Administrador_actual.Id != -1)
                     {
+                        
                         Usuario_Actual.Nombre = Administrador_actual.Nombre;
                         Usuario_Actual.Apellido = Administrador_actual.Apellido;
                         Usuario_Actual.Dni = int.Parse(Administrador_actual.Dni);
@@ -148,6 +150,7 @@ namespace Proyecto_Clinica
         }
         public void Cargar_labels()
         {
+            lblUsername.Text = Usuario_Actual.Username;
             dniLbl.Text = Usuario_Actual.Dni.ToString();
             apellidoLbl.Text = Usuario_Actual.Apellido;
             nombrelbl.Text = Usuario_Actual.Nombre;
@@ -169,6 +172,11 @@ namespace Proyecto_Clinica
             //oculta botones de defecto
             btnEditarDatos.Visible = false;
             btnCambioContraseña.Visible = false;
+            btn_CambiarImagen.Visible = false;
+            txtImagen.Visible = false;
+            //lblnombreUsuario.Visible = false;
+            lblUsername.Visible = false;
+            lblnombreUsuario.Visible = true;
 
             //Habilitar TextBox para la edición
             Visibilidad_Texbox(true);
@@ -180,6 +188,7 @@ namespace Proyecto_Clinica
             btnGuardar.Visible = true;
             btnCancelar.Visible = true;
 
+            txtUsername.Text = Usuario_Actual.Username;
             txtDniEdit.Text = Usuario_Actual.Dni.ToString();
             txtNombreEdit.Text = Usuario_Actual.Nombre;
             txtApellidoEdit.Text = Usuario_Actual.Apellido;
@@ -245,7 +254,7 @@ namespace Proyecto_Clinica
             }
             if (nombreValido && apellidoValido && telefonoValido && emailValido && direccionValido && fechaNacimientoValido && dniValido)
             {
-                
+
                 if (Usuario_Actual.Nombre == null)
                 {
                     InsertarDatosEnBBDD();
@@ -254,6 +263,7 @@ namespace Proyecto_Clinica
                 {
                     ActualizarDatosEnBBDD();
                 }
+                
             }
         }
         private void InsertarDatosEnBBDD()
@@ -461,6 +471,7 @@ namespace Proyecto_Clinica
         }
         public void Visibilidad_Texbox(bool valor)
         {
+            txtUsername.Visible = valor;
             txtDniEdit.Visible = valor;
             txtNombreEdit.Visible = valor;
             txtApellidoEdit.Visible = valor;

@@ -111,7 +111,7 @@ namespace Proyecto_Clinica
 
                     ActualizarDatosEnBBDD();
                 }
-                btnCambioContraseña.Visible = true;
+                //btnCambioContraseña.Visible = true;
             }
         }
         public void btnEditar_Click(object sender, EventArgs e)
@@ -148,15 +148,16 @@ namespace Proyecto_Clinica
 
             // Oculta el botón de Editar
             btnEditarDatos.Visible = false;
-            btnCambioContraseña.Visible = false;
+           // btnCambioContraseña.Visible = false;
         }
         public void btnCancelar_Click(object sender, EventArgs e)
         {
             btnCancelar.Visible = false;
-            btnCambioContraseña.Visible = true;
+            //btnCambioContraseña.Visible = true;
             OcultarControlesEdicion();
             Visibilidad_labels(true);
             Cargar_labels();
+            Ocultar_labels_Error();
         }
         public void Cargar_labels()
         {

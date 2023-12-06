@@ -40,6 +40,11 @@ namespace Proyecto_Clinica
                 contraseñaCambiada = true;
 
             }
+            else
+            {
+                MessageBox.Show("contraseñas erroneas, ingrese su contraseña actual y la nueva en los campos ");
+                
+            }
 
         }
         protected void btnAceptar_Click(object sender, EventArgs e)

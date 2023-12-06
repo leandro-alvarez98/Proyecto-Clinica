@@ -21,7 +21,15 @@
                    <%-- Imagen del perfil--%>
                     <div class="col-md-9">
                         <asp:Image ID="imgPerfil" runat="server" CssClass="img-fluid mb-3" Style="width: 400px; height: 400px;" IsPostBack="true" />
-                        <input type="file" id="txtImagen" class="form-control" runat="server" />
+                        <li class="list-group-item">
+
+                            <asp:Label ID="lblnombreUsuario" CssClass="fs-4 font-monospace" runat="server" Text="Username: " Visible="false"></asp:Label>
+                            <asp:Label ID="lblUsername"  CssClass="lbl " runat="server" Font-Bold="True" Visible="true" ></asp:Label>
+                            <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" Visible="false" MaxLength="100"></asp:TextBox>
+                            <asp:Label ID="errorUsername" CssClass="lbl lbl_error" Text="El username ya existe" runat="server" Visible="false"></asp:Label>
+                        </li>
+                        <br />
+                        <input type="file" id="txtImagen" class="form-control" runat="server" visible="true"/>
                         <br />
                         <asp:Button ID="btn_CambiarImagen" CssClass="Boton" runat="server" Text="Confirmar Imagen" OnClick="btn_CambiarImagen_Click" Visible="true" />
                         <asp:Label ID="lbl_Error_Imagen" runat="server" Text="Hubo un error al cargar la imagen, asegurese que sea .jpg de tamaño menor a 5 mb" Visible="false"></asp:Label>

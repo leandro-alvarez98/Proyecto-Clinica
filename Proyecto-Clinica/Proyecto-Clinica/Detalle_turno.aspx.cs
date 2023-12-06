@@ -259,11 +259,13 @@ namespace Proyecto_Clinica
             {
                 lblMensajeError.Text = "Error al modificar el turno";
                 lblMensajeError.Visible = true;
+                
+                
             }
             else
             {
-                Response.Redirect("Detalle_turno.aspx");
                 Session["Turno"] = turno;
+                Response.Redirect("MisTurnos.aspx");
             }
         }
 
