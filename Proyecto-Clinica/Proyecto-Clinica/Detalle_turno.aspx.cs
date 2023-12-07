@@ -1,4 +1,5 @@
 ﻿using Conexion_Clinica;
+using Dominio;
 using Proyecto_Clinica.Dominio;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,10 @@ namespace Proyecto_Clinica
             turno_actual = (Turno)Session["Turno"];
             usuario_actual = (Usuario)Session["Usuario"];
             turnoConexion = new TurnoConexion();
+
+            
+
+
             if (usuario_actual.Tipo != "Médico")
             {
                 DGV_turnos_disponibles.Visible = true;
@@ -238,6 +243,7 @@ namespace Proyecto_Clinica
             DateTime fechaSeleccionada = DateTime.Parse(txt_FechaSeleccionada.Text);
 
             TimeSpan horaSeleccionada = TimeSpan.Parse(DGV_turnos_disponibles.SelectedRow.Cells[1].Text); 
+
             HorarioConexion horarioConexion = new HorarioConexion();
             int IDHorarioNuevo = horarioConexion.GetIdHorario(horaSeleccionada);
 
@@ -254,6 +260,9 @@ namespace Proyecto_Clinica
             turno.Fecha = fechaSeleccionada;
             turno.Id = turno_actual.Id;
             turno.Id_Horario = IDHorarioNuevo;
+
+            
+
 
             if (!turnoConexion.Modificar_Turno(turno))
             {
